@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/back">
+     <Button
+        android:id="@+id/fuwu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/anniubeijing"
+        android:text="联系方式" 
+        android:textColor="#FFFFFF"/>
+    
+          <ImageView
+              android:id="@+id/ivlogo"
+              android:layout_width="wrap_content"
+              android:layout_height="60dp"
+              android:layout_marginLeft="66dp"
+              android:layout_below="@id/fuwu"
+              android:background="@drawable/logo"/>
+
+          <ListView
+              android:id="@+id/lianxilist"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:cacheColorHint="#00000000"
+              android:layout_marginTop="20dp"
+		     android:divider="#55000000"
+		     android:dividerHeight="1dp"
+		     android:fadeScrollbars="true"
+		     android:layout_below="@id/ivlogo"
+		     android:background="@drawable/waibiankuang"
+		     android:layout_marginLeft="20dp"
+		     android:layout_marginRight="20dp"/>
+         
+          <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dixiaanniu"
+        android:orientation="horizontal"
+        android:layout_below="@id/lianxilist"
+        android:layout_marginTop="20dp">
+      
+     <Button
+           android:id="@+id/bt1"
+           android:layout_width="60dp"
+           android:layout_height="50dp"
+           android:background="@drawable/selector_fuwu1"
+           android:onClick="danjilianxi"
+           android:layout_marginTop="5dp"
+           android:layout_weight="1"/>
+      
+       <Button 
+            android:id="@+id/bt2"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu2"
+            android:onClick="danjilianxi"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt3"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu3"
+            android:onClick="danjilianxi"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button
+            android:id="@+id/bt4" 
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu4"
+            android:onClick="danjilianxi"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt5"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu5"
+            android:onClick="danjilianxi"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"/>
+     
+    </LinearLayout>
+    
+
+</LinearLayout>

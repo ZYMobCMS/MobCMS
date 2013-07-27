@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+     <Button
+        android:id="@+id/fuwu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/anniubeijing"
+        android:text="公司简介" 
+        android:textColor="#FFFFFF"/>
+     
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        
+        <ScrollView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="20dp">
+            <RelativeLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gongsijianjie">
+               
+                <TextView 
+                    android:id="@+id/text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000" 
+                    android:paddingTop="260dp"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+    
+  <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dixiaanniu"
+        android:orientation="horizontal">
+      
+        <Button
+           android:id="@+id/bt1"
+           android:layout_width="60dp"
+           android:layout_height="50dp"
+           android:background="@drawable/selector_fuwu1"
+           android:onClick="danjijianjie"
+           android:layout_marginTop="5dp"
+           android:layout_weight="1"/>
+      
+       <Button 
+            android:id="@+id/bt2"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu2"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt3"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu3"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button
+            android:id="@+id/bt4" 
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu4"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt5"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu5"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>
