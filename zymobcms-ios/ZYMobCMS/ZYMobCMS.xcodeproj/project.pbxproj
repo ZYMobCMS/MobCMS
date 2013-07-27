@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FBF76D317A3927F00F82E52 /* ZTMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */; };
 		E47F0F7817A35C330011780E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F0F7717A35C330011780E /* UIKit.framework */; };
 		E47F0F7A17A35C330011780E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F0F7917A35C330011780E /* Foundation.framework */; };
 		E47F0F7C17A35C330011780E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F0F7B17A35C330011780E /* CoreGraphics.framework */; };
@@ -126,6 +127,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9FBF76D117A3927F00F82E52 /* ZTMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTMenuViewController.h; sourceTree = "<group>"; };
+		9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTMenuViewController.m; sourceTree = "<group>"; };
 		E47F0F7417A35C330011780E /* ZYMobCMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYMobCMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47F0F7717A35C330011780E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E47F0F7917A35C330011780E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -536,6 +539,8 @@
 		E47F0F9F17A35CF60011780E /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9FBF76D117A3927F00F82E52 /* ZTMenuViewController.h */,
+				9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1249,6 +1254,7 @@
 				E47F10F017A35D820011780E /* BFVarHeightCell.m in Sources */,
 				E47F110717A360830011780E /* Reachability.m in Sources */,
 				E47F110B17A361140011780E /* JSONKit.m in Sources */,
+				9FBF76D317A3927F00F82E52 /* ZTMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
