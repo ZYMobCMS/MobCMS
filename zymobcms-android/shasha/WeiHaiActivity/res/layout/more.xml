@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/back">
+    <Button
+        android:id="@+id/gengduo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/biaotibeijing"
+        android:text="更多" 
+        android:textColor="#FFFFFF"/>
+    
+            <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+          
+    <Button
+        android:id="@+id/denglu"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/anniu"
+        android:text="用户登录"
+        android:onClick="dianjianniu" 
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textColor="#0A0A0A"/>
+    <Button
+        android:id="@+id/zhuce"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/anniu"
+        android:text="用户注册"
+        android:onClick="dianjianniu"
+        android:layout_below="@id/denglu"
+         android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#0A0A0A"/>
+    <Button
+        android:id="@+id/xinxi"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/anniu"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_gravity="center"
+         android:layout_marginTop="10dp"
+        android:text="信息帮助" 
+        android:onClick="dianjianniu"
+        android:layout_below="@id/zhuce"
+        android:textColor="#0A0A0A"/>
+   
+ 
+    </LinearLayout>
+    
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dixiaanniu"
+        android:orientation="horizontal"
+        android:layout_below="@id/xinxi">
+      
+            <Button
+           android:id="@+id/bt1"
+           android:layout_width="60dp"
+           android:layout_height="50dp"
+           android:background="@drawable/selector_fuwu1"
+           android:onClick="danjigengduo"
+           android:layout_marginTop="5dp"
+           android:layout_weight="1"/>
+      
+       <Button 
+            android:id="@+id/bt2"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu2"
+            android:onClick="danjigengduo"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt3"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu3"
+            android:onClick="danjigengduo"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button
+            android:id="@+id/bt4" 
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu4"
+            android:onClick="danjigengduo"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt5"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu5"
+            android:onClick="danjigengduo"
+            android:layout_marginTop="2dp"
+               android:layout_weight="1"/>
+      
+      
+    </LinearLayout>
+
+</LinearLayout>
