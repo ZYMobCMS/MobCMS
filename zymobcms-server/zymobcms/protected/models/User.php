@@ -20,6 +20,7 @@
  * @property integer $sex
  * @property string $location
  * @property string $token
+ * @property string $dbname
  */
 class User extends CActiveRecord
 {
@@ -32,7 +33,7 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -49,7 +50,7 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('login_name, password', 'required'),
+			array('login_name, password, nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token, dbname', 'required'),
 			array('status, user_type_id, sex', 'numerical', 'integerOnly'=>true),
 			array('login_name', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>2000),
@@ -57,10 +58,10 @@ class User extends CActiveRecord
 			array('profile', 'length', 'max'=>500),
 			array('location', 'length', 'max'=>300),
 			array('token', 'length', 'max'=>5000),
-			array('nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token','safe'),
+			array('dbname', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, login_name, password, nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token', 'safe', 'on'=>'search'),
+			array('id, login_name, password, nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token, dbname', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -97,6 +98,7 @@ class User extends CActiveRecord
 			'sex' => 'Sex',
 			'location' => 'Location',
 			'token' => 'Token',
+			'dbname' => 'Dbname',
 		);
 	}
 
@@ -127,49 +129,10 @@ class User extends CActiveRecord
 		$criteria->compare('sex',$this->sex);
 		$criteria->compare('location',$this->location,true);
 		$criteria->compare('token',$this->token,true);
+		$criteria->compare('dbname',$this->dbname,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-	
-	/**
-	 * MD5
-	 * 
-	 */
-	public function enypt($aString){
-		return md5($aString);
-	}
-	
-	/*
-	 * 验证密码
-	 */
-	public function validatePassword($password){
-		
-		if($this->password == $this->enypt($password)){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	/*
-	 * 保存注册信息
-	 */
-	protected function beforeSave(){
-		
-		if (parent::beforeSave()) {
-			
-			if ($this->isNewRecord) {
-				
-				$this->password = $this->enypt($this->password);
-				$this->rigist_time = date('y:m:d h:i:s');
-				
-			}
-			
-			return true;
-		}else{
-			return false;
-		}
 	}
 }

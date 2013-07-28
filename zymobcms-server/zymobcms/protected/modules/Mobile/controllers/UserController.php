@@ -22,13 +22,17 @@ class UserController extends Controller {
 		//接收参数
 		$loginName = $_GET['loginName'];
 		$password = $_GET['password'];
+		$appName = $_GET['appName'];
 	
 		if(!$this->validateParams($loginName, $password)){
 			return ;
 		}
 	
 		//检查是否已经存在用户
-		$userExist = User::model()->findByAttributes(array('login_name'=>$loginName));
+		$newUserModel = User::model();
+		$newUserModel->rebuildDbConnection($appName);
+				
+		$userExist = $newUserModel->findByAttributes(array('login_name'=>$loginName));
 	
 		if($userExist){
 				
@@ -87,12 +91,15 @@ class UserController extends Controller {
 		//接收参数
 		$loginName = $_GET['loginName'];
 		$password = $_GET['password'];
+		$appName = $_GET['appName'];
 	
 		if(!$this->validateParams($loginName, $password)){
 			return ;
 		}
 	
-		$userExist = User::model()->findByAttributes(array('login_name'=>$loginName));
+		$newUserModel = User::model();
+		$newUserModel->rebuildDbConnection($appName);
+		$userExist = $newUserModel->findByAttributes(array('login_name'=>$loginName));
 	
 		if(!$userExist){
 				

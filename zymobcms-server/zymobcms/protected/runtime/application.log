@@ -138,3 +138,48 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=vincent&password=123
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (37)
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/28 14:22:18 [error] [exception.CException] exception 'CException' with message 'Property "User.destdb" is not defined.' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(143): CComponent->__get('destdb')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/User.php(42): CActiveRecord->__get('destdb')
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): User->getDBConnection()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(User))
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/User.php(33): CActiveRecord::model('User')
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php(32): User::model()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): UserController->actionRigist()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('rigist')
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/rig...')
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=Lily&password=123&appName=zymobcmsnew1
+---
+2013/07/28 14:31:26 [error] [php] Undefined index: appName (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php:25)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=vincent&password=123
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (25)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/28 14:31:44 [error] [exception.CException] exception 'CException' with message 'Property "User.dbname" is not defined.' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(159): CComponent->__set('dbname', 'zymobcmsnew1')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php(33): CActiveRecord->__set('dbname', 'zymobcmsnew1')
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): UserController->actionRigist()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('rigist')
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/rig...')
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=vincent&password=123&appName=zymobcmsnew1
+---
