@@ -67,10 +67,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=zymobcmsnew',
+			'connectionString' => 'mysql:host=localhost;dbname=zymobcms',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '123',
+			'username' => 'ticket',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
@@ -87,10 +87,10 @@ return array(
 				),
 				// uncomment the following to show log messages on web pages
 				
-				array(
-					'class'=>'CWebLogRoute',
-					'categories'=>'system.db.*',
-				),
+//				array(
+//					'class'=>'CWebLogRoute',
+//					'categories'=>'system.db.*',
+//				),
 				
 			),
 		),

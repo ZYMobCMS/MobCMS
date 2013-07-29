@@ -25,72 +25,72 @@ class class_DBOperation{
 			
 		//
 		if (!mysql_connect($this->host,$this->user_name,$this->user_pwd)){
-			echo '�޷�����������';
+			die('数据库链接失败'.mysql_errno()) ;
 			exit();
 		}
 	
 		
-		$conn = mysql_connect($this->host,$this->user_name,$this->user_pwd) or die('������Ϣ'.mysql_error());
+		$conn = mysql_connect($this->host,$this->user_name,$this->user_pwd) or die('数据库链接失败'.mysql_error());
 	
 		
-		mysql_select_db($this->dest_db,$conn)or die('������Ϣ'.mysql_error());
+		mysql_select_db($this->dest_db,$conn)or die('数据库选择失败'.mysql_error());
 	
-		//�����ַ�
-		mysql_query("set names utf8") or die('������Ϣ'.mysql_error());
+		//设置字符集
+		mysql_query("set names utf8") or die('数据库字符集设置失败'.mysql_error());
 	}
 	function __call($function_name, $args)
 	{
 		echo "<br><font color=#ff0000>������õķ��� $function_name ������</font><br>\n";
 	}
-	//ִ��sql��䷽��
+	//ִ执行查询
 	function  query($sql){
-		$result = mysql_query($sql)or die('������Ϣ'.mysql_error());
+		$result = mysql_query($sql)or die('数据库查询失败'.mysql_error());
+                
+                
 		return $result;
 	} 
 	
 	function queryByPk($table,$params){
 		
 		if(!is_array($params) || count($params)>1 || !$table){
-			return ;
+			return FALSE;
 		}
-		
+                		
 		//
-		$paramString = "";
-		for($i = 0,$n=count($params);$i<$n;$i++){
+                $pk = "";
+                $pkValue = "";
+		foreach ($params as $key=>$value){
 				
-			$keyValue = key($params[$i]);
-		
-			if($i!=$n-1){
-				$paramString = $paramString."$keyValue=$params[$i] and";
-			}else{
-				$paramString = $paramString."$keyValue=$params[$i]";
-			}
+			$pk = $key;
+                        $pkValue = $value;
+                        
 		}
-		$sqlString = "select * from $table where $paramString";
-		
+		$sqlString = "select * from $table where $pk = '$pkValue'";
 		$queryResult = $this->query($sqlString);
+                                
 		$resultObj = $this->fetch_obj($queryResult);
-		
+		                
 		return $resultObj;
 	}
 	
 	function queryByAttributes($table,$params){
 		
 		if(!is_array($params) || !$table || !$params){
-			return ;
+			return FALSE;
 		}
 		
 		//
 		$paramString = "";
-		for($i = 0,$n=count($params);$i<$n;$i++){
+                $n = count($params);
+                $i = 0;
+		foreach ($params as $key=>$value){
 			
-			$keyValue = key($params[$i]);
-				
 			if($i!=$n-1){
-				$paramString = $paramString."$keyValue=$params[$i] and";
+				$paramString = $paramString."$key='$value' and";
 			}else{
-				$paramString = $paramString."$keyValue=$params[$i]";
+				$paramString = $paramString."$key='$value'";
 			}
+                        $i=$i+1;
 		}
 		$sqlString = "select * from $table where $paramString";
 		
@@ -101,67 +101,78 @@ class class_DBOperation{
 	
 	function saveAttributes($table,$isNewRecord,$attributes,$keyattributes){
 		
-		if(!$attributes || !is_array($attributes) || !$table || !$keyattributes || !is_array($keyattributes)){
-			return ;
+		if(!$attributes || !is_array($attributes) || !$table){
+			return  FALSE;
 		}
-		
+                		
 		if($isNewRecord){
 			
                     //
                     $properties = "";
                     $vaules = "";
-                    for($i=0,$n=count($attributes);$i<$n;$i++){
+                    $n = count($attributes);
+                    $i = 0;
+                    foreach ($attributes as $property=>$value){
                         
-                        $property = key($attributes[$i]);
-                        
+  
                         if($i!=$n-1){
                             
                             $properties = $properties."$property,";
-                            $vaules = $vaules."$attributes[$i],";
+                            $vaules = $vaules."'$value',";
 
                         }else{
                             
                             $properties = $properties.$property;
-                            $vaules = $vaules.$attributes[$i];
+                            $vaules = $vaules."'$value'";
                         }
+                        $i++;
                     }
 			
                     //
-                    $insertSql = "insert $table($properties)value($values)";
+                    $insertSql = "insert into $table($properties) values($vaules)";
+
                     $insertResult = $this->query($insertSql);
+                    
                     
                     if($insertResult){
                         
+                        return TRUE;
                     }else{
-                        
+                        return FALSE; 
                     }
                     
 			
 		}else{
 		
+                    if(!$keyattributes || !is_array($keyattributes)){
+                        return FALSE;
+                    }
+                    
                    //
                    $paramString = "";
-                    for($i = 0,$n=count($attributes);$i<$n;$i++){
+                   $n = count($attributes);
+                   $i = 0;
+                   foreach ($attributes as $key=>$value){
 			
-                            $keyValue = key($attributes[$i]);
-				
                             if($i!=$n-1){
-				$paramString = $paramString."$keyValue=$attributes[$i] and";
+				$paramString = $paramString."$key='$value' and";
                             }else{
-				$paramString = $paramString."$keyValue=$attributes[$i]";
+				$paramString = $paramString."$key='$value'";
                             }
+                            $i++;
                     } 
                     
                     //
                     $pk = key($keyattributes[0]);
-                    $updateSql = "update $table set $paramString where $pk=$keyattributes[0]";
+                    $pkValue = current($keyattributes[0]);
+                    $updateSql = "update $table set $paramString where '$pk'='$pkValue'";
                     
                     $updateResult = $this->query($updateSql);
                 
                     if($updateResult){
-                    
+                        return TRUE;
                     }else{
-                    
+                        return FALSE;
                     }
                     
                     
@@ -170,7 +181,7 @@ class class_DBOperation{
 	}
 	
 	function  fetch_array($sql){
-		$result = mysql_query($sql) or die('������Ϣ'.mysql_error());
+		$result = mysql_query($sql) or die('返回查询数组失败'.mysql_error());
 		$result_arry = mysql_fetch_array($result);
 		return $result_arry;
 	}

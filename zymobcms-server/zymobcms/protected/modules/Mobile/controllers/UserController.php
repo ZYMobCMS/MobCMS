@@ -2,7 +2,8 @@
 
 class UserController extends Controller {
 	
-	/**
+    
+    /**
 	 * 注册接口
 	 */
 	public function actionRigist(){
@@ -29,11 +30,10 @@ class UserController extends Controller {
 		}
 	
 		//检查是否已经存在用户
-		$newUserModel = User::model();
-		$newUserModel->rebuildDbConnection($appName);
-				
-		$userExist = $newUserModel->findByAttributes(array('login_name'=>$loginName));
-	
+                $yiidb = Yii::app()->db;
+                $dbOperation = new class_DBOperation('localhost', $yiidb->username,$yiidb->password,$appName,$yiidb->charset);
+		$userExist = $dbOperation->queryByPk('zy_user',array('login_name'=>$loginName));                
+                
 		if($userExist){
 				
 			$resultArr = array('status'=>'0','msg'=>'用户已存在');
@@ -43,12 +43,10 @@ class UserController extends Controller {
 			return ;
 				
 		}else{
-				
-			$newUser = new User();
-			$newUser->login_name = $loginName;
-			$newUser->password = $password;
-				
-			$rigistResult = $newUser->save();
+			
+                        $attributes = array('login_name'=>$loginName,'password'=>$this->enypt($password));
+                        $rigistResult = $dbOperation->saveAttributes('zy_user',TRUE,$attributes,'');
+			
 			if($rigistResult){
 	
 				$resultArr = array('status'=>'1','msg'=>'注册成功');
@@ -97,9 +95,10 @@ class UserController extends Controller {
 			return ;
 		}
 	
-		$newUserModel = User::model();
-		$newUserModel->rebuildDbConnection($appName);
-		$userExist = $newUserModel->findByAttributes(array('login_name'=>$loginName));
+		//检查是否已经存在用户
+                $yiidb = Yii::app()->db;
+                $dbOperation = new class_DBOperation('localhost', $yiidb->username,$yiidb->password,$appName,$yiidb->charset);
+		$userExist = $dbOperation->queryByPk('zy_user',array('login_name'=>$loginName));                
 	
 		if(!$userExist){
 				
@@ -111,7 +110,7 @@ class UserController extends Controller {
 				
 		}else{
 				
-			if($userExist->validatePassword($password)){
+			if($userExist->password == $this->enypt($password)){
 	
 				$resultArr = array('status'=>'1','msg'=>'登陆成功');
 	
@@ -161,6 +160,13 @@ class UserController extends Controller {
 		return true;
 	}
 	
+        /**
+         * MD5 password
+         * 
+         */
+        public function enypt($password){
+            return md5($password);
+        }
 }
 
 ?>
