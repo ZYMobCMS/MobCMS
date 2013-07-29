@@ -2,7 +2,10 @@
 
 
 /*
- * 
+ * 数据库操作基础类
+ * 作者: 胡涛
+ * 创建时间:2012年3月15日
+ * 修改时间:2013年7月29日
  */
 
 class class_DBOperation{	
@@ -73,9 +76,97 @@ class class_DBOperation{
 		return $resultObj;
 	}
 	
-	function queryByAttributes($table,$params){
+        function queryValuesByConditions($table,$params,$properties,$startIndex,$pageSize){
+            
+            if(!is_array($params) || !$table || !$params || !is_array($properties) || !$properties || $startIndex<0){
+			return FALSE;
+            }
+                        
+                //
+		$paramString = "";
+                $n = count($params);
+                $i = 0;
+		foreach ($params as $key=>$value){
+			
+			if($i!=$n-1){
+				$paramString = $paramString."$key='$value' and";
+			}else{
+				$paramString = $paramString."$key='$value'";
+			}
+                        $i=$i+1;
+		}
+                
+                $propertyString = "";
+                $pn = count($properties);
+                $pi = 0;
+                foreach ($properties as $key){
+                    
+                   if($pi!=$pn-1){
+                            
+                       $propertyString = $propertyString."$key,";
+
+                   }else{
+                            
+                       $propertyString = $propertyString.$key;
+                   }
+                   $pi++; 
+                }
+                
+		$sqlString = "select $propertyString from $table where $paramString limit $startIndex,$pageSize";
 		
-		if(!is_array($params) || !$table || !$params){
+		$resultArr = $this->fetch_obj_arr($sqlString);
+		
+		return $resultArr;
+                
+        }
+                
+        function queryValuesByAttributes($table,$params,$properties){
+            
+            if(!is_array($params) || !$table || !$params || !is_array($properties) || !$properties){
+			return FALSE;
+		}
+            
+                //
+		$paramString = "";
+                $n = count($params);
+                $i = 0;
+		foreach ($params as $key=>$value){
+			
+			if($i!=$n-1){
+				$paramString = $paramString."$key='$value' and";
+			}else{
+				$paramString = $paramString."$key='$value'";
+			}
+                        $i=$i+1;
+		}
+                
+                $propertyString = "";
+                $pn = count($properties);
+                $pi = 0;
+                foreach ($properties as $key){
+                    
+                   if($pi!=$pn-1){
+                            
+                       $propertyString = $propertyString."$key,";
+
+                   }else{
+                            
+                       $propertyString = $propertyString.$key;
+                   }
+                   $pi++; 
+                }
+                
+		$sqlString = "select $propertyString from $table where $paramString";
+		
+		$resultArr = $this->fetch_obj_arr($sqlString);
+		
+		return $resultArr;
+            
+        }
+                
+        function queryAllByAttributes($table,$params){
+            
+            if(!is_array($params) || !$table || !$params){
 			return FALSE;
 		}
 		
@@ -97,8 +188,50 @@ class class_DBOperation{
 		$resultArr = $this->fetch_obj_arr($sqlString);
 		
 		return $resultArr;
+        }
+                
+	function queryByAttributes($table,$params){
+		
+		if(!is_array($params) || !$table || !$params){
+			return FALSE;
+		}
+		
+		//
+		$paramString = "";
+                $n = count($params);
+                $i = 0;
+		foreach ($params as $key=>$value){
+			
+			if($i!=$n-1){
+				$paramString = $paramString."$key='$value' and";
+			}else{
+				$paramString = $paramString."$key='$value'";
+			}
+                        $i=$i+1;
+		}
+		$sqlString = "select * from $table where $paramString";
+		
+		$resultArr = $this->fetch_obj($sqlString);
+		
+		return $resultArr;
 	}
-	
+        
+        function queryAllBySql($sql){
+            
+            $queryResult = $this->query($sql);
+            $resultArr = $this->fetch_obj_arr($queryResult);
+            
+            return $resultArr;
+        }
+        
+        function queryBySql($sql){
+            
+            $queryResult = $this->query($sql);
+            $resultObj = $this->fetch_obj($queryResult);
+            
+            return $resultObj;
+        }
+                
 	function saveAttributes($table,$isNewRecord,$attributes,$keyattributes){
 		
 		if(!$attributes || !is_array($attributes) || !$table){

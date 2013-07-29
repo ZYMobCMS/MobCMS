@@ -3,8 +3,9 @@
 class UserController extends Controller {
 	
     
-    /**
+        /**
 	 * 注册接口
+         * @params loginName,password,productId
 	 */
 	public function actionRigist(){
 	
@@ -23,15 +24,14 @@ class UserController extends Controller {
 		//接收参数
 		$loginName = $_GET['loginName'];
 		$password = $_GET['password'];
-		$appName = $_GET['appName'];
+		$appName = $_GET['productId'];
 	
 		if(!$this->validateParams($loginName, $password)){
 			return ;
 		}
 	
 		//检查是否已经存在用户
-                $yiidb = Yii::app()->db;
-                $dbOperation = new class_DBOperation('localhost', $yiidb->username,$yiidb->password,$appName,$yiidb->charset);
+                $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
 		$userExist = $dbOperation->queryByPk('zy_user',array('login_name'=>$loginName));                
                 
 		if($userExist){
@@ -70,7 +70,7 @@ class UserController extends Controller {
 	
 	/**
 	 * 用户登陆
-	 * @params $loginName ,$password
+	 * @params $loginName ,$password,productId
 	 */
 	public function actionLogin(){
 	
@@ -89,15 +89,15 @@ class UserController extends Controller {
 		//接收参数
 		$loginName = $_GET['loginName'];
 		$password = $_GET['password'];
-		$appName = $_GET['appName'];
+		$appName = $_GET['productId'];
 	
 		if(!$this->validateParams($loginName, $password)){
-			return ;
+                                    
+                	return ;
 		}
 	
 		//检查是否已经存在用户
-                $yiidb = Yii::app()->db;
-                $dbOperation = new class_DBOperation('localhost', $yiidb->username,$yiidb->password,$appName,$yiidb->charset);
+                $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
 		$userExist = $dbOperation->queryByPk('zy_user',array('login_name'=>$loginName));                
 	
 		if(!$userExist){

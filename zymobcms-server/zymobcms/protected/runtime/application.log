@@ -312,3 +312,14 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=Lily&password=123&appName=zymobcms1
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (38)
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/29 15:43:48 [error] [php] Undefined index: productId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php:92)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/login&loginName=Lily&password=123&appName=zymobcms
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (92)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
