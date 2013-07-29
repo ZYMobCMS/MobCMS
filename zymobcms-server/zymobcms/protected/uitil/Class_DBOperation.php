@@ -1,14 +1,8 @@
 <?php
 
-/*
- �ļ���Class_DBOperation.php
- ���ã���ݿ��������
-  ���ߣ�����
- ���ڣ�2012-2-8
-*/
 
 /*
- * ��װ˵�����������������޸Ĵ��ļ������򽫵��·����������޷�ִ��
+ * 
  */
 
 class class_DBOperation{	
@@ -19,26 +13,26 @@ class class_DBOperation{
 	private $dest_db;
 	private $charset;
 	
-	//����������ݿ����
+	
 	function class_DBOperation($host,$user,$pwd,$db,$charset){
 	
-		//��ȡ����
+		//
 		$this->host = $host;
 		$this->user_name = $user;
 		$this->user_pwd = $pwd;
 		$this->dest_db = $db;
 		$this->charset = $charset;
 			
-		//����Ƿ�����������ݿ���������
+		//
 		if (!mysql_connect($this->host,$this->user_name,$this->user_pwd)){
 			echo '�޷�����������';
 			exit();
 		}
 	
-		//������ݿ�����
+		
 		$conn = mysql_connect($this->host,$this->user_name,$this->user_pwd) or die('������Ϣ'.mysql_error());
 	
-		//ѡ����ݿ�
+		
 		mysql_select_db($this->dest_db,$conn)or die('������Ϣ'.mysql_error());
 	
 		//�����ַ�
@@ -105,19 +99,73 @@ class class_DBOperation{
 		return $resultArr;
 	}
 	
-	function saveAttributes($table,$isNewRecord,$attributes,$md5Attributes){
+	function saveAttributes($table,$isNewRecord,$attributes,$keyattributes){
 		
-		if(!$attributes || !is_array($attributes) || !$table){
+		if(!$attributes || !is_array($attributes) || !$table || !$keyattributes || !is_array($keyattributes)){
 			return ;
 		}
 		
 		if($isNewRecord){
 			
+                    //
+                    $properties = "";
+                    $vaules = "";
+                    for($i=0,$n=count($attributes);$i<$n;$i++){
+                        
+                        $property = key($attributes[$i]);
+                        
+                        if($i!=$n-1){
+                            
+                            $properties = $properties."$property,";
+                            $vaules = $vaules."$attributes[$i],";
+
+                        }else{
+                            
+                            $properties = $properties.$property;
+                            $vaules = $vaules.$attributes[$i];
+                        }
+                    }
 			
+                    //
+                    $insertSql = "insert $table($properties)value($values)";
+                    $insertResult = $this->query($insertSql);
+                    
+                    if($insertResult){
+                        
+                    }else{
+                        
+                    }
+                    
 			
 		}else{
+		
+                   //
+                   $paramString = "";
+                    for($i = 0,$n=count($attributes);$i<$n;$i++){
 			
-		}
+                            $keyValue = key($attributes[$i]);
+				
+                            if($i!=$n-1){
+				$paramString = $paramString."$keyValue=$attributes[$i] and";
+                            }else{
+				$paramString = $paramString."$keyValue=$attributes[$i]";
+                            }
+                    } 
+                    
+                    //
+                    $pk = key($keyattributes[0]);
+                    $updateSql = "update $table set $paramString where $pk=$keyattributes[0]";
+                    
+                    $updateResult = $this->query($updateSql);
+                
+                    if($updateResult){
+                    
+                    }else{
+                    
+                    }
+                    
+                    
+                }
 		
 	}
 	

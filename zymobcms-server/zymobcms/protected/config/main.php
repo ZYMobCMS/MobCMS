@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'通用移动客户端',
+	'name'=>'zymobcms',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
