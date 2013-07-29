@@ -25,7 +25,7 @@ class NewsListController extends Controller {
         $pageSize  = $_GET['pageSize'];
         $productId = $_GET['productId'];
         
-        if(!$categoryId || !$tabTypeId || !$productId){
+        if(!$productId){
             
             $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -52,6 +52,8 @@ class NewsListController extends Controller {
         
         //hotNews
         $hotNews = $dbOperation->queryAllByAttributes('zy_article',array('category_id'=>$categoryId,'tab_type_id'=>$tabTypeId,'hot_news'=>'1'));
+        
+        echo json_encode($hotNews);
         
         $resultArr = $dbOperation->queryValuesByConditions('zy_article',array('category_id'=>$categoryId,'tab_type_id'=>$tabTypeId,'hot_news'=>'0'),array('id','title','public_time','source','summary','images','links','commentable','author'), $startIndex, $pageSize);
         

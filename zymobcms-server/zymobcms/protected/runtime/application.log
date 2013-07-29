@@ -323,3 +323,51 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/login&loginName=Lily&password=123&appName=zymobcms
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (92)
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/29 22:22:11 [error] [php] Undefined variable: properties (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/class_DBOperation.php:81)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/newsList&categoryId=0&tabTypeId=1&pageSize=3&pageIndex=0&productId=zymobcmsnew1
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/class_DBOperation.php (81)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (54)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/29 22:30:44 [error] [php] Undefined index: productId (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php:27)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=vincent&password=123
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (27)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/29 22:30:59 [error] [php] Undefined index: productId (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php:27)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=vincent&password=123&appName=zymobcmsnew1
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (27)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/29 22:35:32 [error] [php] Undefined variable: pkTypeValue (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/class_DBOperation.php:75)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&loginName=vincent&password=123&productId=zymobcmsnew1
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/class_DBOperation.php (75)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (35)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)

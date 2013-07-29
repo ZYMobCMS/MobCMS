@@ -14,8 +14,8 @@ class DataBaseConfig {
     //put your code here
     
     public static $dbhost = 'localhost';
-    public static $username = 'ticket';
-    public static $password = '';
+    public static $username = 'root';
+    public static $password = '123';
     public static $charset = 'utf8';
 }
 

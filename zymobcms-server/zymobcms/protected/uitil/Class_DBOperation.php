@@ -43,7 +43,7 @@ class class_DBOperation{
 	}
 	function __call($function_name, $args)
 	{
-		echo "<br><font color=#ff0000>������õķ��� $function_name ������</font><br>\n";
+		echo "<br><font color=#ff0000>成功调用方法 $function_name /font><br>\n";
 	}
 	//ִ执行查询
 	function  query($sql){
@@ -65,10 +65,17 @@ class class_DBOperation{
 		foreach ($params as $key=>$value){
 				
 			$pk = $key;
-                        $pkValue = $value;
+            $pkValue = $value;
                         
 		}
-		$sqlString = "select * from $table where $pk = '$pkValue'";
+		if(is_string($pkValue)){
+			echo 'is pkValue string !';
+		}
+		
+		$sqlString = "select * from $table where $pk = $pkTypeValue";
+		
+		echo $sqlString;
+		
 		$queryResult = $this->query($sqlString);
                                 
 		$resultObj = $this->fetch_obj($queryResult);
@@ -167,24 +174,25 @@ class class_DBOperation{
         function queryAllByAttributes($table,$params){
             
             if(!is_array($params) || !$table || !$params){
-			return FALSE;
-		}
+				return FALSE;
+			}
 		
 		//
 		$paramString = "";
-                $n = count($params);
-                $i = 0;
+        $n = count($params);
+        $i = 0;
 		foreach ($params as $key=>$value){
 			
 			if($i!=$n-1){
-				$paramString = $paramString."$key='$value' and";
+				$paramString = $paramString."$key='$value' and ";
 			}else{
 				$paramString = $paramString."$key='$value'";
 			}
-                        $i=$i+1;
+            $i=$i+1;
 		}
 		$sqlString = "select * from $table where $paramString";
-		
+		echo '<br>';
+		echo $sqlString;
 		$resultArr = $this->fetch_obj_arr($sqlString);
 		
 		return $resultArr;
