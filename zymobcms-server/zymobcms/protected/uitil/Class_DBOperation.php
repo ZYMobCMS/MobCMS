@@ -49,7 +49,6 @@ class class_DBOperation{
 	function  query($sql){
 		$result = mysql_query($sql)or die('数据库查询失败'.mysql_error());
                 
-                
 		return $result;
 	} 
 	
@@ -226,10 +225,7 @@ class class_DBOperation{
         
         function queryAllBySql($sql){
             
-            $queryResult = $this->query($sql);
-            $resultArr = $this->fetch_obj_arr($queryResult);
-            
-            return $resultArr;
+            return $this->fetch_obj_arr($sql);
         }
         
         function queryBySql($sql){
@@ -238,6 +234,13 @@ class class_DBOperation{
             $resultObj = $this->fetch_obj($queryResult);
             
             return $resultObj;
+        }
+        
+        function saveBySql($sql){
+            
+            $queryResult = $this->query($sql);
+            
+            return $queryResult;
         }
                 
 	function saveAttributes($table,$isNewRecord,$attributes,$keyattributes){
@@ -320,6 +323,8 @@ class class_DBOperation{
                 }
 		
 	}
+        
+        
 	
 	function  fetch_array($sql){
 		$result = mysql_query($sql) or die('返回查询数组失败'.mysql_error());

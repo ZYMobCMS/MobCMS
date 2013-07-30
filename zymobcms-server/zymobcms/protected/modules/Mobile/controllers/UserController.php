@@ -24,7 +24,7 @@ class UserController extends Controller {
 		//接收参数
 		$loginName = $_GET['loginName'];
 		$password = $_GET['password'];
-		$appName = $_GET['productId'];
+		$appName = $_GET['appId'];
 	
 		if(!$this->validateParams($loginName, $password)){
 			return ;
@@ -32,7 +32,8 @@ class UserController extends Controller {
 	
 		//检查是否已经存在用户
                 $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
-		$userExist = $dbOperation->queryByPk('zy_user',array('login_name'=>$loginName));                
+		$sql = "select login_name from zy_user where login_name='$loginName'";
+                $userExist = $dbOperation->queryBySql($sql);                
                 
 		if($userExist){
 				
@@ -44,9 +45,8 @@ class UserController extends Controller {
 				
 		}else{
 			
-                        $attributes = array('login_name'=>$loginName,'password'=>$this->enypt($password));
-                        $rigistResult = $dbOperation->saveAttributes('zy_user',TRUE,$attributes,'');
-			
+                        $insertSql = "insert into zy_user(login_name,password)values('$loginName','$password')";
+                        $rigistResult = $dbOperation->saveBySql($insertSql);
 			if($rigistResult){
 	
 				$resultArr = array('status'=>'1','msg'=>'注册成功');
@@ -89,7 +89,7 @@ class UserController extends Controller {
 		//接收参数
 		$loginName = $_GET['loginName'];
 		$password = $_GET['password'];
-		$appName = $_GET['productId'];
+		$appName = $_GET['appId'];
 	
 		if(!$this->validateParams($loginName, $password)){
                                     
@@ -98,7 +98,8 @@ class UserController extends Controller {
 	
 		//检查是否已经存在用户
                 $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
-		$userExist = $dbOperation->queryByPk('zy_user',array('login_name'=>$loginName));                
+		$sql = "select login_name,password from zy_user where login_name='$loginName'";
+                $userExist = $dbOperation->queryBySql($sql);               
 	
 		if(!$userExist){
 				
@@ -166,6 +167,23 @@ class UserController extends Controller {
          */
         public function enypt($password){
             return md5($password);
+        }
+        
+        
+        /*
+         * 用户收藏列表
+         * @param user_id,appId
+         */
+        public function actionFavoritList(){
+            
+        }
+        
+        /*
+         * 用户评论列表
+         * @param user_id,appId
+         */
+        public function actionCommentList(){
+            
         }
 }
 
