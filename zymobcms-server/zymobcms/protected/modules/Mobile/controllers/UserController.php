@@ -176,6 +176,40 @@ class UserController extends Controller {
          */
         public function actionFavoritList(){
             
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $startIndex = ($pageIndex-1)*$pageSize;
+            
+            $sql = "select * from zy_user_favorite where user_id=$userId limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
+            
         }
         
         /*
@@ -183,6 +217,40 @@ class UserController extends Controller {
          * @param user_id,appId
          */
         public function actionCommentList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $startIndex = ($pageIndex-1)*$pageSize;
+            
+            $sql = "select * from zy_comment where create_user=$userId limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
             
         }
 }
