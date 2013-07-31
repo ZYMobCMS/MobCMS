@@ -1,6 +1,6 @@
 <?php
 
-class ApplicationRightsController extends Controller
+class RightsController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,16 +62,16 @@ class ApplicationRightsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ApplicationRights;
+		$model=new Rights;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ApplicationRights']))
+		if(isset($_POST['Rights']))
 		{
-			$model->attributes=$_POST['ApplicationRights'];
+			$model->attributes=$_POST['Rights'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->right_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -91,11 +91,11 @@ class ApplicationRightsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ApplicationRights']))
+		if(isset($_POST['Rights']))
 		{
-			$model->attributes=$_POST['ApplicationRights'];
+			$model->attributes=$_POST['Rights'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->right_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -122,7 +122,7 @@ class ApplicationRightsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ApplicationRights');
+		$dataProvider=new CActiveDataProvider('Rights');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class ApplicationRightsController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ApplicationRights('search');
+		$model=new Rights('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ApplicationRights']))
-			$model->attributes=$_GET['ApplicationRights'];
+		if(isset($_GET['Rights']))
+			$model->attributes=$_GET['Rights'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class ApplicationRightsController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return ApplicationRights the loaded model
+	 * @return Rights the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=ApplicationRights::model()->findByPk($id);
+		$model=Rights::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class ApplicationRightsController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param ApplicationRights $model the model to be validated
+	 * @param Rights $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='application-rights-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='rights-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

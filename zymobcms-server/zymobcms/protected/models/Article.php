@@ -25,7 +25,8 @@
  */
 class Article extends CActiveRecord
 {
-	/**
+    
+        /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Article the static model class
@@ -58,6 +59,11 @@ class Article extends CActiveRecord
 			array('author', 'length', 'max'=>50),
 			array('content', 'length', 'max'=>5000),
 			array('images, links', 'length', 'max'=>2000),
+                        array('image', 'file', 'allowEmpty'=>true,
+                              'types'=>'jpg, jpeg, gif, png',
+                              'maxSize'=>1024 * 1024 * 3, // 1MB
+                              'tooLarge'=>'上传文件超过 1MB，无法上传。',
+                             ),
                         array('publish_time, create_time, status, images, update_time, links, comment_count, favorite_count, commentable','safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

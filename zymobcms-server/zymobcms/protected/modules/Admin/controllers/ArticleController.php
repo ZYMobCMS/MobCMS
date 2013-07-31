@@ -66,17 +66,36 @@ class ArticleController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+                
+                
 		if(isset($_POST['Article']))
 		{
 			$model->attributes=$_POST['Article'];
+                        
+                        $uploadedimage=  CUploadedFile::getInstance($model,'images');
+                        $uploaddir=Yii::app()->basePath.'/'.DataBaseConfig::$appId.'/upload/';
+
+                        if(is_object($uploadedimage) && get_class($uploadedimage)==='CUploadedFile')
+                        {
+                            $filename = md5(uniqid());
+                            $ext = $uploadedimage->extensionName;
+                            $uploadfile=$uploaddir . $filename . '.' . $ext;
+                            $uploadedimage->saveAs($uploadfile);
+                            $model->images=  DataBaseConfig::$appId.'/uploads/' . $filename . '.' . $ext;
+                        }
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
+                        
+                        
+                
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
 		));
+                
+                
 	}
 
 	/**

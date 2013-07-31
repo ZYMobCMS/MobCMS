@@ -1,15 +1,15 @@
 <?php
-/* @var $this ApplicationRightsController */
-/* @var $model ApplicationRights */
+/* @var $this RightsController */
+/* @var $model Rights */
 
 $this->breadcrumbs=array(
-	'Application Rights'=>array('index'),
+	'Rights'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List ApplicationRights', 'url'=>array('index')),
-	array('label'=>'Create ApplicationRights', 'url'=>array('create')),
+	array('label'=>'List Rights', 'url'=>array('index')),
+	array('label'=>'Create Rights', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#application-rights-grid').yiiGridView('update', {
+	$('#rights-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Application Rights</h1>
+<h1>Manage Rights</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,12 +41,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'application-rights-grid',
+	'id'=>'rights-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'right_id',
-		'index',
+		'id',
+		'name',
+		'is_category',
+		'create_user',
+		'create_time',
 		array(
 			'class'=>'CButtonColumn',
 		),

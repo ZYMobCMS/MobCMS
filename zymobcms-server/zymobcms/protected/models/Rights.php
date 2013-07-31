@@ -1,18 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "zy_application_rights".
+ * This is the model class for table "zy_rights".
  *
- * The followings are the available columns in table 'zy_application_rights':
- * @property integer $right_id
- * @property integer $index
+ * The followings are the available columns in table 'zy_rights':
+ * @property integer $id
+ * @property string $name
+ * @property integer $is_category
+ * @property integer $create_user
+ * @property string $create_time
  */
-class ApplicationRights extends CActiveRecord
+class Rights extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ApplicationRights the static model class
+	 * @return Rights the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +27,7 @@ class ApplicationRights extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'zy_application_rights';
+		return 'zy_rights';
 	}
 
 	/**
@@ -35,11 +38,12 @@ class ApplicationRights extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('right_id, index', 'required'),
-			array('right_id, index', 'numerical', 'integerOnly'=>true),
+			array('name, is_category, create_user, create_time', 'required'),
+			array('is_category, create_user', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('right_id, index', 'safe', 'on'=>'search'),
+			array('id, name, is_category, create_user, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +64,11 @@ class ApplicationRights extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'right_id' => 'Right',
-			'index' => 'Index',
+			'id' => 'ID',
+			'name' => 'Name',
+			'is_category' => 'Is Category',
+			'create_user' => 'Create User',
+			'create_time' => 'Create Time',
 		);
 	}
 
@@ -76,8 +83,11 @@ class ApplicationRights extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('right_id',$this->right_id);
-		$criteria->compare('index',$this->index);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('is_category',$this->is_category);
+		$criteria->compare('create_user',$this->create_user);
+		$criteria->compare('create_time',$this->create_time,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
