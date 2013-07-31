@@ -59,7 +59,7 @@ class Article extends CActiveRecord
 			array('author', 'length', 'max'=>50),
 			array('content', 'length', 'max'=>5000),
 			array('images, links', 'length', 'max'=>2000),
-                        array('image', 'file', 'allowEmpty'=>true,
+                        array('images', 'file', 'allowEmpty'=>true,
                               'types'=>'jpg, jpeg, gif, png',
                               'maxSize'=>1024 * 1024 * 3, // 1MB
                               'tooLarge'=>'上传文件超过 1MB，无法上传。',

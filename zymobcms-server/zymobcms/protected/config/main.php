@@ -70,10 +70,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=zymobcms2',
+			'connectionString' => 'mysql:host=localhost;dbname=zymobcmsnew1',
 			'emulatePrepare' => true,
-			'username' => 'ticket',
-			'password' => '',
+			'username' => 'root',
+			'password' => '123',
 			'charset' => 'utf8',
 		),
 		
