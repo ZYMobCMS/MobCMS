@@ -48,7 +48,8 @@ class ProductController extends Controller{
         
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
-        $startIndex = ($pageIndex-1)*$pageSize;
+        $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+        $startIndex = $truePageIndex*$pageSize;
         $sql = "select id,name,summary,support_count,images from zy_product limit $startIndex,$pageSize";
         
         $resultArr = $dbOperation->queryAllBySql($sql);
@@ -81,7 +82,7 @@ class ProductController extends Controller{
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
-        $sql = "select * from product where id=$productId";
+        $sql = "select * from zy_product where id=$productId";
         
         $resultObj = $dbOperation->queryBySql($sql);
         

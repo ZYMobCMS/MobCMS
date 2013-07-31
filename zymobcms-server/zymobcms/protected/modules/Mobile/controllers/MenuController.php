@@ -49,7 +49,7 @@ class MenuController extends Controller {
     public function actionCategoryTabType(){
         
         $appId = $_GET['appId'];
-        $categoryId = $_GET['category_id'];
+        $categoryId = $_GET['categoryId'];
         
         if(!$categoryId || !$appId){
             
@@ -63,7 +63,7 @@ class MenuController extends Controller {
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
-        $sql = "select * from zy_category_rights where category_id = $categoryId";
+        $sql = "select zy_category_rights.*,zy_tab_type.name from zy_category_rights inner join zy_tab_type on zy_category_rights.tab_type_id=zy_tab_type.id where category_id = $categoryId";
         
         $resultArr = $dbOperation->queryAllBySql($sql);
         

@@ -21,6 +21,7 @@
  * @property integer $comment_count
  * @property integer $favorite_count
  * @property integer $commentable
+ * @property integer $hot_news
  */
 class Article extends CActiveRecord
 {
@@ -50,16 +51,17 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, source, summary, author, content, publish_time, create_time, status, images, update_time, tab_type_id, category_id, links, comment_count, favorite_count, commentable', 'required'),
-			array('status, tab_type_id, category_id, comment_count, favorite_count, commentable', 'numerical', 'integerOnly'=>true),
+			array('title, source, summary, author, content,tab_type_id, category_id,hot_news', 'required'),
+			array('status, tab_type_id, category_id, comment_count, favorite_count, commentable, hot_news', 'numerical', 'integerOnly'=>true),
 			array('title, source', 'length', 'max'=>100),
 			array('summary', 'length', 'max'=>500),
 			array('author', 'length', 'max'=>50),
 			array('content', 'length', 'max'=>5000),
 			array('images, links', 'length', 'max'=>2000),
+                        array('publish_time, create_time, status, images, update_time, links, comment_count, favorite_count, commentable','safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, source, summary, author, content, publish_time, create_time, status, images, update_time, tab_type_id, category_id, links, comment_count, favorite_count, commentable', 'safe', 'on'=>'search'),
+			array('id, title, source, summary, author, content, publish_time, create_time, status, images, update_time, tab_type_id, category_id, links, comment_count, favorite_count, commentable, hot_news', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -97,6 +99,7 @@ class Article extends CActiveRecord
 			'comment_count' => 'Comment Count',
 			'favorite_count' => 'Favorite Count',
 			'commentable' => 'Commentable',
+			'hot_news' => 'Hot News',
 		);
 	}
 
@@ -128,6 +131,7 @@ class Article extends CActiveRecord
 		$criteria->compare('comment_count',$this->comment_count);
 		$criteria->compare('favorite_count',$this->favorite_count);
 		$criteria->compare('commentable',$this->commentable);
+		$criteria->compare('hot_news',$this->hot_news);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

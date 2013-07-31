@@ -111,6 +111,12 @@
 		<?php echo $form->error($model,'commentable'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'hot_news'); ?>
+		<?php echo $form->textField($model,'hot_news'); ?>
+		<?php echo $form->error($model,'hot_news'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

@@ -74,6 +74,10 @@
 	<?php echo CHtml::encode($data->commentable); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('hot_news')); ?>:</b>
+	<?php echo CHtml::encode($data->hot_news); ?>
+	<br />
+
 	*/ ?>
 
 </div>

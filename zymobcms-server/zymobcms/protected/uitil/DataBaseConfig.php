@@ -17,6 +17,7 @@ class DataBaseConfig {
     public static $username = 'ticket';
     public static $password = '';
     public static $charset = 'utf8';
+    public static $appId   = 'zymobcms2';
 }
 
 ?>

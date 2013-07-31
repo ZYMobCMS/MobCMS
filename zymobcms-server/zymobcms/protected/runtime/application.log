@@ -1278,3 +1278,310 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/Admin/Admin/comment/index
 HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php/Admin/picture/index
 ---
+2013/07/31 10:48:15 [error] [exception.CException] exception 'CException' with message 'Alias "application.extensions.editor.CKkceditor" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/YiiBase.php:316
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWidgetFactory.php(146): YiiBase::import('application.ext...', true)
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(ArticleController), 'application.ext...', Array)
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(172): CBaseController->createWidget('application.ext...', Array)
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/_form.php(51): CBaseController->widget('application.ext...', Array)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/barfoo/D...')
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, true)
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/barfoo/D...', Array, true)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/create.php(18): CController->renderPartial('_form', Array)
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/barfoo/D...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, true)
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/barfoo/D...', Array, true)
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(79): CController->render('create', Array)
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionCreate()
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('create')
+#23 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/c...')
+#24 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#25 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/07/31 10:54:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/category/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/cat...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/category/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/07/31 10:54:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/user/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/use...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/user/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/product/index
+---
+2013/07/31 10:54:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/comment/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/com...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/comment/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/picture/index
+---
+2013/07/31 12:30:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "favoriteList".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php:483
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(270): CController->missingAction('favoriteList')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('favoriteList')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/fav...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/favoriteList&userId=1&appId=zymobcms2
+---
+2013/07/31 12:32:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php:483
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(270): CController->missingAction('')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/&userId=1&appId=zymobcms2
+---
+2013/07/31 12:32:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php:483
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(270): CController->missingAction('')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/
+---
+2013/07/31 12:32:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "favoriteList".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php:483
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(270): CController->missingAction('favoriteList')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('favoriteList')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/fav...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/favoriteList
+---
+2013/07/31 12:32:51 [error] [php] Undefined index: userId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php:179)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/favoritList
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (179)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 12:33:12 [error] [php] Undefined index: pageIndex (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php:181)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/favoritList&userId=1&appId=zymobcms2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (181)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 12:42:58 [error] [php] Undefined index: pageIndex (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php:224)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): UserController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): UserController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): UserController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/commentList&userId=1&appId=zymobcms2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (224)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:15:04 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:26)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/newsList&categoryId=0&tabTypeId=1&pageIndex=0&pageSize=3&productId=zymobcms1
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (26)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:15:09 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:26)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/newsList&categoryId=0&tabTypeId=1&pageIndex=0&pageSize=3&productId=zymobcms2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (26)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:17:33 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:74)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&articleId=1&productId=zymobcms1
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (74)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:19:35 [error] [php] Undefined index: pageIndex (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:110)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleComment&articleId=2&appId=zymobcms2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (110)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:20:02 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:156)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/commentArticle&articleId=1&productId=zymobcms2&userId=2&content=hello%20you%20see
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (156)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:22:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "hotComment".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php:483
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(270): CController->missingAction('hotComment')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('hotComment')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/newsList...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/hotComment&appId=zymobcms2&pageIndex=0&pageSize=3
+---
+2013/07/31 13:35:00 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php:22)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): MenuController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): MenuController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): MenuController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/Menu/categoryList
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php (22)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:36:36 [error] [php] Undefined index: category_id (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php:52)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): MenuController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): MenuController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): MenuController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/Menu/categoryTabType&appId=zymobcms2&categoryId=1
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php (52)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 13:57:53 [error] [php] Undefined index: productId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/ProductController.php:70)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): ProductController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ProductController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ProductController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/product/productDetail/&appId=zymobcms2&productI=1
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/ProductController.php (70)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 14:03:31 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AboutController.php:22)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AboutController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AboutController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AboutController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/about/aboutInfo
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AboutController.php (22)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 14:50:47 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:157)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/commentArticle&articleId=1&productId=zymobcms2&userId=2&content=hello%20you%20see
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (157)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 15:04:19 [error] [php] Undefined index: appId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:74)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&articleId=1&productId=zymobcms1
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (74)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 15:04:28 [error] [php] Undefined index: userId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:75)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&articleId=1&appId=zymobcms2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (75)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 15:04:36 [error] [php] Undefined index: userId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:75)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&articleId=1&appId=zymobcms2&userI=2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (75)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 15:41:19 [error] [php] Undefined index: userId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:75)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&articleId=1&appId=zymobcms2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (75)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/07/31 15:41:27 [error] [php] Undefined property: stdClass::$attributes (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&articleId=1&appId=zymobcms2&userId=2
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
