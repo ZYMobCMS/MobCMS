@@ -1278,3 +1278,91 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/Admin/Admin/comment/index
 HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php/Admin/picture/index
 ---
+2013/07/30 21:48:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "m/user/rigist".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('m/user/rigist')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/m/user/rigist
+---
+2013/07/30 21:48:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "m/user/rigist".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('m/user/rigist')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/m/user/rigist
+---
+2013/07/30 21:49:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "m/user/rigist".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('m/user/rigist')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/m/user/rigist
+---
+2013/07/30 21:50:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1044] Access denied for user ''@'localhost' to database 'zymobcms2'' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Product))
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Product')
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ProductController.php(125): CActiveDataProvider->__construct('Product')
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ProductController->actionIndex()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/product/i...')
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/Admin/product/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist
+---
+2013/07/30 21:51:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1044] Access denied for user ''@'localhost' to database 'zymobcms2'' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Category))
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Category')
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/CategoryController.php(125): CActiveDataProvider->__construct('Category')
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): CategoryController->actionIndex()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/category/...')
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/Admin/category/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist
+---
+2013/07/30 21:51:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "m/user/rigist".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('m/user/rigist')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php/m/user/rigist
+---
