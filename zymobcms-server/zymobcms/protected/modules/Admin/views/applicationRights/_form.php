@@ -16,39 +16,15 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'category_right'); ?>
-		<?php echo $form->textField($model,'category_right'); ?>
-		<?php echo $form->error($model,'category_right'); ?>
+		<?php echo $form->labelEx($model,'right_id'); ?>
+		<?php echo $form->textField($model,'right_id'); ?>
+		<?php echo $form->error($model,'right_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'topic_right'); ?>
-		<?php echo $form->textField($model,'topic_right'); ?>
-		<?php echo $form->error($model,'topic_right'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_center_right'); ?>
-		<?php echo $form->textField($model,'user_center_right'); ?>
-		<?php echo $form->error($model,'user_center_right'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'picture_right'); ?>
-		<?php echo $form->textField($model,'picture_right'); ?>
-		<?php echo $form->error($model,'picture_right'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-		<?php echo $form->error($model,'user_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_type_id'); ?>
-		<?php echo $form->textField($model,'user_type_id'); ?>
-		<?php echo $form->error($model,'user_type_id'); ?>
+		<?php echo $form->labelEx($model,'index'); ?>
+		<?php echo $form->textField($model,'index'); ?>
+		<?php echo $form->error($model,'index'); ?>
 	</div>
 
 	<div class="row buttons">

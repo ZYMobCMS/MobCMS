@@ -38,5 +38,6 @@ $this->menu=array(
 		'comment_count',
 		'favorite_count',
 		'commentable',
+		'hot_news',
 	),
 )); ?>

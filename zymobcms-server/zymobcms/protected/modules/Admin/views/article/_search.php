@@ -96,6 +96,11 @@
 		<?php echo $form->textField($model,'commentable'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'hot_news'); ?>
+		<?php echo $form->textField($model,'hot_news'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

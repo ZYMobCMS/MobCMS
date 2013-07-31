@@ -4,12 +4,8 @@
  * This is the model class for table "zy_application_rights".
  *
  * The followings are the available columns in table 'zy_application_rights':
- * @property integer $category_right
- * @property integer $topic_right
- * @property integer $user_center_right
- * @property integer $picture_right
- * @property integer $user_id
- * @property integer $user_type_id
+ * @property integer $right_id
+ * @property integer $index
  */
 class ApplicationRights extends CActiveRecord
 {
@@ -39,11 +35,11 @@ class ApplicationRights extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category_right, topic_right, user_center_right, picture_right, user_id, user_type_id', 'required'),
-			array('category_right, topic_right, user_center_right, picture_right, user_id, user_type_id', 'numerical', 'integerOnly'=>true),
+			array('right_id, index', 'required'),
+			array('right_id, index', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('category_right, topic_right, user_center_right, picture_right, user_id, user_type_id', 'safe', 'on'=>'search'),
+			array('right_id, index', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,12 +60,8 @@ class ApplicationRights extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'category_right' => 'Category Right',
-			'topic_right' => 'Topic Right',
-			'user_center_right' => 'User Center Right',
-			'picture_right' => 'Picture Right',
-			'user_id' => 'User',
-			'user_type_id' => 'User Type',
+			'right_id' => 'Right',
+			'index' => 'Index',
 		);
 	}
 
@@ -84,12 +76,8 @@ class ApplicationRights extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('category_right',$this->category_right);
-		$criteria->compare('topic_right',$this->topic_right);
-		$criteria->compare('user_center_right',$this->user_center_right);
-		$criteria->compare('picture_right',$this->picture_right);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('user_type_id',$this->user_type_id);
+		$criteria->compare('right_id',$this->right_id);
+		$criteria->compare('index',$this->index);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -49,7 +49,8 @@ class PictureController extends Controller {
         
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
-        $startIndex = ($pageIndex-1)*$pageSize;
+        $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+        $startIndex = $truePageIndex*$pageSize;
         $sql = "select * from zy_picture limit $startIndex,$pageSize";
         
         $resultArr = $dbOperation->queryAllBySql($sql);

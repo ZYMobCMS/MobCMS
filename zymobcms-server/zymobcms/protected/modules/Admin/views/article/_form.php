@@ -4,13 +4,17 @@
 /* @var $form CActiveForm */
 ?>
 
+
+
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'article-form',
-	'enableAjaxValidation'=>false,
-)); ?>
-
+        <?php $form=$this->beginWidget('CActiveForm', array(
+                'id'=>'images-form',
+                'enableAjaxValidation'=>false,
+                'htmlOptions'=>array('enctype'=>'multipart/form-data'),
+                 )); 
+        ?>
+    
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -63,11 +67,13 @@
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'images'); ?>
-		<?php echo $form->textField($model,'images',array('size'=>60,'maxlength'=>2000)); ?>
+		<?php echo CHtml::activeFileField($model,'images'); ?>
 		<?php echo $form->error($model,'images'); ?>
-	</div>
+        </div>
+        
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'update_time'); ?>
@@ -109,6 +115,12 @@
 		<?php echo $form->labelEx($model,'commentable'); ?>
 		<?php echo $form->textField($model,'commentable'); ?>
 		<?php echo $form->error($model,'commentable'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'hot_news'); ?>
+		<?php echo $form->textField($model,'hot_news'); ?>
+		<?php echo $form->error($model,'hot_news'); ?>
 	</div>
 
 	<div class="row buttons">

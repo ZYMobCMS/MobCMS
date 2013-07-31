@@ -98,7 +98,7 @@ class UserController extends Controller {
 	
 		//检查是否已经存在用户
                 $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
-		$sql = "select login_name,password from zy_user where login_name='$loginName'";
+		$sql = "select * from zy_user where login_name='$loginName'";
                 $userExist = $dbOperation->queryBySql($sql);               
 	
 		if(!$userExist){
@@ -113,7 +113,7 @@ class UserController extends Controller {
 				
 			if($userExist->password == $this->enypt($password)){
 	
-				$resultArr = array('status'=>'1','msg'=>'登陆成功');
+				$resultArr = array('status'=>'1','data'=>$userExist);
 	
 				echo json_encode($resultArr);
 	
@@ -174,7 +174,7 @@ class UserController extends Controller {
          * 用户收藏列表
          * @param user_id,appId
          */
-        public function actionFavoritList(){
+        public function actionFavoriteList(){
             
             $userId = $_GET['userId'];
             $appId = $_GET['appId'];
@@ -200,9 +200,10 @@ class UserController extends Controller {
             
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
-            $startIndex = ($pageIndex-1)*$pageSize;
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select * from zy_user_favorite where user_id=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_user_favorite.*,zy_article.title,zy_article.summary,zy_article.publish_time,zy_article.source,zy_article.images from zy_user_favorite inner join zy_article on zy_article.id=zy_user_favorite.article_id  where user_id=$userId limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -242,9 +243,10 @@ class UserController extends Controller {
             
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
-            $startIndex = ($pageIndex-1)*$pageSize;
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select * from zy_comment where create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_comment.*,zy_article.title,zy_article.publish_time,zy_article.source from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id where create_user=$userId limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             

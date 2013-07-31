@@ -17,6 +17,7 @@ class DataBaseConfig {
     public static $username = 'root';
     public static $password = '123';
     public static $charset = 'utf8';
+    public static $appId   = 'zymobcms2';
 }
 
 ?>

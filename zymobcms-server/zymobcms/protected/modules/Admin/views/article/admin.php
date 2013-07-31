@@ -63,6 +63,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'comment_count',
 		'favorite_count',
 		'commentable',
+		'hot_news',
 		*/
 		array(
 			'class'=>'CButtonColumn',
