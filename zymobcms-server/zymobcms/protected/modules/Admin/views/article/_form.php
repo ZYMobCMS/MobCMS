@@ -82,15 +82,26 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'tab_type_id'); ?>
-		<?php echo $form->textField($model,'tab_type_id'); ?>
-		<?php echo $form->error($model,'tab_type_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'category_id'); ?>
-		<?php echo $form->textField($model,'category_id'); ?>
+		<?php echo $form->dropDownList($model,'category_id',Rights::model()->getAllCategoryList(),array(
+﻿
+       ﻿ 'empty'=>'-请选择-',
+        'ajax'=>array(
+            //指定请求地址
+            'url'=>Yii::app()->createUrl('tabType/index'),
+            //请求数据
+            'data'=>array('category_id'=>'js:this.value'),
+            //操作元素
+            'update'=>'#TabType_category_id',
+        ),)
+	); ?>
 		<?php echo $form->error($model,'category_id'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'tab_type_id'); ?>
+		<?php echo $form->dropDownList($model,'tab_type_id',array()); ?>
+		<?php echo $form->error($model,'tab_type_id'); ?>
 	</div>
 
 	<div class="row">

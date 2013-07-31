@@ -9,6 +9,7 @@
  * @property integer $is_category
  * @property integer $create_user
  * @property string $create_time
+ * @property integer $index
  */
 class Rights extends CActiveRecord
 {
@@ -38,12 +39,13 @@ class Rights extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, is_category, create_user, create_time', 'required'),
-			array('is_category, create_user', 'numerical', 'integerOnly'=>true),
+			array('name, is_category, index', 'required'),
+			array('is_category, create_user, index', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>1000),
+			array('create_user, create_time','safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, is_category, create_user, create_time', 'safe', 'on'=>'search'),
+			array('id, name, is_category, create_user, create_time, index', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +71,7 @@ class Rights extends CActiveRecord
 			'is_category' => 'Is Category',
 			'create_user' => 'Create User',
 			'create_time' => 'Create Time',
+			'index' => 'Index',
 		);
 	}
 
@@ -88,9 +91,22 @@ class Rights extends CActiveRecord
 		$criteria->compare('is_category',$this->is_category);
 		$criteria->compare('create_user',$this->create_user);
 		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('index',$this->index);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	/*
+	 * 获取是category类型的模块
+	 * 
+	 */
+	public function getAllCategoryList(){
+		
+		$sql = "select * from zy_rights where is_category=1";
+		$resultArr = Rights::model()->findAllBySql($sql);
+		
+		return CHtml::listData($resultArr,'id','name');
 	}
 }

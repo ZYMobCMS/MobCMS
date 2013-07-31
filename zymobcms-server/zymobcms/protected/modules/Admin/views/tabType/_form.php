@@ -17,7 +17,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>1000)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
@@ -37,6 +37,12 @@
 		<?php echo $form->labelEx($model,'create_time'); ?>
 		<?php echo $form->textField($model,'create_time'); ?>
 		<?php echo $form->error($model,'create_time'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'category_id'); ?>
+		<?php echo $form->dropDownList($model,'category_id',Rights::model()->getAllCategoryList()); ?>
+		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 
 	<div class="row buttons">

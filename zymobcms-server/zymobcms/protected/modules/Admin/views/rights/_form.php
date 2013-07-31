@@ -3,7 +3,7 @@
 /* @var $model Rights */
 /* @var $form CActiveForm */
 ?>
-
+ 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'is_category'); ?>
-		<?php echo $form->textField($model,'is_category'); ?>
+		<?php echo $form->radioButtonlist($model,'is_category',array('0'=>'否','1'=>'是'),array('template'=>'{input}{label}','separator'=>" ") );?> 
 		<?php echo $form->error($model,'is_category'); ?>
 	</div>
 
@@ -37,6 +37,12 @@
 		<?php echo $form->labelEx($model,'create_time'); ?>
 		<?php echo $form->textField($model,'create_time'); ?>
 		<?php echo $form->error($model,'create_time'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'index'); ?>
+		<?php echo $form->textField($model,'index'); ?>
+		<?php echo $form->error($model,'index'); ?>
 	</div>
 
 	<div class="row buttons">

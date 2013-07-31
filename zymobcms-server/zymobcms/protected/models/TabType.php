@@ -9,6 +9,7 @@
  * @property integer $create_user
  * @property integer $status
  * @property string $create_time
+ * @property integer $category_id
  */
 class TabType extends CActiveRecord
 {
@@ -38,12 +39,12 @@ class TabType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, create_user, status, create_time', 'required'),
-			array('create_user, status', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>10),
+			array('name, create_user, status, create_time, category_id', 'required'),
+			array('create_user, status, category_id', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, create_user, status, create_time', 'safe', 'on'=>'search'),
+			array('id, name, create_user, status, create_time, category_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,6 +56,7 @@ class TabType extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+				'categoryName'=>array(self::BELONGS_TO,'Rights','category_id'),
 		);
 	}
 
@@ -69,6 +71,7 @@ class TabType extends CActiveRecord
 			'create_user' => 'Create User',
 			'status' => 'Status',
 			'create_time' => 'Create Time',
+			'category_id' => 'Category',
 		);
 	}
 
@@ -88,9 +91,25 @@ class TabType extends CActiveRecord
 		$criteria->compare('create_user',$this->create_user);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('category_id',$this->category_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	/*
+	 * 获取对应category_id的tab_types
+	*
+	*/
+	public function getTabTypeByCategoryId($categoryId){
+	
+		$sql = "select * from zy_tab_type where category_id = $categoryId";
+	
+		$resultArr = TabType::model()->findAllBySql($sql);
+	
+		return CHtml::listData($resultArr, 'id', 'name');
+	
+	
 	}
 }

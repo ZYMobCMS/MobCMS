@@ -25,5 +25,9 @@
 	<?php echo CHtml::encode($data->create_time); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('category_id')); ?>:</b>
+	<?php echo CHtml::encode($data->category_id); ?>
+	<br />
+
 
 </div>

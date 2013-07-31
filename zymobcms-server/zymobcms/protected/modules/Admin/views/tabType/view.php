@@ -26,5 +26,6 @@ $this->menu=array(
 		'create_user',
 		'status',
 		'create_time',
+		'category_id',
 	),
 )); ?>

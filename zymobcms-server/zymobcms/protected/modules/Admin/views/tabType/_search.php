@@ -18,7 +18,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>1000)); ?>
 	</div>
 
 	<div class="row">
@@ -34,6 +34,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'create_time'); ?>
 		<?php echo $form->textField($model,'create_time'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'category_id'); ?>
+		<?php echo $form->textField($model,'category_id'); ?>
 	</div>
 
 	<div class="row buttons">

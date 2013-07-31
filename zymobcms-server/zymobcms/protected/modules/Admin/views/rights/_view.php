@@ -25,5 +25,9 @@
 	<?php echo CHtml::encode($data->create_time); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('index')); ?>:</b>
+	<?php echo CHtml::encode($data->index); ?>
+	<br />
+
 
 </div>

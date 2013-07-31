@@ -33,7 +33,7 @@ class MenuController extends Controller {
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
-        $sql = "select zy_application_rights.*,zy_rights.* from zy_application_rights inner join zy_rights on zy_application_rights.right_id=zy_rights.id";
+        $sql = "select * from zy_rights";
         $resultArr = $dbOperation->queryAllBySql($sql);
         
         $jsonArr = array('status'=>'1','data'=>$resultArr);

@@ -36,6 +36,11 @@
 		<?php echo $form->textField($model,'create_time'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'index'); ?>
+		<?php echo $form->textField($model,'index'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>
