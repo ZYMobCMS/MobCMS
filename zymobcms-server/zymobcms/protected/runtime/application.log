@@ -596,3 +596,239 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
 HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
 ---
+2013/08/01 07:28:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "tabType/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('tabType/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=tabType/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 07:30:58 [error] [php] Trying to get property of non-object (/Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/helpers/CHtml.php:2255)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/_form.php(100): CActiveForm->dropDownList()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): ArticleController->renderInternal()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(869): ArticleController->renderFile()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/create.php(18): ArticleController->renderPartial()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): ArticleController->renderInternal()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(869): ArticleController->renderFile()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(782): ArticleController->renderPartial()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(96): ArticleController->render()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionCreate()
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/_form.php (100)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/create.php (18)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (96)
+2013/08/01 07:31:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "tabType/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('tabType/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=tabType/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 07:33:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "tabType/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('tabType/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=tabType/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 07:35:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "article/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('article/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=article/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 07:39:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "article/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('article/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=article/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 07:41:46 [error] [php] Undefined variable: data (/Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/widgets/CActiveForm.php:763)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): ArticleController->renderInternal()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(869): ArticleController->renderFile()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/create.php(18): ArticleController->renderPartial()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): ArticleController->renderInternal()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(869): ArticleController->renderFile()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(782): ArticleController->renderPartial()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(96): ArticleController->render()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionCreate()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/_form.php (100)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/create.php (18)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (96)
+2013/08/01 07:42:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "article/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('article/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=article/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 07:58:58 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: select * from zy_tab_type where category_id = .
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/TabType.php (109)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/_form.php (102)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/create.php (18)
+2013/08/01 07:58:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: select * from zy_tab_type where category_id = ' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(1527): CDbCommand->queryAll()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/TabType.php(109): CActiveRecord->findAllBySql('select * from z...')
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/_form.php(102): TabType->getTabTypeByCategoryId(NULL)
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/ZYVincen...')
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/ZYVincen...', Array, true)
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/ZYVincen...', Array, true)
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/create.php(18): CController->renderPartial('_form', Array)
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/ZYVincen...')
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/ZYVincen...', Array, true)
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/ZYVincen...', Array, true)
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(96): CController->render('create', Array)
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionCreate()
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#21 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('create')
+#23 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/c...')
+#24 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#25 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 08:02:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "article/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('article/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=article/getTabTypes&category_id=1&_=1375315357915
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 08:39:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "article/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('article/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=article/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 08:41:24 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:203)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (203)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/01 08:43:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "article/getTabTypes".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('article/getTabT...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=article/getTabTypes
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---
+2013/08/01 08:50:23 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/01 08:51:04 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/01 08:51:05 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)

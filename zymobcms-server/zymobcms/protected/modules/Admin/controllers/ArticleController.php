@@ -28,7 +28,7 @@ class ArticleController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update'),
+				'actions'=>array('index','view','create','update','getTabTypes'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -188,5 +188,26 @@ class ArticleController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	/*
+	 * 获取联动TabType数据
+	*
+	*/
+	public function  actionGetTabTypes(){
+	
+		// if(!Yii::app()->request->isAjaxRequest)
+		// throw new CHttpException(404);
+		// The following command does not work
+//         $data=TabType::model()->findAll('category_id=:category_id',
+//                     array(':category_id'=>(int) $_POST['category_id']));
+		
+		$data = TabType::model()->findAllByAttributes(array('category_id'=>$_POST['category_id']));
+        $data=CHtml::listData($data,'id','name');
+        foreach($data as $value=>$subcategory)  {
+               echo CHtml::tag('option',
+               array('value'=>$value),CHtml::encode($subcategory),true);
+        }
+            
 	}
 }
