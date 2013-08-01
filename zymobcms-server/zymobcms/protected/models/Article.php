@@ -143,4 +143,22 @@ class Article extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        protected function beforeSave() {
+           if(parent::beforeSave()){
+               
+               if($this->isNewRecord){
+                   
+                   $this->create_time = date('y:m:d H:i:s');
+                   $this->update_time = date('y:m:d H:i:s');
+                   $this->publish_time = date('y:m:d H:i:s');
+                   $this->favorite_count = 0;
+                   $this->comment_count = 0;
+               }
+               
+               return TRUE;
+           }else{
+               return FALSE;
+           }
+        }
 }

@@ -93,7 +93,7 @@
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'tab_type_id'); ?>
-		<?php echo $form->dropDownList($model,'tab_type_id',array()); ?>
+		<?php echo $form->dropDownList($model,'tab_type_id',  TabType::model()->getTabTypeByCategoryId('1')); ?>
 		<?php echo $form->error($model,'tab_type_id'); ?>
 	</div>
 

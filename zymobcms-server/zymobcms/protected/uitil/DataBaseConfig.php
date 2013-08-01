@@ -14,10 +14,10 @@ class DataBaseConfig {
     //put your code here
     
     public static $dbhost = 'localhost';
-    public static $username = 'root';
-    public static $password = '123';
+    public static $username = 'ticket';
+    public static $password = '';
     public static $charset = 'utf8';
-    public static $appId   = 'zymobcmsnew1';
+    public static $appId   = 'zymobcms2';
 }
 
 ?>
