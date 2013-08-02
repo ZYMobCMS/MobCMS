@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "BFSegmentControl.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface ZYCategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource>
+@interface ZYCategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource,EGORefreshTableHeaderDelegate>
 {
     BFSegmentControl *segmentCtrl;
     NSMutableArray   *segmentArray;
+    
+    UITableView *_tableView;
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _isLoadMore;
+    BOOL _reloading;
     
     UITableView *listTable;
     NSMutableArray *listArray;

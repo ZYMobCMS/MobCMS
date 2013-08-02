@@ -50,6 +50,15 @@
     [self.view addSubview:listTable];
     [listTable release];
     
+    // 拉取刷新
+    _refreshHeaderView = [[EGORefreshTableHeaderView alloc]
+                          initWithFrame:
+                          CGRectMake(0.0f, 0.0f - _tableView.bounds.size.height, self.view.frame.size.width,_tableView.bounds.size.height)];
+    _refreshHeaderView.delegate = self;
+    [listTable addSubview:_refreshHeaderView];
+    [_refreshHeaderView release];
+	[_refreshHeaderView refreshLastUpdatedDate];
+    
     if (!segmentArray) {
         segmentArray = [[NSMutableArray alloc]init];
     }
@@ -87,7 +96,10 @@
 //菜单选中了哪一项
 - (void)segmentControl:(BFSegmentControl*)sgmCtrl didSelectAtIndex:(NSInteger)index
 {
+    NSDictionary *item = [segmentArray objectAtIndex:index];
     
+    self.currentTabType = [item objectForKey:@"id"];
+    [self getNewsList];
 }
 
 #pragma mark - tableView delegate and source
@@ -171,7 +183,48 @@
 - (void)refreshContent
 {
     [self getTabType];
+    [_refreshHeaderView startLoading:listTable];
 }
+
+- (void)refresh{
+    
+    [_refreshHeaderView startLoading:listTable];
+    _reloading = YES;
+    [self getNewsList];
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+    //在这里写更新的数据
+	[self performSelector:@selector(refresh) withObject:nil afterDelay:.0];
+	
+}
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+	
+}
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
+}
+
 
 #pragma mark - tabType
 - (void)getTabType
@@ -224,6 +277,10 @@
         
         NSDictionary *dataDict = [resultDict objectForKey:@"data"];
         
+        if(_reloading){
+            [listArray removeAllObjects];
+        }
+        
         NSArray *hotNews = [dataDict objectForKey:@"hotNews"];
         NSArray *normalList = [dataDict objectForKey:@"newsList"];
         
@@ -234,10 +291,18 @@
         
         [listTable reloadData];
     }
+    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
+    }
 }
 - (void)getNewsListFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
+    }
 }
 
 
