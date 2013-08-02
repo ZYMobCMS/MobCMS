@@ -1182,3 +1182,19 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (83)
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/02 13:39:10 [error] [php] Undefined index: category_id (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
