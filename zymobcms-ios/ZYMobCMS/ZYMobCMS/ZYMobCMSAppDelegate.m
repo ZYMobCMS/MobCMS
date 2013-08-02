@@ -9,10 +9,14 @@
 #import "ZYMobCMSAppDelegate.h"
 
 @implementation ZYMobCMSAppDelegate
+@synthesize sMenuController;
+@synthesize zMenuController;
 
 - (void)dealloc
 {
     [_window release];
+    self.sMenuController = nil;
+    self.zMenuController = nil;
     [super dealloc];
 }
 
@@ -21,7 +25,14 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+//    self.sMenuController = [[STMenuViewController alloc]init];
+//    [self.window addSubview:self.sMenuController.view];
+    self.zMenuController = [[ZYMenuViewController alloc]init];
+    [self.window addSubview:self.zMenuController.view];
+    
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

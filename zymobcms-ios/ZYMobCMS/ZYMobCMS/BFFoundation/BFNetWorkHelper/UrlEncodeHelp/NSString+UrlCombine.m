@@ -11,6 +11,6 @@
 @implementation NSString (UrlCombine)
 + (NSString *)urlWithInterface:(NSString *)interface
 {
-    return [NSString stringWithFormat:@"%@%@?",MBCMS_Base_Url, interface];
+    return [NSString stringWithFormat:@"%@%@",ZYCMS_Base_Url, interface];
 }
 @end
