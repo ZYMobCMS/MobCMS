@@ -16,6 +16,7 @@
 
 @implementation ZYCategoryViewController
 @synthesize categoryId,currentTabType;
+@synthesize requestFlag;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +28,7 @@
 }
 - (void)dealloc{
     
+    self.requestFlag = nil;
     self.currentTabType = nil;
     self.categoryId = nil;
     [segmentArray release];
@@ -97,9 +99,10 @@
 - (void)segmentControl:(BFSegmentControl*)sgmCtrl didSelectAtIndex:(NSInteger)index
 {
     NSDictionary *item = [segmentArray objectAtIndex:index];
+    NSLog(@"item -->%@",item);
     
     self.currentTabType = [item objectForKey:@"id"];
-    [self getNewsList];
+    [self refresh];
 }
 
 #pragma mark - tableView delegate and source
@@ -244,7 +247,7 @@
         NSArray *tabTypes = [resultDict objectForKey:@"data"];
         
         [segmentArray addObjectsFromArray:tabTypes];
-        currentTabType = [[tabTypes objectAtIndex:0]objectForKey:@"id"];
+        self.currentTabType = [[tabTypes objectAtIndex:0]objectForKey:@"id"];
         
         [segmentCtrl reloadData];
         [self getNewsList];
@@ -260,13 +263,18 @@
 #pragma mark - NewsList
 - (void)getNewsList
 {
+    if (self.requestFlag ) {
+        [[BFNetWorkHelper shareHelper]cancelRequestWithTimeStamp:self.requestFlag];
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:self.categoryId forKey:@"categoryId"];
+    if (self.categoryId) {
+        [params setObject:self.categoryId forKey:@"categoryId"];
+    }
     [params setObject:self.currentTabType forKey:@"tabTypeId"];
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:@"10" forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeNewsList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getNewsListSuccess:" withFaildRequestMethod:@"getNewsListFaild:"];
+    self.requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeNewsList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getNewsListSuccess:" withFaildRequestMethod:@"getNewsListFaild:"];
 }
 
 - (void)getNewsListSuccess:(NSDictionary*)resultDict

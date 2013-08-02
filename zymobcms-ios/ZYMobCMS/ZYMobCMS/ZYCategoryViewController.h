@@ -25,9 +25,11 @@
     BOOL hideLoadMore;
     NSInteger pageIndex;
     
+    
 }
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *currentTabType;
+@property (nonatomic,retain)NSString *requestFlag;
 
 - (void)refreshContent;
 
