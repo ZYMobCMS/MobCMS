@@ -32,6 +32,8 @@
 		3BE9B10B17AB79CA00500F79 /* segment_Unselected-grip.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9B0FB17AB79CA00500F79 /* segment_Unselected-grip.png */; };
 		3BE9B10C17AB79CA00500F79 /* segment_Unselected-grip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9B0FC17AB79CA00500F79 /* segment_Unselected-grip@2x.png */; };
 		3BE9B10F17AB8B2900500F79 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE9B10E17AB8B2700500F79 /* EGORefreshTableHeaderView.m */; };
+		3BE9B11217AB8D7C00500F79 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9B11017AB8D7C00500F79 /* blueArrow.png */; };
+		3BE9B11317AB8D7C00500F79 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE9B11117AB8D7C00500F79 /* blueArrow@2x.png */; };
 		9FBF76D317A3927F00F82E52 /* ZTMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */; };
 		9FC68ACB17A3924600AA6550 /* STMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68ACA17A3924600AA6550 /* STMenuViewController.m */; };
 		E47F0F7817A35C330011780E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F0F7717A35C330011780E /* UIKit.framework */; };
@@ -187,6 +189,8 @@
 		3BE9B0FC17AB79CA00500F79 /* segment_Unselected-grip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment_Unselected-grip@2x.png"; sourceTree = "<group>"; };
 		3BE9B10D17AB8B2600500F79 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		3BE9B10E17AB8B2700500F79 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		3BE9B11017AB8D7C00500F79 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		3BE9B11117AB8D7C00500F79 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
 		9FBF76D117A3927F00F82E52 /* ZTMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTMenuViewController.h; sourceTree = "<group>"; };
 		9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTMenuViewController.m; sourceTree = "<group>"; };
 		9FC68AC917A3924600AA6550 /* STMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STMenuViewController.h; sourceTree = "<group>"; };
@@ -1223,6 +1227,8 @@
 		E47F111517A3668A0011780E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3BE9B11017AB8D7C00500F79 /* blueArrow.png */,
+				3BE9B11117AB8D7C00500F79 /* blueArrow@2x.png */,
 				3BE9B0ED17AB79CA00500F79 /* segment_left_item.png */,
 				3BE9B0EE17AB79CA00500F79 /* segment_left_item@2x.png */,
 				3BE9B0EF17AB79CA00500F79 /* segment_left_tag.png */,
@@ -1329,6 +1335,8 @@
 				3BE9B10A17AB79CA00500F79 /* segment_selected@2x.png in Resources */,
 				3BE9B10B17AB79CA00500F79 /* segment_Unselected-grip.png in Resources */,
 				3BE9B10C17AB79CA00500F79 /* segment_Unselected-grip@2x.png in Resources */,
+				3BE9B11217AB8D7C00500F79 /* blueArrow.png in Resources */,
+				3BE9B11317AB8D7C00500F79 /* blueArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
