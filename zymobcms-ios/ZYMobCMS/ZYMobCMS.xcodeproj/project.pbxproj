@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9FBF76D317A3927F00F82E52 /* ZTMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */; };
-		9FBF76D617A3ACF300F82E52 /* ZYMobCMSceshi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF76D517A3ACF300F82E52 /* ZYMobCMSceshi.m */; };
 		9FC68ACB17A3924600AA6550 /* STMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68ACA17A3924600AA6550 /* STMenuViewController.m */; };
 		E47F0F7817A35C330011780E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F0F7717A35C330011780E /* UIKit.framework */; };
 		E47F0F7A17A35C330011780E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F0F7917A35C330011780E /* Foundation.framework */; };
@@ -131,8 +130,6 @@
 /* Begin PBXFileReference section */
 		9FBF76D117A3927F00F82E52 /* ZTMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTMenuViewController.h; sourceTree = "<group>"; };
 		9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTMenuViewController.m; sourceTree = "<group>"; };
-		9FBF76D417A3ACF300F82E52 /* ZYMobCMSceshi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMobCMSceshi.h; sourceTree = "<group>"; };
-		9FBF76D517A3ACF300F82E52 /* ZYMobCMSceshi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMobCMSceshi.m; sourceTree = "<group>"; };
 		9FC68AC917A3924600AA6550 /* STMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STMenuViewController.h; sourceTree = "<group>"; };
 		9FC68ACA17A3924600AA6550 /* STMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMenuViewController.m; sourceTree = "<group>"; };
 		E47F0F7417A35C330011780E /* ZYMobCMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYMobCMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -549,8 +546,6 @@
 			children = (
 				9FBF76D117A3927F00F82E52 /* ZTMenuViewController.h */,
 				9FBF76D217A3927F00F82E52 /* ZTMenuViewController.m */,
-				9FBF76D417A3ACF300F82E52 /* ZYMobCMSceshi.h */,
-				9FBF76D517A3ACF300F82E52 /* ZYMobCMSceshi.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1266,7 +1261,6 @@
 				E47F110B17A361140011780E /* JSONKit.m in Sources */,
 				9FBF76D317A3927F00F82E52 /* ZTMenuViewController.m in Sources */,
 				9FC68ACB17A3924600AA6550 /* STMenuViewController.m in Sources */,
-				9FBF76D617A3ACF300F82E52 /* ZYMobCMSceshi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
