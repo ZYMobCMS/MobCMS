@@ -184,29 +184,29 @@
     return self;
 }
 
-//- (id)initWithFrame:(CGRect)frame withDataSource:(id<BFSegmentControlDataSource>)mDataSource
-//{
-//    NSString *selectedImageName = @"segment_selected.png";
-//    NSString *leftImage = @"segment_left_tag.png";
-//    NSString *rightImage = @"segment_right_tag.png";
-//    NSString *itemBackImageLeft = @"segment_left_item.png";
-//    NSString *itemBackImageMiddle = @"segment_left_item.png";
-//    NSString *itemBackImageRight = @"segment_right_item.png";
-//    NSString *gripUnSelected = nil;
-//    
-//    self.itemBackgroundImageLeft = [OPCommon getThemeImage:itemBackImageLeft];
-//    self.itemBackgroundImageMiddle = [OPCommon getThemeImage:itemBackImageMiddle];
-//    self.itemBackgroundImageRight = [OPCommon getThemeImage:itemBackImageRight];
-//    self.gripUnSelectedImage = [OPCommon getThemeImage:gripUnSelected];
-//    
-//    UIImage *leftTag = [OPCommon getThemeImage:leftImage];
-//    UIImage *rightTag = [OPCommon getThemeImage:rightImage];
-//    
-//    self.selectedImage = [OPCommon getThemeImage:selectedImageName];
-//    
-//    return [self initWithFrame:frame withDataSource:mDataSource withSepratorLineImageName:nil withBackgroundImageName:nil withLeftTagImage:leftTag withRightTagImage:rightTag];
-//    
-//}
+- (id)initWithFrame:(CGRect)frame withDataSource:(id<BFSegmentControlDataSource>)mDataSource
+{
+    NSString *selectedImageName = @"segment_selected.png";
+    NSString *leftImage = @"segment_left_tag.png";
+    NSString *rightImage = @"segment_right_tag.png";
+    NSString *itemBackImageLeft = @"segment_left_item.png";
+    NSString *itemBackImageMiddle = @"segment_left_item.png";
+    NSString *itemBackImageRight = @"segment_right_item.png";
+    NSString *gripUnSelected = nil;
+    
+    self.itemBackgroundImageLeft = [UIImage imageNamed:itemBackImageLeft];
+    self.itemBackgroundImageMiddle = [UIImage imageNamed:itemBackImageMiddle];
+    self.itemBackgroundImageRight = [UIImage imageNamed:itemBackImageRight];
+    self.gripUnSelectedImage = [UIImage imageNamed:gripUnSelected];
+    
+    UIImage *leftTag = [UIImage imageNamed:leftImage];
+    UIImage *rightTag = [UIImage imageNamed:rightImage];
+    
+    self.selectedImage = [UIImage imageNamed:selectedImageName];
+    
+    return [self initWithFrame:frame withDataSource:mDataSource withSepratorLineImageName:nil withBackgroundImageName:nil withLeftTagImage:leftTag withRightTagImage:rightTag];
+    
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

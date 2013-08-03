@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cn.weihai"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="10" />
+
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/xiangmutubiao"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.cn.weihai.WeiHaiActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="com.cn.weihai.Introduce"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Online"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Phone"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.More"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent0"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent1"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent2"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent3"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent4"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent5"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent6"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Intent7"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Login"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Register"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.Message"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.ViewPager1"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.ViewPager2"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.ViewPager3"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.ViewPager4"
+            android:label="@string/app_name" >           
+        </activity>
+        <activity
+            android:name="com.cn.weihai.ViewPager5"
+            android:label="@string/app_name" >           
+        </activity>
+    </application>
+
+</manifest>

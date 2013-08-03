@@ -79,17 +79,82 @@ static BFNetWorkHelper *_instance = nil;
 }
 
 //合成请求接口地址
-- (NSURL *)urlWithRequestType:(MBCRequestType)requestType
+- (NSURL *)urlWithRequestType:(ZYCMSRequestType)requestType
 {
     NSURL *requestUrl = nil;
     
     //合成接口地址
+    NSString *urlString = nil;
     switch (requestType) {
             
+            case ZYCMSRequestTypeAbout:
+            urlString = ZYCMS_About_Interface;
+            break;
+            
+            case ZYCMSRequestTypeArticleComment:
+            urlString = ZYCMS_Article_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductList:
+            urlString = ZYCMS_Product_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeArticleDetail:
+            urlString = ZYCMS_Article_Detail_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCommentArticle:
+            urlString = ZYCMS_Comment_Article_Interface;
+            break;
+            
+            case ZYCMSRequestTypeFavoriteArticle:
+            urlString = ZYCMS_Favorite_Article_Interface;
+            break;
+            
+            case ZYCMSRequestTypeLogin:
+            urlString = ZYCMS_Login_Interface;
+            break;
+            
+            case ZYCMSRequestTypeMenuList:
+            urlString = ZYCMS_Menu_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeNewsList:
+            urlString = ZYCMS_News_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureList:
+            urlString = ZYCMS_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductDetail:
+            urlString = ZYCMS_Product_Detail_Interface;
+            break;
+            
+            case ZYCMSRequestTypeReply:
+            urlString = ZYCMS_Reply_Interface;
+            break;
+            
+            case ZYCMSRequestTypeRigist:
+            urlString = ZYCMS_Rigist_Interface;
+            break;
+            
+            case ZYCMSRequestTypeTabType:
+            urlString = ZYCMS_Tab_Type_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserComment:
+            urlString = ZYCMS_User_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserFavorite:
+            urlString = ZYCMS_User_Favorite_Interface;
+            break;
                     
         default:
             break;
     }
+    requestUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ZYCMS_Base_Url,urlString]];
     
     return requestUrl;
 }
@@ -98,14 +163,14 @@ static BFNetWorkHelper *_instance = nil;
 - (NSString *)pulicParams
 {
     NSMutableString *turl = [NSMutableString stringWithCapacity:50];
-    
+    [turl appendFormat:@"&appId=%@",APPID];
     return turl;//[[Passport getCurrentUser]urlEncodedString];
 }
 
 
 #pragma mark - request method
 //符合当前Opinion得请求类型
-- (NSString*)requestDataWithApplicationType:(MBCRequestType)requestType withParams:(NSDictionary *)params withHelperDelegate:(id)CallBackDelegate withSuccessRequestMethod:(NSString *)successMethod withFaildRequestMethod:(NSString *)faildMethod
+- (NSString*)requestDataWithApplicationType:(ZYCMSRequestType)requestType withParams:(NSDictionary *)params withHelperDelegate:(id)CallBackDelegate withSuccessRequestMethod:(NSString *)successMethod withFaildRequestMethod:(NSString *)faildMethod
 {
     
     //如果没有链接网络
@@ -132,8 +197,8 @@ static BFNetWorkHelper *_instance = nil;
     //没有参数时附加公共参数
     NSString *string = paramDict ? [paramDict urlEncodedString] : @"";//编码成http页面能够接受得参数
     
-    finalUrl = [NSString stringWithFormat:@"%@%@%@", [requestUrl absoluteString], [self pulicParams], string];
-    
+    finalUrl = [NSString stringWithFormat:@"%@%@&%@", [requestUrl absoluteString], [self pulicParams], string];
+    NSLog(@"final Url --->%@",finalUrl);
 
     //生成正确得请求地址
     requestUrl = [NSURL URLWithString:finalUrl];

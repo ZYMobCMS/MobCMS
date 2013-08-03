@@ -11,3 +11,5 @@
 #import "BFDebugUitil.h"
 #import "BFNetworkHelper.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BFImageDownloader.h"
+#import "BFLoadMoreView.h"

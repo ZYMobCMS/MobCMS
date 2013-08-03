@@ -15,10 +15,24 @@
 
 
 typedef enum {
-    MBCRequestTypeLogin = 0,
-    MBCRequestTypeRigist,
+    ZYCMSRequestTypeLogin = 0,
+    ZYCMSRequestTypeRigist,
+    ZYCMSRequestTypeMenuList,
+    ZYCMSRequestTypeTabType,
+    ZYCMSRequestTypeNewsList,
+    ZYCMSRequestTypeArticleDetail,
+    ZYCMSRequestTypeArticleComment,
+    ZYCMSRequestTypeCommentArticle,
+    ZYCMSRequestTypeFavoriteArticle,
+    ZYCMSRequestTypePictureList,
+    ZYCMSRequestTypeProductList,
+    ZYCMSRequestTypeProductDetail,
+    ZYCMSRequestTypeAbout,
+    ZYCMSRequestTypeReply,
+    ZYCMSRequestTypeUserFavorite,
+    ZYCMSRequestTypeUserComment,
     
-}MBCRequestType;
+}ZYCMSRequestType;
 
 @interface BFNetWorkHelper : NSObject<NSURLConnectionDelegate,NSURLConnectionDataDelegate,ASIHTTPRequestDelegate>
 {
@@ -37,7 +51,7 @@ typedef enum {
 - (void)cancelRequestWithTimeStamp:(NSString*)timeStamp;
 
 //为特定应用程序请求数据
-- (NSString*)requestDataWithApplicationType:(MBCRequestType)requestType 
+- (NSString*)requestDataWithApplicationType:(ZYCMSRequestType)requestType
                             withParams:(NSDictionary *)params 
                     withHelperDelegate:(id)CallBackDelegate 
               withSuccessRequestMethod:(NSString *)successMethod 

@@ -6,10 +6,11 @@
 //  Copyright (c) 2012年 __barfoo__. All rights reserved.
 //
 
-#define MBCMS_Base_Url @"https://61.136.59.250:8018"
+#define ZYCMS_Base_Url @"http://www.zyprosoft.com/zymobcms/index.php?r="
+#define ZYCMS_image_Url @"http://www.zyprosoft.com/zymobcms/"
 #define MCM_Base_Url @"https://61.136.59.251:8017"
 
-#define APPID            @"add3062c4a664ef7936c2e42914bcf7a"
+#define APPID            @"ruyijian_zymobcms"
 
 #define PPF_HOST_KEY @"ppf12" //对应服务器返回主机列表的key TODO
 #define MCM_HOST_KEY @"mcm"
@@ -44,7 +45,7 @@
         (status,account|msg)
  */
 
-#define Opinion_Login_Interface            @"/m/account/login"
+#define ZYCMS_Login_Interface            @"Mobile/user/login"
 
 
 /*
@@ -56,7 +57,7 @@
  token
  */
 
-#define Opinion_UpdateUser_Interface            @"/m/account/addIosToken"
+#define ZYCMS_Rigist_Interface            @"Mobile/user/rigist"
 
 
 /*
@@ -66,7 +67,7 @@
         appid  ""
  */
 
-#define Opinion_Host_Interface            @"/m/app/host"
+#define ZYCMS_Menu_List_Interface            @"Mobile/menu/menuList"
 
 
 /*
@@ -74,7 +75,7 @@
     retrun 
         (status, list(navitem)) 
  */
-#define Opinion_Nav_HomeList_Interface     @"/m/nav/indexlist"
+#define ZYCMS_Tab_Type_Interface            @"Mobile/menu/categoryTabType"
 
 /*
     添加用户快捷方式
@@ -84,7 +85,7 @@
     retrun 
         (status, msg)  
  */
-#define Opinion_NavAdd_Interface     @"/m/nav/addnav"
+#define ZYCMS_News_List_Interface           @"Mobile/newsList/newsList"
 
 /*
      删除用户局势方式
@@ -94,7 +95,7 @@
      retrun 
         (status, msg)  
  */
-#define Opinion_NavCancel_Interface     @"/m/nav/cancel"
+#define ZYCMS_Article_Detail_Interface     @"Mobile/newsList/articleDetail"
 
 
 /*
@@ -102,7 +103,7 @@
  retrun
  (status, list(classify))
  */
-#define Opinion_CategoryTree_Interface     @"/m/classify/category"
+#define ZYCMS_Article_Comment_Interface     @"Mobile/newsList/articleComment"
 
 
 /*
@@ -110,7 +111,7 @@
  retrun
  (status, list(classify))
  */
-#define Opinion_ClassifyTree_Interface     @"/m/classify/rule" //@"/m/classify/tree"
+#define ZYCMS_Comment_Article_Interface     @"Mobile/newsList/commentArticle" //@"/m/classify/tree"
 
    
 /*
@@ -121,7 +122,7 @@
      retrun 
         (status, list(result)  
  */
-#define Opinion_ClassifyResult_Interface     @"/m/classify/result"
+#define ZYCMS_Favorite_Article_Interface     @"Mobile/newsList/favoriteArticle"
 
 
 /*
@@ -130,7 +131,7 @@
         classid: 分类ID
  */
 
-#define Opinion_ClassifyTab_Interface        @"/m/classifytab/result"
+#define ZYCMS_Picture_Interface        @"Mobile/picture/pictureList"
 
 
 /*
@@ -140,7 +141,7 @@
      retrun 
         (status, result)  
  */
-#define Opinion_ClassifyResultInfo_Interface     @"/m/classify/info"
+#define ZYCMS_Product_List_Interface     @"Mobile/product/productList"
 
 
 /*
@@ -150,7 +151,7 @@
      retrun
         (status, result)
  */
-#define Opinion_BlogResultInfo_Interface     @"/m/blog/result"
+#define ZYCMS_Product_Detail_Interface     @"Mobile/product/productDetail"
 
 
 /*
@@ -158,7 +159,7 @@
      retrun 
         (status, result)  
  */
-#define Opinion_WarningCount_Interface     @"/m/warning/count"
+#define ZYCMS_User_Favorite_Interface     @"Mobile/user/favoriteList"
 
 /*
      获取预警，关注，线索列表
@@ -169,7 +170,7 @@
  */
 //#define Opinion_WarningList_Interface     @"/m/warning/getlist"
 
-#define Opinion_WarningList_Interface     @"/m/warning/pagelist"
+#define ZYCMS_User_Comment_Interface     @"Mobile/user/commentList"
 
 
 /*
@@ -179,7 +180,7 @@
      retrun 
      (status, list(result))
  */
-#define Opinion_SearchContent_Interface     @"/m/search/content"
+#define ZYCMS_About_Interface     @"Mobile/about/aboutInfo"
 
 
 /*
@@ -189,7 +190,7 @@
      retrun 
         (status, list(blog))
  */
-#define Opinion_SearchBlog_Interface     @"/m/search/mblog"
+#define ZYCMS_Reply_Interface     @"Mobile/reply/reply"
 
 /*
      搜索人物搜索
@@ -198,7 +199,7 @@
      retrun 
         (status, list(person))
  */
-#define Opinion_SearchPerson_Interface     @"/m/search/person"
+#define ZYCMS_Hot_Comment_Interface     @"Mobile/newsList/hotComments"
 
 /*
  *搜索下得分类数据接口

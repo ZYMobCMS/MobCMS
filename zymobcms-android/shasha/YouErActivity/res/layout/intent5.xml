@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/biaotibeijing">
+          <Button
+                android:id="@+id/fufan1"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_fanhui"
+                android:text="服务内容"/>
+            <TextView 
+            android:id="@+id/fuwuwenzi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/fufan1"
+            android:text="幼儿奶粉"
+            android:textColor="#ffffff"/>
+              
+            <Button 
+            android:id="@+id/fufanzixun"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+             android:layout_toRightOf="@id/fuwuwenzi"
+            android:layout_marginLeft="70dp"
+            android:text="咨询"
+            android:background="@drawable/selector_gengduo"/>
+ 
+
+    </RelativeLayout>
+      <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        
+    <ScrollView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp">
+            <RelativeLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/in5">
+               
+                <TextView 
+                    android:id="@+id/text1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000" 
+                    android:paddingTop="260dp"
+                    android:textSize="16sp" 
+                    android:lineSpacingExtra="3dp"
+                    android:lineSpacingMultiplier="1.2"/>
+            </RelativeLayout>
+        </ScrollView> 
+        </LinearLayout>
+   <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dixiaanniu"
+        android:orientation="horizontal">
+      
+         <Button
+           android:id="@+id/bt1"
+           android:layout_width="60dp"
+           android:layout_height="50dp"
+           android:background="@drawable/selector_fuwu1"
+           android:onClick="danjijianjie"
+           android:layout_marginTop="5dp"
+           android:layout_weight="1"/>
+      
+       <Button 
+            android:id="@+id/bt2"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu2"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt3"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu3"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button
+            android:id="@+id/bt4" 
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu4"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"/>
+       <Button 
+            android:id="@+id/bt5"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/selector_fuwu5"
+            android:onClick="danjijianjie"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"/>
+       
+    </LinearLayout>
+</LinearLayout>
