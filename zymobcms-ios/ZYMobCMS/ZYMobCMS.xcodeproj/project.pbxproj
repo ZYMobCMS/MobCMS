@@ -152,6 +152,9 @@
 		E47F110D17A362D90011780E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F110C17A362D90011780E /* AVFoundation.framework */; };
 		E47F110F17A362DF0011780E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F110E17A362DF0011780E /* AudioToolbox.framework */; };
 		E47F111117A362EC0011780E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47F111017A362EC0011780E /* OpenAL.framework */; };
+		E484A4FE17ACB385009CE1BA /* ZYProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E484A4FD17ACB385009CE1BA /* ZYProductViewController.m */; };
+		E484A50117ACB505009CE1BA /* ZYPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E484A50017ACB505009CE1BA /* ZYPictureCell.m */; };
+		E484A50417ACB553009CE1BA /* ImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E484A50317ACB553009CE1BA /* ImageItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -422,6 +425,12 @@
 		E47F110E17A362DF0011780E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E47F111017A362EC0011780E /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		E47F111217A3635E0011780E /* BFFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFFoundation.h; sourceTree = "<group>"; };
+		E484A4FC17ACB385009CE1BA /* ZYProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProductViewController.h; sourceTree = "<group>"; };
+		E484A4FD17ACB385009CE1BA /* ZYProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProductViewController.m; sourceTree = "<group>"; };
+		E484A4FF17ACB505009CE1BA /* ZYPictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPictureCell.h; sourceTree = "<group>"; };
+		E484A50017ACB505009CE1BA /* ZYPictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPictureCell.m; sourceTree = "<group>"; };
+		E484A50217ACB553009CE1BA /* ImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageItem.h; sourceTree = "<group>"; };
+		E484A50317ACB553009CE1BA /* ImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +490,12 @@
 		3BE9B0D017AB534C00500F79 /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				E484A4FC17ACB385009CE1BA /* ZYProductViewController.h */,
+				E484A4FD17ACB385009CE1BA /* ZYProductViewController.m */,
+				E484A4FF17ACB505009CE1BA /* ZYPictureCell.h */,
+				E484A50017ACB505009CE1BA /* ZYPictureCell.m */,
+				E484A50217ACB553009CE1BA /* ImageItem.h */,
+				E484A50317ACB553009CE1BA /* ImageItem.m */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -1451,6 +1466,9 @@
 				3BE9B0E917AB5B4200500F79 /* HotImageView.m in Sources */,
 				3BE9B0EC17AB5E2B00500F79 /* BFLoadMoreView.m in Sources */,
 				3BE9B10F17AB8B2900500F79 /* EGORefreshTableHeaderView.m in Sources */,
+				E484A4FE17ACB385009CE1BA /* ZYProductViewController.m in Sources */,
+				E484A50117ACB505009CE1BA /* ZYPictureCell.m in Sources */,
+				E484A50417ACB553009CE1BA /* ImageItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

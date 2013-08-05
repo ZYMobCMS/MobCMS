@@ -55,7 +55,7 @@
     // 拉取刷新
     _refreshHeaderView = [[EGORefreshTableHeaderView alloc]
                           initWithFrame:
-                          CGRectMake(0.0f, 0.0f - _tableView.bounds.size.height, self.view.frame.size.width,_tableView.bounds.size.height)];
+                          CGRectMake(0.0f, 0.0f - listTable.bounds.size.height, self.view.frame.size.width,listTable.bounds.size.height)];
     _refreshHeaderView.delegate = self;
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
@@ -101,6 +101,7 @@
     NSDictionary *item = [segmentArray objectAtIndex:index];
     NSLog(@"item -->%@",item);
     
+    pageIndex = 0;
     self.currentTabType = [item objectForKey:@"id"];
     [self refresh];
 }
@@ -179,7 +180,7 @@
 {
     [loadView startAnimation];
     pageIndex ++;
-    
+    [self getNewsList];
 }
 
 #pragma mark - refresh
@@ -191,6 +192,11 @@
 
 - (void)refresh{
     
+    if (segmentArray.count==0) {
+        _reloading = YES;
+        [self refreshContent];
+        return;
+    }
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
     [self getNewsList];
@@ -256,7 +262,10 @@
 
 - (void)getTabTypeFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
+    }
 }
 
 
@@ -292,7 +301,9 @@
         NSArray *hotNews = [dataDict objectForKey:@"hotNews"];
         NSArray *normalList = [dataDict objectForKey:@"newsList"];
         
-        [listArray addObject:hotNews];
+        if (pageIndex==0) {
+            [listArray addObject:hotNews];
+        }
         [listArray addObjectsFromArray:normalList];
         
         NSLog(@"listArray -->%@",listArray);

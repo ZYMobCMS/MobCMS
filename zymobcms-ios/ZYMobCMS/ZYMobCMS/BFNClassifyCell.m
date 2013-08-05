@@ -89,7 +89,7 @@
     NSString *image = [contentDict objectForKey:@"images"];
     image = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,image];
     NSString *summary = [contentDict objectForKey:@"summary"];
-    
+    NSLog(@"image --->%@",image);
     
 
     BOOL hasImage = YES;

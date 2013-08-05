@@ -15,7 +15,6 @@
     BFSegmentControl *segmentCtrl;
     NSMutableArray   *segmentArray;
     
-    UITableView *_tableView;
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _isLoadMore;
     BOOL _reloading;

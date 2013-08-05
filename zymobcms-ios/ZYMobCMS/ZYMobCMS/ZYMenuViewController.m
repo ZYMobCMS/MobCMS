@@ -93,6 +93,31 @@
             
             [newCategoryVC release];
             [categroyNav release];
+        }else{
+            
+            NSInteger moduleId = [[item objectForKey:@"id"]intValue];
+            
+            switch (moduleId) {
+                case 1:
+                {
+                    
+                }
+                    break;
+                case 2:
+                {
+                    
+                }
+                    break;
+                case 3:
+                {
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
         }
     }
     self.viewControllers = buildControllers;
