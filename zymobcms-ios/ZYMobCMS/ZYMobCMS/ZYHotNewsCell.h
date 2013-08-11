@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^didSelectArticle) (NSString *articleId);
+typedef void (^didSelectArticle) (NSDictionary *articleItem);
 
-@interface ZYHotNewsCell : UITableViewCell
+@interface ZYHotNewsCell : UITableViewCell<UIScrollViewDelegate>
 {
     didSelectArticle _selectAction;
     
-    UIScrollView *scrollView;
+    NSMutableArray *mContentArray;
+    
+    UIScrollView *bScrollView;
     UIPageControl *pageControl;
+    
+    UILabel *titleLabel;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withSelectAction:(didSelectArticle)selectAction;

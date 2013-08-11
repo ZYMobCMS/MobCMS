@@ -7,7 +7,8 @@
 //
 
 #import "ZYProductViewController.h"
-#import "ZYPictureCell.h"
+#import "ZYProductCell.h"
+
 
 @interface ZYProductViewController ()
 
@@ -33,9 +34,10 @@
         listArray = [[NSMutableArray alloc]init];
         pageIndex = 0;
     }
-    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-49-44) style:UITableViewStylePlain];
+    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStylePlain];
     listTable.dataSource = self;
     listTable.delegate = self;
+    listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:listTable];
     [listTable release];
     
@@ -47,6 +49,8 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
+    
+    [self getProductList];
 
 }
 
@@ -107,24 +111,23 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 105;
+    return [ZYProductCell heightForProductCell];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * myCell = @"PictureCell";
-    ZYPictureCell * cell = (ZYPictureCell*)[tableView dequeueReusableCellWithIdentifier:myCell];
+    ZYProductCell * cell = (ZYProductCell*)[tableView dequeueReusableCellWithIdentifier:myCell];
     if (cell == nil) {
-        cell = [[[ZYPictureCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell withTapOnCell:^(NSString *pictureId) {
-            [self didTapOnPictureCell:pictureId];
-        }]autorelease];
+        cell = [[[ZYProductCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
     }
+    [cell setProductInfo:[listArray objectAtIndex:indexPath.row]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -151,9 +154,37 @@
     }
 }
 
-- (void)didTapOnPictureCell:(NSString*)productId
+- (void)getProductList
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInt:10] forKey:@"pageSize"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getProductListSuccess:" withFaildRequestMethod:@"getProductListFaild:"];
+    
+}
+
+- (void)getProductListSuccess:(NSDictionary*)resultDict
+{
+    
+    BOOL status = [[resultDict objectForKey:@"status"]boolValue];
+    if (status) {
+        
+        NSArray *resultArray = [resultDict objectForKey:@"data"];
+        
+        NSLog(@"resultArray---->%@",resultArray);
+        
+        [listArray addObjectsFromArray:resultArray];
+        
+        [listTable reloadData];
+        
+    }
+}
+
+- (void)getProductListFaild:(NSDictionary*)resultDict
 {
     
 }
+
 
 @end

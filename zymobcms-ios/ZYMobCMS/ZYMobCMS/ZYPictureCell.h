@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ImageItem.h"
 
-typedef void (^tapOnCellAction) (NSString *pictureId);
+typedef void (^tapOnCellAction) (NSInteger itemIndex);
 @interface ZYPictureCell : UITableViewCell
 {
     tapOnCellAction _tapOnCellAction;
@@ -19,5 +19,9 @@ typedef void (^tapOnCellAction) (NSString *pictureId);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withTapOnCell:(tapOnCellAction)tapOnCellAction;
+
+- (void)setContentArray:(NSArray*)imageArray;
+
++ (CGFloat)pictureCellHeight;
 
 @end

@@ -112,4 +112,13 @@ class TabType extends CActiveRecord
 	
 	
 	}
+	
+	public function getAllTabTypes(){
+		
+		$sql = "select * from zy_tab_type";
+		
+		$resultArr = TabType::model()->findAllBySql($sql);
+		
+		return CHtml::listData($resultArr, 'id', 'name');
+	}
 }

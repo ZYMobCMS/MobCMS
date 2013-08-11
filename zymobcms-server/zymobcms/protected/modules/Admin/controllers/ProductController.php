@@ -70,6 +70,19 @@ class ProductController extends Controller
 		if(isset($_POST['Product']))
 		{
 			$model->attributes=$_POST['Product'];
+			
+			$uploadedimage=  CUploadedFile::getInstance($model,'images');
+			$uploaddir=Yii::app()->basePath.'/../'.'/'.DataBaseConfig::$appId.'/upload/';
+			
+			if(is_object($uploadedimage) && get_class($uploadedimage)==='CUploadedFile')
+			{
+				$filename = md5(uniqid());
+				$ext = $uploadedimage->extensionName;
+				$uploadfile=$uploaddir . $filename . '.' . $ext;
+				$uploadedimage->saveAs($uploadfile);
+				$model->images= DataBaseConfig::$appId.'/upload/' . $filename . '.' . $ext;
+			}
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

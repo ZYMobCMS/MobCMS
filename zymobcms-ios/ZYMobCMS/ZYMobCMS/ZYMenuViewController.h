@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZYMenuViewController : UITabBarController
+@interface ZYMenuViewController : UITableViewController
 {
     NSMutableArray *menuArray;
+    NSMutableArray *viewControllers;
+    
+    
 }
+@property (nonatomic,retain)NSIndexPath      *selectIndexPath;
+
 @end

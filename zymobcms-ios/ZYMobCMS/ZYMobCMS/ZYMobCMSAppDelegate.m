@@ -11,13 +11,25 @@
 @implementation ZYMobCMSAppDelegate
 @synthesize sMenuController;
 @synthesize zMenuController;
+@synthesize rootViewController;
 
 - (void)dealloc
 {
     [_window release];
     self.sMenuController = nil;
-    self.zMenuController = nil;
+    self.bMenuController = nil;
+    self.rootViewController = nil;
     [super dealloc];
+}
+
+- (void)showMaster
+{
+    [self.rootViewController setShowingMasterViewController:YES animated:YES completion:nil];
+}
+
+- (void)hiddenMaster
+{
+    [self.rootViewController setShowingMasterViewController:NO animated:YES completion:nil];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -28,8 +40,12 @@
     
 //    self.sMenuController = [[STMenuViewController alloc]init];
 //    [self.window addSubview:self.sMenuController.view];
-    self.zMenuController = [[ZYMenuViewController alloc]init];
-    [self.window addSubview:self.zMenuController.view];
+    
+    self.rootViewController = [[IRSlidingSplitViewController alloc]init];
+    self.bMenuController = [[BFNMenuViewController alloc]init];
+    self.rootViewController.masterViewController = self.bMenuController;
+    [self.bMenuController tryGetNewApplicationRights];
+    [self.window addSubview:self.rootViewController.view];
     
     [self.window makeKeyAndVisible];
     

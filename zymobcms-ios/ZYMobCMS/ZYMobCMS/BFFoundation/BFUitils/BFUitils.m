@@ -414,6 +414,14 @@
         return NO;
     }
 }
++ (BOOL)isIOSVersionOver6
+{
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.0) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
 
 + (UIImage*)streghtImageWithName:(NSString *)imageName
 {

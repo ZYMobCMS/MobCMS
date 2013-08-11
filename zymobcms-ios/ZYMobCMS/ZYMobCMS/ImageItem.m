@@ -18,6 +18,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.layer.borderColor = [BFUitils rgbColor:158 green:38 blue:40].CGColor;
+        self.layer.borderWidth = 1.5f;
+        self.layer.cornerRadius = 3.0f;
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOffset = CGSizeMake(3.0f,3.0f);
         
         self.contentImageView = [[UIImageView alloc]init];
         self.contentImageView.frame = CGRectMake(5,5,frame.size.width-10,self.frame.size.height-10-30);
@@ -39,20 +44,30 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UIImageView *backImgView = [[UIImageView alloc]init];
+        backImgView.frame = CGRectMake(0,0,frame.size.width,frame.size.height);
+        backImgView.image = [UIImage imageNamed:@"huabao_cell_bg.png"];
+        [self addSubview:backImgView];
+        [backImgView release];
         
         self.contentImageView = [[UIImageView alloc]init];
-        self.contentImageView.frame = CGRectMake(5,5,frame.size.width-10,self.frame.size.height-10-30);
+        self.contentImageView.frame = CGRectMake(5,5,frame.size.width-10,self.frame.size.height-10-40);
         [self addSubview:self.contentImageView];
         [self.contentImageView release];
         
         //
         self.titleLabel = [[UILabel alloc]init];
-        self.titleLabel.frame = CGRectMake(5,self.frame.size.height-30-5,self.frame.size.width-10,30);
+        self.titleLabel.frame = CGRectMake(5,self.frame.size.height-40-5,self.frame.size.width-10,25);
+        self.titleLabel.textAlignment = UITextAlignmentCenter;
+        self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.adjustsFontSizeToFitWidth = YES;
         [self addSubview:self.titleLabel];
         [self.titleLabel release];
         
         self.productArray = [[NSMutableArray alloc]init];
         _tapAction = [tapAction copy];
+        
+        [self addTarget:self action:@selector(tapOnSelfAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 
@@ -79,12 +94,18 @@
 
     self.titleLabel.text = [contentDict objectForKey:@"title"];
     NSString *imageUrl = [contentDict objectForKey:@"images"];
+    imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,imageUrl];
+    self.contentImageView.image = [UIImage imageNamed:@"no_photo.png"];
     
     [[BFImageDownloader shareLoader]downloadImageWithUrl:imageUrl forView:self.contentImageView];
-    
-    
-    
-    
+
+}
+
+- (void)tapOnSelfAction
+{
+    if (_tapAction) {
+        _tapAction();
+    }
 }
 
 

@@ -34,8 +34,8 @@
 				array('label'=>'图片', 'url'=>array('Admin/picture/index')),
                                 array('label'=>'用户', 'url'=>array('Admin/user/index')),
                                 array('label'=>'产品', 'url'=>array('Admin/product/index')),
-                                array('label'=>'分类', 'url'=>array('Admin/category/index')),
-                                array('label'=>'栏目', 'url'=>array('Admin/categoryRights/index')),
+                                array('label'=>'分类', 'url'=>array('Admin/rights/index')),
+                                array('label'=>'栏目', 'url'=>array('Admin/tabType/index')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

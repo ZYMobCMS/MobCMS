@@ -1198,3 +1198,685 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 10:16:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1044] Access denied for user ''@'localhost' to database 'zymobcms2'' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(TabType))
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('TabType')
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/TabTypeController.php(125): CActiveDataProvider->__construct('TabType')
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): TabTypeController->actionIndex()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('')
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/tabType')
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/tabType
+---
+2013/08/10 10:18:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1044] Access denied for user ''@'localhost' to database 'zymobcms2'' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Rights))
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Rights')
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/RightsController.php(125): CActiveDataProvider->__construct('Rights')
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): RightsController->actionIndex()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('')
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/rights')
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/rights
+---
+2013/08/10 10:18:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1044] Access denied for user ''@'localhost' to database 'zymobcmsnew1'' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Rights))
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Rights')
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/RightsController.php(125): CActiveDataProvider->__construct('Rights')
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): RightsController->actionIndex()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('')
+#19 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/rights')
+#20 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/rights
+---
+2013/08/10 10:19:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/category/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/cat...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/category/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/rights
+---
+2013/08/10 10:19:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/categoryRights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/categoryR...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/categoryRights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/category/index
+---
+2013/08/10 10:19:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/category/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/category/...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/category/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/categoryRights/index
+---
+2013/08/10 10:19:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/categoryRights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/categoryR...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/categoryRights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/category/index
+---
+2013/08/10 10:20:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/categoryRights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/categoryR...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/categoryRights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/categoryRights/index
+---
+2013/08/10 10:20:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/rights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/rig...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/rights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/tabType/index
+---
+2013/08/10 10:20:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/tabType/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/tab...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/tabType/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/rights/index
+---
+2013/08/10 10:21:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/tabType/view&id=7
+---
+2013/08/10 10:21:20 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 10:21:49 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 13:42:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/rights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/rig...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/rights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/view&id=2
+---
+2013/08/10 14:50:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/tabType/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/tab...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/tabType/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/rights/view&id=6
+---
+2013/08/10 15:34:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/tabType/view&id=18
+---
+2013/08/10 15:36:22 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 15:39:43 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 15:39:54 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 16:02:59 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 16:03:57 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 16:29:42 [error] [php] Undefined index: userId (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:75)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (75)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 16:30:01 [error] [php] Undefined index: userId (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:75)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (75)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 16:57:17 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 16:57:40 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 17:08:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/view&id=5
+---
+2013/08/10 17:11:01 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 17:11:20 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 17:12:18 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 17:12:28 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 17:24:23 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 17:24:32 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/10 17:25:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/tabType/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/tab...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/tabType/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/view&id=8
+---
+2013/08/10 17:25:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/rights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/rig...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/rights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/tabType/index
+---
+2013/08/10 17:25:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/rights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/rig...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/rights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/tabType/index
+---
+2013/08/10 17:38:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/user/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/use...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/user/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/rights/index
+---
+2013/08/11 07:07:35 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:08:52 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:10:36 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:13:37 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:13:39 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:18:20 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:20:03 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:20:11 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=4
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 07:20:36 [error] [php] Object of class stdClass could not be converted to int (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:93)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleDetail&appId=zymobcmsnew1&userId=1&articleId=4
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (93)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 08:21:26 [error] [php] Undefined index: pageIndex (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:117)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleComment&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (117)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 08:21:38 [error] [php] Undefined index: pageIndex (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:117)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/articleComment&appId=zymobcmsnew1&userId=1&articleId=3
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (117)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 09:57:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/user/index
+---
+2013/08/11 09:58:36 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 09:59:02 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 10:04:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/picture/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/pic...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/picture/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/view&id=9
+---
+2013/08/11 15:04:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/product/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/pro...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/product/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/picture/view&id=7
+---
+2013/08/11 16:27:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/product/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/pro...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/product/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/product/view&id=2
+---
+2013/08/11 16:28:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/product/create
+---
+2013/08/11 16:29:35 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:29:47 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:29:55 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:30:52 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:31:07 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:31:21 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:32:02 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:32:24 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:37:17 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:37:54 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:49:08 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/11 16:49:18 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)

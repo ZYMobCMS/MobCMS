@@ -90,7 +90,8 @@ class NewsListController extends Controller {
         //查询是否收藏该文章
         $checkFavorite = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
         $checkResult = $dbOperation->queryBySql($checkFavorite);
-        $resultObj->isFavorite=(int)$checkResult;
+        $resultType = $checkResult?  1:0;
+        $resultObj->isFavorite=$resultType;
         
         if($resultObj){
             $resultArr = array('status'=>'1','data'=>$resultObj);
@@ -152,7 +153,7 @@ class NewsListController extends Controller {
             
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select * from zy_comment where article_id=$articleId limit $startIndex,$pageSize";
+            $sql = "select zy_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_comment inner join zy_user on create_user = id where article_id=$articleId limit $startIndex,$pageSize";
             
             $commentArr = $dbOperation->queryAllBySql($sql);
             
@@ -317,7 +318,7 @@ class NewsListController extends Controller {
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select zy_comment.*,zy_article.title,zy_article.publish_time,zy_article.source,zy_article.summary,zy_article.images from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id where support_count>20 limit $startIndex,$pageSize";
+            $sql = "select zy_comment.*,zy_article.title,zy_user.login_name,zy_user.location from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id inner join zy_user on zy_comment.create_user=zy_user.id order by support_count desc limit $startIndex,$pageSize ";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             

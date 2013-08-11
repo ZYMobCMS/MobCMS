@@ -8,9 +8,12 @@
 
 #import "ZYPictureCell.h"
 
+#define TopMargin 15
+#define LeftMargin 15
+#define CellMargin 0
 #define ImageItemMargin 30
-#define ImageWidth      85
-#define ImageHeight     85
+#define ImageWidth      130
+#define ImageHeight     150
 
 @implementation ZYPictureCell
 
@@ -43,20 +46,21 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _tapOnCellAction = [tapOnCellAction copy];
         
-        leftItem = [[ImageItem alloc]initWithFrame:CGRectMake(50,10,ImageWidth,ImageHeight) withTapAction:^(NSString *productId) {
+        leftItem = [[ImageItem alloc]initWithFrame:CGRectMake((self.frame.size.width-2*ImageWidth)/3,10,ImageWidth,ImageHeight) withTapAction:^(void) {
             if (_tapOnCellAction) {
-                _tapOnCellAction(productId);
+                _tapOnCellAction(0);
             }
         }];
         [self.contentView addSubview:leftItem];
         [leftItem release];
         
-        rightItem = [[ImageItem alloc]initWithFrame:CGRectMake(50+ImageWidth+50,10,ImageWidth,ImageHeight ) withTapAction:^(NSString *productId) {
+        rightItem = [[ImageItem alloc]initWithFrame:CGRectMake((self.frame.size.width-2*ImageWidth)*2/3+ImageWidth,10,ImageWidth,ImageHeight ) withTapAction:^(void) {
             if (_tapOnCellAction) {
-                _tapOnCellAction(productId);
+                _tapOnCellAction(1);
             }
         }];
         [self.contentView addSubview:rightItem];
@@ -66,6 +70,23 @@
     return self;
 }
 
++ (CGFloat)pictureCellHeight
+{
+    return ImageHeight+CellMargin;
+}
 
+- (void)setContentArray:(NSArray *)imageArray
+{
+    if (imageArray.count==1) {
+        leftItem.hidden = NO;
+        rightItem.hidden = YES;
+        
+        [leftItem setItemContent:[imageArray objectAtIndex:0]];
+    }else{
+        
+        [leftItem setItemContent:[imageArray objectAtIndex:0]];
+        [rightItem setItemContent:[imageArray objectAtIndex:1]];
+    }
+}
 
 @end

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BFSegmentControl.h"
 #import "EGORefreshTableHeaderView.h"
+#import "BFNBaseViewController.h"
 
-@interface ZYCategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource,EGORefreshTableHeaderDelegate>
+@interface ZYCategoryViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource,EGORefreshTableHeaderDelegate>
 {
     BFSegmentControl *segmentCtrl;
     NSMutableArray   *segmentArray;

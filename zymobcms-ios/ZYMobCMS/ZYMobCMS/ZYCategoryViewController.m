@@ -9,6 +9,8 @@
 #import "ZYCategoryViewController.h"
 #import "BFNClassifyCell.h"
 #import "ZYHotNewsCell.h"
+#import "ZYCategoryCell.h"
+#import "BFNArticleViewController.h"
 
 @interface ZYCategoryViewController ()
 
@@ -46,7 +48,7 @@
         listArray = [[NSMutableArray alloc]init];
         pageIndex = 0;
     }
-    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-49-44) style:UITableViewStylePlain];
+    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-44) style:UITableViewStylePlain];
     listTable.dataSource = self;
     listTable.delegate = self;
     [self.view addSubview:listTable];
@@ -85,7 +87,7 @@
 //每一项得宽度是多少
 - (CGFloat)widthForEachItemInsegmentControl:(BFSegmentControl*)sgmCtrl
 {
-    return 320.0/segmentArray.count;
+    return 320.0/5;
 }
 
 //对应索引项得标题是什么
@@ -93,6 +95,12 @@
 {
     NSDictionary *item = [segmentArray objectAtIndex:index];
     return [item objectForKey:@"name"];
+}
+
+//当前可见项有多少
+- (NSInteger)visiableItemsOfsegmentControl:(BFSegmentControl*)sgmCtrl
+{
+    return 5;
 }
 
 //菜单选中了哪一项
@@ -113,43 +121,91 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        return 60.0f;
+    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
+        if (indexPath.row == 0) {
+            return 85.0f;
+        }else{
+            CGFloat height = [ZYCategoryCell heightForContent:[listArray objectAtIndex:indexPath.row]];
+            return height;
+        }
     }else{
-        CGFloat height = [BFNClassifyCell heightWithContent:[listArray objectAtIndex:indexPath.row] forTableView:tableView];
+        CGFloat height = [ZYCategoryCell heightForContent:[listArray objectAtIndex:indexPath.row]];
         return height;
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
         
-        static NSString *hotCell = @"hotCell";
-        ZYHotNewsCell *cellHot = (ZYHotNewsCell*)[tableView dequeueReusableCellWithIdentifier:hotCell];
-        
-        if (cellHot == nil) {
-            cellHot = [[[ZYHotNewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:hotCell withSelectAction:^(NSString *articleId) {
-                
-            }]autorelease];
+        if (indexPath.row == 0) {
+            
+            static NSString *hotCell = @"hotCell";
+            ZYHotNewsCell *cellHot = (ZYHotNewsCell*)[tableView dequeueReusableCellWithIdentifier:hotCell];
+            
+            if (cellHot == nil) {
+                cellHot = [[[ZYHotNewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:hotCell withSelectAction:^(NSDictionary *articleItem) {
+                    BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:articleItem];
+                    articleDetailVC.mainTitle = @"文章详情";
+                    [self.navigationController pushViewController:articleDetailVC animated:YES];
+                    [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
+                    [articleDetailVC enableSwipRightToReturn];
+                    [articleDetailVC release];
+                }]autorelease];
+            }
+            [cellHot setContentArray:[listArray objectAtIndex:indexPath.row]];
+            return cellHot;
+            
+        }else{
+            static NSString * myCell = @"ClassifyCell";
+            ZYCategoryCell * cell = (ZYCategoryCell*)[tableView dequeueReusableCellWithIdentifier:myCell];
+            if (cell == nil) {
+                cell = [[[ZYCategoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
+            }
+            [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
+            
+            return cell;
         }
-        [cellHot setContentArray:[listArray objectAtIndex:indexPath.row]];
-        return cellHot;
+
         
     }else{
         static NSString * myCell = @"ClassifyCell";
-        BFNClassifyCell * cell = (BFNClassifyCell*)[tableView dequeueReusableCellWithIdentifier:myCell];
+        ZYCategoryCell * cell = (ZYCategoryCell*)[tableView dequeueReusableCellWithIdentifier:myCell];
         if (cell == nil) {
-            cell = [[[BFNClassifyCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
+            cell = [[[ZYCategoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
         }
-        [cell setContent:[listArray objectAtIndex:indexPath.row]];
+        [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
         
         return cell;
+        
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([[listArray objectAtIndex:0]isKindOfClass:[NSArray class]]) {
+        
+        if (indexPath.row != 0) {
+            BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:[listArray objectAtIndex:indexPath.row]];
+            articleDetailVC.mainTitle = @"文章详情";
+            [self.navigationController pushViewController:articleDetailVC animated:YES];
+            [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
+            [articleDetailVC enableSwipRightToReturn];
+            [articleDetailVC release];
+        }
+        
+    }else{
+        
+        BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:[listArray objectAtIndex:indexPath.row]];
+        articleDetailVC.mainTitle = @"文章详情";
+        [self.navigationController pushViewController:articleDetailVC animated:YES];
+        [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
+        [articleDetailVC enableSwipRightToReturn];
+        [articleDetailVC release];
+        
+    }
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 
@@ -197,6 +253,7 @@
         [self refreshContent];
         return;
     }
+    
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
     [self getNewsList];
@@ -258,6 +315,10 @@
         [segmentCtrl reloadData];
         [self getNewsList];
     }
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
+    }
 }
 
 - (void)getTabTypeFaild:(NSDictionary*)resultDict
@@ -302,7 +363,9 @@
         NSArray *normalList = [dataDict objectForKey:@"newsList"];
         
         if (pageIndex==0) {
-            [listArray addObject:hotNews];
+            if (hotNews.count>0) {
+                [listArray addObject:hotNews];
+            }
         }
         [listArray addObjectsFromArray:normalList];
         

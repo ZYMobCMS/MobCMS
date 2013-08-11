@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-typedef void (^tapOnImageItem) (NSString *productId);
+typedef void (^tapOnImageItem) (void);
 
 @interface ImageItem : UIControl
 {

@@ -150,6 +150,10 @@ static BFNetWorkHelper *_instance = nil;
             case ZYCMSRequestTypeUserFavorite:
             urlString = ZYCMS_User_Favorite_Interface;
             break;
+            
+            case ZYCMSRequestTypeHotCommentList:
+            urlString = ZYCMS_Hot_Comment_Interface;
+            break;
                     
         default:
             break;
@@ -163,7 +167,7 @@ static BFNetWorkHelper *_instance = nil;
 - (NSString *)pulicParams
 {
     NSMutableString *turl = [NSMutableString stringWithCapacity:50];
-    [turl appendFormat:@"&appId=%@",APPID];
+    [turl appendFormat:@"&appId=%@&userId=%@",APPID,[ZYUserManager getCurrentUserId]];
     return turl;//[[Passport getCurrentUser]urlEncodedString];
 }
 
