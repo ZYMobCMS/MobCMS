@@ -1880,3 +1880,22 @@ in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/inde
 2013/08/11 16:49:18 [warning] [application] Failed to set unsafe attribute "images" of "Article".
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/16 08:33:13 [error] [php] Undefined index: category_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php:205)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/getTabTypes
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (205)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/16 08:33:20 [warning] [application] Failed to set unsafe attribute "images" of "Article".
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php (73)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)

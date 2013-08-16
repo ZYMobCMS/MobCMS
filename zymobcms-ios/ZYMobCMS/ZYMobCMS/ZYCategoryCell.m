@@ -12,7 +12,7 @@
 #define LeftMargin 10
 #define TextMargin 10
 #define TextImageMargin 5
-#define TitleFontSize 13
+#define TitleFontSize 15
 #define SourceFontSize 9
 #define SummaryFontSize 12
 #define TitleSpace 6
@@ -84,8 +84,8 @@
     NSString *source = [content objectForKey:@"source"];
     NSString *date = [content objectForKey:@"publish_time"];
     NSString *summary = [content objectForKey:@"summary"];
-    NSString *imageUrl = [content objectForKey:@"images"];
-    imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,imageUrl];
+    NSString *images = [content objectForKey:@"images"];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,images];
     
     [titleView setContentText:title];
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
@@ -103,9 +103,9 @@
     
     CGFloat trueCellWidth = 0.f;
     BOOL hasImage = YES;
-    if([imageUrl isEqualToString:@""] || imageUrl == nil ){
+    if([images isEqualToString:@""] || images == nil ){
         
-        trueCellWidth = CellWidth - LeftMargin ;
+        trueCellWidth = CellWidth - 2*LeftMargin ;
         hasImage = NO;
         
     }else{
@@ -113,7 +113,7 @@
         
         if (imageCache) {
             CGFloat imageWidth= ImageMaxWidth>imageSizeFromCache.width? imageSizeFromCache.width:ImageMaxWidth;
-            trueCellWidth = CellWidth - LeftMargin -TextImageMargin - imageWidth;
+            trueCellWidth = CellWidth - 2*LeftMargin -TextImageMargin - imageWidth;
             
             if (imageSizeFromCache.width<70||imageSizeFromCache.height<70) {
                 hasImage = NO;
@@ -121,11 +121,12 @@
                 hasImage = YES;
             }
         }else{
-            trueCellWidth = CellWidth - LeftMargin -TextImageMargin - ImageMaxWidth;
+            trueCellWidth = CellWidth - 2*LeftMargin -TextImageMargin - ImageMaxWidth;
             hasImage = YES;
         }
     }
     
+    CGFloat originX = 0.f;
     CGFloat imageWidth = 0.f;
     CGFloat imageHeight = 0.f;
     if(hasImage){
@@ -141,24 +142,27 @@
         contentImageView.frame = CGRectMake(LeftMargin,TopMargin,imageWidth,imageHeight);
         contentImageView.hidden = NO;
         [contentImageView setImageUrl:imageUrl];
+        
+        originX = contentImageView.frame.origin.x+contentImageView.frame.size.width+TextMargin;
     }else{
         contentImageView.hidden = YES;
+        originX = LeftMargin;
     }
 
     CGFloat originY = TopMargin;
     
     CGFloat titleHeight = [BFAttributedView getAttributedContentHeight:titleView.contentAttributedString withWdith:trueCellWidth];
-    titleView.frame = CGRectMake(LeftMargin+imageWidth+TextImageMargin,TopMargin,trueCellWidth,titleHeight);
+    titleView.frame = CGRectMake(originX,TopMargin,trueCellWidth,titleHeight);
     originY = titleView.frame.origin.y+titleView.frame.size.height+TextMargin;
     
     CGFloat sourceHeight = [BFAttributedView getAttributedContentHeight:sourceView.contentAttributedString withWdith:trueCellWidth];
-    sourceView.frame = CGRectMake(LeftMargin+imageWidth+TextImageMargin,originY,trueCellWidth,sourceHeight);
+    sourceView.frame = CGRectMake(originX,originY,trueCellWidth,sourceHeight);
     originY = sourceView.frame.origin.y+sourceHeight+TextMargin;
     
     if(!summarayView.hidden){
         
         CGFloat summaryHeight = [BFAttributedView getAttributedContentHeight:summarayView.contentAttributedString withWdith:trueCellWidth];
-        summarayView.frame = CGRectMake(LeftMargin+imageWidth+TextImageMargin,originY,trueCellWidth,summaryHeight);
+        summarayView.frame = CGRectMake(originX,originY,trueCellWidth,summaryHeight);
         originY = summarayView.frame.origin.y+summaryHeight;
     }
     
@@ -170,8 +174,9 @@
     NSString *date = [content objectForKey:@"date"];
     NSString *source = [content objectForKey:@"source"];
     NSString *summary = [content objectForKey:@"summary"];
-    NSString *imageUrl = [content objectForKey:@"images"];
-    
+    NSString *images = [content objectForKey:@"images"];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,images];
+
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
 
     BOOL noSummary = NO;
@@ -186,15 +191,15 @@
     
     CGFloat trueCellWidth = 0.f;
     BOOL hasImage = YES;
-    if([imageUrl isEqualToString:@""] || imageUrl == nil ){
+    if([images isEqualToString:@""] || images == nil ){
         
-        trueCellWidth = CellWidth - LeftMargin;
+        trueCellWidth = CellWidth - 2*LeftMargin;
         hasImage = NO;
     }else{
         
         if (imageCache) {
             CGFloat imageWidth= ImageMaxWidth>imageSizeFromCache.width? imageSizeFromCache.width:ImageMaxWidth;
-            trueCellWidth = CellWidth - LeftMargin -TextImageMargin - imageWidth;
+            trueCellWidth = CellWidth - 2*LeftMargin -TextImageMargin - imageWidth;
             
             if (imageSizeFromCache.width<70||imageSizeFromCache.height<70) {
                 hasImage = NO;
@@ -203,7 +208,7 @@
             }
             
         }else{
-            trueCellWidth = CellWidth - LeftMargin -TextImageMargin - ImageMaxWidth;
+            trueCellWidth = CellWidth - 2*LeftMargin -TextImageMargin - ImageMaxWidth;
             hasImage = YES;
             
         }
