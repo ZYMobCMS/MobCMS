@@ -23,6 +23,9 @@
 		E414EA8917B62D7D00CB6C59 /* BFNArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E414EA8817B62D7D00CB6C59 /* BFNArticleViewController.m */; };
 		E414EA8C17B62DA000CB6C59 /* CustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E414EA8B17B62DA000CB6C59 /* CustomTextView.m */; };
 		E414EA8F17B6345000CB6C59 /* BFNPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E414EA8E17B6345000CB6C59 /* BFNPreviewViewController.m */; };
+		E415D16A17BD087100E90729 /* bubbleSelf.png in Resources */ = {isa = PBXBuildFile; fileRef = E415D16917BD087100E90729 /* bubbleSelf.png */; };
+		E415D3CD17BD12BC00E90729 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = E415D3CB17BD12BC00E90729 /* login.png */; };
+		E415D3CE17BD12BC00E90729 /* loginOut.png in Resources */ = {isa = PBXBuildFile; fileRef = E415D3CC17BD12BC00E90729 /* loginOut.png */; };
 		E4304A9517B5E30100DBD1BC /* ZYCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4304A9417B5E30100DBD1BC /* ZYCategoryCell.m */; };
 		E4304A9917B5E87700DBD1BC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4304A9817B5E87700DBD1BC /* ThemeManager.m */; };
 		E4304A9D17B5E8D100DBD1BC /* ZYUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4304A9C17B5E8D100DBD1BC /* ZYUserManager.m */; };
@@ -360,6 +363,8 @@
 		E4C31D8617B6FD0A009C2689 /* favorite_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C31D8217B6FD09009C2689 /* favorite_yes@2x.png */; };
 		E4C31D8917B70351009C2689 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C31D8817B70350009C2689 /* CommentListViewController.m */; };
 		E4C31D9017B7375A009C2689 /* ZYPicturePreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C31D8F17B73759009C2689 /* ZYPicturePreViewController.m */; };
+		E4EE387217BBC02500A1A03F /* ZYMyCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EE387117BBC02500A1A03F /* ZYMyCommentViewController.m */; };
+		E4EE387517BBC03D00A1A03F /* ZYMyFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EE387417BBC03D00A1A03F /* ZYMyFavoriteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -393,6 +398,9 @@
 		E414EA8B17B62DA000CB6C59 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
 		E414EA8D17B6345000CB6C59 /* BFNPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNPreviewViewController.h; sourceTree = "<group>"; };
 		E414EA8E17B6345000CB6C59 /* BFNPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNPreviewViewController.m; sourceTree = "<group>"; };
+		E415D16917BD087100E90729 /* bubbleSelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSelf.png; sourceTree = "<group>"; };
+		E415D3CB17BD12BC00E90729 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		E415D3CC17BD12BC00E90729 /* loginOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginOut.png; sourceTree = "<group>"; };
 		E4304A9317B5E30100DBD1BC /* ZYCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCategoryCell.h; sourceTree = "<group>"; };
 		E4304A9417B5E30100DBD1BC /* ZYCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCategoryCell.m; sourceTree = "<group>"; };
 		E4304A9717B5E87700DBD1BC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
@@ -875,6 +883,10 @@
 		E4C31D8817B70350009C2689 /* CommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListViewController.m; sourceTree = "<group>"; };
 		E4C31D8E17B73757009C2689 /* ZYPicturePreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPicturePreViewController.h; sourceTree = "<group>"; };
 		E4C31D8F17B73759009C2689 /* ZYPicturePreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPicturePreViewController.m; sourceTree = "<group>"; };
+		E4EE387017BBC02500A1A03F /* ZYMyCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyCommentViewController.h; sourceTree = "<group>"; };
+		E4EE387117BBC02500A1A03F /* ZYMyCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyCommentViewController.m; sourceTree = "<group>"; };
+		E4EE387317BBC03D00A1A03F /* ZYMyFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyFavoriteViewController.h; sourceTree = "<group>"; };
+		E4EE387417BBC03D00A1A03F /* ZYMyFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyFavoriteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -998,6 +1010,10 @@
 				E44B9AF717B60B1C00B8FE3E /* ZYAboutViewController.m */,
 				E44B9AF917B60B2900B8FE3E /* ZYAccountViewController.h */,
 				E44B9AFA17B60B2900B8FE3E /* ZYAccountViewController.m */,
+				E4EE387017BBC02500A1A03F /* ZYMyCommentViewController.h */,
+				E4EE387117BBC02500A1A03F /* ZYMyCommentViewController.m */,
+				E4EE387317BBC03D00A1A03F /* ZYMyFavoriteViewController.h */,
+				E4EE387417BBC03D00A1A03F /* ZYMyFavoriteViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1068,6 +1084,8 @@
 		E43AF70217B75683008FD5A5 /* product */ = {
 			isa = PBXGroup;
 			children = (
+				E415D3CB17BD12BC00E90729 /* login.png */,
+				E415D3CC17BD12BC00E90729 /* loginOut.png */,
 				E43AF92917B79247008FD5A5 /* frame@2x.png */,
 				E43AF70317B75698008FD5A5 /* product_cell_bg_s_ipad.png */,
 				E43AF70417B75698008FD5A5 /* product_cell_bg_ipad.png */,
@@ -1996,6 +2014,7 @@
 		E4C31CC217B662AD009C2689 /* comment */ = {
 			isa = PBXGroup;
 			children = (
+				E415D16917BD087100E90729 /* bubbleSelf.png */,
 				E4C31D7F17B6FD04009C2689 /* favorite_no.png */,
 				E4C31D8017B6FD05009C2689 /* favorite_no@2x.png */,
 				E4C31D8117B6FD08009C2689 /* favorite_yes.png */,
@@ -2270,6 +2289,9 @@
 				E43AF72017B75698008FD5A5 /* category_cell_bg.png in Resources */,
 				E43AF72517B7688E008FD5A5 /* test.xib in Resources */,
 				E43AF92A17B7924B008FD5A5 /* frame@2x.png in Resources */,
+				E415D16A17BD087100E90729 /* bubbleSelf.png in Resources */,
+				E415D3CD17BD12BC00E90729 /* login.png in Resources */,
+				E415D3CE17BD12BC00E90729 /* loginOut.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2421,6 +2443,8 @@
 				E43AF72317B75AAF008FD5A5 /* ZYProductCell.m in Sources */,
 				E43AF72817B77304008FD5A5 /* ZYProductDetailViewController.m in Sources */,
 				E43AF92D17B7B73E008FD5A5 /* ZYCommentCell.m in Sources */,
+				E4EE387217BBC02500A1A03F /* ZYMyCommentViewController.m in Sources */,
+				E4EE387517BBC03D00A1A03F /* ZYMyFavoriteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

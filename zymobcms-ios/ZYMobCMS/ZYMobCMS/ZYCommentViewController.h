@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BFNBaseViewController.h"
+#define PageSize 10
 
-@interface ZYCommentViewController : BFNBaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ZYCommentViewController : BFNBaseViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _isLoadMore;
@@ -21,4 +22,7 @@
 @property (nonatomic,retain)NSString *articleId;
 @property (nonatomic,retain)NSMutableArray *sourceArray;
 @property (nonatomic,assign)NSInteger pageIndex;
+
+- (void)getHotCommentList;
+
 @end
