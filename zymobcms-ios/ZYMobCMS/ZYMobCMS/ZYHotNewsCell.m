@@ -10,7 +10,7 @@
 #import "HotImageView.h"
 
 #define baseImageTag 9899999
-#define CellHeight 85
+#define CellHeight 120
 
 @implementation ZYHotNewsCell
 

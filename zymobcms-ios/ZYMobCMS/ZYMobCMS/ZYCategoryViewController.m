@@ -123,7 +123,7 @@
 {
     if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
         if (indexPath.row == 0) {
-            return 85.0f;
+            return 120.0f;
         }else{
             CGFloat height = [ZYCategoryCell heightForContent:[listArray objectAtIndex:indexPath.row]];
             return height;
