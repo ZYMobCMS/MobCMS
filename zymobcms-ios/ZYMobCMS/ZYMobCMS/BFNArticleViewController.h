@@ -26,6 +26,8 @@
     UIScrollView     *scrollView;
     
     UILabel         *checkArticelBtn;
+    UILabel         *likeLabel;
+    
     
     ZYCommentBar    *commentBar;
     
@@ -35,5 +37,6 @@
 @property (nonatomic,retain)UIImageView      *contentImageView;
 
 - (id)initWithBaseContentDict:(NSDictionary*)baseDict;
+- (id)initWithArticleId:(NSString*)articleId;
 
 @end

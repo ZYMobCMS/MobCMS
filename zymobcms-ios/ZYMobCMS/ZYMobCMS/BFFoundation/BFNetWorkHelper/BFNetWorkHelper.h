@@ -32,6 +32,7 @@ typedef enum {
     ZYCMSRequestTypeReply,
     ZYCMSRequestTypeUserFavorite,
     ZYCMSRequestTypeUserComment,
+    ZYCMSRequestTypeApplicationName,
     
 }ZYCMSRequestType;
 

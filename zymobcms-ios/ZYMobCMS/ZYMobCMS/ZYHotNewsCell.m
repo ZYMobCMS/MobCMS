@@ -103,8 +103,6 @@
         NSDictionary *item = [contentArray objectAtIndex:i];
         NSString *articleId = [item objectForKey:@"article_id"];
         NSString *imageUrl = [item objectForKey:@"images"];
-        imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,imageUrl];
-        
         
         if([bScrollView viewWithTag:baseImageTag+i]==nil){
             

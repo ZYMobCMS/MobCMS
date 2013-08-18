@@ -15,6 +15,16 @@
     
 }
 
++ (void)userLoginWithName:(NSString*)loginName withPassword:(NSString*)password;
+
++ (void)userRigistWithName:(NSString*)loginName withPassword:(NSString*)password;
+
++ (void)loginOutUserWithUserName:(NSString*)loginName;
+
 + (NSString *)getCurrentUserId;
+
++ (NSString*)getCurrentUserLoginNameById:(NSString*)userId;
+
++ (BOOL)userIsLogined;
 
 @end

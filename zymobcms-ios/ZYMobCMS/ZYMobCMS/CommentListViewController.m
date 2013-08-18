@@ -123,7 +123,21 @@
     // Return the number of rows in the section.
     return [sourceArray count];
 }
-
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *baseView = [[[UIView alloc]initWithFrame:CGRectMake(0,0,tableView.frame.size.width,22)]autorelease];
+    
+    UIImageView *newestView = [[UIImageView alloc]initWithFrame:CGRectMake(0,5,72,22)];
+    newestView.image = [UIImage imageNamed:@"last_comment.png"];
+    [baseView addSubview:newestView];
+    [newestView release];
+    
+    return baseView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 22;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *item = [sourceArray objectAtIndex:indexPath.row];

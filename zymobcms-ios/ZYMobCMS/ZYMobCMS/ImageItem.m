@@ -94,7 +94,6 @@
 
     self.titleLabel.text = [contentDict objectForKey:@"title"];
     NSString *imageUrl = [contentDict objectForKey:@"images"];
-    imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,imageUrl];
     self.contentImageView.image = [UIImage imageNamed:@"no_photo.png"];
     
     [[BFImageDownloader shareLoader]downloadImageWithUrl:imageUrl forView:self.contentImageView];

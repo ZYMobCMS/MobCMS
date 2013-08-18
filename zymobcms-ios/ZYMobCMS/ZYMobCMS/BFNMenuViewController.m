@@ -11,6 +11,7 @@
 #import "SystemCell.h"
 #import "BFNMenuHeaderView.h"
 
+#define ApplicationNameUDF @"ApplicationNameUDF"
 
 @interface BFNMenuViewController ()
 
@@ -92,6 +93,8 @@
     menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:menuTableView];
     [menuTableView release];
+    
+    [self getApplicationName];
     
 }
 
@@ -675,6 +678,53 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self shouldSelectVCAtSection:indexPath.section rowIndex:indexPath.row];
+}
+
+#pragma mark - 获取应用程序名字
+- (void)getApplicationName
+{
+    [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeApplicationName
+                                                       withParams:nil
+                                               withHelperDelegate:self
+                                         withSuccessRequestMethod:@"getApplicationNameSuccess:"
+                                           withFaildRequestMethod:@"getApplicationNameFaild:"];
+}
+- (void)getApplicationNameSuccess:(NSDictionary*)resultDict
+{
+    BOOL status = [[resultDict objectForKey:@"status"]boolValue];
+    if (status) {
+        
+        NSDictionary *appDict = [resultDict objectForKey:@"data"];
+        
+        titleLabel.text = [appDict objectForKey:@"name"];
+        
+        if (titleLabel.text) {
+            [[NSUserDefaults standardUserDefaults]setObject:titleLabel.text forKey:ApplicationNameUDF];
+        }else{
+            if ([[NSUserDefaults standardUserDefaults]objectForKey:ApplicationNameUDF]) {
+                titleLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:ApplicationNameUDF];
+            }else{
+                titleLabel.text = @"ZYProSoft移动内容管理";
+            }
+        }
+        
+        
+    }else{
+        
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:ApplicationNameUDF]) {
+            titleLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:ApplicationNameUDF];
+        }else{
+            titleLabel.text = @"ZYProSoft移动内容管理";
+        }
+    }
+}
+- (void)getApplicationNameFaild:(NSDictionary*)resultDict
+{
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:ApplicationNameUDF]) {
+        titleLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:ApplicationNameUDF];
+    }else{
+        titleLabel.text = @"ZYProSoft移动内容管理";
+    }
 }
 
 

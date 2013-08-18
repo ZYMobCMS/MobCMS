@@ -13,4 +13,44 @@
 {
     return @"1";
 }
+
++ (void)userLoginWithName:(NSString *)loginName withPassword:(NSString *)password
+{
+    
+}
+
++ (void)userLoginSuccess:(NSDictionary*)resultDict
+{
+    
+}
++ (void)userLoginFaild:(NSDictionary*)resultDict
+{
+    
+}
+
++ (void)userRigistWithName:(NSString *)loginName withPassword:(NSString *)password
+{
+    
+}
+
++ (void)userRigistSuccess:(NSDictionary*)resultDict
+{
+    
+}
+
++ (void)userRigistFaild:(NSDictionary*)resultDict
+{
+    
+}
+
++ (NSString*)getCurrentUserLoginNameById:(NSString *)userId
+{
+    
+}
+
++ (BOOL)userIsLogined
+{
+    
+}
+
 @end

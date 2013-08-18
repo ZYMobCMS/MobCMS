@@ -8,9 +8,9 @@
 
 #define ZYCMS_Base_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/index.php?r="
 #define ZYCMS_image_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/"
-#define MCM_Base_Url @"https://61.136.59.251:8017"
+//#define MCM_Base_Url @"https://61.136.59.251:8017"
 
-#define APPID            @"zymobcmsnew1"
+#define APPID            @"zymobcms"
 
 #define PPF_HOST_KEY @"ppf12" //对应服务器返回主机列表的key TODO
 #define MCM_HOST_KEY @"mcm"
@@ -59,6 +59,12 @@
 
 #define ZYCMS_Rigist_Interface            @"Mobile/user/rigist"
 
+
+/*
+ *
+ *
+*/
+#define ZYCMS_Menu_Application_Name_Interface @"Mobile/menu/applicationName"
 
 /*
     获取host

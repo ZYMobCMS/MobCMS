@@ -9,6 +9,7 @@
 #import "ZYPictureController.h"
 #import "BFNImagePreViewController.h"
 #import "ZYPicturePreViewController.h"
+#import "BFLoadMoreView.h"
 
 #define PageSize 10
 
@@ -78,12 +79,13 @@
     
     // Configure the cell...
     if (!cell) {
-        cell = [[[ZYPictureCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTapOnCell:^(NSInteger itemIndex) {
+        cell = [[[ZYPictureCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTapOnCell:^(ZYPictureCell *tapCell,NSInteger tapItemIndex) {
         
-            NSDictionary *item = [[sourceArray objectAtIndex:indexPath.row]objectAtIndex:itemIndex];
+            NSIndexPath *cellIndexPath = [tableView indexPathForCell:tapCell];
+            NSDictionary *item = [[sourceArray objectAtIndex:cellIndexPath.row]objectAtIndex:tapItemIndex];
             
             ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
-            preVC.mainTitle = @"图片详情";
+            preVC.mainTitle = [item objectForKey:@"title"];
             [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
             [self.navigationController pushViewController:preVC animated:YES];
             [preVC release];
@@ -95,6 +97,36 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ((indexPath.row == [sourceArray count] - 1))
+    {
+        BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,tableView.frame.size.width,45)];
+        footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+        
+        if (!hideLoadMore) {
+            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+            footer.titleLabel.text = @"加载更多...";
+            footer.userInteractionEnabled = YES;
+        }else {
+            NSString *title = @"已是最后一页";
+            if (sourceArray == 0) {
+                title = @"没有获取到内容";
+            }
+            footer.titleLabel.text = title;
+            footer.userInteractionEnabled = NO;
+        }
+        tableView.tableFooterView = footer;
+    }
+}
+- (void)loadMore:(BFLoadMoreView*)loadView
+{
+    [loadView startAnimation];
+    pageIndex ++;
+    [self getPictureList];
+}
+
 
 - (void)getPictureList
 {
@@ -112,6 +144,10 @@
         
         NSArray *resultArray = [resultDict objectForKey:@"data"];
         NSLog(@"resultArray ___%@",resultArray);
+        
+        if (resultArray.count ==0 || resultArray.count <PageSize) {
+            hideLoadMore = YES;
+        }
         
         for (int i=0; i<resultArray.count; i++) {
             

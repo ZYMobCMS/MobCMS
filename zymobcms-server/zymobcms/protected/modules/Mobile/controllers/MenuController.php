@@ -109,6 +109,33 @@ class MenuController extends Controller {
         
     }
     
+    /*
+     * 获取应用程序名字
+     */
+    public function actionApplicationName(){
+    	
+    	$appId = $_GET['appId'];
+    	 
+    	if($appId==NULL){
+    	
+    		$resultArr = array('status'=>'0','msg'=>'参数缺失');
+    	
+    		echo json_encode($resultArr);
+    	
+    		return;
+    	}
+    	
+    	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+    	
+    	$sql = "select * from zy_application_owner";
+    	
+    	$resultArr = $dbOperation->queryAllBySql($sql);
+    	
+    	$jsonArr = array('status'=>'1','data'=>$resultArr[0]);
+    	
+    	echo json_encode($jsonArr);
+    }
+    
 }
 
 ?>

@@ -16,6 +16,8 @@
     
     NSMutableArray *sourceArray;
     NSInteger      pageIndex;
+    BOOL            hideLoadMore;
+    
 }
 
 @end

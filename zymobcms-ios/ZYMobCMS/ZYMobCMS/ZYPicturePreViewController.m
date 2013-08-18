@@ -51,13 +51,15 @@
     pageControlView.frame = CGRectMake(pageControlView.frame.origin.x,pageControlView.frame.origin.y-44,pageControlView.frame.size.width,pageControlView.frame.size.height);
     
     summaryTextView = [[UITextView alloc]init];
-    summaryTextView.frame = CGRectMake(20,closeBtn.frame.origin.y-45,self.view.frame.size.width-40,45);
+    summaryTextView.frame = CGRectMake(20,0,self.view.frame.size.width-40,70);
     summaryTextView.backgroundColor = [UIColor clearColor];
     summaryTextView.textColor = [UIColor whiteColor];
     summaryTextView.editable = NO;
+    summaryTextView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     summaryTextView.text = self.summaryText;
     [self.view addSubview:summaryTextView];
     [summaryTextView release];
+    [summaryTextView scrollRectToVisible:CGRectMake(0,0,summaryTextView.frame.size.width,summaryTextView.frame.size.height) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

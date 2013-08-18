@@ -36,7 +36,8 @@
     [super viewDidLoad];
     
     onFirstPage = YES;
-    detailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    detailWebView = [[IMTWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    detailWebView.progressDelegate = self;
     detailWebView.delegate = self;
     detailWebView.scalesPageToFit = YES;
     detailWebView.opaque = NO;
@@ -71,6 +72,7 @@
     
     [optView release];
     
+    [self loadRequest];
 }
 
 
@@ -79,52 +81,20 @@
     [detailWebView stopLoading];
 }
 
-
-
-// [self strToByte:http://www.wenxuecity.com/]
-- (NSString *)strToByte:(NSString *)_url
-{
-    NSData *urlData = [_url dataUsingEncoding: NSUTF8StringEncoding];
-    Byte *urlByte = (Byte *)[urlData bytes];
-    NSInteger byteLen = [urlData length];
-    NSMutableArray *tmpAry = [[NSMutableArray alloc] initWithCapacity:0];
-    // 字节数组每元素加1
-    for(int i = 0; i < byteLen; i++)
-    {
-        urlByte[i] = urlByte[i]+1;
-        [tmpAry addObject:[NSNumber numberWithInteger:urlByte[i]]];
+- (void)loadRequest {
+    if (chromeBar) {
+        UIView* subview = (UIView*)chromeBar;
+        [subview removeFromSuperview];
     }
     
-    // 字节数组首位交换
-    NSNumber *end = [tmpAry objectAtIndex:[tmpAry count] - 1];
-    [tmpAry insertObject:end atIndex:0];
-    [tmpAry removeObjectAtIndex:[tmpAry count] - 1];
-    
-    NSNumber *start = [tmpAry objectAtIndex:1];
-    [tmpAry insertObject:start atIndex:[tmpAry count]];
-    [tmpAry removeObjectAtIndex:1];
-    
-    // 字节数组反转
-    for(int i = 0; i < byteLen; i++)
-    {
-        urlByte[i] = [[tmpAry objectAtIndex:byteLen - (i + 1)] intValue];
+    if (self.url) {
+        chromeBar = [[ChromeProgressBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, 4.0f)];        
+        [self.view addSubview:chromeBar];
+        [detailWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+        [chromeBar release];
     }
-    
-    [tmpAry release];
-    
-    NSData *adata = [[NSData alloc] initWithBytes:urlByte length:[urlData length]];
-    NSString *urlStr = [ASIHTTPRequest base64forData:adata];
-    [adata release];
-    
-    return urlStr;
 }
 
-- (void)getHtmlStr:(NSString *)urlStr
-{
-    NSURL *furl = [NSURL URLWithString:urlStr];
-    NSURLRequest *request =[NSURLRequest requestWithURL:furl];
-    [detailWebView loadRequest:request];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -141,6 +111,17 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)webView:(IMTWebView *)_webView didReceiveResourceNumber:(int)resourceNumber totalResources:(int)totalResources {
+    //Set progress value
+    [chromeBar setProgress:((float)resourceNumber) / ((float)totalResources) animated:NO];
+    
+    //Reset resource count after finished
+    if (resourceNumber == totalResources) {
+        _webView.resourceCount = 0;
+        _webView.resourceCompletedCount = 0;
+    }
 }
 
 
@@ -168,6 +149,8 @@
     }
     
     [requestURL release];
+    
+    
     
     return YES;
 }

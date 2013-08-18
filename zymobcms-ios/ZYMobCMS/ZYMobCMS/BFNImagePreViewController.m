@@ -104,8 +104,7 @@
         subScroller.minimumZoomScale = 1.0f;
         subScroller.delegate = self;
         subScroller.tag = SubScrollerBaseTag+i;
-        NSString *image = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,[images objectAtIndex:i]];
-        [[BFImageDownloader shareLoader]downloadImageWithUrl:image forView:subScroller.contentImageView shouldResize:NO];
+        [[BFImageDownloader shareLoader]downloadImageWithUrl:[images objectAtIndex:i] forView:subScroller.contentImageView shouldResize:NO];
         [backScroller addSubview:subScroller];
         [subScroller release];
     }

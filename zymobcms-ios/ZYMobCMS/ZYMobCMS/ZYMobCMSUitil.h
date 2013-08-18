@@ -13,4 +13,5 @@
 + (void)setBFNNavItemForMenu:(UIViewController *)viewObj;
 
 + (void)setBFNNavItemForReturn:(UIViewController *)viewObj;
++ (NSString*)replaceNBSP:(NSString*)sourceString;
 @end

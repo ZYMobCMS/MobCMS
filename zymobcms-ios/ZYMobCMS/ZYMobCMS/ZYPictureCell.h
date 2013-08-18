@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ImageItem.h"
 
-typedef void (^tapOnCellAction) (NSInteger itemIndex);
+@class ZYPictureCell;
+typedef void (^tapOnCellAction) (ZYPictureCell *tapCell,NSInteger tapItemIndex);
 @interface ZYPictureCell : UITableViewCell
 {
     tapOnCellAction _tapOnCellAction;

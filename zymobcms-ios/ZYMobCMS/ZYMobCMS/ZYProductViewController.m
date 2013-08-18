@@ -153,6 +153,12 @@
         tableView.tableFooterView = footer;
     }
 }
+- (void)loadMore:(BFLoadMoreView*)loadView
+{
+    [loadView startAnimation];
+    pageIndex ++;
+    [self getProductList];
+}
 
 - (void)getProductList
 {
@@ -173,6 +179,10 @@
         NSArray *resultArray = [resultDict objectForKey:@"data"];
         
         NSLog(@"resultArray---->%@",resultArray);
+        
+        if (resultArray.count ==0 || resultArray.count <PageSize) {
+            hideLoadMore = YES;
+        }
         
         [listArray addObjectsFromArray:resultArray];
         

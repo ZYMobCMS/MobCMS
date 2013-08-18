@@ -52,7 +52,7 @@
         
         leftItem = [[ImageItem alloc]initWithFrame:CGRectMake((self.frame.size.width-2*ImageWidth)/3,10,ImageWidth,ImageHeight) withTapAction:^(void) {
             if (_tapOnCellAction) {
-                _tapOnCellAction(0);
+                _tapOnCellAction(self,0);
             }
         }];
         [self.contentView addSubview:leftItem];
@@ -60,7 +60,7 @@
         
         rightItem = [[ImageItem alloc]initWithFrame:CGRectMake((self.frame.size.width-2*ImageWidth)*2/3+ImageWidth,10,ImageWidth,ImageHeight ) withTapAction:^(void) {
             if (_tapOnCellAction) {
-                _tapOnCellAction(1);
+                _tapOnCellAction(self,1);
             }
         }];
         [self.contentView addSubview:rightItem];

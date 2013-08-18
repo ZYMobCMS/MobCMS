@@ -31,17 +31,18 @@
         [backImageView release];
         
         titleView = [[BFAttributedView alloc]initWithFrame:CGRectMake(155, 13, 145, 41)];
-        titleView.textDescriptor.fontSize = 14;
+        titleView.textDescriptor.fontSize = 18;
+        titleView.textDescriptor.textFont = @"";
         [self.contentView addSubview:titleView];
         [titleView release];
         
         summaryView = [[BFAttributedView alloc]initWithFrame:CGRectMake(155, 62, 145, 36)];
-        summaryView.textDescriptor.fontSize = 12;
+        summaryView.textDescriptor.fontSize = 14;
         [self.contentView addSubview:summaryView];
         [summaryView release];
         
         priceView = [[BFAttributedView alloc]initWithFrame:CGRectMake(155, 125, 20, 21)];
-        priceView.textDescriptor.fontSize = 10;
+        priceView.textDescriptor.fontSize = 17;
         [self.contentView addSubview:priceView];
         [priceView release];
         
@@ -98,7 +99,6 @@
     NSString *price = [productDict objectForKey:@"price"];
     NSString *favcount = [productDict objectForKey:@"support_count"];
     NSString *imageUrl = [productDict objectForKey:@"images"];
-    imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,imageUrl];
     
     [titleView setContentText:title];
     [summaryView setContentText:summary];

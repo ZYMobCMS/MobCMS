@@ -69,6 +69,7 @@
     segmentCtrl = [[BFSegmentControl alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,45) withDataSource:self];
     [self.view addSubview:segmentCtrl];
     [segmentCtrl release];
+    [self getTabType];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,7 +88,7 @@
 //每一项得宽度是多少
 - (CGFloat)widthForEachItemInsegmentControl:(BFSegmentControl*)sgmCtrl
 {
-    return 320.0/5;
+    return 320.0/segmentArray.count;
 }
 
 //对应索引项得标题是什么
@@ -100,7 +101,7 @@
 //当前可见项有多少
 - (NSInteger)visiableItemsOfsegmentControl:(BFSegmentControl*)sgmCtrl
 {
-    return 5;
+    return segmentArray.count;
 }
 
 //菜单选中了哪一项

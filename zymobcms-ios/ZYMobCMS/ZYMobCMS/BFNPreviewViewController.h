@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChromeProgressBar.h"
+#import "IMTWebView.h"
 
-@interface BFNPreviewViewController : BFNBaseViewController<UIWebViewDelegate>
+@interface BFNPreviewViewController : BFNBaseViewController<IMTWebViewProgressDelegate,UIWebViewDelegate>
 {
-    UIWebView *detailWebView;
+    ChromeProgressBar *chromeBar;
+    IMTWebView *detailWebView;
     NSString *webRequestFlag;
     UIButton *forwardBtn;
     UIButton *backBtn;

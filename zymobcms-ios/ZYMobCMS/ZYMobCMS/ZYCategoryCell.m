@@ -85,7 +85,6 @@
     NSString *date = [content objectForKey:@"publish_time"];
     NSString *summary = [content objectForKey:@"summary"];
     NSString *images = [content objectForKey:@"images"];
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,images];
     
     [titleView setContentText:title];
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
@@ -98,7 +97,7 @@
         summarayView.hidden = NO;
     }
     
-    UIImage *imageCache = [BFImageCache imageForUrl:imageUrl];
+    UIImage *imageCache = [BFImageCache imageForUrl:images];
     CGSize imageSizeFromCache = imageCache.size;
     
     CGFloat trueCellWidth = 0.f;
@@ -141,7 +140,7 @@
         
         contentImageView.frame = CGRectMake(LeftMargin,TopMargin,imageWidth,imageHeight);
         contentImageView.hidden = NO;
-        [contentImageView setImageUrl:imageUrl];
+        [contentImageView setImageUrl:images];
         
         originX = contentImageView.frame.origin.x+contentImageView.frame.size.width+TextMargin;
     }else{
@@ -175,7 +174,6 @@
     NSString *source = [content objectForKey:@"source"];
     NSString *summary = [content objectForKey:@"summary"];
     NSString *images = [content objectForKey:@"images"];
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,images];
 
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
 
@@ -186,7 +184,7 @@
         noSummary = NO;
     }
     
-    UIImage *imageCache = [BFImageCache imageForUrl:imageUrl];
+    UIImage *imageCache = [BFImageCache imageForUrl:images];
     CGSize imageSizeFromCache = imageCache.size;
     
     CGFloat trueCellWidth = 0.f;

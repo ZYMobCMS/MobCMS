@@ -21,6 +21,7 @@
 #define TitleFontSize 20
 #define DateFontSize 11
 #define ContentFontSize 17
+#define LikeFontSize 13
 
 @interface BFNArticleViewController ()
 
@@ -49,6 +50,15 @@
         NSLog(@"articleDict init --->%@",self.articleDict);
 
         
+    }
+    return self;
+}
+- (id)initWithArticleId:(NSString *)articleId
+{
+    if (self = [super init]) {
+        
+        self.articleDict = [[NSMutableDictionary alloc]init];
+        [self loadArticleDetailWithId:articleId];
     }
     return self;
 }
@@ -109,6 +119,16 @@
     checkArticelBtn.userInteractionEnabled = YES;
     [scrollView addSubview:checkArticelBtn];
     
+    //
+    likeLabel = [[UILabel alloc]init];
+    likeLabel.frame = CGRectMake(0,0,1,1);
+    likeLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fav_bg.png"]];
+    likeLabel.font = [UIFont systemFontOfSize:LikeFontSize];
+    likeLabel.textAlignment = UITextAlignmentCenter;
+    [self.view addSubview:likeLabel];
+    likeLabel.textColor = [UIColor whiteColor];
+    [likeLabel release];
+    
     contentImageView = [[UIImageView alloc]initWithFrame:initRect];
     contentImageView.hidden = YES;
     contentImageView.userInteractionEnabled = YES;
@@ -151,11 +171,11 @@
     
     //跟贴
     UIButton *oveaSeaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    oveaSeaBtn.frame = CGRectMake(29,0,50,29);
+    oveaSeaBtn.frame = CGRectMake(0,0,30,30);
     oveaSeaBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [oveaSeaBtn setTitle:@"跟贴" forState:UIControlStateNormal];
     [oveaSeaBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [oveaSeaBtn setBackgroundImage:[UIImage imageNamed:@"top_button.png"] forState:UIControlStateNormal];
+    [oveaSeaBtn setBackgroundImage:[UIImage imageNamed:@"comment_btn_normal.png"] forState:UIControlStateNormal];
+    [oveaSeaBtn setBackgroundImage:[UIImage imageNamed:@"commnet_btn_selected.png"] forState:UIControlStateSelected];
     [oveaSeaBtn addTarget:self action:@selector(commentListAction) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:oveaSeaBtn];
@@ -196,17 +216,16 @@
 {
     //
     NSString *title = [baseDict objectForKey:@"title"];
-    NSString *content = state? [baseDict objectForKey:@"content"]:[baseDict objectForKey:@"summary"];
+    NSString *content = state? [ZYMobCMSUitil replaceNBSP:[baseDict objectForKey:@"content"]]:[baseDict objectForKey:@"summary"];
     
     NSString *date = [articleDict objectForKey:@"publish_time"];
     NSString *source = [articleDict objectForKey:@"source"];
+    NSString *favCount = [articleDict objectForKey:@"favorite_count"];
     
     NSString *image = [baseDict objectForKey:@"images"];
     
     NSArray *imageArray = [image componentsSeparatedByString:@"|"];
     image = [imageArray objectAtIndex:0];
-    image = [NSString stringWithFormat:@"%@%@",ZYCMS_image_Url,image];
-
     
     //布局
     CGFloat contentWidth = self.view.frame.size.width-2*Left_Margin;
@@ -279,6 +298,12 @@
         contentImageView.hidden = YES;
     }
     
+    //like
+    NSString *favString = [NSString stringWithFormat:@"%@喜欢",favCount];
+    CGSize favSize = [favString sizeWithFont:[UIFont systemFontOfSize:LikeFontSize] constrainedToSize:CGSizeMake(self.view.frame.size.width,99999) lineBreakMode:UILineBreakModeCharacterWrap];
+    likeLabel.frame = CGRectMake(self.view.frame.size.width-favSize.width-10,30, favSize.width+10,favSize.height);
+    likeLabel.text = favString;
+    
     //内容
     [contentTextView setText:content];
     
@@ -350,6 +375,7 @@
         BFNPreviewViewController *preVC = [[BFNPreviewViewController alloc]init];
         preVC.url = [self.articleDict objectForKey:@"links"];
         preVC.mainTitle = @"查看原文";
+        preVC.isLoadUrl = YES;
         [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
         [self.navigationController pushViewController:preVC animated:YES];
         [preVC release];

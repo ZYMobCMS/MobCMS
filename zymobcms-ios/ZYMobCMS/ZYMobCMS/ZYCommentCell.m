@@ -8,13 +8,7 @@
 
 #import "ZYCommentCell.h"
 
-#define LeftMargin 10
-#define TopMargin 10
-#define TextMargin 10
-#define TitleFontSize 14
-#define ContentFontSize 13
-#define ArticleTitleFontSize 11
-#define ContentLineSpace 6
+
 
 @implementation ZYCommentCell
 

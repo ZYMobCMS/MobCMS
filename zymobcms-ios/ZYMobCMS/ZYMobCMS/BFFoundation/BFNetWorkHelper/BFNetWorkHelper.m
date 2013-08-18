@@ -154,6 +154,9 @@ static BFNetWorkHelper *_instance = nil;
             case ZYCMSRequestTypeHotCommentList:
             urlString = ZYCMS_Hot_Comment_Interface;
             break;
+            case ZYCMSRequestTypeApplicationName:
+            urlString = ZYCMS_Menu_Application_Name_Interface;
+            break;
                     
         default:
             break;
