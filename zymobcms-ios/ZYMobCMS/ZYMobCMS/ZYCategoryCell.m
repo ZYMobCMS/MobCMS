@@ -140,6 +140,7 @@
         
         contentImageView.frame = CGRectMake(LeftMargin,TopMargin,imageWidth,imageHeight);
         contentImageView.hidden = NO;
+        contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
         [contentImageView setImageUrl:images];
         
         originX = contentImageView.frame.origin.x+contentImageView.frame.size.width+TextMargin;

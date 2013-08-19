@@ -39,6 +39,9 @@
     [sourceArray addObject:@"我的收藏"];
     
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStyleGrouped];
+    UIView *tableBack = [[UIView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,listTable.frame.size.height)];
+    listTable.backgroundView = tableBack;
+    [tableBack release];
     listTable.dataSource = self;
     listTable.delegate = self;
     [self.view addSubview:listTable];

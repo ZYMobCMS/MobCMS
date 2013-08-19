@@ -70,6 +70,7 @@
     
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    [self getProductList];
 }
 
 #pragma mark -
@@ -178,6 +179,10 @@
         
         NSArray *resultArray = [resultDict objectForKey:@"data"];
         
+        if (_reloading) {
+            [listArray removeAllObjects];
+        }
+        
         NSLog(@"resultArray---->%@",resultArray);
         
         if (resultArray.count ==0 || resultArray.count <PageSize) {
@@ -189,11 +194,19 @@
         [listTable reloadData];
         
     }
+    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
+    }
 }
 
 - (void)getProductListFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
+    }
 }
 
 

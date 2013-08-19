@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "BFNBaseViewController.h"
 
-@interface ZYAboutViewController : BFNBaseViewController
+@interface ZYAboutViewController : BFNBaseViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *sourceArray;
+    UITableView    *listTable;
+    
+}
+
 
 @end

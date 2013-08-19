@@ -12,5 +12,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *titlLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *iconImgView;
 @property (retain, nonatomic) IBOutlet UIImageView *lineView;
+@property (assign,nonatomic)NSInteger itemIndex;
 
 @end

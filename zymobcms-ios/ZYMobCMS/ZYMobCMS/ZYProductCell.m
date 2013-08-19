@@ -104,6 +104,7 @@
     [summaryView setContentText:summary];
     [priceView setContentText:price];
     [favCountView setContentText:favcount];
+    conentImageView.image = [UIImage imageNamed:@"no_photo.png"];
     [[BFImageDownloader shareLoader]downloadImageWithUrl:imageUrl forView:conentImageView];
     
 }

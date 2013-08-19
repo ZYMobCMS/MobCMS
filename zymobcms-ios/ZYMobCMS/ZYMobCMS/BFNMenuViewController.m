@@ -72,9 +72,9 @@
     //标题
     titleLabel = [[UILabel alloc]init];
     titleLabel.frame = CGRectMake(0,0,self.view.frame.size.width,42);
-    titleLabel.text = @"通用移动内容管理";
+    titleLabel.text = @"  通用移动内容管理";
     titleLabel.backgroundColor = [BFUitils rgbColor:226 green:226 blue:226];
-    titleLabel.font = [UIFont systemFontOfSize:20];
+    titleLabel.font = [UIFont boldSystemFontOfSize:20];
     titleLabel.textColor = [BFUitils rgbColor:158 green:38 blue:40];
     [self.view addSubview:titleLabel];
     [titleLabel release];
@@ -160,10 +160,29 @@
 {
     self.lastSelectIndexPath = self.selectVCIndexPath;
     
+    
     self.selectVCIndexPath = [NSIndexPath indexPathForRow:index inSection:section];
     
-    [self.menuTableView selectRowAtIndexPath:self.selectVCIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-        
+    NSInteger itemIndexLast;
+    if (lastSelectIndexPath.section == 0) {
+        itemIndexLast = [[[tableBasicData objectAtIndex:self.lastSelectIndexPath.row]objectAtIndex:2]intValue];
+    }else{
+        itemIndexLast = [[[tableSysData objectAtIndex:self.lastSelectIndexPath.row]objectAtIndex:1]intValue];
+    }
+    MenuCell *selectCellLast = (MenuCell*)[menuTableView cellForRowAtIndexPath:self.lastSelectIndexPath];
+    selectCellLast.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",itemIndexLast]];
+    
+    NSInteger itemIndex;
+    if (selectVCIndexPath.section == 0) {
+        itemIndex = [[[tableBasicData objectAtIndex:self.selectVCIndexPath.row]objectAtIndex:2]intValue];
+    }else{
+        itemIndex = [[[tableSysData objectAtIndex:self.selectVCIndexPath.row]objectAtIndex:1]intValue];
+    }
+    MenuCell *selectCell = (MenuCell*)[menuTableView cellForRowAtIndexPath:selectVCIndexPath];
+    selectCell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d_selected.png",itemIndex]];
+    
+    
+    
     ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     
     UIViewController *currentVC = [self currentVC];
@@ -320,17 +339,20 @@
 
         if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYSettingViewController"]) {
             
-            ZYSettingViewController *settingVC = [[ZYSettingViewController alloc]init];
-            settingVC.mainTitle = @"显示设置";
-            [sysViewControllers addObject:settingVC];
-            [ZYMobCMSUitil setBFNNavItemForMenu:settingVC];
-            [settingVC release];
+            if ([ZYUserManager userIsLogined]) {
+                ZYAccountViewController *acountVC = [[ZYAccountViewController alloc]init];
+                acountVC.mainTitle = @"账号管理";
+                [sysViewControllers addObject:acountVC];
+                [ZYMobCMSUitil setBFNNavItemForMenu:acountVC];
+                [acountVC release];
+            }else{
+                ZYLoginViewController *LoginVC = [[ZYLoginViewController alloc]init];
+                LoginVC.mainTitle = @"账号管理";
+                [sysViewControllers addObject:LoginVC];
+                [ZYMobCMSUitil setBFNNavItemForMenu:LoginVC];
+                [LoginVC release];
+            }
             
-            ZYAccountViewController *acountVC = [[ZYAccountViewController alloc]init];
-            acountVC.mainTitle = @"账号管理";
-            [sysViewControllers addObject:acountVC];
-            [ZYMobCMSUitil setBFNNavItemForMenu:acountVC];
-            [acountVC release];
             
             ZYAboutViewController *aboutVC = [[ZYAboutViewController alloc]init];
             aboutVC.mainTitle = @"关于我们";
@@ -353,11 +375,9 @@
         
         if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYSettingViewController"]) {
             
-            NSArray *setting = [NSArray arrayWithObjects:@"显示设置",@"19", nil];
             NSArray *about = [NSArray arrayWithObjects:@"关于我们",@"17",nil];
             NSArray *account = [NSArray arrayWithObjects:@"账号管理",@"18",nil];
             
-            [self.tableSysData addObject:setting];
             [self.tableSysData addObject:account];
             [self.tableSysData addObject:about];
 
@@ -538,8 +558,7 @@
             
             NSArray *configArray = [self.tableBasicData objectAtIndex:indexPath.row];
     
-            cell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",[[configArray objectAtIndex:2]intValue]]];
-            
+            cell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",[[configArray objectAtIndex:2]intValue]]];            
             cell.titlLabel.text = [configArray objectAtIndex:1];
             
             return cell;
@@ -565,12 +584,6 @@
                     cellNormalBack.backgroundColor = [BFUitils rgbColor:246 green:246 blue:246];
                     cell.selectedBackgroundView = cellNormalBack;
                     [cellNormalBack release];
-                }
-                
-                
-                if (indexPath.row == [self.tableSysData count]-1) {
-                    cell.lineView.image = nil;
-                }else {
                     cell.lineView.image = [UIImage imageNamed:@"menu_line.png"];
                 }
                 cell.titlLabel.text = [[self.tableSysData objectAtIndex:indexPath.row]objectAtIndex:0];
@@ -604,13 +617,9 @@
                 cellNormalBack.backgroundColor = [BFUitils rgbColor:246 green:246 blue:246];
                 cell.selectedBackgroundView = cellNormalBack;
                 [cellNormalBack release];
-            }
-            
-            
-            if (indexPath.row == [self.tableSysData count]-1) {
-                cell.lineView.image = nil;
-            }else {
+                
                 cell.lineView.image = [UIImage imageNamed:@"menu_line.png"];
+
             }
             cell.titlLabel.text = [[self.tableSysData objectAtIndex:indexPath.row]objectAtIndex:0];
             NSString *imageName = [NSString stringWithFormat:@"menu_item_%d.png",[[[self.tableSysData objectAtIndex:indexPath.row]objectAtIndex:1] intValue]];
@@ -677,7 +686,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     [self shouldSelectVCAtSection:indexPath.section rowIndex:indexPath.row];
+    
 }
 
 #pragma mark - 获取应用程序名字
@@ -696,7 +707,7 @@
         
         NSDictionary *appDict = [resultDict objectForKey:@"data"];
         
-        titleLabel.text = [appDict objectForKey:@"name"];
+        titleLabel.text = [NSString stringWithFormat:@"   %@",[appDict objectForKey:@"name"]];
         
         if (titleLabel.text) {
             [[NSUserDefaults standardUserDefaults]setObject:titleLabel.text forKey:ApplicationNameUDF];

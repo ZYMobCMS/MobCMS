@@ -88,7 +88,8 @@
 //每一项得宽度是多少
 - (CGFloat)widthForEachItemInsegmentControl:(BFSegmentControl*)sgmCtrl
 {
-    return 320.0/segmentArray.count;
+    NSInteger itemCount = MIN(segmentArray.count,4);
+    return 320.0/itemCount;
 }
 
 //对应索引项得标题是什么
@@ -101,7 +102,8 @@
 //当前可见项有多少
 - (NSInteger)visiableItemsOfsegmentControl:(BFSegmentControl*)sgmCtrl
 {
-    return segmentArray.count;
+    NSInteger itemCount = MIN(segmentArray.count,4);
+    return itemCount;
 }
 
 //菜单选中了哪一项
@@ -124,7 +126,7 @@
 {
     if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
         if (indexPath.row == 0) {
-            return 120.0f;
+            return 170.0f;
         }else{
             CGFloat height = [ZYCategoryCell heightForContent:[listArray objectAtIndex:indexPath.row]];
             return height;

@@ -11,6 +11,7 @@
 @implementation MenuCell
 @synthesize titlLabel;
 @synthesize iconImgView;
+@synthesize itemIndex;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -19,7 +20,6 @@
         // Initialization code
         
         self = (MenuCell*)[BFUitils viewFromNibWithName:@"MenuCell" owner:self];
-        
     }
     return self;
 }

@@ -1946,3 +1946,147 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/menu/applicationName&appId=zymobcms&userId=1&
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php (134)
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/18 14:42:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/tabType/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/tab...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/tabType/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/08/18 14:42:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/rights/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/rig...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/rights/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/tabType/index
+---
+2013/08/18 14:46:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/rights/index
+---
+2013/08/18 14:46:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/picture/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/pic...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/picture/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/comment/index
+---
+2013/08/18 14:46:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/product/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/pro...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/product/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/user/index
+---
+2013/08/18 14:46:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/product/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/pro...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/product/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/user/index
+---
+2013/08/18 15:26:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/about/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/abo...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/about/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/08/18 15:26:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/about/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/about/ind...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/about/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/about/index
+---
+2013/08/18 15:26:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/about/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/about/ind...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/about/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/about/index
+---
+2013/08/18 15:26:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/about/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/about/ind...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/about/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/about/index
+---
+2013/08/18 15:26:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/about/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/about/ind...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/about/index
+---
+2013/08/18 17:14:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/aboutUs/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/abo...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/aboutUs/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/aboutUs/index
+---
+2013/08/18 18:03:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/aboutUs/index".' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/abo...')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/aboutUs/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/aboutUs/index
+---
+2013/08/19 08:30:50 [error] [exception.CException] exception 'CException' with message 'Property "UserController.enypt" is not defined.' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php(48): CComponent->__get('enypt')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): UserController->actionRigist()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('rigist')
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/rig...')
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&appId=zymobcms&userId=1&loginName=zyp&password=123
+---
+2013/08/19 08:31:04 [error] [exception.CException] exception 'CException' with message 'Property "UserController.enypt" is not defined.' in /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php(48): CComponent->__get('enypt')
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): UserController->actionRigist()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('rigist')
+#6 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/user/rig...')
+#7 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&appId=zymobcms&userId=1&loginName=zyp&password=123
+---

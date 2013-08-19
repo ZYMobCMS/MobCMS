@@ -34,7 +34,7 @@ class AboutController extends Controller {
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         $sql = "select * from zy_about_us";
         
-        $resultObj = $dbOperation->queryBySql($sql);
+        $resultObj = $dbOperation->queryAllBySql($sql);
         
         if($resultObj){
             

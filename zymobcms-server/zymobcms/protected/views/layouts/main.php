@@ -36,6 +36,7 @@
                                 array('label'=>'产品', 'url'=>array('Admin/product/index')),
                                 array('label'=>'分类', 'url'=>array('Admin/rights/index')),
                                 array('label'=>'栏目', 'url'=>array('Admin/tabType/index')),
+				array('label'=>'关于','url'=>array('Admin/aboutUs/index')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

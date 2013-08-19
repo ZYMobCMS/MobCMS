@@ -45,7 +45,8 @@ class UserController extends Controller {
 				
 		}else{
 			
-                        $insertSql = "insert into zy_user(login_name,password)values('$loginName','$password')";
+			$enypassword = $this->enypt($password);
+                        $insertSql = "insert into zy_user(login_name,password)values('$loginName','$enypassword')";
                         $rigistResult = $dbOperation->saveBySql($insertSql);
 			if($rigistResult){
 	

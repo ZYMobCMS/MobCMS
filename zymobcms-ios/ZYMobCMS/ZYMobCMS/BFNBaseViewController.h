@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZYLoadingView.h"
 
 @interface BFNBaseViewController : UIViewController
 {
-    
+    ZYLoadingView *lodingView;
 }
 @property (nonatomic,retain)NSString *mainTitle;
 @property (nonatomic,assign)BOOL      isSwipTurnOn;
 
 - (void)enableSwipRightToReturn;
 - (void)desableSwipRightToReturn;
+- (void)startLoading;
+- (void)stopLoading;
 
 @end

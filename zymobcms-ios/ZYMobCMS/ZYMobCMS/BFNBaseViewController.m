@@ -36,6 +36,14 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.isSwipTurnOn = NO;
+    
+    lodingView = [[ZYLoadingView alloc]initWithFrame:CGRectMake((self.view.frame.size.width-160)/2,(self.view.frame.size.height-50-44)/2,160,50)];
+    lodingView.backgroundColor = [UIColor darkGrayColor];
+    lodingView.layer.cornerRadius = 5.0f;
+    lodingView.layer.masksToBounds = YES;
+    [self.view addSubview:lodingView];
+    [lodingView release];
+    lodingView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,6 +82,15 @@
 - (void)desableSwipRightToReturn
 {    
     
+}
+
+- (void)startLoading
+{
+    [lodingView startLoading];
+}
+- (void)stopLoading
+{
+    [lodingView stopLoading];
 }
 
 @end

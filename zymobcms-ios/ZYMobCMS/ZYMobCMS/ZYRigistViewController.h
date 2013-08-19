@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BFNBaseViewController.h"
 
-@interface ZYRigistViewController : UIViewController
+@interface ZYRigistViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *listTable;
+    
+    NSMutableArray *sourceArray;
 
+}
 @end

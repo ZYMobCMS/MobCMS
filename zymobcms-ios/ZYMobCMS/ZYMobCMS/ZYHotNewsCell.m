@@ -10,7 +10,7 @@
 #import "HotImageView.h"
 
 #define baseImageTag 9899999
-#define CellHeight 120
+#define CellHeight 170
 
 @implementation ZYHotNewsCell
 
@@ -53,6 +53,7 @@
         UIView *grayTagView = [[UIView alloc]initWithFrame:CGRectMake(0,CellHeight-25,self.frame.size.width,25)];
         grayTagView.alpha=0.5;
         grayTagView.backgroundColor = [UIColor blackColor];
+        grayTagView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         [self.contentView addSubview:grayTagView];
         [grayTagView release];
         
@@ -60,9 +61,10 @@
         [self.contentView addSubview:pageControl];
         [pageControl release];
         
-        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,CellHeight-25,self.frame.size.width*3/4,25)];
+        titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(6,CellHeight-25,self.frame.size.width*3/4-6,25)];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:titleLabel];
         [titleLabel release];
 

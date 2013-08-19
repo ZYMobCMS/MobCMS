@@ -14,6 +14,7 @@
 #import "ZYPictureController.h"
 #import "ZYCommentViewController.h"
 #import "ZYCategoryViewController.h"
+#import "ZYLoginViewController.h"
 
 @interface BFNMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {

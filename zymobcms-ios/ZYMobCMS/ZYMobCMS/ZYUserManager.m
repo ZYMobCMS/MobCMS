@@ -50,7 +50,7 @@
 
 + (BOOL)userIsLogined
 {
-    
+    return NO;
 }
 
 @end

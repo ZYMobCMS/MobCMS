@@ -85,6 +85,7 @@
     
     return [ZYCommentCell heightWithContent:item forTable:tableView];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";

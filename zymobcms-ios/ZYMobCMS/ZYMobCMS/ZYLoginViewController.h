@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZYLoginViewController : UIViewController
+@interface ZYLoginViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *listTable;
+
+    NSMutableArray *sourceArray;
+}
 
 @end
