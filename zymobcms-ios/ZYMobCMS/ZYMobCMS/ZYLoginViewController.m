@@ -11,6 +11,7 @@
 #import "ZYButtonCell.h"
 #import "ZYRigistViewController.h"
 #import "ZYAccountViewController.h"
+#import "ZYFormValidate.h"
 
 @interface ZYLoginViewController ()
 
@@ -42,8 +43,8 @@
 	// Do any additional setup after loading the view.
     
     sourceArray = [[NSMutableArray alloc]init];
-    [sourceArray addObject:[NSArray arrayWithObjects:@"账号:",@"loginName",@"请输入用户名",nil]];
-    [sourceArray addObject:[NSArray arrayWithObjects:@"密码:",@"password",@"请输入密码",nil]];
+    [sourceArray addObject:[NSArray arrayWithObjects:@"账号:",@"loginName",@"请输入用户名",@"0",nil]];
+    [sourceArray addObject:[NSArray arrayWithObjects:@"密码:",@"password",@"请输入密码",@"1",nil]];
     
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStyleGrouped];
     UIView *tableBack = [[UIView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,listTable.frame.size.height)];
@@ -146,6 +147,7 @@
             cell = [[[ZYInputCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
         }
         cell.tagLabel.text = [[sourceArray objectAtIndex:indexPath.row]objectAtIndex:0];
+        cell.inputField.secureTextEntry = [[[sourceArray objectAtIndex:indexPath.row]objectAtIndex:3]boolValue];
         cell.inputField.placeholder = [[sourceArray objectAtIndex:indexPath.row]objectAtIndex:2];
         
         return cell;
@@ -208,13 +210,23 @@
 #pragma mark - login action
 - (void)loginUserNow
 {
-    [self startLoading];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     ZYInputCell *nameCell = (ZYInputCell*)[listTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     ZYInputCell *passwordCell = (ZYInputCell*)[listTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     [nameCell.inputField resignFirstResponder];
     [passwordCell.inputField resignFirstResponder];
     
+    if (![ZYFormValidate validateLoginName:nameCell.inputField.text]) {
+        [nameCell.inputField becomeFirstResponder];
+        return;
+    }
+    if (![ZYFormValidate validatePassword:passwordCell.inputField.text]) {
+        [passwordCell.inputField becomeFirstResponder];
+        return;
+    }
+    
+    [self startLoading];
     [params setObject:nameCell.inputField.text forKey:@"loginName"];
     [params setObject:passwordCell.inputField.text forKey:@"password"];
     
@@ -229,7 +241,7 @@
         NSLog(@"resultDict -->%@",resultDict);
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
         //保存用户信息
-        [ZYUserManager saveLoginUser:resultDict loginState:YES];
+        [ZYUserManager saveLoginUser:[resultDict objectForKey:@"data"] loginState:YES];
         [[NSNotificationCenter defaultCenter]postNotificationName:ZYCMS_LOGIN_SUCESS_NOTI object:nil];
         
         if (_successAction) {

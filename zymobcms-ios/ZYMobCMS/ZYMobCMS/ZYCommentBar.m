@@ -105,7 +105,7 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(observeKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(observeKeyboardDidHiden:) name:UIKeyboardDidHideNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(observeKeyboardWillChange:) name:UIKeyboardDidChangeFrameNotification object:nil];
-        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(observeInputText:) name:UITextViewTextDidChangeNotification object:nil];
     }
     return self;
 }
@@ -363,6 +363,27 @@
 - (void)commentReset
 {
     [inputTextView resignFirstResponder];
+    favBtn.enabled = YES;
+}
+
+#pragma mark - observInput
+- (void)observeInputText:(NSNotification*)noti
+{
+    BOOL notAllSpace = NO;
+    for (int i=0;i<inputTextView.text.length;i++) {
+        NSString *subString = [inputTextView.text substringWithRange:NSMakeRange(i,1)];
+        if (![subString isEqualToString:@" "]) {
+            notAllSpace = YES;
+            break;
+        }
+    }
+    if (inputTextView.text.length>0 && notAllSpace) {
+        
+        favBtn.enabled = YES;
+    }else{
+        favBtn.enabled = NO;
+        
+    }
 }
 
 @end

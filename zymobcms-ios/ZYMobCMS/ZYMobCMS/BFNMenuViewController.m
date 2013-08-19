@@ -99,6 +99,7 @@
     
     //
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(observeLoginSuccessNoti:) name:ZYCMS_LOGIN_SUCESS_NOTI object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(observeUserLoginOutSuccessNoti:) name:ZYCMS_LOGIN_OUT_SUCCESS_NOTI object:nil];
     
 }
 
@@ -353,6 +354,7 @@
                 ZYLoginViewController *LoginVC = [[ZYLoginViewController alloc]init];
                 LoginVC.mainTitle = @"账号管理";
                 [LoginVC setSuccessLoginAction:^{
+                    
                     ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
                     
                     ZYAccountViewController *accoutVC = [[ZYAccountViewController alloc]init];
@@ -374,6 +376,8 @@
                     [newNav release];
                     
                     [appDelegate hiddenMaster];
+                    [BFAnimationHelper animationBasicFadeView:appDelegate.rootViewController.view duration:0.3];
+
                 }];
                 [sysViewControllers addObject:LoginVC];
                 [ZYMobCMSUitil setBFNNavItemForMenu:LoginVC];
@@ -775,6 +779,38 @@
     [ZYMobCMSUitil setBFNNavItemForMenu:acountVC];
     [acountVC release];
 }
-
+- (void)observeUserLoginOutSuccessNoti:(NSNotification*)noti
+{
+    [sysViewControllers removeObjectAtIndex:0];
+    ZYLoginViewController *loginVC = [[ZYLoginViewController alloc]init];
+    loginVC.mainTitle = @"账号管理";
+    [loginVC setSuccessLoginAction:^{
+        ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        
+        ZYAccountViewController *accoutVC = [[ZYAccountViewController alloc]init];
+        accoutVC.mainTitle = @"账号管理";
+        [ZYMobCMSUitil setBFNNavItemForMenu:accoutVC];
+        
+        appDelegate.rootViewController.detailViewController = nil;
+        
+        UINavigationController *newNav = [[UINavigationController alloc]initWithRootViewController:accoutVC];
+        [accoutVC release];
+        
+        if ([BFUitils isIOSVersionOver5]) {
+            [newNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar.png"] forBarMetrics:UIBarMetricsDefault];
+        }else {
+            [newNav.navigationBar drawRect:newNav.navigationBar.frame];
+        }
+        newNav.view.frame = appDelegate.rootViewController.view.frame;
+        appDelegate.rootViewController.detailViewController = newNav;
+        [newNav release];
+        
+        [appDelegate hiddenMaster];
+        [BFAnimationHelper animationBasicFadeView:appDelegate.rootViewController.view duration:0.3];
+    }];
+    [sysViewControllers insertObject:loginVC atIndex:0];
+    [ZYMobCMSUitil setBFNNavItemForMenu:loginVC];
+    [loginVC release];
+}
 
 @end

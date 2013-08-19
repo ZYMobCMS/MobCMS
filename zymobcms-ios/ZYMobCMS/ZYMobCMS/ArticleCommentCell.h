@@ -14,6 +14,9 @@
     BFAttributedView *commentContentView;
     UILabel *dateView;
     BFAttributedView *locationView;
+    
+    UIButton *supportBtn;
+    UILabel  *supportLabel;
 }
 
 - (void)setcontentDict:(NSDictionary*)contentDict;

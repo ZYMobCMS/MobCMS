@@ -9,6 +9,8 @@
 #import "BFImageDownloader.h"
 #import "BFImageCache.h"
 
+#define kIndicatorTag 879870
+
 static BFImageDownloader *_instance = nil;
 @implementation BFImageDownloader
 
@@ -68,6 +70,12 @@ static BFImageDownloader *_instance = nil;
         
         imageView.image = nil;
     }
+    
+    if ([imageView viewWithTag:kIndicatorTag]!=nil) {
+        UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView*)[imageView viewWithTag:kIndicatorTag];
+        [indicatorView stopAnimating];
+        [indicatorView removeFromSuperview];
+    }
 }
 
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view
@@ -91,6 +99,11 @@ static BFImageDownloader *_instance = nil;
         forView.image = cacheImage;
         [forView setNeedsDisplay];
         
+        if ([view viewWithTag:kIndicatorTag]!=nil) {
+            UIActivityIndicatorView *indicatorView = (UIActivityIndicatorView*)[view viewWithTag:kIndicatorTag];
+            [indicatorView stopAnimating];
+            [indicatorView removeFromSuperview];
+        }
 //        BFMLog(cacheImage);
 //        BFMLog(url);
     }else {
@@ -101,6 +114,14 @@ static BFImageDownloader *_instance = nil;
         
         [_loadQueue addOperation:loadOperation];
         [loadOperation release];
+        
+        UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        indicatorView.center = view.center;
+        indicatorView.tag = kIndicatorTag;
+        [view addSubview:indicatorView];
+        [indicatorView release];
+        [indicatorView startAnimating];
+        
     }
 }
 

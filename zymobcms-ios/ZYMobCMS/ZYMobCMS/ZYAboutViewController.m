@@ -8,6 +8,9 @@
 
 #import "ZYAboutViewController.h"
 #import "ZYAboutCell.h"
+#import "ZYButtonCell.h"
+#import "ZYReplyViewController.h"
+
 
 @interface ZYAboutViewController ()
 
@@ -68,32 +71,56 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [sourceArray count];
+    if (section==0) {
+        return [sourceArray count];
+    }else{
+        return 1;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return [ZYAboutCell heightForDict:[sourceArray objectAtIndex:indexPath.row] forTable:tableView];
+    if (indexPath.section == 0) {
+        return [ZYAboutCell heightForDict:[sourceArray objectAtIndex:indexPath.row] forTable:tableView];
+    }else{
+        return 44.0f;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    ZYAboutCell *cell = (ZYAboutCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    if (!cell) {
-        cell = [[[ZYAboutCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+    if (indexPath.section==0) {
+        static NSString *CellIdentifier = @"Cell";
+        ZYAboutCell *cell = (ZYAboutCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        // Configure the cell...
+        if (!cell) {
+            cell = [[[ZYAboutCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+        }
+        [cell setContentDict:[sourceArray objectAtIndex:indexPath.row]];
+        
+        return cell;
+    }else{
+        static NSString *CellIdentifier = @"ButtonCell";
+        ZYButtonCell *cell = (ZYButtonCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (!cell) {
+            cell = [[[ZYButtonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTapOnBtn:^{
+                [self contactUsNow];
+            }]autorelease];
+        }
+        [cell.actionBtn setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+        [cell.actionBtn setTitle:@"联系我们" forState:UIControlStateNormal];
+        
+        return cell;
+
     }
-    [cell setContentDict:[sourceArray objectAtIndex:indexPath.row]];
     
-    return cell;
 }
 
 #pragma mark - 获取关于信息
@@ -120,5 +147,136 @@
     
 }
 
+- (void)contactUsNow
+{
+    UIActionSheet *chooseSheet = [[UIActionSheet alloc]initWithTitle:@"选择方式" delegate:self cancelButtonTitle:@"退出" destructiveButtonTitle:@"呼叫座机" otherButtonTitles:@"呼叫手机",@"留言反馈",@"邮件提醒",@"短信通知",nil];
+    [chooseSheet showInView:self.view];
+    [chooseSheet release];
+}
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"title for index:%d %@--->",buttonIndex,[actionSheet buttonTitleAtIndex:buttonIndex]);
+
+    NSString *tile = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    switch (buttonIndex) {
+        case 0:
+        {
+            for (NSDictionary *item in sourceArray) {
+                if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                    
+                    UIDevice *device = [UIDevice currentDevice];
+                    if ([[device model] isEqualToString:@"iPhone"] ) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",[item objectForKey:@"value"]]]];
+                    } else {
+                        UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持通话" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                        [Notpermitted show];
+                        [Notpermitted release];
+                    }
+                    
+                    break;
+                    
+                }
+            }
+        }
+            break;
+        case 1:
+        {
+            for (NSDictionary *item in sourceArray) {
+                if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                    
+                    UIDevice *device = [UIDevice currentDevice];
+                    if ([[device model] isEqualToString:@"iPhone"] ) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",[item objectForKey:@"value"]]]];
+                    } else {
+                        UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持通话" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                        [Notpermitted show];
+                        [Notpermitted release];
+                    }
+                    
+                    break;
+                    
+                }
+            }
+            
+        }
+            break;
+        case 2:
+        {
+            ZYReplyViewController *replyVC = [[ZYReplyViewController alloc]init];
+            replyVC.mainTitle = @"给我们反馈";
+            [ZYMobCMSUitil setBFNNavItemForReturn:replyVC];
+            [self.navigationController pushViewController:replyVC animated:YES];
+            [replyVC release];
+        }
+            break;
+        case 3:
+        {
+            for (NSDictionary *item in sourceArray) {
+                if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                    
+                    if (![MFMailComposeViewController canSendMail]) {
+                        
+                    }else{
+                        MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc]init];
+                        mailVC.mailComposeDelegate = self;
+                        [mailVC setToRecipients:[NSArray arrayWithObject:[item objectForKey:@"value"]]];
+                        [mailVC setSubject:@"给我们反馈"];
+                        [mailVC setMessageBody:@"请给我们您的建议" isHTML:NO];
+                        [self presentModalViewController:mailVC animated:YES];
+                        [mailVC release];
+                    }
+                    
+                    break;
+                    
+                }
+            }
+
+        }
+            break;
+        case 4:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultCancelled:
+        {
+            
+        }
+            break;
+        case MFMailComposeResultFailed:
+        {
+            
+        }
+            break;
+        case MFMailComposeResultSaved:
+        {
+            [SVProgressHUD showSuccessWithStatus:@"保存邮件成功"];
+        }
+            break;
+        case MFMailComposeResultSent:
+        {
+            [SVProgressHUD showSuccessWithStatus:@"发送邮件成功"];
+
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 @end

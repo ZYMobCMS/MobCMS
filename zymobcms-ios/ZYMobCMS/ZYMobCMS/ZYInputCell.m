@@ -12,6 +12,7 @@
 @synthesize tagLabel;
 @synthesize inputField;
 @synthesize placeHolder;
+@synthesize isSecureType;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -37,6 +38,7 @@
         inputField = [[UITextField alloc]init];
         inputField.frame = CGRectMake(80,11,self.frame.size.width-60-20-10-30,30);
         inputField.placeholder = self.placeHolder;
+        inputField.secureTextEntry = self.isSecureType;
         [self.contentView addSubview:inputField];
         [inputField release];
     }

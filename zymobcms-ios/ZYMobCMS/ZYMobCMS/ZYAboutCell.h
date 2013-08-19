@@ -13,6 +13,7 @@
     UILabel *tagLabel;
     UILabel *valueLabel;
 }
+@property (nonatomic,retain)NSString *typeName;
 
 - (void)setContentDict:(NSDictionary*)contentDict;
 + (CGFloat)heightForDict:(NSDictionary*)contentDict forTable:(UITableView*)table;

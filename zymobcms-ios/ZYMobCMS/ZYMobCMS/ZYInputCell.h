@@ -17,6 +17,7 @@
 @property (nonatomic,retain)UILabel *tagLabel;
 @property (nonatomic,retain)UITextField *inputField;
 @property (nonatomic,retain)NSString *placeHolder;
+@property (nonatomic,assign)BOOL isSecureType;
 
 
 @end
