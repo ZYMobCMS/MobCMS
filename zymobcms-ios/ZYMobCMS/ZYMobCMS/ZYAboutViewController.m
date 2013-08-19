@@ -45,6 +45,13 @@
     listTable.delegate = self;
     [self.view addSubview:listTable];
     [listTable release];
+    
+    //logo header
+    ZYPullHeaderView *headView = [[ZYPullHeaderView alloc]
+                          initWithFrame:
+                          CGRectMake(0.0f, 0.0f - listTable.bounds.size.height, self.view.frame.size.width,listTable.bounds.size.height)];
+    [listTable addSubview:headView];
+    [headView release];
 
     [self getAboutInfo];
     

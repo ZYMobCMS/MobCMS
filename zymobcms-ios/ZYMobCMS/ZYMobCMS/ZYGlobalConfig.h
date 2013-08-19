@@ -10,3 +10,7 @@
 #import "ZYUserManager.h"
 #import "ZYMobCMSAppDelegate.h"
 #import "ZYMobCMSUitil.h"
+#import "ZYPullHeaderView.h"
+
+
+#define ZYCMS_LOGIN_SUCESS_NOTI  @"ZYCMS_LOGIN_SUCESS_NOTI"

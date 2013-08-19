@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 __barfoo__. All rights reserved.
 //
 
-#define ZYCMS_Base_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/index.php?r="
-#define ZYCMS_image_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/"
+#define ZYCMS_Base_Url @"http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r="
+#define ZYCMS_image_Url @"http://localhost/MobCMS/zymobcms-server/zymobcms/"
 //#define MCM_Base_Url @"https://61.136.59.251:8017"
 
 #define APPID            @"zymobcms"
@@ -119,6 +119,16 @@
  */
 #define ZYCMS_Comment_Article_Interface     @"Mobile/newsList/commentArticle" //@"/m/classify/tree"
 
+/*
+ *
+ */
+#define ZYCMS_Supprot_Comment_Interface     @"Mobile/newsList/supportComment"
+
+/*
+ *
+ */
+#define ZYCMS_UnSupport_Comment_Interface   @"Mobile/newsList/unSupportComment"
+
    
 /*
      获取分类数据
@@ -139,6 +149,16 @@
 
 #define ZYCMS_Picture_Interface        @"Mobile/picture/pictureList"
 
+#define ZYCMS_Picture_Comment_List_Interface @"Mobile/picture/pictureCommentList"
+
+#define ZYCMS_Comment_Picture_Interface @"Mobile/picture/commentPicture"
+
+#define ZYCMS_Favorite_Picture_Interface @"Mobile/picture/favoritePicture"
+
+#define ZYCMS_Cancel_Favorite_Picture_Interface @"Mobile/picture/removeFavoritePicture"
+
+#define ZYCMS_Is_Favorite_Picture_Interface @"Mobile/picture/isFavoritePicture"
+
 
 /*
      分类信息详情页
@@ -148,6 +168,16 @@
         (status, result)  
  */
 #define ZYCMS_Product_List_Interface     @"Mobile/product/productList"
+
+#define ZYCMS_Product_Comment_List_Interface @"Mobile/product/productCommentList"
+
+#define ZYCMS_Comment_Product_Interface      @"Mobile/product/commentProduct"
+
+#define ZYCMS_Favorite_Product_Interface     @"Mobile/product/favoriteProduct"
+
+#define ZYCMS_Cancel_Favorite_Product_Interface @"Mobile/product/removeFavoriteProduct"
+
+#define ZYCMS_Is_Favorite_Product_Interface  @"Mobile/product/isFavoriteProduct"
 
 
 /*
@@ -167,6 +197,10 @@
  */
 #define ZYCMS_User_Favorite_Interface     @"Mobile/user/favoriteList"
 
+#define ZYCMS_User_Picture_Favorite_Interface @"Mobile/user/pictureFavoriteList"
+
+#define ZYCMS_User_Product_Favorite_Interface @"Mobile/user/productFavoriteList"
+
 /*
      获取预警，关注，线索列表
      参数
@@ -177,6 +211,10 @@
 //#define Opinion_WarningList_Interface     @"/m/warning/getlist"
 
 #define ZYCMS_User_Comment_Interface     @"Mobile/user/commentList"
+
+#define ZYCMS_User_Picture_Comment_Interface @"Mobile/user/pictureCommentList"
+
+#define ZYCMS_User_Product_Comment_Interface @"Mobile/user/productCommentList"
 
 
 /*

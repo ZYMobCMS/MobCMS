@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^LoginSuccessAction) (void);
 @interface ZYLoginViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *listTable;
 
     NSMutableArray *sourceArray;
+    
+    LoginSuccessAction _successAction;
+    
 }
+- (void)setSuccessLoginAction:(LoginSuccessAction)loginSuccessAction;
 
 @end

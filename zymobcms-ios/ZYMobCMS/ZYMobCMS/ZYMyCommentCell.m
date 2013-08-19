@@ -43,17 +43,21 @@
     
     CGFloat originY = TopMargin;
     
-    CGFloat totalWidth = self.frame.size.width-2*LeftMargin;
+    CGFloat totalWidth = self.frame.size.width-2*LeftMargin-2*LeftMargin;
     
-    articleTitleView.frame = CGRectMake(LeftMargin,originY,totalWidth,35);
+    CGFloat articleTitleHeight = [BFAttributedView getAttributedContentHeight:articleTitleView.contentAttributedString withWdith:totalWidth];
+    articleTitleView.frame = CGRectMake(LeftMargin+LeftMargin/2,originY,totalWidth,MIN(20,articleTitleHeight));
     originY = articleTitleView.frame.origin.y+articleTitleView.frame.size.height+TextMargin;
 
     CGFloat contentHeight = [BFAttributedView getAttributedContentHeight:contentView.contentAttributedString withWdith:totalWidth];
-    contentView.frame = CGRectMake(LeftMargin,originY,totalWidth,contentHeight);
+    contentView.frame = CGRectMake(LeftMargin+LeftMargin/2,originY,totalWidth,contentHeight);
     originY = contentView.frame.origin.y+contentView.frame.size.height+TextMargin;
     
+    backImgView.frame = CGRectMake(LeftMargin,TopMargin/2,self.frame.size.width-2*LeftMargin,originY);
+    originY = originY + TopMargin/2;
+    
     CGFloat dateViewHeight = [BFAttributedView getAttributedContentHeight:dateView.contentAttributedString withWdith:self.frame.size.width];
-    dateView.frame = CGRectMake(self.frame.size.width-LeftMargin-135,originY,135,dateViewHeight);
+    dateView.frame = CGRectMake(self.frame.size.width-LeftMargin-95,originY,95,dateViewHeight);
     originY = dateView.frame.origin.y+dateView.frame.size.height + TextMargin;
     
 
@@ -62,7 +66,7 @@
 + (CGFloat)heightWithContent:(NSDictionary *)contentDict forTable:(UITableView *)table
 {
 //    NSString *title = [contentDict objectForKey:@"login_name"];
-//    NSString *articleTitle = [contentDict objectForKey:@"title"];
+    NSString *articleTitle = [contentDict objectForKey:@"title"];
     NSString *content = [contentDict objectForKey:@"content"];
     NSString *date = [contentDict objectForKey:@"create_time"];
 
@@ -77,19 +81,26 @@
     NSAttributedString *contentAtti = [BFAttributedView createAttributedString:content withDescriptor:contentDes];
     [contentDes release];
     
+    BFAttributeDescriptor *articleTitleDes = [[BFAttributeDescriptor alloc]init];
+    articleTitleDes.fontSize = ContentFontSize;
+    articleTitleDes.lineSpace = ContentLineSpace;
+    NSAttributedString *articleTitleAtti = [BFAttributedView createAttributedString:articleTitle withDescriptor:articleTitleDes];
+    [articleTitleDes release];
+    
     CGFloat originY = TopMargin;
     
-    CGFloat totalWidth = table.frame.size.width-2*LeftMargin;
+    CGFloat totalWidth = table.frame.size.width-2*LeftMargin-LeftMargin/2;
     
-    CGRect articleTitleRect = CGRectMake(LeftMargin,originY,totalWidth,30);
+    CGFloat articleTitleHeight = [BFAttributedView getAttributedContentHeight:articleTitleAtti withWdith:totalWidth];
+    CGRect articleTitleRect = CGRectMake(LeftMargin+LeftMargin/2,originY,totalWidth,MIN(articleTitleHeight,20));
     originY = articleTitleRect.origin.y+articleTitleRect.size.height+TextMargin;
     
     CGFloat contentHeight = [BFAttributedView getAttributedContentHeight:contentAtti withWdith:totalWidth];
-    CGRect contentRect = CGRectMake(LeftMargin,originY,totalWidth,contentHeight);
+    CGRect contentRect = CGRectMake(LeftMargin+LeftMargin/2,originY,totalWidth,contentHeight);
     originY = contentRect.origin.y+contentRect.size.height+TextMargin;
     
     CGFloat dateViewHeight = [BFAttributedView getAttributedContentHeight:dateAtti withWdith:totalWidth];
-    CGRect dateRect = CGRectMake(table.frame.size.width-LeftMargin-135,originY,135,dateViewHeight);
+    CGRect dateRect = CGRectMake(table.frame.size.width-LeftMargin-95,originY,95,dateViewHeight);
     originY = dateRect.origin.y+dateRect.size.height + TextMargin;
     
     return originY;

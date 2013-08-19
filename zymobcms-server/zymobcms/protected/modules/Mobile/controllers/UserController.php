@@ -256,6 +256,173 @@ class UserController extends Controller {
             echo json_encode($jsonArr);
             
         }
+        
+        /*
+         * 用户图片评论
+         */
+        public function actionPictureCommentList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where create_user=$userId limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
+            
+        }
+        
+        /*
+         * 用户产品评论
+         */
+        public function actionProductCommentList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_product_comment.*,zy_product.title,zy_product.create_time,zy_product.source from zy_product_comment inner join zy_product on zy_product_comment.product_id=zy_product.id where create_user=$userId limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
+            
+        }
+        
+        /*
+         * 用户图片收藏列表
+         */
+        public function actionPictureFavoriteList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_user_picture_favorite.*,zy_picture.title,zy_picture.summary,zy_picture.create_time,zy_picture.source,zy_picture.images from zy_user_picture_favorite inner join zy_picture on zy_picture.id=zy_user_picture_favorite.picture_id  where user_id=$userId limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
+        }
+        
+        /*
+         * 用户产品收藏列表
+         */
+        public function actionProductFavoriteList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_user_product_favorite.*,zy_product.title,zy_product.summary,zy_product.create_time,zy_product.source,zy_product.images from zy_user_product_favorite inner join zy_product on zy_product.id=zy_user_product_favorite.product_id  where user_id=$userId limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
+            
+        }
 }
 
 ?>

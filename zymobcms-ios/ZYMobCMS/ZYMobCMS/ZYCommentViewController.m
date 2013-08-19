@@ -8,6 +8,7 @@
 
 #import "ZYCommentViewController.h"
 #import "ZYCommentCell.h"
+#import "BFNArticleViewController.h"
 
 @interface ZYCommentViewController ()
 
@@ -44,6 +45,7 @@
     self.listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44)];
     self.listTable.dataSource = self;
     self.listTable.delegate = self;
+    self.listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.listTable];
     [self.listTable release];
     
@@ -94,6 +96,10 @@
     // Configure the cell...
     if (!cell) {
         cell = [[[ZYCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+        UIImageView *cellNormalBack = [[UIImageView alloc]init];
+        cellNormalBack.backgroundColor = [BFUitils rgbColor:150 green:150 blue:150];
+        cell.selectedBackgroundView = cellNormalBack;
+        [cellNormalBack release];
     }
     [cell setContentDict:[sourceArray objectAtIndex:indexPath.row]];
     
@@ -105,7 +111,44 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithArticleId:[[self.sourceArray objectAtIndex:indexPath.row]objectForKey:@"article_id"]];
+    articleDetailVC.mainTitle = @"文章详情";
+    [self.navigationController pushViewController:articleDetailVC animated:YES];
+    [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
+    [articleDetailVC enableSwipRightToReturn];
+    [articleDetailVC release];
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ((indexPath.row == [sourceArray count] - 1))
+    {
+        BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,tableView.frame.size.width,45)];
+        footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+        
+        if (!hideLoadMore) {
+            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+            footer.titleLabel.text = @"加载更多...";
+            footer.userInteractionEnabled = YES;
+        }else {
+            NSString *title = @"已是最后一页";
+            if (sourceArray == 0) {
+                title = @"没有获取到内容";
+            }
+            footer.titleLabel.text = title;
+            footer.userInteractionEnabled = NO;
+        }
+        tableView.tableFooterView = footer;
+    }
+}
+- (void)loadMore:(BFLoadMoreView*)loadView
+{
+    [loadView startAnimation];
+    pageIndex ++;
+    [self getHotCommentList];
+}
+
 
 - (void)refresh{
     
@@ -162,7 +205,11 @@
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         
-        NSLog(@"status --->%@",[resultDict objectForKey:@"data"]);
+        NSArray *resultArray = [resultDict objectForKey:@"data"];
+        
+        if (resultArray.count ==0 || resultArray.count <PageSize) {
+            hideLoadMore = YES;
+        }
         
         if (_reloading) {
             [sourceArray removeAllObjects];

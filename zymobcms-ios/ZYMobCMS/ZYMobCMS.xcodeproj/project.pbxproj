@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B5BE4D217C1C87A0086D842 /* ZYPullHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D117C1C87A0086D842 /* ZYPullHeaderView.m */; };
+		3B5BE4D817C1EA4F0086D842 /* ZYPictureCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D717C1EA4F0086D842 /* ZYPictureCommentViewController.m */; };
+		3B5BE4DA17C1EA6D0086D842 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D917C1EA6D0086D842 /* CommentListViewController.m */; };
+		3B5BE4E817C1F6270086D842 /* picture_favorite_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5BE4E417C1F6260086D842 /* picture_favorite_yes.png */; };
+		3B5BE4E917C1F6270086D842 /* picture_favorite_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5BE4E517C1F6260086D842 /* picture_favorite_yes@2x.png */; };
+		3B5BE4EA17C1F6270086D842 /* picture_favorite_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5BE4E617C1F6260086D842 /* picture_favorite_no@2x.png */; };
+		3B5BE4EB17C1F6270086D842 /* picture_favorite_no.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5BE4E717C1F6260086D842 /* picture_favorite_no.png */; };
 		3BE9B0D617AB53A000500F79 /* ZYMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE9B0D517AB53A000500F79 /* ZYMenuViewController.m */; };
 		3BE9B0D917AB542A00500F79 /* ZYCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE9B0D817AB542A00500F79 /* ZYCategoryViewController.m */; };
 		3BE9B0DF17AB554200500F79 /* BFAttributeDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE9B0DC17AB554200500F79 /* BFAttributeDescriptor.m */; };
@@ -76,7 +83,7 @@
 		E44B9A4317B606C200B8FE3E /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99BF17B606C100B8FE3E /* delete.png */; };
 		E44B9A4417B606C200B8FE3E /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99C017B606C100B8FE3E /* delete@2x.png */; };
 		E44B9A4517B606C200B8FE3E /* dialog-box.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99C117B606C100B8FE3E /* dialog-box.png */; };
-		E44B9A4617B606C200B8FE3E /* dialog-box1.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99C217B606C100B8FE3E /* dialog-box1.png */; };
+		E44B9A4617B606C200B8FE3E /* dialog_box1.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99C217B606C100B8FE3E /* dialog_box1.png */; };
 		E44B9A4717B606C200B8FE3E /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99C317B606C100B8FE3E /* dot.png */; };
 		E44B9A4817B606C200B8FE3E /* dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99C417B606C100B8FE3E /* dot@2x.png */; };
 		E44B9A4917B606C200B8FE3E /* drop_down.png in Resources */ = {isa = PBXBuildFile; fileRef = E44B99C517B606C100B8FE3E /* drop_down.png */; };
@@ -416,13 +423,21 @@
 		E4C31D8417B6FD0A009C2689 /* favorite_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C31D8017B6FD05009C2689 /* favorite_no@2x.png */; };
 		E4C31D8517B6FD0A009C2689 /* favorite_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C31D8117B6FD08009C2689 /* favorite_yes.png */; };
 		E4C31D8617B6FD0A009C2689 /* favorite_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C31D8217B6FD09009C2689 /* favorite_yes@2x.png */; };
-		E4C31D8917B70351009C2689 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C31D8817B70350009C2689 /* CommentListViewController.m */; };
 		E4C31D9017B7375A009C2689 /* ZYPicturePreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C31D8F17B73759009C2689 /* ZYPicturePreViewController.m */; };
 		E4EE387217BBC02500A1A03F /* ZYMyCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EE387117BBC02500A1A03F /* ZYMyCommentViewController.m */; };
 		E4EE387517BBC03D00A1A03F /* ZYMyFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EE387417BBC03D00A1A03F /* ZYMyFavoriteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B5BE4D017C1C87A0086D842 /* ZYPullHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPullHeaderView.h; sourceTree = "<group>"; };
+		3B5BE4D117C1C87A0086D842 /* ZYPullHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPullHeaderView.m; sourceTree = "<group>"; };
+		3B5BE4D617C1EA4F0086D842 /* ZYPictureCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPictureCommentViewController.h; sourceTree = "<group>"; };
+		3B5BE4D717C1EA4F0086D842 /* ZYPictureCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPictureCommentViewController.m; sourceTree = "<group>"; };
+		3B5BE4D917C1EA6D0086D842 /* CommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListViewController.m; sourceTree = "<group>"; };
+		3B5BE4E417C1F6260086D842 /* picture_favorite_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture_favorite_yes.png; sourceTree = "<group>"; };
+		3B5BE4E517C1F6260086D842 /* picture_favorite_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture_favorite_yes@2x.png"; sourceTree = "<group>"; };
+		3B5BE4E617C1F6260086D842 /* picture_favorite_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture_favorite_no@2x.png"; sourceTree = "<group>"; };
+		3B5BE4E717C1F6260086D842 /* picture_favorite_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture_favorite_no.png; sourceTree = "<group>"; };
 		3BE9B0D417AB53A000500F79 /* ZYMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMenuViewController.h; sourceTree = "<group>"; };
 		3BE9B0D517AB53A000500F79 /* ZYMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMenuViewController.m; sourceTree = "<group>"; };
 		3BE9B0D717AB542A00500F79 /* ZYCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCategoryViewController.h; sourceTree = "<group>"; };
@@ -518,7 +533,7 @@
 		E44B99BF17B606C100B8FE3E /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		E44B99C017B606C100B8FE3E /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		E44B99C117B606C100B8FE3E /* dialog-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog-box.png"; sourceTree = "<group>"; };
-		E44B99C217B606C100B8FE3E /* dialog-box1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialog-box1.png"; sourceTree = "<group>"; };
+		E44B99C217B606C100B8FE3E /* dialog_box1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialog_box1.png; sourceTree = "<group>"; };
 		E44B99C317B606C100B8FE3E /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
 		E44B99C417B606C100B8FE3E /* dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot@2x.png"; sourceTree = "<group>"; };
 		E44B99C517B606C100B8FE3E /* drop_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drop_down.png; sourceTree = "<group>"; };
@@ -997,7 +1012,6 @@
 		E4C31D8117B6FD08009C2689 /* favorite_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite_yes.png; sourceTree = "<group>"; };
 		E4C31D8217B6FD09009C2689 /* favorite_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite_yes@2x.png"; sourceTree = "<group>"; };
 		E4C31D8717B7034F009C2689 /* CommentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListViewController.h; sourceTree = "<group>"; };
-		E4C31D8817B70350009C2689 /* CommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListViewController.m; sourceTree = "<group>"; };
 		E4C31D8E17B73757009C2689 /* ZYPicturePreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPicturePreViewController.h; sourceTree = "<group>"; };
 		E4C31D8F17B73759009C2689 /* ZYPicturePreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPicturePreViewController.m; sourceTree = "<group>"; };
 		E4EE387017BBC02500A1A03F /* ZYMyCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyCommentViewController.h; sourceTree = "<group>"; };
@@ -1077,6 +1091,8 @@
 				E44B9AF117B60AC900B8FE3E /* ZYPictureController.m */,
 				E4C31D8E17B73757009C2689 /* ZYPicturePreViewController.h */,
 				E4C31D8F17B73759009C2689 /* ZYPicturePreViewController.m */,
+				3B5BE4D617C1EA4F0086D842 /* ZYPictureCommentViewController.h */,
+				3B5BE4D717C1EA4F0086D842 /* ZYPictureCommentViewController.m */,
 			);
 			name = Picture;
 			sourceTree = "<group>";
@@ -1175,7 +1191,7 @@
 				E4C31C2A17B65CA5009C2689 /* ZYCommentBar.h */,
 				E4C31C2B17B65CA5009C2689 /* ZYCommentBar.m */,
 				E4C31D8717B7034F009C2689 /* CommentListViewController.h */,
-				E4C31D8817B70350009C2689 /* CommentListViewController.m */,
+				3B5BE4D917C1EA6D0086D842 /* CommentListViewController.m */,
 			);
 			name = Article;
 			sourceTree = "<group>";
@@ -1260,7 +1276,7 @@
 				E44B99BF17B606C100B8FE3E /* delete.png */,
 				E44B99C017B606C100B8FE3E /* delete@2x.png */,
 				E44B99C117B606C100B8FE3E /* dialog-box.png */,
-				E44B99C217B606C100B8FE3E /* dialog-box1.png */,
+				E44B99C217B606C100B8FE3E /* dialog_box1.png */,
 				E44B99C317B606C100B8FE3E /* dot.png */,
 				E44B99C417B606C100B8FE3E /* dot@2x.png */,
 				E44B99C517B606C100B8FE3E /* drop_down.png */,
@@ -1396,6 +1412,8 @@
 				E44B9AE317B607DE00B8FE3E /* BFImageScroller.m */,
 				E48419D017C19CA300CA3320 /* ZYLoadingView.h */,
 				E48419D117C19CA300CA3320 /* ZYLoadingView.m */,
+				3B5BE4D017C1C87A0086D842 /* ZYPullHeaderView.h */,
+				3B5BE4D117C1C87A0086D842 /* ZYPullHeaderView.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -2230,6 +2248,10 @@
 		E4C31CC217B662AD009C2689 /* comment */ = {
 			isa = PBXGroup;
 			children = (
+				3B5BE4E417C1F6260086D842 /* picture_favorite_yes.png */,
+				3B5BE4E517C1F6260086D842 /* picture_favorite_yes@2x.png */,
+				3B5BE4E617C1F6260086D842 /* picture_favorite_no@2x.png */,
+				3B5BE4E717C1F6260086D842 /* picture_favorite_no.png */,
 				E484199317C054F300CA3320 /* last_comment.png */,
 				E484196417C052FE00CA3320 /* comment_btn_normal.png */,
 				E484196517C052FE00CA3320 /* comment_btn_selected.png */,
@@ -2342,7 +2364,7 @@
 				E44B9A4317B606C200B8FE3E /* delete.png in Resources */,
 				E44B9A4417B606C200B8FE3E /* delete@2x.png in Resources */,
 				E44B9A4517B606C200B8FE3E /* dialog-box.png in Resources */,
-				E44B9A4617B606C200B8FE3E /* dialog-box1.png in Resources */,
+				E44B9A4617B606C200B8FE3E /* dialog_box1.png in Resources */,
 				E44B9A4717B606C200B8FE3E /* dot.png in Resources */,
 				E44B9A4817B606C200B8FE3E /* dot@2x.png in Resources */,
 				E44B9A4917B606C200B8FE3E /* drop_down.png in Resources */,
@@ -2559,6 +2581,10 @@
 				E48419C417C0B1E300CA3320 /* menu_item_17_selected@2x.png in Resources */,
 				E48419C517C0B1E300CA3320 /* menu_item_18_selected.png in Resources */,
 				E48419C617C0B1E300CA3320 /* menu_item_18_selected@2x.png in Resources */,
+				3B5BE4E817C1F6270086D842 /* picture_favorite_yes.png in Resources */,
+				3B5BE4E917C1F6270086D842 /* picture_favorite_yes@2x.png in Resources */,
+				3B5BE4EA17C1F6270086D842 /* picture_favorite_no@2x.png in Resources */,
+				3B5BE4EB17C1F6270086D842 /* picture_favorite_no.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2705,7 +2731,6 @@
 				E414EA8F17B6345000CB6C59 /* BFNPreviewViewController.m in Sources */,
 				E4C31C2C17B65CA5009C2689 /* ZYCommentBar.m in Sources */,
 				E4C31D7E17B68AC7009C2689 /* ArticleCommentCell.m in Sources */,
-				E4C31D8917B70351009C2689 /* CommentListViewController.m in Sources */,
 				E4C31D9017B7375A009C2689 /* ZYPicturePreViewController.m in Sources */,
 				E43AF72317B75AAF008FD5A5 /* ZYProductCell.m in Sources */,
 				E43AF72817B77304008FD5A5 /* ZYProductDetailViewController.m in Sources */,
@@ -2719,6 +2744,9 @@
 				E48419CC17C12CA900CA3320 /* ZYInputCell.m in Sources */,
 				E48419CF17C1401600CA3320 /* ZYButtonCell.m in Sources */,
 				E48419D217C19CA300CA3320 /* ZYLoadingView.m in Sources */,
+				3B5BE4D217C1C87A0086D842 /* ZYPullHeaderView.m in Sources */,
+				3B5BE4D817C1EA4F0086D842 /* ZYPictureCommentViewController.m in Sources */,
+				3B5BE4DA17C1EA6D0086D842 /* CommentListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BFNBaseViewController.h"
 #define PageSize 10
+#import "ZYCommentBar.h"
 
 @interface ZYCommentViewController : BFNBaseViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
-    BOOL _isLoadMore;
     BOOL _reloading;
-    
+    BOOL            hideLoadMore;
     
 }
 @property (nonatomic,retain)UITableView *listTable;

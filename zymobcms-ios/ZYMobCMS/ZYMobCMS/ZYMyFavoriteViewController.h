@@ -8,6 +8,6 @@
 
 #import "BFNBaseViewController.h"
 
-@interface ZYMyFavoriteViewController : BFNBaseViewController
+@interface ZYMyFavoriteViewController : ZYCategoryViewController
 
 @end

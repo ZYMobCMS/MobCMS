@@ -11,12 +11,13 @@
 
 @interface CommentListViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate>
 {
-    ZYCommentBar *commentBar;
+    
 }
 @property (nonatomic,retain)UITableView *listTable;
 @property (nonatomic,retain)NSString *articleId;
 @property (nonatomic,retain)NSMutableArray *sourceArray;
 @property (nonatomic,assign)NSInteger pageIndex;
+@property (nonatomic,retain)ZYCommentBar *commentBar;
 
 - (id)initWithArticleId:(NSString*)aId;
 

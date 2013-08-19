@@ -328,6 +328,128 @@ class NewsListController extends Controller {
             
         }
         
+        /*
+         * 支持某条评论
+         * 
+         */
+        public function actionSupportComment(){
+            
+               $appId = $_GET['appId'];
+               $commentId = $_GET['commentId'];
+               
+               if($appId==NULL || $commentId == NULL){
+                   $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                    echo json_encode($resultArr);
+            
+                    return;
+               }
+               
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $sql = "update zy_comment set support_count=support_count+1 where comment_id = $commentId";
+            
+            $resultObj = $dbOperation->saveBySql($sql);
+            
+            if($resultObj){
+                   $josnArr = array('status'=>'1','data'=>'支持成功');
+            }  else {
+                   $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+            }
+            
+            echo json_encode($josnArr);
+               
+        }
+        
+        /*
+         *  踩某条评论
+         */
+        public function actionUnSupportComment(){
+            
+               $appId = $_GET['appId'];
+               $commentId = $_GET['commentId'];
+               
+               if($appId==NULL || $commentId == NULL){
+                   $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                    echo json_encode($resultArr);
+            
+                    return;
+               }
+               
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $sql = "update zy_comment set support_count=support_count-1 where comment_id = $commentId";
+            
+            $resultObj = $dbOperation->saveBySql($sql);
+            
+            if($resultObj){
+                   $josnArr = array('status'=>'1','data'=>'支持成功');
+            }  else {
+                   $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+            }
+            
+            echo json_encode($josnArr);
+               
+        }
+        
+        /*
+         * 取消收藏
+         */
+        public function actionDeleteFavorite(){
+            
+            $articleId = $_GET['articleId'];
+            $productId = $_GET['appId'];
+            $userId  = $_GET['userId'];
+            
+            if(!$articleId || !$productId || !$userId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+                        
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            
+            //不允许重复收藏
+            $favoriteExistSql = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
+            $favoriteExist = $dbOperation->queryBySql($favoriteExistSql);
+            if(!$favoriteExist){
+              
+                $resultArr = array('status'=>'0','msg'=>'你没有收藏过该文章');
+                
+                echo json_encode($resultArr);
+                
+                return;
+                
+            } 
+            
+            
+            $insertSql = "delete from zy_user_favorite where article_id = $articleId";            
+            $insertResult = $dbOperation->saveBySql($insertSql);
+            
+            if($insertResult){
+                
+                $resultArr = array('status'=>'1','msg'=>'取消成功');
+            
+                //文章收藏数加1
+                $updateFavoriteSql = "update zy_article set favorite_count=favorite_count-1 where id=$articleId";
+                $dbOperation->saveBySql($updateFavoriteSql);
+                
+                echo json_encode($resultArr);
+            
+                return;
+                
+            }else{
+                
+                $resultArr = array('status'=>'0','msg'=>'收藏失败');
+            
+                echo json_encode($resultArr);
+            
+                return;
+            }
+            
+        }
         
 } 
 

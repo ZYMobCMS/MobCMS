@@ -11,17 +11,27 @@
 #define ZY_USER_UDF @"ZY_USER_UDF"
 
 @interface ZYUserManager : NSObject
-{
-    
-}
 
-+ (void)userLoginWithName:(NSString*)loginName withPassword:(NSString*)password;
++ (NSString*)getCurrentUserId;
 
-+ (void)userRigistWithName:(NSString*)loginName withPassword:(NSString*)password;
++ (NSString*)getCurrentUserLoginName;
+
++ (BOOL)loginOutThisUserById:(NSString*)userId;
+
++ (BOOL)loginOutThisUserByLoginName:(NSString*)loginName;
+
++ (BOOL)loginThisUserById:(NSString*)userId;
+
++ (BOOL)loginThisUserByLoginName:(NSString*)loginName;
+
++ (void)saveLoginUser:(NSDictionary*)userDict;
+
++ (void)saveLoginUser:(NSDictionary *)userDict loginState:(BOOL)state;
+
++ (NSDictionary*)getUserDictWithLoginName:(NSString*)loginName;
++ (NSDictionary*)getUserDictWithUserId:(NSString*)userId;
 
 + (void)loginOutUserWithUserName:(NSString*)loginName;
-
-+ (NSString *)getCurrentUserId;
 
 + (NSString*)getCurrentUserLoginNameById:(NSString*)userId;
 

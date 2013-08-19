@@ -148,18 +148,33 @@
     //add commentBAr
     commentBar = [[ZYCommentBar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-106*2/6-44,self.view.frame.size.width, 106*2/6) withBeginAction:^{
         
-        UIControl *whiteBoard = [[UIControl alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
-        whiteBoard.alpha = 0.1;
-        whiteBoard.tag = 111222;
-        [whiteBoard addTarget:self action:@selector(whilteBoardTouchDown) forControlEvents:UIControlEventTouchDown];
-        [self.view insertSubview:whiteBoard belowSubview:commentBar];
-        [whiteBoard release];
+        //
+        if (![ZYUserManager userIsLogined]) {
+            ZYLoginViewController *loginVC = [[ZYLoginViewController alloc]init];
+            loginVC.mainTitle = @"登录";
+            [ZYMobCMSUitil setBFNNavItemForReturn:loginVC];
+//            [loginVC setSuccessAction:^{
+//                [loginVC.navigationController popViewControllerAnimated:YES];
+//            }];
+            [self.navigationController pushViewController:loginVC animated:YES];
+            [loginVC release];
+            [commentBar commentReset];
+
+        }else{
+            UIControl *whiteBoard = [[UIControl alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
+            whiteBoard.alpha = 0.1;
+            whiteBoard.tag = 111222;
+            [whiteBoard addTarget:self action:@selector(whilteBoardTouchDown) forControlEvents:UIControlEventTouchDown];
+            [self.view insertSubview:whiteBoard belowSubview:commentBar];
+            [whiteBoard release];
+        }
         
         
     } withEndAction:^{
         
-        [[self.view viewWithTag:111222]removeFromSuperview];
-       
+        if ([self.view viewWithTag:111222]) {
+            [[self.view viewWithTag:111222]removeFromSuperview];
+        }
     }];
     commentBar.layer.cornerRadius = 3.0f;
     commentBar.layer.borderWidth = 2.0f;
@@ -202,6 +217,8 @@
     commentVC.mainTitle = @"跟贴";
     [ZYMobCMSUitil setBFNNavItemForReturn:commentVC];
     [self.navigationController pushViewController:commentVC animated:YES];
+    commentVC.commentBar.favoriteType = ZYFavoriteArticle;
+    commentVC.commentBar.commentType = ZYCommentArticle;
     [commentVC release];
 }
 

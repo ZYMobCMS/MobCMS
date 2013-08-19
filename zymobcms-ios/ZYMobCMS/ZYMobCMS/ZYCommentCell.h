@@ -12,13 +12,14 @@
 #define LeftMargin 10
 #define TopMargin 10
 #define TextMargin 10
-#define TitleFontSize 14
+#define TitleFontSize 9
 #define ContentFontSize 13
 #define ArticleTitleFontSize 11
 #define ContentLineSpace 6
 
 @interface ZYCommentCell : UITableViewCell
 {
+    UIImageView      *backImgView;
     BFAttributedView *titleView;
     BFAttributedView *contentView;
     BFAttributedView *articleTitleView;

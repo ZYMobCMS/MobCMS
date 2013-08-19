@@ -7,6 +7,9 @@
 //
 
 #import "ZYMyFavoriteViewController.h"
+#import "ZYPictureCell.h"
+#import "ZYProductCell.h"
+#import "ZYCategoryCell.h"
 
 @interface ZYMyFavoriteViewController ()
 

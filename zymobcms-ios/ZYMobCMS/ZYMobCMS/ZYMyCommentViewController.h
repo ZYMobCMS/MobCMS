@@ -7,9 +7,13 @@
 //
 
 #import "BFNBaseViewController.h"
+#import "BFSegmentControl.h"
 
-@interface ZYMyCommentViewController : ZYCommentViewController
+@interface ZYMyCommentViewController : ZYCommentViewController<BFSegmentControlDataSource>
 {
-    
+    BFSegmentControl *segmentCtrl;
+    NSMutableArray *segmentArray;
+    ZYCommentType       currentRequestType;
 }
+
 @end

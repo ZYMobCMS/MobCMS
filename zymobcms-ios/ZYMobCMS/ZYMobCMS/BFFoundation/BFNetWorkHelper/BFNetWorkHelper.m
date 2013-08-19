@@ -154,10 +154,67 @@ static BFNetWorkHelper *_instance = nil;
             case ZYCMSRequestTypeHotCommentList:
             urlString = ZYCMS_Hot_Comment_Interface;
             break;
+            
             case ZYCMSRequestTypeApplicationName:
             urlString = ZYCMS_Menu_Application_Name_Interface;
             break;
-                    
+            
+            case ZYCMSRequestTypeSupportComment:
+            urlString = ZYCMS_Supprot_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUnSupportComment:
+            urlString = ZYCMS_UnSupport_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCancelFavoritePicture:
+            urlString = ZYCMS_Cancel_Favorite_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCancelFavoriteProduct:
+            urlString = ZYCMS_Cancel_Favorite_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCommentPicture:
+            urlString = ZYCMS_Comment_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCommentProduct:
+            urlString = ZYCMS_Comment_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypeFavoritePicture:
+            urlString = ZYCMS_Favorite_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeFavoriteProduct:
+            urlString = ZYCMS_Favorite_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureCommentList:
+            urlString = ZYCMS_Picture_Comment_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductCommentList:
+            urlString = ZYCMS_Product_Comment_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeIsFavoritePicture:
+            urlString = ZYCMS_Is_Favorite_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeIsFavoriteProduct:
+            urlString = ZYCMS_Is_Favorite_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserPictureCommentList:
+            urlString = ZYCMS_User_Picture_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserProductCommentList:
+            urlString = ZYCMS_User_Product_Comment_Interface;
+            break;
+            
         default:
             break;
     }

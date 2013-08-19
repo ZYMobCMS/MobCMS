@@ -33,6 +33,20 @@ typedef enum {
     ZYCMSRequestTypeUserFavorite,
     ZYCMSRequestTypeUserComment,
     ZYCMSRequestTypeApplicationName,
+    ZYCMSRequestTypeSupportComment,
+    ZYCMSRequestTypeUnSupportComment,
+    ZYCMSRequestTypeFavoritePicture,
+    ZYCMSRequestTypeCancelFavoritePicture,
+    ZYCMSRequestTypePictureCommentList,
+    ZYCMSRequestTypeCommentPicture,
+    ZYCMSRequestTypeFavoriteProduct,
+    ZYCMSRequestTypeCancelFavoriteProduct,
+    ZYCMSRequestTypeCommentProduct,
+    ZYCMSRequestTypeProductCommentList,
+    ZYCMSRequestTypeIsFavoritePicture,
+    ZYCMSRequestTypeIsFavoriteProduct,
+    ZYCMSRequestTypeUserPictureCommentList,
+    ZYCMSRequestTypeUserProductCommentList,
     
 }ZYCMSRequestType;
 

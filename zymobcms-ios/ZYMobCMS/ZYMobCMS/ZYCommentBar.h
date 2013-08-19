@@ -11,6 +11,22 @@
 typedef void (^inputBeginAction) (void);
 typedef void (^inputEndAction) (void);
 
+typedef enum {
+    
+    ZYCommentArticle = 0,
+    ZYCommentPicture,
+    ZYCommentProduct,
+    
+}ZYCommentType;
+
+typedef enum {
+    
+    ZYFavoriteArticle = 0,
+    ZYFavoritePicture,
+    ZYFavoriteProduct,
+    
+}ZYFavoriteType;
+
 @interface ZYCommentBar : UIView<UITextViewDelegate>
 {
     UIImageView *backgroundView;
@@ -27,6 +43,8 @@ typedef void (^inputEndAction) (void);
 @property (nonatomic,retain)NSString *lastInputString;
 @property (nonatomic,retain)UIButton    *favBtn;
 @property (nonatomic,assign)BOOL     isFavorited;
+@property (nonatomic,assign)ZYCommentType commentType;
+@property (nonatomic,assign)ZYFavoriteType favoriteType;
 
 
 - (id)initWithFrame:(CGRect)frame withBeginAction:(inputBeginAction)bAction withEndAction:(inputEndAction)eAction;

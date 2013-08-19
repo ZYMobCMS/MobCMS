@@ -13,6 +13,7 @@
 @synthesize lastInputString;
 @synthesize favBtn;
 @synthesize isFavorited;
+@synthesize commentType,favoriteType;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -119,8 +120,6 @@
     }
     [super dealloc];
 }
-
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -130,22 +129,36 @@
 }
 */
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    if (![ZYUserManager userIsLogined]) {
+        if (_beginAction) {
+            _beginAction();
+        }
+        return NO;
+    }else{
+        return YES; 
+    }
+}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    if (_endAction) {
+        _endAction();
+    }
+    return YES;
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if (_beginAction) {
-        _beginAction();
-        inputTagView.hidden = YES;
-        inputTextView.text = self.lastInputString;
-    }
+    inputTagView.hidden = YES;
+    inputTextView.text = self.lastInputString;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    if (_endAction) {
-        _endAction();
-        inputTagView.hidden = NO;
-        self.lastInputString = inputTextView.text;
-    }
+    inputTagView.hidden = NO;
+    self.lastInputString = inputTextView.text;
+
 }
 
 - (void)switchToInputState
@@ -206,6 +219,13 @@
 
 - (void)sendCommentOrFavAction
 {
+    if (![ZYUserManager userIsLogined]) {
+        if (_beginAction) {
+            _beginAction();
+        }
+        return;
+    }
+    
     if (!self.articleId) {
         [self commentReset];
         return;
@@ -215,17 +235,69 @@
         
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         [params setObject:inputTextView.text forKey:@"content"];
-        [params setObject:self.articleId forKey:@"articleId"];
         
-        [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCommentArticle withParams:params withHelperDelegate:self withSuccessRequestMethod:@"sendCommentSuccess:" withFaildRequestMethod:@"sendCommentFaild:"];
+        NSString *paramName = nil;
+        ZYCMSRequestType commentRequest;
+        switch (self.commentType) {
+            case ZYCommentArticle:
+            {
+                commentRequest = ZYCMSRequestTypeCommentArticle;
+                paramName = @"articleId";
+            }
+                break;
+            case ZYCommentPicture:
+            {
+                commentRequest = ZYCMSRequestTypeCommentPicture;
+                paramName = @"pictureId";
+            }
+                break;
+            case ZYCommentProduct:
+            {
+                commentRequest = ZYCMSRequestTypeCommentProduct;
+                paramName = @"productId";
+            }
+                break;
+                
+            default:
+                break;
+        }
+        [params setObject:self.articleId forKey:paramName];
+
+        [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:commentRequest withParams:params withHelperDelegate:self withSuccessRequestMethod:@"sendCommentSuccess:" withFaildRequestMethod:@"sendCommentFaild:"];
         
         
     }else{
         
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        [params setObject:self.articleId forKey:@"articleId"];
+        NSString *paramName = nil;
+        ZYCMSRequestType favoriteRequest;
+        switch (self.favoriteType) {
+            case ZYFavoriteArticle:
+            {
+                favoriteRequest = ZYCMSRequestTypeFavoriteArticle;
+                paramName = @"articleId";
+            }
+                break;
+            case ZYFavoritePicture:
+            {
+                favoriteRequest = ZYCMSRequestTypeFavoritePicture;
+                paramName = @"pictureId";
+            }
+                break;
+            case ZYFavoriteProduct:
+            {
+                favoriteRequest = ZYCMSRequestTypeFavoriteProduct;
+                paramName = @"productId";
+            }
+                break;
+                
+            default:
+                break;
+        }
         
-        [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoriteArticle withParams:params withHelperDelegate:self withSuccessRequestMethod:@"sendFavoriteSuccess:" withFaildRequestMethod:@"sendFavoriteFaild:"];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setObject:self.articleId forKey:paramName];
+        
+        [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:favoriteRequest withParams:params withHelperDelegate:self withSuccessRequestMethod:@"sendFavoriteSuccess:" withFaildRequestMethod:@"sendFavoriteFaild:"];
         
     }
 }
@@ -250,13 +322,17 @@
         self.lastInputString = @"";
         [self commentReset];
         
+        [SVProgressHUD showSuccessWithStatus:@"评论成功"];
+        
     }else{
+        NSString *errorMsg = [result objectForKey:@"msg"];
+        [SVProgressHUD showErrorWithStatus:errorMsg];
     }
 }
 
 - (void)sendCommentFaild:(NSDictionary*)result
 {
-    
+    [SVProgressHUD showErrorWithStatus:@"网络链接失败，请检查网络"];
 }
 
 - (void)sendFavoriteSuccess:(NSDictionary*)result
@@ -264,9 +340,13 @@
     BOOL status = [[result objectForKey:@"status"]boolValue];
     if (status) {
         NSLog(@"favoriteSuccess");
+        
+        [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
         self.isFavorited = YES;
         [self setDisableFavorite];
     }else{
+        NSString *errorMsg = [result objectForKey:@"msg"];
+        [SVProgressHUD showErrorWithStatus:errorMsg];
         self.isFavorited = NO;
         [self setEnableFavorite];
     }
@@ -275,6 +355,7 @@
 
 - (void)sendFavoriteFaild:(NSDictionary*)result
 {
+    [SVProgressHUD showErrorWithStatus:@"网络链接失败，请检查网络"];
     self.isFavorited = NO;
     [self setEnableFavorite];
 }

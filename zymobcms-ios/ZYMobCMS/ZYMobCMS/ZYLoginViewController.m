@@ -29,6 +29,9 @@
 
 - (void)dealloc
 {
+    if (_successAction) {
+        [_successAction release];
+    }
     [sourceArray release];
     [super dealloc];
 }
@@ -51,6 +54,13 @@
     [self.view addSubview:listTable];
     [listTable release];
     
+    //logo header
+    ZYPullHeaderView *headView = [[ZYPullHeaderView alloc]
+                                  initWithFrame:
+                                  CGRectMake(0.0f, 0.0f - listTable.bounds.size.height, self.view.frame.size.width,listTable.bounds.size.height)];
+    [listTable addSubview:headView];
+    [headView release];
+    
     //跟贴
     UIButton *oveaSeaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     oveaSeaBtn.frame = CGRectMake(0,0,60,30);
@@ -63,6 +73,17 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:oveaSeaBtn];
     self.navigationItem.rightBarButtonItem = rightItem;
     [rightItem release];
+}
+
+- (void)setSuccessLoginAction:(LoginSuccessAction)loginSuccessAction
+{
+    if (_successAction) {
+        [_successAction release];
+    }
+    _successAction = [loginSuccessAction copy];
+    
+    NSLog(@"login action---->%@",_successAction);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -206,29 +227,18 @@
     if (status) {
         
         NSLog(@"resultDict -->%@",resultDict);
+        [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+        //保存用户信息
+        [ZYUserManager saveLoginUser:resultDict loginState:YES];
+        [[NSNotificationCenter defaultCenter]postNotificationName:ZYCMS_LOGIN_SUCESS_NOTI object:nil];
         
-        ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-        
-        ZYAccountViewController *accoutVC = [[ZYAccountViewController alloc]init];
-        accoutVC.mainTitle = @"账号管理";
-        [ZYMobCMSUitil setBFNNavItemForMenu:accoutVC];
-        
-        appDelegate.rootViewController.detailViewController = nil;
-        
-        UINavigationController *newNav = [[UINavigationController alloc]initWithRootViewController:accoutVC];
-        [accoutVC release];
-
-        if ([BFUitils isIOSVersionOver5]) {
-            [newNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar.png"] forBarMetrics:UIBarMetricsDefault];
-        }else {
-            [newNav.navigationBar drawRect:newNav.navigationBar.frame];
+        if (_successAction) {
+            _successAction();
         }
-        newNav.view.frame = appDelegate.rootViewController.view.frame;
-        appDelegate.rootViewController.detailViewController = newNav;
-        [newNav release];
         
-        [appDelegate hiddenMaster];
-        
+    }else{
+        NSString *errorMsg = [resultDict objectForKey:@"msg"];
+        [SVProgressHUD showErrorWithStatus:errorMsg];
     }
     [self stopLoading];
 }
@@ -236,5 +246,7 @@
 {
     [self stopLoading];
 }
+
+
 
 @end

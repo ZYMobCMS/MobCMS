@@ -2090,3 +2090,60 @@ Stack trace:
 #9 {main}
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/rigist&appId=zymobcms&userId=1&loginName=zyp&password=123
 ---
+2013/08/19 10:39:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Article))
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(402): CActiveRecord::model('Article')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(77): CActiveRecord->getMetaData()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(65): CActiveRecord->__construct()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionCreate()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('create')
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/c...')
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/08/19 10:42:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Article))
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(402): CActiveRecord::model('Article')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(77): CActiveRecord->getMetaData()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(65): CActiveRecord->__construct()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionCreate()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('create')
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/c...')
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
+---

@@ -61,6 +61,7 @@
     [sysViewControllers release];
     [viewControllers release];
     
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     [super dealloc];
 }
 
@@ -95,6 +96,9 @@
     [menuTableView release];
     
     [self getApplicationName];
+    
+    //
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(observeLoginSuccessNoti:) name:ZYCMS_LOGIN_SUCESS_NOTI object:nil];
     
 }
 
@@ -348,6 +352,29 @@
             }else{
                 ZYLoginViewController *LoginVC = [[ZYLoginViewController alloc]init];
                 LoginVC.mainTitle = @"账号管理";
+                [LoginVC setSuccessLoginAction:^{
+                    ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+                    
+                    ZYAccountViewController *accoutVC = [[ZYAccountViewController alloc]init];
+                    accoutVC.mainTitle = @"账号管理";
+                    [ZYMobCMSUitil setBFNNavItemForMenu:accoutVC];
+                    
+                    appDelegate.rootViewController.detailViewController = nil;
+                    
+                    UINavigationController *newNav = [[UINavigationController alloc]initWithRootViewController:accoutVC];
+                    [accoutVC release];
+                    
+                    if ([BFUitils isIOSVersionOver5]) {
+                        [newNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar.png"] forBarMetrics:UIBarMetricsDefault];
+                    }else {
+                        [newNav.navigationBar drawRect:newNav.navigationBar.frame];
+                    }
+                    newNav.view.frame = appDelegate.rootViewController.view.frame;
+                    appDelegate.rootViewController.detailViewController = newNav;
+                    [newNav release];
+                    
+                    [appDelegate hiddenMaster];
+                }];
                 [sysViewControllers addObject:LoginVC];
                 [ZYMobCMSUitil setBFNNavItemForMenu:LoginVC];
                 [LoginVC release];
@@ -738,6 +765,16 @@
     }
 }
 
+#pragma mark - 监视登陆成功
+- (void)observeLoginSuccessNoti:(NSNotification*)noti
+{
+    [sysViewControllers removeObjectAtIndex:0];
+    ZYAccountViewController *acountVC = [[ZYAccountViewController alloc]init];
+    acountVC.mainTitle = @"账号管理";
+    [sysViewControllers insertObject:acountVC atIndex:0];
+    [ZYMobCMSUitil setBFNNavItemForMenu:acountVC];
+    [acountVC release];
+}
 
 
 @end
