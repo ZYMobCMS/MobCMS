@@ -83,6 +83,7 @@
             [ZYMobCMSUitil setBFNNavItemForReturn:loginVC];
             [loginVC setSuccessLoginAction:^{
                 [self.navigationController popViewControllerAnimated:YES];
+                NSLog(@"set login action()!!");
             }];
             [self.navigationController pushViewController:loginVC animated:YES];
             [loginVC release];
