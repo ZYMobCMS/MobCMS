@@ -62,9 +62,9 @@
         contentImageView.frame = CGRectMake(0,0,1,1);
         [self.contentView addSubview:contentImageView];
         [contentImageView release];
-        
+                
         UIView *selectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [selectView setBackgroundColor:[UIColor colorWithRed:212.0/255.0 green:212.0/255.0 blue:212.0/255.0 alpha:1]];
+        [selectView setBackgroundColor:[UIColor colorWithRed:232.0/255.0 green:232.0/255.0 blue:232.0/255.0 alpha:1]];
         self.selectedBackgroundView = selectView;
         [selectView release];
     }

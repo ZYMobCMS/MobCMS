@@ -10,6 +10,7 @@
 #import "ZYAboutCell.h"
 #import "ZYButtonCell.h"
 #import "ZYReplyViewController.h"
+#import "BFNPreviewViewController.h"
 
 
 @interface ZYAboutViewController ()
@@ -101,8 +102,19 @@
         // Configure the cell...
         if (!cell) {
             cell = [[[ZYAboutCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+            UIImageView *cellNormalBack = [[UIImageView alloc]init];
+            cellNormalBack.backgroundColor = [BFUitils rgbColor:212 green:212 blue:212];
+            cell.selectedBackgroundView = cellNormalBack;
+            [cellNormalBack release];
         }
         [cell setContentDict:[sourceArray objectAtIndex:indexPath.row]];
+        if ([[[sourceArray objectAtIndex:indexPath.row]objectForKey:@"type_name"]isEqualToString:@"主页"]) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        }else{
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
         
         return cell;
     }else{
@@ -117,10 +129,32 @@
         [cell.actionBtn setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
         [cell.actionBtn setTitle:@"联系我们" forState:UIControlStateNormal];
         
+        
         return cell;
 
     }
     
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *item = [sourceArray objectAtIndex:indexPath.row];
+    NSString *typeName = [item objectForKey:@"type_name"];
+    
+    if ([typeName isEqualToString:@"主页"]) {
+        
+        BFNPreviewViewController *preVC = [[BFNPreviewViewController alloc]init];
+        preVC.url = [item objectForKey:@"value"];
+        if ([preVC.url rangeOfString:@"http://"].location == NSNotFound) {
+            preVC.url = [NSString stringWithFormat:@"http://%@",preVC.url];
+        }
+        preVC.mainTitle = [item objectForKey:@"tag"];
+        preVC.isLoadUrl = YES;
+        [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
+        [self.navigationController pushViewController:preVC animated:YES];
+        [preVC release];
+        
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - 获取关于信息
@@ -215,18 +249,13 @@
         {
             for (NSDictionary *item in sourceArray) {
                 if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
-                    
-                    if (![MFMailComposeViewController canSendMail]) {
-                        
-                    }else{
-                        MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc]init];
-                        mailVC.mailComposeDelegate = self;
-                        [mailVC setToRecipients:[NSArray arrayWithObject:[item objectForKey:@"value"]]];
-                        [mailVC setSubject:@"给我们反馈"];
-                        [mailVC setMessageBody:@"请给我们您的建议" isHTML:NO];
-                        [self presentModalViewController:mailVC animated:YES];
-                        [mailVC release];
-                    }
+                    MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc]init];
+                    mailVC.mailComposeDelegate = self;
+                    [mailVC setToRecipients:[NSArray arrayWithObject:[item objectForKey:@"value"]]];
+                    [mailVC setSubject:@"给我们反馈"];
+                    [mailVC setMessageBody:@"请给我们您的建议" isHTML:NO];
+                    [self presentModalViewController:mailVC animated:YES];
+                    [mailVC release];
                     
                     break;
                     
@@ -237,7 +266,25 @@
             break;
         case 4:
         {
-            
+            if (![MFMessageComposeViewController canSendText]) {
+                UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持短信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [Notpermitted show];
+                [Notpermitted release];
+            }else{
+                for (NSDictionary *item in sourceArray) {
+                    if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                        MFMessageComposeViewController *messageVC = [[MFMessageComposeViewController alloc]init];
+                        messageVC.messageComposeDelegate = self;
+                        [messageVC setRecipients:[NSArray arrayWithObject:[item objectForKey:@"value"]]];
+                        [messageVC setBody:@"请给我们您的建议"];
+                        [self presentModalViewController:messageVC animated:YES];
+                        [messageVC release];
+                        
+                        break;
+                        
+                    }
+                }
+            }
         }
             break;
         default:
@@ -247,7 +294,26 @@
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
-    
+    switch (result) {
+        case MessageComposeResultCancelled:
+        {
+            [self dismissModalViewControllerAnimated:YES];
+        }
+            break;
+        case MessageComposeResultFailed:
+        {
+            [SVProgressHUD showErrorWithStatus:@"发送短信失败"];
+        }
+            break;
+        case MessageComposeResultSent:
+        {
+            [SVProgressHUD showErrorWithStatus:@"发送短信成功，感谢您的反馈"];
+            [self dismissModalViewControllerAnimated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -255,22 +321,24 @@
     switch (result) {
         case MFMailComposeResultCancelled:
         {
-            
+            [self dismissModalViewControllerAnimated:YES];
         }
             break;
         case MFMailComposeResultFailed:
         {
-            
+            [SVProgressHUD showErrorWithStatus:@"发送邮件失败"];
         }
             break;
         case MFMailComposeResultSaved:
         {
             [SVProgressHUD showSuccessWithStatus:@"保存邮件成功"];
+            [self dismissModalViewControllerAnimated:YES];
         }
             break;
         case MFMailComposeResultSent:
         {
-            [SVProgressHUD showSuccessWithStatus:@"发送邮件成功"];
+            [SVProgressHUD showSuccessWithStatus:@"发送邮件成功,感谢您的反馈"];
+            [self dismissModalViewControllerAnimated:YES];
 
         }
             break;

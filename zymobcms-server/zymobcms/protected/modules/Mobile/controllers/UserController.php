@@ -46,7 +46,7 @@ class UserController extends Controller {
 		}else{
 			
 			$enypassword = $this->enypt($password);
-                        $insertSql = "insert into zy_user(login_name,password,user_type_id)values('$loginName','$enypassword',13)";
+                        $insertSql = "insert into zy_user(login_name,password,user_type_id)values('$loginName','$enypassword',1)";
                         $rigistResult = $dbOperation->saveBySql($insertSql);
 			if($rigistResult){
 	
@@ -289,7 +289,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source,zy_picture.summary from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where zy_picture_comment.create_user=$userId limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -331,7 +331,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_product_comment.*,zy_product.title,zy_product.create_time,zy_product.source from zy_product_comment inner join zy_product on zy_product_comment.product_id=zy_product.id where create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_product_comment.*,zy_product.title,zy_product.create_time,zy_product.source from zy_product_comment inner join zy_product on zy_product_comment.product_id=zy_product.id where zy_product_comment.create_user=$userId limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             

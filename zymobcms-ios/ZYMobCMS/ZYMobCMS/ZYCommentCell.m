@@ -88,7 +88,7 @@
     originY = contentView.frame.origin.y+contentView.frame.size.height+TextMargin;
     
     backImgView.frame = CGRectMake(LeftMargin,TopMargin/2,self.frame.size.width-2*LeftMargin,originY);
-    originY = originY + TopMargin/2;
+    originY = originY + TopMargin/2+4;
     
     CGFloat articleTitleHeight = [BFAttributedView getAttributedContentHeight:articleTitleView.contentAttributedString withWdith:totalWidth];
     articleTitleView.frame = CGRectMake(LeftMargin,originY,totalWidth,articleTitleHeight);
@@ -133,7 +133,7 @@
     CGRect contentRect = CGRectMake(LeftMargin+LeftMargin/2,originY,totalWidth,contentHeight);
     originY = contentRect.origin.y+contentRect.size.height+TextMargin;
     
-    originY = originY + TopMargin/2;
+    originY = originY + TopMargin/2+4;
 
     CGFloat articleTitleHeight = [BFAttributedView getAttributedContentHeight:articleTitleAtti withWdith:totalWidth];
     CGRect articleTitleRect = CGRectMake(LeftMargin,originY,totalWidth,articleTitleHeight);

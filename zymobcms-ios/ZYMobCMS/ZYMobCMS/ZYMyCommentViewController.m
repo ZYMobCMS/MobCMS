@@ -9,6 +9,7 @@
 #import "ZYMyCommentViewController.h"
 #import "BFNArticleViewController.h"
 #import "ZYMyCommentCell.h"
+#import "ZYPicturePreViewController.h"
 
 @interface ZYMyCommentViewController ()
 
@@ -93,7 +94,6 @@
 {
    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[ZYUserManager getCurrentUserId] forKey:@"userId"];
     [params setObject:[NSNumber numberWithInt:self.pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:PageSize ] forKey:@"pageSize"];
     
@@ -140,12 +140,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithArticleId:[[self.sourceArray objectAtIndex:indexPath.row]objectForKey:@"article_id"]];
-    articleDetailVC.mainTitle = @"文章详情";
-    [self.navigationController pushViewController:articleDetailVC animated:YES];
-    [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
-    [articleDetailVC enableSwipRightToReturn];
-    [articleDetailVC release];
+    switch (currentRequestType) {
+        case ZYCommentArticle:
+        {
+            BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithArticleId:[[self.sourceArray objectAtIndex:indexPath.row]objectForKey:@"article_id"]];
+            articleDetailVC.mainTitle = @"文章详情";
+            [self.navigationController pushViewController:articleDetailVC animated:YES];
+            [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
+            [articleDetailVC enableSwipRightToReturn];
+            [articleDetailVC release];
+        }
+            break;
+        case ZYCommentPicture:
+        {
+            NSDictionary *item = [self.sourceArray objectAtIndex:indexPath.row];
+            ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
+            preVC.mainTitle = [item objectForKey:@"title"];
+            preVC.pictureId = [item objectForKey:@"id"];
+            [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
+            [self.navigationController pushViewController:preVC animated:YES];
+            [preVC release];
+        }
+            break;
+        case ZYCommentProduct:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
+
 }
 
 @end
