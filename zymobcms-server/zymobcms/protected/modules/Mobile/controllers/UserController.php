@@ -289,7 +289,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source,zy_picture.summary from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where zy_picture_comment.create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source,zy_picture.summary,zy_picture.images from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where zy_picture_comment.create_user=$userId limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             

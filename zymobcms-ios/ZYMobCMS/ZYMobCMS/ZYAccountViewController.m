@@ -110,6 +110,10 @@
         if (!cell) {
             cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            UIImageView *cellNormalBack = [[UIImageView alloc]init];
+            cellNormalBack.backgroundColor = [BFUitils rgbColor:212 green:212 blue:212];
+            cell.selectedBackgroundView = cellNormalBack;
+            [cellNormalBack release];
         }
         cell.textLabel.text = [sourceArray objectAtIndex:indexPath.row];
         
@@ -163,6 +167,7 @@
     }else{
         
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)loginOutCurrentUser

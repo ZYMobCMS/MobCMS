@@ -8,6 +8,10 @@
 
 #import "BFImageView.h"
 #import "BFImageCache.h"
+#import "UIImage+Resize.h"
+
+#define MaxImageWidth 1024
+#define MaxImageHeight 1800
 
 @interface BFImageView(PrivateMethod)
 - (void)imageDidLoad:(UIImage *)loadImage;
@@ -43,6 +47,8 @@
         }else {
             BFImageGetOperation *loadOperation = [BFImageGetOperation initWithImageUrl:url withFinishDelegate:self withNewRect:self.frame];
             [_loadImageOueue addOperation:loadOperation];
+            
+            
         }
     }
     return self;
@@ -68,6 +74,39 @@
 //BFImageGetOperation CallBack Method
 - (void)imageDidLoad:(UIImage *)loadImage
 {
+    CGFloat increase = 0.f;
+    CGSize newImageSize = CGSizeZero;
+    if (loadImage.size.width > MaxImageWidth || loadImage.size.height > MaxImageHeight) {
+        
+        BOOL increaseXOrY = loadImage.size.height>loadImage.size.width? YES:NO;
+
+        if (increaseXOrY) {
+            CGFloat newImageHeight = 0.f;
+            newImageHeight = loadImage.size.height > MaxImageHeight ? MaxImageHeight:loadImage.size.height;
+            
+            if (newImageHeight==MaxImageHeight) {
+                increase = MaxImageHeight/loadImage.size.height;
+            }
+            
+            CGFloat newImageWidth = loadImage.size.width*increase;
+    
+            newImageSize = CGSizeMake(newImageWidth,newImageHeight);
+        }else{
+            CGFloat newImageWidth = 0.f;
+            newImageWidth = loadImage.size.width > MaxImageWidth ? MaxImageWidth:loadImage.size.width;
+            
+            if (newImageWidth==MaxImageWidth) {
+                increase = MaxImageWidth/loadImage.size.width;
+            }
+            
+            CGFloat newImageHeight = loadImage.size.height*increase;
+            
+            newImageSize = CGSizeMake(newImageWidth,newImageHeight);
+        }
+    }
+    if(!CGSizeEqualToSize(newImageSize,CGSizeZero)){
+        loadImage = [loadImage resizedImage:newImageSize interpolationQuality:kCGInterpolationDefault];
+    }
     self.image = loadImage;
     
     //缓存图片

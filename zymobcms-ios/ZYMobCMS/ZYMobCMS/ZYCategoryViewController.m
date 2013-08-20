@@ -232,6 +232,7 @@
             footer.userInteractionEnabled = NO;
         }
         tableView.tableFooterView = footer;
+        [footer release];
     }
 }
 

@@ -378,11 +378,7 @@ static BFNetWorkHelper *_instance = nil;
     if (timeStamp==nil) {
         return;
     }
-    
-    NSInteger condition = 1;
-    NSConditionLock *lock = [[NSConditionLock alloc]initWithCondition:condition];
-    [lock tryLockWhenCondition:1];
-    
+        
     //如果链接已经完成了
     if (![[_connectionsForCallBackDict allKeys]containsObject:timeStamp]) {
         return;
@@ -403,10 +399,6 @@ static BFNetWorkHelper *_instance = nil;
         [_connectionsForCallBackDict removeObjectForKey:timeStamp];
         
     }
-    
-    condition = 0;
-    [lock unlockWithCondition:0];
-    [lock release];
 }
 
 

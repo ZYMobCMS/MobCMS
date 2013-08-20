@@ -92,7 +92,6 @@
             [ZYMobCMSUitil setBFNNavItemForReturn:loginVC];
             [loginVC setSuccessLoginAction:^{
                 [self.navigationController popViewControllerAnimated:YES];
-                NSLog(@"set login action()!!");
             }];
             [self.navigationController pushViewController:loginVC animated:YES];
             [loginVC release];
@@ -243,6 +242,7 @@
             footer.userInteractionEnabled = NO;
         }
         tableView.tableFooterView = footer;
+        [footer release];
     }
 }
 - (void)loadMore:(BFLoadMoreView*)loadView

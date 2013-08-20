@@ -343,6 +343,89 @@ class PictureController extends Controller {
         
     }
     
+            /*
+         * 支持某条评论
+         * 
+         */
+        public function actionSupportComment(){
+            
+               $appId = $_GET['appId'];
+               $commentId = $_GET['commentId'];
+               $userId = $_GET['userId'];
+               
+               if($appId==NULL || $commentId == NULL || $userId==NULL){
+                   $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                    echo json_encode($resultArr);
+            
+                    return;
+               }
+               
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $sqlInsert = "insert into zy_picture_comment_support(comment_id,user_id)values($commentId,$userId)";
+            
+            $inserResult = $dbOperation->saveBySql($sqlInsert);
+            
+            if($inserResult){
+                $sql = "update zy_picture_comment set support_count=support_count+1 where comment_id = $commentId";
+                $resultObj = $dbOperation->saveBySql($sql);
+                
+                if($resultObj){
+                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                }  else {
+                   $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                }
+            
+            echo json_encode($josnArr);
+            
+            }else{
+                $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                echo json_encode($josnArr);
+            } 
+        }
+        
+        /*
+         *  踩某条评论
+         */
+        public function actionUnSupportComment(){
+            
+               $appId = $_GET['appId'];
+               $commentId = $_GET['commentId'];
+               $userId = $_GET['userId'];
+               
+               if($appId==NULL || $commentId == NULL || $userId==NULL){
+                   $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                    echo json_encode($resultArr);
+            
+                    return;
+               }
+               
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            $sqlDelete = "delete from zy_picture_comment_support where user_id=$userId and comment_id=$commentId";
+            
+            $deleteResult = $dbOperation->saveBySql($sqlDelete);
+            
+            if($deleteResult){
+                $sql = "update zy_picture_comment set support_count=support_count-1 where comment_id = $commentId";
+            
+                $resultObj = $dbOperation->saveBySql($sql);
+            
+                if($resultObj){
+                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                }  else {
+                   $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                }
+            
+                echo json_encode($josnArr);
+            }else{
+                $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                echo json_encode($josnArr);
+            }
+            
+        }
+    
     
 }
 

@@ -74,7 +74,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"PictureCell";
     ZYPictureCell *cell = (ZYPictureCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
@@ -119,6 +119,7 @@
             footer.userInteractionEnabled = NO;
         }
         tableView.tableFooterView = footer;
+        [footer release];
     }
 }
 - (void)loadMore:(BFLoadMoreView*)loadView
@@ -128,6 +129,10 @@
     [self getPictureList];
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    
+}
 
 - (void)getPictureList
 {

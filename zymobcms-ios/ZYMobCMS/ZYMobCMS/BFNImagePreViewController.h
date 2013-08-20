@@ -24,4 +24,6 @@
 
 - (void)closeSelf;
 
+- (void)getAllImagesNow;
+
 @end

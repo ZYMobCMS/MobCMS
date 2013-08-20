@@ -82,9 +82,6 @@
         [_successAction release];
     }
     _successAction = [loginSuccessAction copy];
-    
-    NSLog(@"login action---->%@",_successAction);
-    
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BFImageView.h"
 
 typedef void (^tapOnImageItem) (void);
 
@@ -16,7 +16,7 @@ typedef void (^tapOnImageItem) (void);
     tapOnImageItem _tapAction;
 }
 @property (nonatomic,retain)UILabel *titleLabel;
-@property (nonatomic,retain)UIImageView *contentImageView;
+@property (nonatomic,retain)BFImageView *contentImageView;
 @property (nonatomic,retain)NSMutableArray *productArray;
 
 - (id)initWithFrame:(CGRect)frame withTapAction:(tapOnImageItem)tapAction;

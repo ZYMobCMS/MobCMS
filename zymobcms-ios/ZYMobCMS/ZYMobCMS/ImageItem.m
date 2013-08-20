@@ -24,7 +24,7 @@
         self.layer.shadowColor = [UIColor blackColor].CGColor;
         self.layer.shadowOffset = CGSizeMake(3.0f,3.0f);
         
-        self.contentImageView = [[UIImageView alloc]init];
+        self.contentImageView = [[BFImageView alloc]init];
         self.contentImageView.frame = CGRectMake(5,5,frame.size.width-10,self.frame.size.height-10-30);
         [self addSubview:self.contentImageView];
         [self.contentImageView release];
@@ -50,7 +50,7 @@
         [self addSubview:backImgView];
         [backImgView release];
         
-        self.contentImageView = [[UIImageView alloc]init];
+        self.contentImageView = [[BFImageView alloc]init];
         self.contentImageView.frame = CGRectMake(5,5,frame.size.width-10,self.frame.size.height-10-40);
         [self addSubview:self.contentImageView];
         [self.contentImageView release];
@@ -96,7 +96,7 @@
     NSString *imageUrl = [contentDict objectForKey:@"images"];
     self.contentImageView.image = [UIImage imageNamed:@"no_photo.png"];
     
-    [[BFImageDownloader shareLoader]downloadImageWithUrl:imageUrl forView:self.contentImageView];
+    [self.contentImageView setImageUrl:imageUrl];
 
 }
 

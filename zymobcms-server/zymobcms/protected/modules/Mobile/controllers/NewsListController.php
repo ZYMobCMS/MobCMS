@@ -336,8 +336,9 @@ class NewsListController extends Controller {
             
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
+               $userId = $_GET['userId'];
                
-               if($appId==NULL || $commentId == NULL){
+               if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
                     echo json_encode($resultArr);
@@ -346,18 +347,26 @@ class NewsListController extends Controller {
                }
                
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
-            $sql = "update zy_comment set support_count=support_count+1 where comment_id = $commentId";
+            $sqlInsert = "insert into zy_comment_support(comment_id,user_id)values($commentId,$userId)";
             
-            $resultObj = $dbOperation->saveBySql($sql);
+            $inserResult = $dbOperation->saveBySql($sqlInsert);
             
-            if($resultObj){
+            if($inserResult){
+                $sql = "update zy_comment set support_count=support_count+1 where comment_id = $commentId";
+                $resultObj = $dbOperation->saveBySql($sql);
+                
+                if($resultObj){
                    $josnArr = array('status'=>'1','data'=>'支持成功');
-            }  else {
+                }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
-            }
+                }
             
             echo json_encode($josnArr);
-               
+            
+            }else{
+                $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                echo json_encode($josnArr);
+            } 
         }
         
         /*
@@ -367,8 +376,9 @@ class NewsListController extends Controller {
             
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
+               $userId = $_GET['userId'];
                
-               if($appId==NULL || $commentId == NULL){
+               if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
                     echo json_encode($resultArr);
@@ -377,18 +387,28 @@ class NewsListController extends Controller {
                }
                
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
-            $sql = "update zy_comment set support_count=support_count-1 where comment_id = $commentId";
             
-            $resultObj = $dbOperation->saveBySql($sql);
+            $sqlDelete = "delete from zy_comment_support where user_id=$userId and comment_id=$commentId";
             
-            if($resultObj){
+            $deleteResult = $dbOperation->saveBySql($sqlDelete);
+            
+            if($deleteResult){
+                $sql = "update zy_comment set support_count=support_count-1 where comment_id = $commentId";
+            
+                $resultObj = $dbOperation->saveBySql($sql);
+            
+                if($resultObj){
                    $josnArr = array('status'=>'1','data'=>'支持成功');
-            }  else {
+                }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                }
+            
+                echo json_encode($josnArr);
+            }else{
+                $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                echo json_encode($josnArr);
             }
             
-            echo json_encode($josnArr);
-               
         }
         
         /*

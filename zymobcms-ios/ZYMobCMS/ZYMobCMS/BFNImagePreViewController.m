@@ -104,6 +104,7 @@
         subScroller.minimumZoomScale = 1.0f;
         subScroller.delegate = self;
         subScroller.tag = SubScrollerBaseTag+i;
+        subScroller.contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
         [[BFImageDownloader shareLoader]downloadImageWithUrl:[images objectAtIndex:i] forView:subScroller.contentImageView shouldResize:NO];
         [backScroller addSubview:subScroller];
         [subScroller release];

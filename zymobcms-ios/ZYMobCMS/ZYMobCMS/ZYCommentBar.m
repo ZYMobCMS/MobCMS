@@ -137,6 +137,9 @@
         }
         return NO;
     }else{
+        if (_beginAction) {
+            _beginAction();
+        }
         return YES; 
     }
 }

@@ -156,7 +156,7 @@
             NSDictionary *item = [self.sourceArray objectAtIndex:indexPath.row];
             ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
             preVC.mainTitle = [item objectForKey:@"title"];
-            preVC.pictureId = [item objectForKey:@"id"];
+            preVC.pictureId = [item objectForKey:@"picture_id"];
             [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
             [self.navigationController pushViewController:preVC animated:YES];
             [preVC release];

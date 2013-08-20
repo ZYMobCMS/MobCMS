@@ -248,7 +248,7 @@
         case 3:
         {
             for (NSDictionary *item in sourceArray) {
-                if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                if ([tile rangeOfString:@"手机"].location != NSNotFound) {
                     MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc]init];
                     mailVC.mailComposeDelegate = self;
                     [mailVC setToRecipients:[NSArray arrayWithObject:[item objectForKey:@"value"]]];
