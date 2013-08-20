@@ -18,6 +18,7 @@
     }
     
     NSMutableArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
+    NSLog(@"userList --->%@",userList);
     NSString *userResult = nil;
     for (NSDictionary *userItem in userList) {
         
@@ -28,6 +29,7 @@
         }
         
     }
+    NSLog(@"current UserId--->%@",userResult);
     return userResult;
 }
 
@@ -178,14 +180,37 @@
     if (![[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]) {
         
         userList = [NSMutableArray array];
+        
+        NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userDict];
+        [newUser setObject:[NSString stringWithFormat:@"%d",state] forKey:@"status"];
+        [userList addObject:newUser];
+        [[NSUserDefaults standardUserDefaults]setObject:userList forKey:ZY_USER_UDF];
+        
     }else{
-        userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
+        userList = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]] ;
+        
+        BOOL userExist = NO;
+        for (int i=0; i<userList.count; i++) {
+            
+            NSDictionary *userItem = [userList objectAtIndex:i];
+            NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userItem];
+            
+            if ([[newUser objectForKey:@"login_name"]isEqualToString:[userDict objectForKey:@"login_name"]]) {
+                [newUser setObject:@"1" forKey:@"status"];
+                [userList replaceObjectAtIndex:i withObject:newUser];
+                userExist = YES;
+                break;
+            }
+        }
+        if (!userExist) {
+            NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userDict];
+            [newUser setObject:[NSString stringWithFormat:@"%d",state] forKey:@"status"];
+            [userList addObject:newUser];
+        }
+        [[NSUserDefaults standardUserDefaults]setObject:userList forKey:ZY_USER_UDF];
+        return;
     }
     
-    NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userDict];
-    [newUser setObject:[NSString stringWithFormat:@"%d",state] forKey:@"status"];
-    [userList addObject:newUser];
-    [[NSUserDefaults standardUserDefaults]setObject:userList forKey:ZY_USER_UDF];
 }
 
 + (NSDictionary*)getUserDictWithLoginName:(NSString *)loginName
@@ -194,7 +219,7 @@
         return nil;
     }
     
-    NSMutableArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
+    NSMutableArray *userList = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]];
     NSDictionary *userResult = nil;
     for (NSDictionary *userItem in userList) {
         
@@ -205,6 +230,7 @@
         }
         
     }
+    [[NSUserDefaults standardUserDefaults]setObject:userList forKey:ZY_USER_UDF];
     return userResult;
 }
 
@@ -214,7 +240,7 @@
         return nil;
     }
     
-    NSMutableArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
+    NSMutableArray *userList = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]];
     NSDictionary *userResult = nil;
     for (NSDictionary *userItem in userList) {
         
@@ -225,6 +251,7 @@
         }
         
     }
+    [[NSUserDefaults standardUserDefaults]setObject:userList forKey:ZY_USER_UDF];
     return userResult;
 }
 
@@ -246,6 +273,29 @@
         
     }
     return userResult;
+}
+
++ (void)loginOutCurrentUser
+{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]) {
+        return;
+    }
+    
+    NSArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
+    NSMutableArray *userMutil = [NSMutableArray arrayWithArray:userList];
+    for (int i=0;i<userMutil.count;i++) {
+        
+        NSDictionary *userItem = [userList objectAtIndex:i];
+        NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userItem];
+        if ([[newUser objectForKey:@"status"]boolValue]) {
+            
+            [newUser setObject:@"0" forKey:@"status"];
+            
+            [userMutil replaceObjectAtIndex:i withObject:newUser];
+        }
+        
+    }
+    [[NSUserDefaults standardUserDefaults]setObject:userMutil forKey:ZY_USER_UDF];
 }
 
 @end

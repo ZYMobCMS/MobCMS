@@ -9,6 +9,8 @@
 #import "ZYAccountViewController.h"
 #import "ZYMyCommentViewController.h"
 #import "ZYMyFavoriteViewController.h"
+#import "ZYLoginViewController.h"
+#import "ZYButtonCell.h"
 
 @interface ZYAccountViewController ()
 
@@ -66,13 +68,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [sourceArray count];
+    if (section == 0) {
+        return 1;
+    }else if (section == 1){
+        return [sourceArray count];
+    }else{
+        return 1;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,16 +90,47 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    if (!cell) {
-        cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+    if (indexPath.section == 0) {
+        static NSString *CellIdentifier = @"Cell";
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        // Configure the cell...
+        if (!cell) {
+            cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+        }
+//        cell.textLabel.text = [sourceArray objectAtIndex:indexPath.row];
+        
+        return cell;
+
+    }else if (indexPath.section == 1){
+        static NSString *CellIdentifier = @"Cell";
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        // Configure the cell...
+        if (!cell) {
+            cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        cell.textLabel.text = [sourceArray objectAtIndex:indexPath.row];
+        
+        return cell;
+        
+    }else{
+        static NSString *CellIdentifier = @"ButtonCell";
+        ZYButtonCell *cell = (ZYButtonCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (!cell) {
+            cell = [[[ZYButtonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTapOnBtn:^{
+                [self loginOutCurrentUser];
+            }]autorelease];
+        }
+        [cell.actionBtn setBackgroundImage:[UIImage imageNamed:@"red_button.png"] forState:UIControlStateNormal];
+        [cell.actionBtn setTitle:@"注销当前账号" forState:UIControlStateNormal];
+        
+        return cell;
+        
     }
-    cell.textLabel.text = [sourceArray objectAtIndex:indexPath.row];
     
-    return cell;
 }
 
 
@@ -98,24 +138,88 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
-        case 0:
-        {
-            ZYMyCommentViewController *commentVC = [[ZYMyCommentViewController alloc]init];
-            commentVC.mainTitle = [sourceArray objectAtIndex:indexPath.row];
-            [ZYMobCMSUitil setBFNNavItemForReturn:commentVC];
-            [self.navigationController pushViewController:commentVC animated:YES];
-            [commentVC release];
+    if (indexPath.section == 0) {
+        
+    }else if (indexPath.section == 1){
+        switch (indexPath.row) {
+            case 0:
+            {
+                ZYMyCommentViewController *commentVC = [[ZYMyCommentViewController alloc]init];
+                commentVC.mainTitle = [sourceArray objectAtIndex:indexPath.row];
+                [ZYMobCMSUitil setBFNNavItemForReturn:commentVC];
+                [self.navigationController pushViewController:commentVC animated:YES];
+                [commentVC release];
+            }
+                break;
+            case 1:
+            {
+                
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        case 1:
-        {
-            
-        }
-            break;
-        default:
-            break;
+
+    }else{
+        
     }
 }
+
+- (void)loginOutCurrentUser
+{
+    [ZYUserManager loginOutCurrentUser];
+    [[NSNotificationCenter defaultCenter]postNotificationName:ZYCMS_LOGIN_OUT_SUCCESS_NOTI object:nil];
+    
+    ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    
+    ZYLoginViewController *loginVC = [[ZYLoginViewController alloc]init];
+    loginVC.mainTitle = @"账号管理";
+    [loginVC setSuccessLoginAction:^{
+        ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        
+        ZYAccountViewController *accoutVC = [[ZYAccountViewController alloc]init];
+        accoutVC.mainTitle = @"账号管理";
+        [ZYMobCMSUitil setBFNNavItemForMenu:accoutVC];
+        
+        appDelegate.rootViewController.detailViewController = nil;
+        
+        UINavigationController *newNav = [[UINavigationController alloc]initWithRootViewController:accoutVC];
+        [accoutVC release];
+        
+        if ([BFUitils isIOSVersionOver5]) {
+            [newNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar.png"] forBarMetrics:UIBarMetricsDefault];
+        }else {
+            [newNav.navigationBar drawRect:newNav.navigationBar.frame];
+        }
+        newNav.view.frame = appDelegate.rootViewController.view.frame;
+        appDelegate.rootViewController.detailViewController = newNav;
+        [newNav release];
+        
+        [appDelegate hiddenMaster];
+        [BFAnimationHelper animationBasicFadeView:appDelegate.rootViewController.view duration:0.3];
+
+    }];
+    [ZYMobCMSUitil setBFNNavItemForMenu:loginVC];
+    
+    appDelegate.rootViewController.detailViewController = nil;
+    
+    UINavigationController *newNav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    [loginVC release];
+    
+    if ([BFUitils isIOSVersionOver5]) {
+        [newNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar.png"] forBarMetrics:UIBarMetricsDefault];
+    }else {
+        [newNav.navigationBar drawRect:newNav.navigationBar.frame];
+    }
+    newNav.view.frame = appDelegate.rootViewController.view.frame;
+    appDelegate.rootViewController.detailViewController = newNav;
+    [newNav release];
+    [appDelegate hiddenMaster];
+    
+    [BFAnimationHelper animationBasicFadeView:appDelegate.rootViewController.view duration:0.3];
+
+    
+}
+
 
 @end

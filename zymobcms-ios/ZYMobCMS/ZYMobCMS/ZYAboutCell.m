@@ -11,6 +11,7 @@
 #define ValueLabeFontSize 13
 
 @implementation ZYAboutCell
+@synthesize typeName;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -42,11 +43,17 @@
 
     // Configure the view for the selected state
 }
+- (void)dealloc
+{
+    self.typeName = nil;
+    [super dealloc];
+}
 
 - (void)setContentDict:(NSDictionary *)contentDict
 {
     NSString *tagName =[NSString stringWithFormat:@"%@:",[contentDict objectForKey:@"tag"]];
     NSString *value = [contentDict objectForKey:@"value"];
+    self.typeName = [contentDict objectForKey:@"type_name"];
     
     tagLabel.text = tagName;
     

@@ -43,7 +43,6 @@
     segmentCtrl = [[BFSegmentControl alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,45) withDataSource:self];
     [self.view addSubview:segmentCtrl];
     currentRequestType = ZYCommentArticle;
-    [self getHotCommentList];
     [segmentCtrl release];
     
 }

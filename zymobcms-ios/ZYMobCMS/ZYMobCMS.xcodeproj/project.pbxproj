@@ -33,6 +33,9 @@
 		E415D16A17BD087100E90729 /* bubbleSelf.png in Resources */ = {isa = PBXBuildFile; fileRef = E415D16917BD087100E90729 /* bubbleSelf.png */; };
 		E415D3CD17BD12BC00E90729 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = E415D3CB17BD12BC00E90729 /* login.png */; };
 		E415D3CE17BD12BC00E90729 /* loginOut.png in Resources */ = {isa = PBXBuildFile; fileRef = E415D3CC17BD12BC00E90729 /* loginOut.png */; };
+		E421515917C2593800BCB601 /* ZYFormValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = E421515817C2593800BCB601 /* ZYFormValidate.m */; };
+		E421515C17C2700100BCB601 /* ZYReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E421515B17C2700000BCB601 /* ZYReplyViewController.m */; };
+		E421515E17C2796000BCB601 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E421515D17C2795E00BCB601 /* MessageUI.framework */; };
 		E4304A9517B5E30100DBD1BC /* ZYCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4304A9417B5E30100DBD1BC /* ZYCategoryCell.m */; };
 		E4304A9917B5E87700DBD1BC /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4304A9817B5E87700DBD1BC /* ThemeManager.m */; };
 		E4304A9D17B5E8D100DBD1BC /* ZYUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4304A9C17B5E8D100DBD1BC /* ZYUserManager.m */; };
@@ -471,6 +474,11 @@
 		E415D16917BD087100E90729 /* bubbleSelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSelf.png; sourceTree = "<group>"; };
 		E415D3CB17BD12BC00E90729 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		E415D3CC17BD12BC00E90729 /* loginOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginOut.png; sourceTree = "<group>"; };
+		E421515717C2593800BCB601 /* ZYFormValidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYFormValidate.h; sourceTree = "<group>"; };
+		E421515817C2593800BCB601 /* ZYFormValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYFormValidate.m; sourceTree = "<group>"; };
+		E421515A17C26FFF00BCB601 /* ZYReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYReplyViewController.h; sourceTree = "<group>"; };
+		E421515B17C2700000BCB601 /* ZYReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYReplyViewController.m; sourceTree = "<group>"; };
+		E421515D17C2795E00BCB601 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E4304A9317B5E30100DBD1BC /* ZYCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCategoryCell.h; sourceTree = "<group>"; };
 		E4304A9417B5E30100DBD1BC /* ZYCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCategoryCell.m; sourceTree = "<group>"; };
 		E4304A9717B5E87700DBD1BC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
@@ -1025,6 +1033,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E421515E17C2796000BCB601 /* MessageUI.framework in Frameworks */,
 				E47F111117A362EC0011780E /* OpenAL.framework in Frameworks */,
 				E47F110F17A362DF0011780E /* AudioToolbox.framework in Frameworks */,
 				E47F110D17A362D90011780E /* AVFoundation.framework in Frameworks */,
@@ -1151,6 +1160,8 @@
 				E4519D8217BF2A5A00BAA458 /* ZYMyCommentCell.m */,
 				E48419C717C0CD2900CA3320 /* ZYAboutCell.h */,
 				E48419C817C0CD2B00CA3320 /* ZYAboutCell.m */,
+				E421515A17C26FFF00BCB601 /* ZYReplyViewController.h */,
+				E421515B17C2700000BCB601 /* ZYReplyViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1218,6 +1229,8 @@
 				E48419CB17C12CA700CA3320 /* ZYInputCell.m */,
 				E48419CD17C1401000CA3320 /* ZYButtonCell.h */,
 				E48419CE17C1401300CA3320 /* ZYButtonCell.m */,
+				E421515717C2593800BCB601 /* ZYFormValidate.h */,
+				E421515817C2593800BCB601 /* ZYFormValidate.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1476,6 +1489,7 @@
 		E47F0F7617A35C330011780E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E421515D17C2795E00BCB601 /* MessageUI.framework */,
 				E47F111017A362EC0011780E /* OpenAL.framework */,
 				E47F110E17A362DF0011780E /* AudioToolbox.framework */,
 				E47F110C17A362D90011780E /* AVFoundation.framework */,
@@ -2747,6 +2761,8 @@
 				3B5BE4D217C1C87A0086D842 /* ZYPullHeaderView.m in Sources */,
 				3B5BE4D817C1EA4F0086D842 /* ZYPictureCommentViewController.m in Sources */,
 				3B5BE4DA17C1EA6D0086D842 /* CommentListViewController.m in Sources */,
+				E421515917C2593800BCB601 /* ZYFormValidate.m in Sources */,
+				E421515C17C2700100BCB601 /* ZYReplyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

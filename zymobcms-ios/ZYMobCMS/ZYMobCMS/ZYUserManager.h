@@ -37,4 +37,7 @@
 
 + (BOOL)userIsLogined;
 
++ (void)loginOutCurrentUser;
+
+
 @end

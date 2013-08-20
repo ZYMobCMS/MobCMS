@@ -9,6 +9,7 @@
 #import "ZYRigistViewController.h"
 #import "ZYInputCell.h"
 #import "ZYButtonCell.h"
+#import "ZYFormValidate.h"
 
 @interface ZYRigistViewController ()
 
@@ -36,9 +37,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     sourceArray = [[NSMutableArray alloc]init];
-    [sourceArray addObject:[NSArray arrayWithObjects:@"用户名:",@"loginName",@"请输入用户名",nil]];
-    [sourceArray addObject:[NSArray arrayWithObjects:@"密码:",@"password",@"请输入密码",nil]];
-    [sourceArray addObject:[NSArray arrayWithObjects:@"重复密码:",@"passwordCheck",@"请再次输入密码", nil]];
+    [sourceArray addObject:[NSArray arrayWithObjects:@"用户名:",@"loginName",@"请输入用户名",@"0",nil]];
+    [sourceArray addObject:[NSArray arrayWithObjects:@"密码:",@"password",@"请输入密码",@"1",nil]];
+    [sourceArray addObject:[NSArray arrayWithObjects:@"重复密码:",@"passwordCheck",@"请再次输入密码",@"1", nil]];
     
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStyleGrouped];
     UIView *tableBack = [[UIView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,listTable.frame.size.height)];
@@ -120,7 +121,8 @@
         cell.tagLabel.text = [[sourceArray objectAtIndex:indexPath.row]objectAtIndex:0];
         cell.tagLabel.adjustsFontSizeToFitWidth = YES;
         cell.inputField.placeholder = [[sourceArray objectAtIndex:indexPath.row]objectAtIndex:2];
-        
+        cell.inputField.secureTextEntry = [[[sourceArray objectAtIndex:indexPath.row]objectAtIndex:3]boolValue];
+
         return cell;
         
     }else if(indexPath.section == 1){
@@ -164,13 +166,28 @@
 #pragma mark - rigist
 - (void)rigistNewUser
 {
-    [self startLoading];
+    
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     ZYInputCell *nameCell = (ZYInputCell*)[listTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    ZYInputCell *passwordCell0 = (ZYInputCell*)[listTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     ZYInputCell *passwordCell = (ZYInputCell*)[listTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     
+    if (![ZYFormValidate validateLoginName:nameCell.inputField.text]) {
+        [nameCell.inputField becomeFirstResponder];
+        return;
+    }
+    if (![ZYFormValidate validateRigistPassword:passwordCell0.inputField.text withCheck:passwordCell.inputField.text]) {
+        passwordCell0.inputField.text = @"";
+        passwordCell.inputField.text = @"";
+        [passwordCell0.inputField becomeFirstResponder];
+        return;
+    }
+    
+    [self startLoading];
     [params setObject:nameCell.inputField.text forKey:@"loginName"];
     [params setObject:passwordCell.inputField.text forKey:@"password"];
+    
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeRigist withParams:params withHelperDelegate:self withSuccessRequestMethod:@"rigistNewUserSuccess:" withFaildRequestMethod:@"rigistNewUserFaild:"];
 }
@@ -180,8 +197,12 @@
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         
-        NSLog(@"resultDict -->%@",resultDict);
+        [SVProgressHUD showSuccessWithStatus:@"注册成功!"];
+        [self.navigationController popViewControllerAnimated:YES];
         
+    }else{
+        NSString *errorMsg = [resultDict objectForKey:@"msg"];
+        [SVProgressHUD showErrorWithStatus:errorMsg];
     }
     [self stopLoading];
 }
@@ -189,6 +210,7 @@
 - (void)rigistNewUserFaild:(NSDictionary*)resultDict
 {
     [self stopLoading];
+    [SVProgressHUD showErrorWithStatus:@"网络不给力啊"];
 }
 
 

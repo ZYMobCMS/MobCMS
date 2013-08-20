@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ZYCommentBar.h"
 
-@interface CommentListViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface CommentListViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 {
-    
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _reloading;
+    BOOL            hideLoadMore;
+
 }
 @property (nonatomic,retain)UITableView *listTable;
 @property (nonatomic,retain)NSString *articleId;

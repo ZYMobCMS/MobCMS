@@ -23,13 +23,17 @@ class ReplyController extends Controller {
         $userId = $_GET['userId'];
         $content= $_GET['content'];
         
-        if(!$appId || !$userId || !$content){
+        if($appId==NULL  || $content==NULL){
             
              $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
             echo json_encode($resultArr);
             
             return; 
+        }
+        
+        if ($userId == NULL) {
+        	$userId = 99999;
         }
         
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);

@@ -73,6 +73,15 @@
     [self.view addSubview:self.listTable];
     [self.listTable release];
     
+    // 拉取刷新
+    _refreshHeaderView = [[EGORefreshTableHeaderView alloc]
+                          initWithFrame:
+                          CGRectMake(0.0f, 0.0f - listTable.bounds.size.height, self.view.frame.size.width,listTable.bounds.size.height)];
+    _refreshHeaderView.delegate = self;
+    [listTable addSubview:_refreshHeaderView];
+    [_refreshHeaderView release];
+	[_refreshHeaderView refreshLastUpdatedDate];
+    
     //add commentBAr
     commentBar = [[ZYCommentBar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-106*2/6-44,self.view.frame.size.width, 106*2/6) withBeginAction:^{
         
@@ -127,6 +136,45 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)refresh{
+    
+    [_refreshHeaderView startLoading:listTable];
+    _reloading = YES;
+    [self getCommentList];
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+    //在这里写更新的数据
+	[self performSelector:@selector(refresh) withObject:nil afterDelay:.0];
+	
+}
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+	
+}
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -175,11 +223,42 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ((indexPath.row == [sourceArray count] - 1))
+    {
+        BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,tableView.frame.size.width,45)];
+        footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+        
+        if (!hideLoadMore) {
+            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+            footer.titleLabel.text = @"加载更多...";
+            footer.userInteractionEnabled = YES;
+        }else {
+            NSString *title = @"已是最后一页";
+            if (sourceArray == 0) {
+                title = @"没有获取到内容";
+            }
+            footer.titleLabel.text = title;
+            footer.userInteractionEnabled = NO;
+        }
+        tableView.tableFooterView = footer;
+    }
+}
+- (void)loadMore:(BFLoadMoreView*)loadView
+{
+    [loadView startAnimation];
+    pageIndex ++;
+    [self getCommentList];
+}
+
+
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 - (void)getCommentList
@@ -197,12 +276,27 @@
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         
+        NSArray *resultArray = [resultDict objectForKey:@"data"];
+
+        if (resultArray.count ==0 || resultArray.count <PageSize) {
+            hideLoadMore = YES;
+        }
+        
+        if (_reloading) {
+            [sourceArray removeAllObjects];
+        }
+        
         [sourceArray addObjectsFromArray:[resultDict objectForKey:@"data"]];
         
         [self.listTable reloadData];
         
     }else{
         
+    }
+    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
     }
 }
 

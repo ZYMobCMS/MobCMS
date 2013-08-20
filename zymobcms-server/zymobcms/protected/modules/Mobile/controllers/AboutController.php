@@ -32,7 +32,7 @@ class AboutController extends Controller {
         }
         
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
-        $sql = "select * from zy_about_us";
+        $sql = "select zy_about_us.*,zy_about_type.type_name from zy_about_us inner join zy_about_type on zy_about_us.type_id=zy_about_type.id";
         
         $resultObj = $dbOperation->queryAllBySql($sql);
         

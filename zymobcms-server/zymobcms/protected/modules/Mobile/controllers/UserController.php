@@ -46,7 +46,7 @@ class UserController extends Controller {
 		}else{
 			
 			$enypassword = $this->enypt($password);
-                        $insertSql = "insert into zy_user(login_name,password)values('$loginName','$enypassword')";
+                        $insertSql = "insert into zy_user(login_name,password,user_type_id)values('$loginName','$enypassword',13)";
                         $rigistResult = $dbOperation->saveBySql($insertSql);
 			if($rigistResult){
 	
@@ -99,7 +99,7 @@ class UserController extends Controller {
 	
 		//检查是否已经存在用户
                 $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
-		$sql = "select * from zy_user where login_name='$loginName'";
+		$sql = "select zy_user.*,zy_user_type.type_name from zy_user inner join zy_user_type on zy_user.user_type_id = zy_user_type.id where login_name='$loginName'";
                 $userExist = $dbOperation->queryBySql($sql);               
 	
 		if(!$userExist){
