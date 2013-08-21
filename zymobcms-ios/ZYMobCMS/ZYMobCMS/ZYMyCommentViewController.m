@@ -10,6 +10,7 @@
 #import "BFNArticleViewController.h"
 #import "ZYMyCommentCell.h"
 #import "ZYPicturePreViewController.h"
+#import "ZYProductDetail_0_ViewController.h"
 
 @interface ZYMyCommentViewController ()
 
@@ -164,13 +165,18 @@
             break;
         case ZYCommentProduct:
         {
-            
+            ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
+            detailVC.productId = [[self.sourceArray objectAtIndex:indexPath.row]objectForKey:@"product_id"];
+            detailVC.mainTitle = @"产品详情";
+            [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
+            [self.navigationController pushViewController:detailVC animated:YES];
+            [detailVC release];
         }
             break;
         default:
             break;
     }
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

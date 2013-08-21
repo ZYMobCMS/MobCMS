@@ -24,6 +24,7 @@ typedef enum {
     ZYCMSRequestTypeArticleComment,
     ZYCMSRequestTypeCommentArticle,
     ZYCMSRequestTypeFavoriteArticle,
+    ZYCMSRequestTypeCancelFavoriteArticle,
     ZYCMSRequestTypePictureList,
     ZYCMSRequestTypeProductList,
     ZYCMSRequestTypeProductDetail,
@@ -47,6 +48,10 @@ typedef enum {
     ZYCMSRequestTypeIsFavoriteProduct,
     ZYCMSRequestTypeUserPictureCommentList,
     ZYCMSRequestTypeUserProductCommentList,
+    ZYCMSRequestTypePictureCommentSupport,
+    ZYCMSRequestTypePictureCommentUnSupport,
+    ZYCMSRequestTypeProductCommentSupport,
+    ZYCMSRequestTypeProductCommentUnSupport,
     
 }ZYCMSRequestType;
 

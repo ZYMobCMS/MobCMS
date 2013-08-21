@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 __barfoo__. All rights reserved.
 //
 
-#define ZYCMS_Base_Url @"http://172.16.28.45/MobCMS/zymobcms-server/zymobcms/index.php?r="
-#define ZYCMS_image_Url @"http://172.16.28.45/MobCMS/zymobcms-server/zymobcms/"
+#define ZYCMS_Base_Url @"http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r="
+#define ZYCMS_image_Url @"http://localhost/MobCMS/zymobcms-server/zymobcms/"
 //#define MCM_Base_Url @"https://61.136.59.251:8017"
 
 #define APPID            @"zymobcms"
@@ -140,6 +140,8 @@
  */
 #define ZYCMS_Favorite_Article_Interface     @"Mobile/newsList/favoriteArticle"
 
+#define ZYCMS_Cancel_Favorite_Article_Interface @"Mobile/newsList/deleteFavorite"
+
 
 /*
     获取分类子类TAB
@@ -158,6 +160,10 @@
 #define ZYCMS_Cancel_Favorite_Picture_Interface @"Mobile/picture/removeFavoritePicture"
 
 #define ZYCMS_Is_Favorite_Picture_Interface @"Mobile/picture/isFavoritePicture"
+
+#define ZYCMS_Picture_Comment_Support_Interface @"Mobile/picture/supportComment"
+
+#define ZYCMS_Picture_Comment_unSupport_Interface @"Mobile/picture/unSupportComment"
 
 
 /*
@@ -179,6 +185,9 @@
 
 #define ZYCMS_Is_Favorite_Product_Interface  @"Mobile/product/isFavoriteProduct"
 
+#define ZYCMS_Product_Comment_Support_Interface @"Mobile/product/supportComment"
+
+#define ZYCMS_Product_Comment_unSupport_Interface @"Mobile/product/unSupportComment"
 
 /*
      微博分类信息详情页

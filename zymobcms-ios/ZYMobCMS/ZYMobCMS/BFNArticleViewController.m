@@ -153,9 +153,9 @@
             ZYLoginViewController *loginVC = [[ZYLoginViewController alloc]init];
             loginVC.mainTitle = @"登录";
             [ZYMobCMSUitil setBFNNavItemForReturn:loginVC];
-//            [loginVC setSuccessAction:^{
-//                [loginVC.navigationController popViewControllerAnimated:YES];
-//            }];
+            [loginVC setSuccessLoginAction:^{
+                [loginVC.navigationController popViewControllerAnimated:YES];
+            }];
             [self.navigationController pushViewController:loginVC animated:YES];
             [loginVC release];
             [commentBar commentReset];
@@ -181,6 +181,7 @@
     commentBar.layer.borderColor = [UIColor lightGrayColor].CGColor;
     commentBar.layer.shadowOpacity = 0.6;
     commentBar.layer.shadowOffset = CGSizeMake(3.0f,-2.0f);
+    [commentBar setFavoriteState:[[self.articleDict objectForKey:@"isFavorited"]boolValue]];
     [self.view addSubview:commentBar];
     [commentBar release];
     

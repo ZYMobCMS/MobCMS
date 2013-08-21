@@ -1,18 +1,18 @@
 //
-//  ZYPictureCommentViewController.m
+//  ZYProductCommentViewController.m
 //  ZYMobCMS
 //
-//  Created by barfoo2 on 13-8-19.
+//  Created by ZYVincent on 13-8-21.
 //  Copyright (c) 2013年 ZYVincent. All rights reserved.
 //
 
-#import "ZYPictureCommentViewController.h"
+#import "ZYProductCommentViewController.h"
 
-@interface ZYPictureCommentViewController ()
+@interface ZYProductCommentViewController ()
 
 @end
 
-@implementation ZYPictureCommentViewController
+@implementation ZYProductCommentViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.commentBar.commentType = ZYCommentPicture;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,11 +38,11 @@
 - (void)getCommentList
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:self.articleId forKey:@"pictureId"];
+    [params setObject:self.articleId forKey:@"productId"];
     [params setObject:[NSNumber numberWithInt:self.pageIndex]  forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:PageSize] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getCommentListSuccess:" withFaildRequestMethod:@"getCommentListFaild:"];
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getCommentListSuccess:" withFaildRequestMethod:@"getCommentListFaild:"];
 }
 
 @end

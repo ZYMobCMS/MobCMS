@@ -15,3 +15,7 @@
 
 #define ZYCMS_LOGIN_SUCESS_NOTI  @"ZYCMS_LOGIN_SUCESS_NOTI"
 #define ZYCMS_LOGIN_OUT_SUCCESS_NOTI @"ZYCMS_LOGIN_OUT_SUCCESS_NOTI"
+
+#define ZYCommentTypeKey @"ZYCommentTypeKey"
+#define ZYCellActionKey @"ZYCellActionKey"
+#define ZYCellActionOpenKey @"ZYCellActionOpenKey"

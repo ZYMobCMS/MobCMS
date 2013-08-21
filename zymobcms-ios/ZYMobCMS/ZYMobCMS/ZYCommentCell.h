@@ -17,6 +17,8 @@
 #define ArticleTitleFontSize 11
 #define ContentLineSpace 6
 
+typedef void (^tapOnSupportBtn) (void);
+
 @interface ZYCommentCell : UITableViewCell
 {
     UIImageView      *backImgView;
@@ -24,7 +26,14 @@
     BFAttributedView *contentView;
     BFAttributedView *articleTitleView;
     BFAttributedView *dateView;
+    
+    UIButton         *supportBtn;
+    UILabel          *supportCountLabel;
+
+    tapOnSupportBtn  _tapOnSupportAction;
 }
+
+- (void)setTapOnSupportAction:(tapOnSupportBtn)tapOnSupportAction;
 
 - (void)setContentDict:(NSDictionary*)contentDict;
 + (CGFloat)heightWithContent:(NSDictionary*)contentDict forTable:(UITableView*)table;

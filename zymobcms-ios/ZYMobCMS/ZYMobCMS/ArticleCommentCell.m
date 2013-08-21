@@ -17,6 +17,8 @@
 #define DateFontSize     10
 
 @implementation ArticleCommentCell
+@synthesize commentId,isSupported;
+@synthesize commentType;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -47,6 +49,7 @@
         supportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         supportBtn.frame = initRect;
         [supportBtn setBackgroundImage:[UIImage imageNamed:@"support_finished.png"] forState:UIControlStateNormal];
+        [supportBtn addTarget:self action:@selector(tapOnSupportBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:supportBtn];
         
         supportLabel = [[UILabel alloc]init];
@@ -58,7 +61,14 @@
     }
     return self;
 }
-
+- (void)dealloc
+{
+    self.commentId = nil;
+    if (_tapOnSupportAction) {
+        [_tapOnSupportAction release];
+    }
+    [super dealloc];
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -73,12 +83,23 @@
     NSString *location = [contentDict objectForKey:@"location"];
     NSString *date = [contentDict objectForKey:@"create_time"];
     NSString *supportCount = [contentDict objectForKey:@"support_count"];
+    NSString *isSupport = [contentDict objectForKey:@"isSupported"];
+    self.commentId = [contentDict objectForKey:@"comment_id"];
+    self.isSupported = [isSupport boolValue];
+    self.commentType = [[contentDict objectForKey:ZYCommentTypeKey]intValue];
     
     NSString *locationUserCombine = [NSString stringWithFormat:@"%@  %@",location,creater];
     
     [commentContentView setContentText:content];
     [locationView setContentText:locationUserCombine];
     [dateView setText:date];
+    
+    if (self.isSupported) {
+        [supportBtn setBackgroundImage:[UIImage imageNamed:@"support_finished_selected.png"] forState:UIControlStateNormal];
+    }else{
+        [supportBtn setBackgroundImage:[UIImage imageNamed:@"support_finished.png"] forState:UIControlStateNormal];
+    }
+    
     
     CGFloat totalWidth = self.frame.size.width-2*LeftMargin;
     CGFloat originY = TopMargin;
@@ -146,13 +167,113 @@
     return originY;
 }
 
+- (void)tapOnSupportBtnAction
+{
+    if (![ZYUserManager userIsLogined]) {
+        if (_tapOnSupportAction) {
+            _tapOnSupportAction();
+        }
+        return;
+    }
+    
+    if (self.isSupported) {
+        [self unsupportAction];
+    }else{
+        [self supportAction];
+    }
+}
 - (void)supportAction
 {
     
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.commentId forKey:@"commentId"];
+    
+    ZYCMSRequestType supportRequest;
+    switch (self.commentType) {
+        case ZYCommentArticle:
+            supportRequest = ZYCMSRequestTypeSupportComment;
+            break;
+        case ZYCommentPicture:
+            supportRequest = ZYCMSRequestTypePictureCommentSupport;
+            break;
+        case ZYCommentProduct:
+            supportRequest = ZYCMSRequestTypeProductCommentSupport;
+            break;
+            
+        default:
+            break;
+    }
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:supportRequest withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportSuccess:" withFaildRequestMethod:@"supportFaild:"];
 }
-- (void)unsupportAction
+- (void)supportSuccess:(NSDictionary*)resultDict
+{
+    BOOL status = [[resultDict objectForKey:@"status"]boolValue];
+    if (status) {
+        
+        [supportBtn setBackgroundImage:[UIImage imageNamed:@"support_finished_selected.png"] forState:UIControlStateNormal];
+        self.isSupported = YES;
+        NSInteger supportCountNow = [supportLabel.text intValue]+1;
+        supportLabel.text = [NSString stringWithFormat:@"%d",supportCountNow];
+    }
+    
+}
+
+- (void)supportFaild:(NSDictionary*)resultDict
 {
     
+}
+
+
+- (void)unsupportAction
+{
+    if (_tapOnSupportAction) {
+        _tapOnSupportAction();
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.commentId forKey:@"commentId"];
+    
+    ZYCMSRequestType unSupportRequest;
+    switch (self.commentType) {
+        case ZYCommentArticle:
+            unSupportRequest = ZYCMSRequestTypeUnSupportComment;
+            break;
+        case ZYCommentPicture:
+            unSupportRequest = ZYCMSRequestTypePictureCommentUnSupport;
+            break;
+        case ZYCommentProduct:
+            unSupportRequest = ZYCMSRequestTypeProductCommentUnSupport;
+            break;
+            
+        default:
+            break;
+    }
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:unSupportRequest withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportSuccess:" withFaildRequestMethod:@"unSupporSuccess:"];
+}
+
+- (void)unSupportSuccess:(NSDictionary*)resultDict
+{
+    BOOL status = [[resultDict objectForKey:@"status"]boolValue];
+    if (status) {
+        
+        [supportBtn setBackgroundImage:[UIImage imageNamed:@"support_finished.png"] forState:UIControlStateNormal];
+        self.isSupported = NO;
+        NSInteger supportCountNow = [supportLabel.text intValue]-1;
+        supportLabel.text = [NSString stringWithFormat:@"%d",supportCountNow];
+        
+    }
+}
+- (void)unSupporSuccess:(NSDictionary*)resultDict
+{
+    
+}
+
+- (void)setTapOnSupportAction:(tapOnSupportBtn)tapOnSupportAction
+{
+    if (_tapOnSupportAction) {
+        [_tapOnSupportAction release];
+    }
+    _tapOnSupportAction = [tapOnSupportAction copy];
 }
 
 @end

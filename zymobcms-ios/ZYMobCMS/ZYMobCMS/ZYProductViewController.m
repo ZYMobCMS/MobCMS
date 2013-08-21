@@ -8,6 +8,7 @@
 
 #import "ZYProductViewController.h"
 #import "ZYProductCell.h"
+#import "ZYProductDetail_0_ViewController.h"
 
 
 @interface ZYProductViewController ()
@@ -23,6 +24,11 @@
         // Custom initialization
     }
     return self;
+}
+- (void)dealloc
+{
+    [listArray release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -106,6 +112,10 @@
 }
 
 #pragma mark - tableView delegate and source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [listArray count];
@@ -129,6 +139,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
+    detailVC.productId = [[listArray objectAtIndex:indexPath.row]objectForKey:@"id"];
+    detailVC.mainTitle = @"产品详情";
+    [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    [detailVC release];
 }
 
 

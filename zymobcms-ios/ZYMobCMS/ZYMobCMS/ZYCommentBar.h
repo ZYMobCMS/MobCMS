@@ -55,6 +55,8 @@ typedef enum {
 - (void)setEnableFavorite;
 - (void)setDisableFavorite;
 
+- (void)setFavoriteState:(BOOL)state;
+
 - (void)commentReset;
 
 @end

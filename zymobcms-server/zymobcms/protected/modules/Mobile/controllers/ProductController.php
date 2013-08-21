@@ -22,8 +22,9 @@ class ProductController extends Controller{
         $appId = $_GET['appId'];
         $pageIndex = $_GET['pageIndex'];
         $pageSize = $_GET['pageSize'];
+        $userId = $_GET['userId'];
         
-        if(!$appId){
+        if($appId==NULL || $userId == NULL){
             
             $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -50,9 +51,24 @@ class ProductController extends Controller{
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
-        $sql = "select id,name,summary,support_count,images from zy_product limit $startIndex,$pageSize";
+        $sql = "select id,title,summary,support_count,images from zy_product limit $startIndex,$pageSize";
         
         $resultArr = $dbOperation->queryAllBySql($sql);
+        
+        //是否已经收藏过这个图片
+        $currentRecord = current($resultArr);
+        while ($currentRecord){
+        
+        	$checkIfUserSupport = "select id from zy_user_product_favorite where product_id = $currentRecord->id and user_id=$userId";
+        
+        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        	if ($resultCheck) {
+        		$currentRecord->isFavorited="1";
+        	}else{
+        		$currentRecord->isFavorited="0";
+        	}
+        	$currentRecord = next($resultArr);
+        }
         
         $jsonArr = array('status'=>'1','data'=>$resultArr);
         
@@ -69,8 +85,9 @@ class ProductController extends Controller{
         
         $productId = $_GET['productId'];
         $appId = $_GET['appId'];
+        $userId = $_GET['userId'];
         
-        if(!$productId || !$appId){
+        if($productId == NULL || $appId==NULL || $userId==NULL){
             
             $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -85,6 +102,13 @@ class ProductController extends Controller{
         $sql = "select * from zy_product where id=$productId";
         
         $resultObj = $dbOperation->queryBySql($sql);
+        
+        //是否已经收藏过该产品
+        //查询是否收藏该文章
+        $checkFavorite = "select id from zy_user_product_favorite where product_id=$productId and user_id=$userId";
+        $checkResult = $dbOperation->queryBySql($checkFavorite);
+        $resultType = $checkResult?  1:0;
+        $resultObj->isFavorite=$resultType;
         
         if($resultObj){
             
@@ -111,6 +135,7 @@ class ProductController extends Controller{
             $productId = $_GET['appId'];
             $pageIndex = $_GET['pageIndex'];
             $pageSize  = $_GET['pageSize'];
+            $userId    = $_GET['userId'];
             
             if(!$pictureId || !$productId){
                 
@@ -148,11 +173,30 @@ class ProductController extends Controller{
             
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select zy_product_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_product_comment inner join zy_user on create_user = id where product_id=$pictureId limit $startIndex,$pageSize";
+            $sql = "select zy_product_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_product_comment inner join zy_user on zy_product_comment.create_user = zy_user.id where product_id=$pictureId limit $startIndex,$pageSize";
             
             $commentArr = $dbOperation->queryAllBySql($sql);
             
-            $resultArr = array('status'=>'1','data'=>$commentArr);
+            //是否已经支持
+            $newResultArray = array();
+            $currentRecord = current($commentArr);
+            while ($currentRecord){
+            	 
+            	$currentCommentId = $currentRecord->comment_id;
+            	$checkIfUserSupport = "select id from zy_product_comment_support where comment_id = $currentCommentId and user_id=$userId";
+            	 
+            	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+            	if ($resultCheck) {
+            		$currentRecord->isSupported="1";
+            	}else{
+            		$currentRecord->isSupported="0";
+            	}
+            	$newResultArray[]=$currentRecord;
+            	 
+            	$currentRecord = next($commentArr);
+            }
+            
+            $resultArr = array('status'=>'1','data'=>$newResultArray);
             
             echo json_encode($resultArr);
         
@@ -314,7 +358,7 @@ class ProductController extends Controller{
             } 
             
             
-            $insertSql = "delete from zy_user_product_favorite where product_id = $articleId";            
+            $insertSql = "delete from zy_user_product_favorite where product_id = $articleId and user_id = $userId";            
             $insertResult = $dbOperation->saveBySql($insertSql);
             
             if($insertResult){
@@ -400,8 +444,23 @@ class ProductController extends Controller{
             
                     return;
                }
-               
+                    
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            //是否已经支持过了
+            $sqlCheck = "select id from zy_product_comment_support where comment_id=$commentId and user_id=$userId";
+             
+            $checkResult = $dbOperation->queryBySql($sqlCheck);
+             
+            if($checkResult){
+            	 
+            	$josnArr = array('status'=>'0','msg'=>'已经支持过了');
+            	 
+            	echo json_encode($josnArr);
+            	 
+            	return ;
+            }
+            
             $sqlInsert = "insert into zy_product_comment_support(comment_id,user_id)values($commentId,$userId)";
             
             $inserResult = $dbOperation->saveBySql($sqlInsert);

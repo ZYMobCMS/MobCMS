@@ -183,63 +183,78 @@
 
 - (void)contactUsNow
 {
-    UIActionSheet *chooseSheet = [[UIActionSheet alloc]initWithTitle:@"选择方式" delegate:self cancelButtonTitle:@"退出" destructiveButtonTitle:@"呼叫座机" otherButtonTitles:@"呼叫手机",@"留言反馈",@"邮件提醒",@"短信通知",nil];
+    UIActionSheet *chooseSheet = [[UIActionSheet alloc]initWithTitle:@"选择方式" delegate:self cancelButtonTitle:@"退出" destructiveButtonTitle:@"呼叫座机" otherButtonTitles:@"呼叫手机",@"在线反馈",@"邮件反馈",@"短信反馈",nil];
     [chooseSheet showInView:self.view];
     [chooseSheet release];
+    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"title for index:%d %@--->",buttonIndex,[actionSheet buttonTitleAtIndex:buttonIndex]);
-
     NSString *tile = [actionSheet buttonTitleAtIndex:buttonIndex];
     
     switch (buttonIndex) {
         case 0:
         {
-            for (NSDictionary *item in sourceArray) {
-                if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
-                    
-                    UIDevice *device = [UIDevice currentDevice];
-                    if ([[device model] isEqualToString:@"iPhone"] ) {
+            UIDevice *device = [UIDevice currentDevice];
+            if ([[device model] isEqualToString:@"iPhone"] ) {
+                
+                BOOL found = NO;
+                for (NSDictionary *item in sourceArray) {
+                    if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                        
                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",[item objectForKey:@"value"]]]];
-                    } else {
-                        UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持通话" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                        [Notpermitted show];
-                        [Notpermitted release];
+                        
+                        found = YES;
+                        break;
+                        
                     }
-                    
-                    break;
-                    
                 }
+                if (!found) {
+                    [SVProgressHUD showErrorWithStatus:@"企业未预留座机号码"];
+                }
+                
+            } else {
+                UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持通话" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [Notpermitted show];
+                [Notpermitted release];
             }
+            
         }
             break;
         case 1:
         {
-            for (NSDictionary *item in sourceArray) {
-                if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
-                    
-                    UIDevice *device = [UIDevice currentDevice];
-                    if ([[device model] isEqualToString:@"iPhone"] ) {
+            UIDevice *device = [UIDevice currentDevice];
+            if ([[device model] isEqualToString:@"iPhone"] ) {
+                
+                BOOL found = NO;
+                for (NSDictionary *item in sourceArray) {
+                    if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                        
                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",[item objectForKey:@"value"]]]];
-                    } else {
-                        UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持通话" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                        [Notpermitted show];
-                        [Notpermitted release];
+                        found = YES;
+                        break;
+                        
                     }
-                    
-                    break;
-                    
                 }
+                if (!found) {
+                    [SVProgressHUD showErrorWithStatus:@"企业没有预留手机号码"];
+                }
+
+            } else {
+                UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持通话" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [Notpermitted show];
+                [Notpermitted release];
             }
+            
+            
             
         }
             break;
         case 2:
         {
             ZYReplyViewController *replyVC = [[ZYReplyViewController alloc]init];
-            replyVC.mainTitle = @"给我们反馈";
+            replyVC.mainTitle = @"在线反馈";
             [ZYMobCMSUitil setBFNNavItemForReturn:replyVC];
             [self.navigationController pushViewController:replyVC animated:YES];
             [replyVC release];
@@ -247,8 +262,9 @@
             break;
         case 3:
         {
+            BOOL found = NO;
             for (NSDictionary *item in sourceArray) {
-                if ([tile rangeOfString:@"手机"].location != NSNotFound) {
+                if ([tile rangeOfString:@"邮件"].location != NSNotFound) {
                     MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc]init];
                     mailVC.mailComposeDelegate = self;
                     [mailVC setToRecipients:[NSArray arrayWithObject:[item objectForKey:@"value"]]];
@@ -256,16 +272,20 @@
                     [mailVC setMessageBody:@"请给我们您的建议" isHTML:NO];
                     [self presentModalViewController:mailVC animated:YES];
                     [mailVC release];
-                    
+                    found = YES;
                     break;
                     
                 }
+            }
+            if (!found) {
+                [SVProgressHUD showErrorWithStatus:@"企业没有预留邮箱"];
             }
 
         }
             break;
         case 4:
         {
+            BOOL found = NO;
             if (![MFMessageComposeViewController canSendText]) {
                 UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备不支持短信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                 [Notpermitted show];
@@ -283,6 +303,9 @@
                         break;
                         
                     }
+                }
+                if (!found) {
+                    [SVProgressHUD showErrorWithStatus:@"企业没有预留手机号码"];
                 }
             }
         }

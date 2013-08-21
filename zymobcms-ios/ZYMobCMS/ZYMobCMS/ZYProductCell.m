@@ -94,7 +94,7 @@
 
 - (void)setProductInfo:(NSDictionary *)productDict
 {
-    NSString *title = [productDict objectForKey:@"name"];
+    NSString *title = [productDict objectForKey:@"title"];
     NSString *summary = [productDict objectForKey:@"summary"];
     NSString *price = [productDict objectForKey:@"price"];
     NSString *favcount = [productDict objectForKey:@"support_count"];

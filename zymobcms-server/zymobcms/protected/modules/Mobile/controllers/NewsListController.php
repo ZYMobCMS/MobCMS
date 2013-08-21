@@ -24,6 +24,7 @@ class NewsListController extends Controller {
         $pageIndex = $_GET['pageIndex'];
         $pageSize  = $_GET['pageSize'];
         $productId = $_GET['appId'];
+        $userId = $_GET['userId'];
         
         if(!$productId){
             
@@ -54,9 +55,36 @@ class NewsListController extends Controller {
         //hotNews
         $hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1";
         $hotNews = $dbOperation->queryAllBySql($hotNewsSql);
-          
+        //是否已经收藏过文章
+        $currentRecord = current($hotNews);
+        while ($currentRecord){
+        
+        	$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+        
+        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        	if ($resultCheck) {
+        		$currentRecord->isFavorited="1";
+        	}else{
+        		$currentRecord->isFavorited="0";
+        	}
+        	$currentRecord = next($hotNews);
+        }  
+        
         $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 limit $startIndex,$pageSize";
         $resultArr = $dbOperation->queryAllBySql($normalNewsSql);
+        $currentRecord = current($resultArr);
+        while ($currentRecord){
+        
+        	$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+        
+        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        	if ($resultCheck) {
+        		$currentRecord->isFavorited="1";
+        	}else{
+        		$currentRecord->isFavorited="0";
+        	}
+        	$currentRecord = next($resultArr);
+        }
         
         $jsonArr = array('status'=>'1','data'=>array('hotNews'=>$hotNews,'newsList'=>$resultArr));
         
@@ -116,8 +144,9 @@ class NewsListController extends Controller {
             $productId = $_GET['appId'];
             $pageIndex = $_GET['pageIndex'];
             $pageSize  = $_GET['pageSize'];
+            $userId    = $_GET['userId'];
             
-            if(!$articleId || !$productId){
+            if($articleId==NULL || $productId==NULL || $userId==NULL){
                 
                 $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -153,9 +182,25 @@ class NewsListController extends Controller {
             
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select zy_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_comment inner join zy_user on create_user = id where article_id=$articleId limit $startIndex,$pageSize";
-            
+            $sql = "select zy_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_comment inner join zy_user on zy_comment.create_user = zy_user.id where article_id=$articleId limit $startIndex,$pageSize";
+                        
             $commentArr = $dbOperation->queryAllBySql($sql);
+                        
+            //是否已经支持
+            $currentRecord = current($commentArr);
+            while ($currentRecord){
+            	
+            	$currentCommentId = $currentRecord->comment_id;
+            	$checkIfUserSupport = "select id from zy_comment_support where comment_id = $currentCommentId and user_id=$userId";
+            	
+            	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+            	if ($resultCheck) {
+            		$currentRecord->isSupported="1";
+            	}else{
+            		$currentRecord->isSupported="0";
+            	}            	
+            	$currentRecord = next($commentArr);
+            }
             
             $resultArr = array('status'=>'1','data'=>$commentArr);
             
@@ -345,8 +390,24 @@ class NewsListController extends Controller {
             
                     return;
                }
+           
                
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            //是否已经支持过了
+            $sqlCheck = "select id from zy_comment_support where comment_id=$commentId and user_id=$userId";
+
+            $checkResult = $dbOperation->queryBySql($sqlCheck);
+            
+            if($checkResult){
+            	
+            	$josnArr = array('status'=>'0','msg'=>'已经支持过了');
+            	
+            	echo json_encode($josnArr);
+            	 
+            	return ;
+            }
+            
             $sqlInsert = "insert into zy_comment_support(comment_id,user_id)values($commentId,$userId)";
             
             $inserResult = $dbOperation->saveBySql($sqlInsert);
@@ -400,7 +461,7 @@ class NewsListController extends Controller {
                 if($resultObj){
                    $josnArr = array('status'=>'1','data'=>'支持成功');
                 }  else {
-                   $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                   $josnArr = array('status'=>'0','msg'=>'已经踩过了');
                 }
             
                 echo json_encode($josnArr);
@@ -445,7 +506,7 @@ class NewsListController extends Controller {
             } 
             
             
-            $insertSql = "delete from zy_user_favorite where article_id = $articleId";            
+            $insertSql = "delete from zy_user_favorite where article_id = $articleId and user_id=$userId";            
             $insertResult = $dbOperation->saveBySql($insertSql);
             
             if($insertResult){

@@ -12,6 +12,7 @@
 {
     UITextView *summaryTextView;
     UIButton   *favBtn;
+    
 }
 
 @property (nonatomic,retain)NSString *summaryText;

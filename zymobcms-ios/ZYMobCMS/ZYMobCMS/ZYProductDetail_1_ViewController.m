@@ -1,18 +1,18 @@
 //
-//  ZYProductDetailViewController.m
+//  ZYProductDetail_1_ViewController.m
 //  ZYMobCMS
 //
-//  Created by ZYVincent on 13-8-11.
+//  Created by ZYVincent on 13-8-21.
 //  Copyright (c) 2013年 ZYVincent. All rights reserved.
 //
 
-#import "ZYProductDetailViewController.h"
+#import "ZYProductDetail_1_ViewController.h"
 
-@interface ZYProductDetailViewController ()
+@interface ZYProductDetail_1_ViewController ()
 
 @end
 
-@implementation ZYProductDetailViewController
+@implementation ZYProductDetail_1_ViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

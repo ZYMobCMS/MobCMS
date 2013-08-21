@@ -8,10 +8,12 @@
 
 #import "ZYAboutCell.h"
 
-#define ValueLabeFontSize 13
+#define ValueLabeFontSize 14
 
 @implementation ZYAboutCell
 @synthesize typeName;
+@synthesize actionType;
+@synthesize hasAction;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

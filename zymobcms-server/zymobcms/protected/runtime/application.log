@@ -2147,3 +2147,102 @@ Stack trace:
 #23 {main}
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/create
 ---
+2013/08/20 22:05:53 [error] [php] Undefined variable: userId (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:180)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/pictureCommentList&appId=zymobcms&userId=16&pictureId=11&pageIndex=0&pageSize=10
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (180)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:06:11 [error] [php] Undefined variable: userId (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:180)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/pictureCommentList&appId=zymobcms&userId=16&pictureId=11&pageIndex=0&pageSize=10
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (180)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:16:01 [error] [php] Undefined variable: dbOperation (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:385)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/supportComment&appId=zymobcms&userId=16&commentId=27
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (385)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:16:22 [error] [php] Undefined variable: dbOperation (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:385)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/supportComment&appId=zymobcms&userId=16&commentId=27
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (385)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:26:42 [error] [php] Undefined property: stdClass::$comment_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:63)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/pictureList&appId=zymobcms&userId=16&pageSize=10&pageIndex=1
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (63)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:27:25 [error] [php] Undefined property: stdClass::$comment_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:63)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/pictureList&appId=zymobcms&userId=16&pageSize=10&pageIndex=1
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (63)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:28:21 [error] [php] Undefined property: stdClass::$picture_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:63)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/pictureList&appId=zymobcms&userId=16&pageSize=10&pageIndex=2
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (63)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:28:31 [error] [php] Undefined property: stdClass::$picture_id (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php:63)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): PictureController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): PictureController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): PictureController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/picture/pictureList&appId=zymobcms&userId=16&pageSize=10&pageIndex=2
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/PictureController.php (63)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/20 22:55:33 [error] [php] Undefined variable: userId (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:61)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/newsList&appId=zymobcms&userId=16&pageSize=10&categoryId=0&tabTypeId=8&pageIndex=0
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (61)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)

@@ -183,11 +183,6 @@
     inputBackView.frame = CGRectMake(1,0,self.frame.size.width-108*2/6-2,106*2/6);
     inputTextView.frame = CGRectMake(26,2,self.frame.size.width-108*2/6-4-26,self.frame.size.height-4);
     favBtn.frame = CGRectMake(self.frame.size.width-108*2/6-1,0,108*2/6,106*2/6);
-    if (self.isFavorited) {
-        [self setDisableFavorite];
-    }else{
-        [self setEnableFavorite];
-    }
     [favBtn setTitle:@"" forState:UIControlStateNormal];
     inputTagView.hidden = NO;
     inputTextView.textColor = [UIColor lightGrayColor];
@@ -273,29 +268,56 @@
         
         NSString *paramName = nil;
         ZYCMSRequestType favoriteRequest;
-        switch (self.favoriteType) {
-            case ZYFavoriteArticle:
-            {
-                favoriteRequest = ZYCMSRequestTypeFavoriteArticle;
-                paramName = @"articleId";
+        if (self.isFavorited) {
+            switch (self.favoriteType) {
+                case ZYFavoriteArticle:
+                {
+                    favoriteRequest = ZYCMSRequestTypeCancelFavoriteArticle;
+                    paramName = @"articleId";
+                }
+                    break;
+                case ZYFavoritePicture:
+                {
+                    favoriteRequest = ZYCMSRequestTypeCancelFavoritePicture;
+                    paramName = @"pictureId";
+                }
+                    break;
+                case ZYFavoriteProduct:
+                {
+                    favoriteRequest = ZYCMSRequestTypeCancelFavoriteProduct;
+                    paramName = @"productId";
+                }
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-            case ZYFavoritePicture:
-            {
-                favoriteRequest = ZYCMSRequestTypeFavoritePicture;
-                paramName = @"pictureId";
+        }else{
+            switch (self.favoriteType) {
+                case ZYFavoriteArticle:
+                {
+                    favoriteRequest = ZYCMSRequestTypeFavoriteArticle;
+                    paramName = @"articleId";
+                }
+                    break;
+                case ZYFavoritePicture:
+                {
+                    favoriteRequest = ZYCMSRequestTypeFavoritePicture;
+                    paramName = @"pictureId";
+                }
+                    break;
+                case ZYFavoriteProduct:
+                {
+                    favoriteRequest = ZYCMSRequestTypeFavoriteProduct;
+                    paramName = @"productId";
+                }
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-            case ZYFavoriteProduct:
-            {
-                favoriteRequest = ZYCMSRequestTypeFavoriteProduct;
-                paramName = @"productId";
-            }
-                break;
-                
-            default:
-                break;
         }
+        
         
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         [params setObject:self.articleId forKey:paramName];
@@ -303,18 +325,6 @@
         [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:favoriteRequest withParams:params withHelperDelegate:self withSuccessRequestMethod:@"sendFavoriteSuccess:" withFaildRequestMethod:@"sendFavoriteFaild:"];
         
     }
-}
-
-- (void)setEnableFavorite
-{
-    [favBtn setBackgroundImage:[UIImage imageNamed:@"favorite_no.png"] forState:UIControlStateNormal];
-    [favBtn setEnabled:YES];
-}
-
-- (void)setDisableFavorite
-{
-    [favBtn setBackgroundImage:[UIImage imageNamed:@"favorite_yes.png"] forState:UIControlStateNormal];
-    [favBtn setEnabled:NO];
 }
 
 - (void)sendCommentSuccess:(NSDictionary*)result
@@ -344,14 +354,20 @@
     if (status) {
         NSLog(@"favoriteSuccess");
         
-        [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
-        self.isFavorited = YES;
-        [self setDisableFavorite];
+        if (self.isFavorited) {
+            [SVProgressHUD showSuccessWithStatus:@"取消收藏"];
+            
+            [self setFavoriteState:NO];
+        }else{
+            [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            
+            [self setFavoriteState:YES];
+        }
+        
     }else{
         NSString *errorMsg = [result objectForKey:@"msg"];
         [SVProgressHUD showErrorWithStatus:errorMsg];
-        self.isFavorited = NO;
-        [self setEnableFavorite];
+        [self setFavoriteState:NO];
     }
     
 }
@@ -359,8 +375,6 @@
 - (void)sendFavoriteFaild:(NSDictionary*)result
 {
     [SVProgressHUD showErrorWithStatus:@"网络链接失败，请检查网络"];
-    self.isFavorited = NO;
-    [self setEnableFavorite];
 }
 
 - (void)commentReset
@@ -386,6 +400,17 @@
     }else{
         favBtn.enabled = NO;
         
+    }
+}
+
+- (void)setFavoriteState:(BOOL)state
+{
+    self.isFavorited = state;
+    if (state) {
+        [favBtn setBackgroundImage:[UIImage imageNamed:@"favorite_yes.png"] forState:UIControlStateNormal];
+    }else{
+        [favBtn setBackgroundImage:[UIImage imageNamed:@"favorite_no.png"] forState:UIControlStateNormal];
+
     }
 }
 

@@ -69,7 +69,11 @@
     favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     favBtn.frame = CGRectMake(saveBtn.frame.origin.x+saveBtn.frame.size.width+5,saveBtn.frame.origin.y,saveBtn.frame.size.width-4,saveBtn.frame.size.height-4);
     [favBtn addTarget:self action:@selector(favoriteAction) forControlEvents:UIControlEventTouchUpInside];
-    [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_no.png"] forState:UIControlStateNormal];
+    if (self.isFavorited) {
+        [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_yes.png"] forState:UIControlStateNormal];
+    }else{
+        [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_no.png"] forState:UIControlStateNormal];
+    }
     [self.view addSubview:favBtn];
     
     //跟贴
@@ -126,34 +130,44 @@
     }
 
     if (isFavorited) {
-        return;
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setObject:self.pictureId forKey:@"pictureId"];
+        
+        [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoriteSuccess:" withFaildRequestMethod:@"favoriteFaild:"];
+    }else{
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setObject:self.pictureId forKey:@"pictureId"];
+        
+        [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoriteSuccess:" withFaildRequestMethod:@"favoriteFaild:"];
     }
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:self.pictureId forKey:@"pictureId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoriteSuccess:" withFaildRequestMethod:@"favoriteFaild:"];
 }
 - (void)favoriteSuccess:(NSDictionary*)resultDict
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         NSLog(@"favoriteSuccess");
-        [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
-        self.isFavorited = YES;
-        [self disableFavorite];
-        
+        if (isFavorited) {
+            [SVProgressHUD showSuccessWithStatus:@"取消收藏"];
+            self.isFavorited = NO;
+            [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_no.png"] forState:UIControlStateNormal];
+        }else{
+            [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_yes.png"] forState:UIControlStateNormal];
+            self.isFavorited = YES;
+        }
     }else{
         NSString *msg = [resultDict objectForKey:@"msg"];
+        if ([msg isEqualToString:@"已经收藏过该图片"]) {
+            [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_yes.png"] forState:UIControlStateNormal];
+            self.isFavorited = YES;
+        }
         [SVProgressHUD showErrorWithStatus:msg];
-        self.isFavorited = NO;
-        [self enableFavorite];
     }
 }
 - (void)favoriteFaild:(NSDictionary*)resultDict
 {
-    [SVProgressHUD showErrorWithStatus:@"网络链接失败，请检查网络"];
-    self.isFavorited = NO;
-    [self enableFavorite];
+    [SVProgressHUD showErrorWithStatus:@"网络不给力啊"];
 }
 
 - (void)enableFavorite

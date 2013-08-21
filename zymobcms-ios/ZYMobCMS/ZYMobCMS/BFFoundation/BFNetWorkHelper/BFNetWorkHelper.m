@@ -215,6 +215,26 @@ static BFNetWorkHelper *_instance = nil;
             urlString = ZYCMS_User_Product_Comment_Interface;
             break;
             
+            case ZYCMSRequestTypePictureCommentSupport:
+            urlString = ZYCMS_Picture_Comment_Support_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureCommentUnSupport:
+            urlString = ZYCMS_Picture_Comment_unSupport_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductCommentSupport:
+            urlString = ZYCMS_Product_Comment_Support_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductCommentUnSupport:
+            urlString = ZYCMS_Product_Comment_unSupport_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCancelFavoriteArticle:
+            urlString = ZYCMS_Cancel_Favorite_Article_Interface;
+            break;
+            
         default:
             break;
     }

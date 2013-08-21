@@ -23,6 +23,7 @@ class PictureController extends Controller {
         $productId = $_GET['appId'];
         $pageIndex = $_GET['pageIndex'];
         $pageSize = $_GET['pageSize'];
+        $userId   = $_GET['userId'];
         
         if(!$productId){
             
@@ -54,6 +55,21 @@ class PictureController extends Controller {
         $sql = "select * from zy_picture limit $startIndex,$pageSize";
         
         $resultArr = $dbOperation->queryAllBySql($sql);
+        
+        //是否已经收藏过这个图片
+        $currentRecord = current($resultArr);
+        while ($currentRecord){
+        	 
+        	$checkIfUserSupport = "select id from zy_user_picture_favorite where picture_id = $currentRecord->id and user_id=$userId";
+        	 
+        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        	if ($resultCheck) {
+        		$currentRecord->isFavorited="1";
+        	}else{
+        		$currentRecord->isFavorited="0";
+        	}
+        	$currentRecord = next($resultArr);
+        }
         
         $jsonArr = array('status'=>'1','data'=>$resultArr);
         
@@ -131,6 +147,7 @@ class PictureController extends Controller {
             $productId = $_GET['appId'];
             $pageIndex = $_GET['pageIndex'];
             $pageSize  = $_GET['pageSize'];
+            $userId    = $_GET['userId'];
             
             if(!$pictureId || !$productId){
                 
@@ -168,9 +185,26 @@ class PictureController extends Controller {
             
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select zy_picture_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_picture_comment inner join zy_user on create_user = id where picture_id=$pictureId limit $startIndex,$pageSize";
+            $sql = "select zy_picture_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_picture_comment inner join zy_user on zy_picture_comment.create_user = zy_user.id where picture_id=$pictureId limit $startIndex,$pageSize";
             
             $commentArr = $dbOperation->queryAllBySql($sql);
+            
+            //是否已经支持
+            $currentRecord = current($commentArr);
+            while ($currentRecord){
+            	 
+            	$currentCommentId = $currentRecord->comment_id;
+            	$checkIfUserSupport = "select id from zy_picture_comment_support where comment_id = $currentCommentId and user_id=$userId";
+            	 
+            	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+            	if ($resultCheck) {
+            		$currentRecord->isSupported="1";
+            	}else{
+            		$currentRecord->isSupported="0";
+            	}
+            	 
+            	$currentRecord = next($commentArr);
+            }
             
             $resultArr = array('status'=>'1','data'=>$commentArr);
             
@@ -274,7 +308,7 @@ class PictureController extends Controller {
             } 
             
             
-            $insertSql = "delete from zy_user_picture_favorite where picture_id = $articleId";            
+            $insertSql = "delete from zy_user_picture_favorite where picture_id = $articleId and user_id=$userId";            
             $insertResult = $dbOperation->saveBySql($insertSql);
             
             if($insertResult){
@@ -361,7 +395,25 @@ class PictureController extends Controller {
                     return;
                }
                
+               
+               
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            //是否已经支持过了
+            $sqlCheck = "select id from zy_picture_comment_support where comment_id=$commentId and user_id=$userId";
+             
+            $checkResult = $dbOperation->queryBySql($sqlCheck);
+             
+            if($checkResult){
+            	 
+            	$josnArr = array('status'=>'0','msg'=>'已经支持过了');
+            	 
+            	echo json_encode($josnArr);
+            	 
+            	return ;
+            }
+            
+            
             $sqlInsert = "insert into zy_picture_comment_support(comment_id,user_id)values($commentId,$userId)";
             
             $inserResult = $dbOperation->saveBySql($sqlInsert);

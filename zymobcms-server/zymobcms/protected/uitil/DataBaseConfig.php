@@ -18,6 +18,7 @@ class DataBaseConfig {
     public static $password = '123';
     public static $charset = 'utf8';
     public static $appId   = 'zymobcms';
+    public static $industryId = '0';//行业, 默认0, 服装类行业1
 }
 
 ?>

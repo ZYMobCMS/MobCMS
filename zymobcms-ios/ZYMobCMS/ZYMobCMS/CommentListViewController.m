@@ -216,6 +216,19 @@
     // Configure the cell...
     if (!cell) {
         cell = [[[ArticleCommentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+        [cell setTapOnSupportAction:^{
+            if (![ZYUserManager userIsLogined]) {
+                ZYLoginViewController *loginVC = [[ZYLoginViewController alloc]init];
+                loginVC.mainTitle = @"登录";
+                [ZYMobCMSUitil setBFNNavItemForReturn:loginVC];
+                [loginVC setSuccessLoginAction:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                [self.navigationController pushViewController:loginVC animated:YES];
+                [loginVC release];
+                return;
+            }
+        }];
     }
     [cell setcontentDict:[sourceArray objectAtIndex:indexPath.row]];
     
@@ -286,7 +299,12 @@
             [sourceArray removeAllObjects];
         }
         
-        [sourceArray addObjectsFromArray:[resultDict objectForKey:@"data"]];
+        //
+        for (NSDictionary *item in resultArray) {
+            NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:item];
+            [newItem setObject:[NSNumber numberWithInt:commentBar.commentType] forKey:ZYCommentTypeKey];
+            [sourceArray addObject:newItem];
+        }
         
         [self.listTable reloadData];
         
