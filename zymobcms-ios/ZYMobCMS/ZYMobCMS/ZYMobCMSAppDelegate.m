@@ -70,8 +70,25 @@
     //保存TOKEN
     if ([ZYUserManager getCurrentUserLoginName]) {
         [params setObject:[ZYUserManager getCurrentUserLoginName] forKey:@"loginName"];
+    }else{
+        [params setObject:@"" forKey:@"loginName"];
+    }
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserSaveDeivceToken withParams:params withHelperDelegate:self withSuccessRequestMethod:@"saveTokenSuccess:" withFaildRequestMethod:@"saveTokenFaild:"];
+    
+}
+- (void)saveTokenSuccess:(NSDictionary*)resultDict
+{
+    if ([[resultDict objectForKey:@"status"]boolValue]==NO) {
+        NSString *msg = [resultDict objectForKey:@"msg"];
+        
+        NSLog(@"%@",msg);
     }
 }
+- (void)saveTokenFaild:(NSDictionary*)resultDict
+{
+    
+}
+
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSString *str = [NSString stringWithFormat: @"Error: %@", error];
     NSLog(@"gettoken fail===>>>%@", str);

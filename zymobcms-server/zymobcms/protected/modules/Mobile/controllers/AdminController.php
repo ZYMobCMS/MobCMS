@@ -13,6 +13,8 @@
 class AdminController extends Controller {
     //put your code here
             
+	private $_publicPush = 0;
+	
     /*
      * 管理员登陆
      */
@@ -86,57 +88,39 @@ class AdminController extends Controller {
             
             return;
         }
-        
-//        //查询pem存放位置
-//        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
-//        $checkSql = "select pem_path from zy_application_owner";
-//        
-//        $pemObj = $dbOperation->queryBySql($checkSql);
-//        
-//        if($pemObj==NULL){
-//            $resultArr = array('status'=>'0','msg'=>'没有推送功能');
-//            
-//            echo json_encode($resultArr);
-//            
-//            return;
-//        }
-        
+                
         //新建推送
-//        print_r($pemPath);
-        $pemPath = Yii::app()->basePath.'/uitil/apns-dev.pem';
-        $pushManager = new PushNotiManager($appId,$pemPath);
-        
-//        print_r($pushManager);
-        
+        $pemPath = Yii::app()->basePath.'/uitil/ck.pem';
+        $pushManager = new PushNotiManager($appId,$pemPath,$this->_publicPush);
+                
         $newMsg = new PushMessage();
-        
-        var_dump($newMsg);
-        
+                
         $newMsg->title = $msgTitle;
         $newMsg->content=$msgContent;
         $newMsg->typeId = $msgType;
         $newMsg->id = $msgDestId;
         $newMsg->send_admin = $adminLoginName;
-            
-//        print_r($newMsg);
         
+        //显示数量
+        $bageCount = 1;
+                    
         if($destUserId==NULL && $destLoginName==NULL){
-            
-            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$newMsg, NULL, FALSE, TRUE);
+                    	 
+            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg, NULL, FALSE, TRUE);
             
         }else if($destUserId&&$destLoginName==NULL){
             
-            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$newMsg,$destUserId, TRUE,FALSE);
+            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destUserId, TRUE,FALSE);
         }else if($destLoginName&&$destUserId==NULL){
             
             echo 'push noti by login name !!!';
 
-            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$newMsg,$destLoginName,FALSE,FALSE);
+            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destLoginName,FALSE,FALSE);
             
             
         }else if($destLoginName != NULL && $destUserId!=NULL){
              
-            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$newMsg,$destUserId,TRUE,FALSE);
+            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destUserId,TRUE,FALSE);
         }
         
         

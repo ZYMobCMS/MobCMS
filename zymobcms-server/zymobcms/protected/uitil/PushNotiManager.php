@@ -1,5 +1,6 @@
 <?php
 
+use Wrep\Notificato\Notificato;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -14,25 +15,15 @@ class PushNotiManager {
     //put your code here
     private $_appId = '';//需要用的时候修改
     private $_pemPath = '';
-    private $_apns;
+    private $_sandbox = 'gateway.sandbox.push.apple.com';
+    private $_port = 2195;
+    private $_public = 'gateway.push.apple.com';
+    private $_environment = 0;
 
-    public function __construct($appId,$pemPath){
+    public function __construct($appId,$pemPath,$environment){
         $this->_appId = $appId;
         $this->_pemPath = $pemPath;
-        
-        $rootpath = 'entrust_root_certification_authority.pem';  //ROOT证书地址
-        $apns = new APNS(APNS::ENVIRONMENT_SANDBOX,$this->_pemPath);
-        $this->_apns = $apns;
-//        var_dump($this->_apns);
-        try
-        {
-//            $apns->setRCA($this->_pemPath);  //设置ROOT证书
-            $this->_apns->connect(); //连接
-        }catch(Exception $e)
-        {
-         echo $e;
-        }
-    
+        $this->_environment = $environment;
     }
 
     private function foundIOSRightTokeWithUserId($userId){
@@ -65,7 +56,7 @@ class PushNotiManager {
         return $devices;
     }
 
-    public function pushMessageForIOSDevicesByUserId($title,$data,$param,$isUserId,$isAll){
+    public function pushMessageForIOSDevicesByUserId($title,$bageCount,$data,$param,$isUserId,$isAll){
        
      if($isAll){
          $devices = $this->foundAllIOSDevices();
@@ -75,31 +66,79 @@ class PushNotiManager {
          $devices = $this->foundIOSRightTokeWithLoginName($param);
      }
      
+//      print_r($devices);
+          
+      
+     
+     $apnsHost = $this->_environment? $this->_public:$this->_sandbox;
+     $apnsCert = $this->_pemPath;
+     $apnsPort = $this->_port;
+     
    if(is_object($devices)){    
 
-       $this->_apns->addDT($devices->token);  //加入deviceToken
-       $this->_apns->setText($title);  //发送内容
-       $this->_apns->setBadge(1);  //设置图标数
-       $this->_apns->setSound();  //设置声音
-       $this->_apns->setExpiry(3600);  //过期时间
-       $this->_apns->setCP(json_encode($data));  //自定义操作
-       $this->_apns->send();  //发送
+		$payload['aps']=array(
+                    'alert'=>$title,
+                    'badge'=>$bageCount,
+                    'sound'=>'default');
+        $payload = json_encode($payload);
+        print_r($payload);
+        
+        $streamContext = stream_context_create();
+        stream_context_set_option($streamContext, 'ssl', 'local_cert', $apnsCert);
+        $apns = stream_socket_client('ssl://' . $apnsHost . ':' . $apnsPort, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext);
+        if (!$apns) {
+            print "Failed to connect $error";
+            
+            return;
+        }
+        print "Connection OK ";
+                
+        $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '',$devices->token)) . chr(0) . chr(strlen($payload)) . $payload;
+        fwrite($apns, $apnsMessage);
+        
+        print_r($error);
+        print_r($errorString);
+        
+        socket_close($apns);
+        fclose($apns);
+       
+       echo 'sending to one .....';
            
    }else if(is_array($devices)){
        for($i=0;$i<count($devices);$i++){
-
-       $this->_apns->addDT($devices[$i]['token']);  //加入deviceToken
-       $this->_apns->setText($title);  //发送内容
-       $this->_apns->setBadge(1);  //设置图标数
-       $this->_apns->setSound();  //设置声音
-       $this->_apns->setExpiry(3600);  //过期时间
-       $this->_apns->setCP(json_encode($data));  //自定义操作
-       $this->_apns->send();  //发送           
-       }
+       	       	
+       	$payload['aps']=array(
+                    'alert'=>$title,
+                    'badge'=>$bageCount,
+                    'sound'=>'default');
+        $payload = json_encode($payload);
+        print_r($payload);
+        
+        $streamContext = stream_context_create();
+        stream_context_set_option($streamContext, 'ssl', 'local_cert', $apnsCert);
+        $apns = stream_socket_client('ssl://' . $apnsHost . ':' . $apnsPort, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext);
+        if (!$apns) {
+            print "Failed to connect $error";
+                        
+            return;
+        }
+        print "Connection OK ";
+                
+        $cDevice = $devices[$i];
+        $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '',$cDevice->token)) . chr(0) . chr(strlen($payload)) . $payload;
+        fwrite($apns, $apnsMessage);
+        
+        print_r($error);
+        print_r($errorString);
+        
+        socket_close($apns);
+        fclose($apns);
+		       
+      }
+       
+       echo 'sending..... to all.....';
+               
    }
-   
-   // Disconnect from the Apple Push Notification Service
-   $this->_apns->disconnect();
    
    }
    

@@ -450,11 +450,14 @@ class UserController extends Controller {
             
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
+            //处理用户token去空格
+            $subToken = substr($deviceToken,1,strlen($deviceToken)-2);
+            $token = str_replace(' ','',$subToken);
             if($loginName != NULL){
-                $insertSql = "insert into zy_device(token,type_id,login_name)value('$deviceToken',$deviceType,'$loginName')";
+                $insertSql = "insert into zy_device(token,type_id,login_name)value('$token',$deviceType,'$loginName')";
 
             }else{
-                $insertSql = "insert into zy_device(token,type_id)value('$deviceToken',$deviceType)";
+                $insertSql = "insert into zy_device(token,type_id)value('$token',$deviceType)";
 
             }
             
