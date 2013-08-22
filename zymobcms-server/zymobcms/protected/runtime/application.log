@@ -2690,3 +2690,256 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/newsList&categoryId=0&tabTypeId=8&pageIndex=2&pageSize=10&appId=zymobcms
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (27)
 in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 16:29:54 [error] [php] Undefined index: msgContent (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php:73)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&title=3335&type=%3CUITextField%3A%200x728e890%3B%20frame%20%3D%20%2890%20115%3B%20150%2040%29%3B%20text%20%3D%20%271%27%3B%20clipsToBounds%20%3D%20YES%3B%20opaque%20%3D%20NO%3B%20gestureRecognizers%20%3D%20%3CNSArray%3A%200x728edd0%3E%3B%20layer%20%3D%20%3CCALayer%3A%200x728e9e0%3E%3E&content=3334%E4%B8%89%E4%B8%AA%E6%96%B9%E6%B3%95%E5%A4%A7%E4%BD%BF%E9%A6%86%E9%A5%AD%E5%BA%97%E6%94%B6%E8%B4%AD&id=%3CUITextField%3A%200x728f8c0%3B%20frame%20%3D%20%2890%20170%3B%20150%2040%29%3B%20text%20%3D%20%271146%27%3B%20clipsToBounds%20%3D%20YES%3B%20opaque%20%3D%20NO%3B%20gestureRecognizers%20%3D%20%3CNSArray%3A%200x728fe50%3E%3B%20layer%20%3D%20%3CCALayer%3A%200x728fa10%3E%3E&destLoginName=%3CUITextField%3A%200x7290970%3B%20frame%20%3D%20%2890%20220%3B%20150%2040%29%3B%20text%20%3D%20%272222%27%3B%20clipsToBounds%20%3D%20YES%3B%20opaque%20%3D%20NO%3B%20gestureRecognizers%20%3D%20%3CNSArray%3A%200x7290f00%3E%3B%20layer%20%3D%20%3CCALayer%3A%200x7290ac0%3E%3E
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (73)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 16:31:17 [error] [php] Undefined index: msgContent (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php:73)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&title=111111111&type=1&content=222222222222&id=1146&destLoginName=2222
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (73)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 16:31:29 [error] [php] Undefined index: msgContent (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php:73)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&title=111111111&type=1&content=222222222222&id=1146&destLoginName=2222
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (73)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 16:33:14 [error] [php] Undefined index: destUserId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php:79)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&msgType=1&title=11111111&msgId=1146&destLoginName=2222&adminLoginName=2222&msgContent=2222222222222222222
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (79)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 16:33:29 [error] [php] Undefined index: destUserId (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php:79)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&msgType=1&title=11111111&msgId=1146&destLoginName=2222&adminLoginName=2222&msgContent=2222222222222222222
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (79)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 16:43:30 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zymobcms.pushmessage' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `PushMessage`.
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (112)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 16:43:30 [error] [exception.CDbException] exception 'CDbException' with message 'The table "PushMessage" for active record class "PushMessage" cannot be found in the database.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php:2310
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(PushMessage))
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(402): CActiveRecord::model('PushMessage')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(77): CActiveRecord->getMetaData()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php(112): CActiveRecord->__construct()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('pushNotificatio...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/admin/pu...')
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+---
+2013/08/22 10:47:23 [error] [php] include(ApnsPHP_Push.php): failed to open stream: No such file or directory (/Users/barfoo/Dropbox/huhu/PHPServers/framework/YiiBase.php:421)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php(73): spl_autoload_call()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php(135): PushNotiManager->pushMessageForIOSDevicesByUserId()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php (73)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (135)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/08/22 17:30:47 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.apns" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(105): CComponent->__get('apns')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php(24): CModule->__get('apns')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php(108): PushNotiManager->__construct('zymobcms', '/Users/barfoo/D...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('pushNotificatio...')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/admin/pu...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+---
+2013/08/22 17:31:31 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.apns" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(105): CComponent->__get('apns')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php(24): CModule->__get('apns')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php(108): PushNotiManager->__construct('zymobcms', '/Users/barfoo/D...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('pushNotificatio...')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/admin/pu...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+---
+2013/08/22 17:31:34 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.apns" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(105): CComponent->__get('apns')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php(24): CModule->__get('apns')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php(108): PushNotiManager->__construct('zymobcms', '/Users/barfoo/D...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('pushNotificatio...')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/admin/pu...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+---
+2013/08/22 17:44:56 [error] [exception.Exception] exception 'Exception' with message 'Unable to read certificate file 'production_push_certificates.pem'' in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:66
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php(25): APNS->__construct(0, 'production_push...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php(108): PushNotiManager->__construct('zymobcms', '/Users/barfoo/D...')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('pushNotificatio...')
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/admin/pu...')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+---
+2013/08/22 17:49:37 [error] [exception.Exception] exception 'Exception' with message 'Unable to read certificate file '/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/apns-dev.pem'' in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:66
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php(25): APNS->__construct(0, '/Users/barfoo/D...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php(108): PushNotiManager->__construct('zymobcms', '/Users/barfoo/D...')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('pushNotificatio...')
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/admin/pu...')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+---
+2013/08/22 17:51:26 [error] [php] Undefined variable: nRetry (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:133)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php (133)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php (29)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (108)
+2013/08/22 17:52:53 [error] [php] Undefined variable: nRetry (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:133)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php (133)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php (30)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (108)
+2013/08/22 17:59:58 [error] [php] Undefined variable: nRetry (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:133)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php (133)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php (30)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (108)
+2013/08/22 18:00:07 [error] [php] Undefined variable: nRetry (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:133)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php (133)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php (30)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (108)
+2013/08/22 18:01:38 [error] [php] Undefined property: APNS::$_nConnectRetryInterval (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:138)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php (138)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php (30)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (108)
+2013/08/22 18:02:20 [error] [php] Undefined property: APNS::$_ConnectRetryInterval (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php:138)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): AdminController->actionPushNotificationForIOSUser()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): AdminController->runAction()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): AdminController->runActionWithFilters()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): AdminController->run()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/admin/pushNotificationForIOSUser&appId=zymobcms&userId=1&adminLoginName=2222&adminLoginName=2222&destUserId=&destLoginName=2222&msgContent=2222222222&msgId=1146&msgType=1&title=111111111111
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/APNS.php (138)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/uitil/PushNotiManager.php (30)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/AdminController.php (108)

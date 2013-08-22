@@ -13,80 +13,102 @@
 class PushNotiManager {
     //put your code here
     private $_appId = '';//需要用的时候修改
+    private $_pemPath = '';
+    private $_apns;
 
-
-    private function pushMessageForIOSDevices($data,$title){
-       
-    //查询所有iOS设备
-    $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
-    $querySql = "select token from zy_device where type_id = 1";
-    $devices = $dbOperation->queryAllBySql($querySql);
-    
+    public function __construct($appId,$pemPath){
+        $this->_appId = $appId;
+        $this->_pemPath = $pemPath;
         
-    // Adjust to your timezone
-    date_default_timezone_set('Europe/Rome');
+        $rootpath = 'entrust_root_certification_authority.pem';  //ROOT证书地址
+        $apns = new APNS(APNS::ENVIRONMENT_SANDBOX,$this->_pemPath);
+        $this->_apns = $apns;
+//        var_dump($this->_apns);
+        try
+        {
+//            $apns->setRCA($this->_pemPath);  //设置ROOT证书
+            $this->_apns->connect(); //连接
+        }catch(Exception $e)
+        {
+         echo $e;
+        }
+    
+    }
 
-    // Report all PHP errors
-    error_reporting(-1);
+    private function foundIOSRightTokeWithUserId($userId){
+        
+        //查询所有iOS设备
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+        $querySql = "select token from zy_device where type_id = 1 and user_id = $userId";
+        $devices = $dbOperation->queryBySql($querySql);
+        
+        return $devices;
+    }
+    
+    private function foundIOSRightTokeWithLoginName($loginName){
+        
+        //查询所有iOS设备
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+        $querySql = "select token from zy_device where type_id = 1 and login_name = $loginName";
+        $devices = $dbOperation->queryBySql($querySql);
+        
+        return $devices;
+    }
+    
+    private function foundAllIOSDevices(){
+        
+        //查询所有iOS设备
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+        $querySql = "select token from zy_device where type_id = 1";
+        $devices = $dbOperation->queryAllBySql($querySql);
+        
+        return $devices;
+    }
 
-   // Using Autoload all classes are loaded on-demand
-   require_once 'ApnsPHP/Autoload.php';
+    public function pushMessageForIOSDevicesByUserId($title,$data,$param,$isUserId,$isAll){
+       
+     if($isAll){
+         $devices = $this->foundAllIOSDevices();
+     }else if($isUserId){
+         $devices = $this->foundIOSRightTokeWithUserId($param);
+     }else {
+         $devices = $this->foundIOSRightTokeWithLoginName($param);
+     }
+     
+   if(is_object($devices)){    
 
-   // Instanciate a new ApnsPHP_Push object
-   $push = new ApnsPHP_Push(
-	 ApnsPHP_Abstract::ENVIRONMENT_SANDBOX,
-	'server_certificates_bundle_sandbox.pem'
-   );
+       $this->_apns->addDT($devices->token);  //加入deviceToken
+       $this->_apns->setText($title);  //发送内容
+       $this->_apns->setBadge(1);  //设置图标数
+       $this->_apns->setSound();  //设置声音
+       $this->_apns->setExpiry(3600);  //过期时间
+       $this->_apns->setCP(json_encode($data));  //自定义操作
+       $this->_apns->send();  //发送
+           
+   }else if(is_array($devices)){
+       for($i=0;$i<count($devices);$i++){
 
-   // Set the Root Certificate Autority to verify the Apple remote peer
-   $push->setRootCertificationAuthority('entrust_root_certification_authority.pem');
-
-   // Increase write interval to 100ms (default value is 10ms).
-   // This is an example value, the 10ms default value is OK in most cases.
-   // To speed up the sending operations, use Zero as parameter but
-   // some messages may be lost.
-   // $push->setWriteInterval(100 * 1000);
-
-   // Connect to the Apple Push Notification Service
-   $push->connect();
-
-   for($j=10;$j<count($devices);$j++){
-               
-             $message = new ApnsPHP_Message($devices[$j]->token);
-
-            // Set a custom identifier. To get back this identifier use the getCustomIdentifier() method
-            // over a ApnsPHP_Message object retrieved with the getErrors() message.
-            $message->setCustomIdentifier(sprintf("Message-Badge-%03d", count($data)));
-
-            // Set badge icon to "3"
-            $message->setBadge(count($data));
-            
-            $message->setCustomProperty('data',$data);
-
-            // Add the message to the message queue
-            $push->add($message);
-   }
-   // Send all messages in the message queue
-   $push->send();
-
-   // Disconnect from the Apple Push Notification Service
-   $push->disconnect();
-
-   // Examine the error message container
-   $aErrorQueue = $push->getErrors();
-   if (!empty($aErrorQueue)) {
-	  var_dump($aErrorQueue);
-      }  
+       $this->_apns->addDT($devices[$i]['token']);  //加入deviceToken
+       $this->_apns->setText($title);  //发送内容
+       $this->_apns->setBadge(1);  //设置图标数
+       $this->_apns->setSound();  //设置声音
+       $this->_apns->setExpiry(3600);  //过期时间
+       $this->_apns->setCP(json_encode($data));  //自定义操作
+       $this->_apns->send();  //发送           
+       }
    }
    
-    
+   // Disconnect from the Apple Push Notification Service
+   $this->_apns->disconnect();
+   
+   }
+   
     private function pushMessageForAndroidDevices($data,$title){
         
         
     }
     
     public function pushMessageNow($message,$title){
-        
         
         
     }

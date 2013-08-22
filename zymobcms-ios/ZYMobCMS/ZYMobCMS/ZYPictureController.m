@@ -204,7 +204,7 @@
         
         NSArray *allTabs = [resultDict objectForKey:@"data"];
         
-        currentTabType = [[allTabs objectAtIndex:0]objectForKey:@"id"] ;
+        self.currentTabType = [[allTabs objectAtIndex:0]objectForKey:@"id"] ;
         
         [self getPictureList];
         

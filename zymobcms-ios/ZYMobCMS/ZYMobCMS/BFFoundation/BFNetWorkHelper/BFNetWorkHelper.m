@@ -247,6 +247,10 @@ static BFNetWorkHelper *_instance = nil;
             urlString = ZYCMS_Product_Tab_Type_Interface;
             break;
             
+            case ZYCMSRequestTypeUserSaveDeivceToken:
+            urlString = ZYCMS_User_Commit_Token_Interface;
+            break;
+            
         default:
             break;
     }

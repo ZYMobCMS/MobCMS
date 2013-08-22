@@ -255,7 +255,6 @@
     for (int i=0; i<sortArray.count; i++) {
         
         NSDictionary *item = [sortArray objectAtIndex:i];
-        NSLog(@"item in return feature+++++++++++++>%@",item);
         
         NSString *featureName = [item objectForKey:@"name"];
         
@@ -306,9 +305,7 @@
     for (int i=0; i<featureArray.count; i++) {
         
         NSArray *itemArray = [featureArray objectAtIndex:i];
-        
-        NSLog(@"build feature page item Array ------++++++++++>%@",itemArray);
-        
+                
         if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYCategoryViewController"]) {
             
             ZYCategoryViewController *newCategory = [[ZYCategoryViewController alloc]init];
@@ -437,7 +434,7 @@
     BOOL status = [[resultDict objectForKey:@"status"] boolValue];
     if (status) {
         
-        NSLog(@"get menu data ====>%@",[resultDict objectForKey:@"data"]);
+//        NSLog(@"get menu data ====>%@",[resultDict objectForKey:@"data"]);
         
         //category类型
         NSArray *categoryArray  = [resultDict objectForKey:@"data"];
@@ -447,15 +444,11 @@
             NSMutableArray *featureArray = [NSMutableArray array];
             NSArray *categoryFeatureArray = [self returnFeatureClassArrayWithSortArray:categoryArray];
             [featureArray addObjectsFromArray:categoryFeatureArray];
-            
-            NSLog(@"featureArray ---->%@",featureArray);
-            
+                        
             [self buildMenuTitleArrayWithFeatureArray:featureArray];
             
             [self buildFeaturePagesWithFeatureClassArray:featureArray];
-            
-            NSLog(@"viewControllers--->%@",viewControllers);
-            
+                        
             [menuTableView reloadData];
             
             [self shouldSelectVCAtSection:0 rowIndex:0];

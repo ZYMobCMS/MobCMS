@@ -432,6 +432,7 @@ class UserController extends Controller {
             $deviceToken = $_GET['token'];
             $deviceType  = $_GET['type'];
             $appId = $_GET['appId'];
+            $loginName = $_GET['loginName'];
             
             if($deviceToken==NULL){
                 
@@ -449,7 +450,13 @@ class UserController extends Controller {
             
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
-            $insertSql = "insert into zy_device(token,type_id)value('$deviceToken',$deviceType)";
+            if($loginName != NULL){
+                $insertSql = "insert into zy_device(token,type_id,login_name)value('$deviceToken',$deviceType,'$loginName')";
+
+            }else{
+                $insertSql = "insert into zy_device(token,type_id)value('$deviceToken',$deviceType)";
+
+            }
             
             $saveResult = $dbOperation->saveBySql($insertSql);
             

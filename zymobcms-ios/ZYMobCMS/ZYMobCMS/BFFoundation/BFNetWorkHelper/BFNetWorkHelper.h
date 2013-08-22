@@ -55,6 +55,7 @@ typedef enum {
     ZYCMSRequestTypePictureDetail,
     ZYCMSRequestTypePictureTabTypes,
     ZYCMSRequestTypeProductTabTypes,
+    ZYCMSRequestTypeUserSaveDeivceToken,
     
 }ZYCMSRequestType;
 
