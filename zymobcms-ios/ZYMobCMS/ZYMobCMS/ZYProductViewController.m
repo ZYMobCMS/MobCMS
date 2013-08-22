@@ -16,6 +16,7 @@
 @end
 
 @implementation ZYProductViewController
+@synthesize categoryId,currentTabType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +28,10 @@
 }
 - (void)dealloc
 {
+    self.categoryId = nil;
+    self.currentTabType = nil;
     [listArray release];
+    [tabTypesArray release];
     [super dealloc];
 }
 
@@ -39,6 +43,9 @@
     if(!listArray){
         listArray = [[NSMutableArray alloc]init];
         pageIndex = 0;
+    }
+    if (!tabTypesArray) {
+        tabTypesArray = [[NSMutableArray alloc]init];
     }
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStylePlain];
     listTable.dataSource = self;
@@ -56,8 +63,8 @@
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
     
-    [self getProductList];
-
+    [self getAllTabTypes];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,6 +149,7 @@
     
     ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
     detailVC.productId = [[listArray objectAtIndex:indexPath.row]objectForKey:@"id"];
+    detailVC.isFavorited = [[[listArray objectAtIndex:indexPath.row]objectForKey:@"isFavorited"]boolValue];
     detailVC.mainTitle = @"产品详情";
     [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
     [self.navigationController pushViewController:detailVC animated:YES];
@@ -183,6 +191,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:10] forKey:@"pageSize"];
+    [params setObject:self.categoryId forKey:@"categoryId"];
+    [params setObject:self.currentTabType forKey:@"tabTypeId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getProductListSuccess:" withFaildRequestMethod:@"getProductListFaild:"];
     
@@ -224,6 +234,33 @@
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+}
+
+#pragma mark - 获取所有子分类
+- (void)getAllTabTypes
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.categoryId forKey:@"categoryId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductTabTypes withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getAllTabTypesSuccess:" withFaildRequestMethod:@"getAllTabTypesFaild:"];
+}
+- (void)getAllTabTypesSuccess:(NSDictionary*)resultDict
+{
+    BOOL status = [[resultDict objectForKey:@"status"]boolValue];
+    if (status) {
+        NSLog(@"resultDict===>%@",resultDict);
+        
+        NSArray *allTabs = [resultDict objectForKey:@"data"];
+        
+        currentTabType = [[allTabs objectAtIndex:0]objectForKey:@"id"] ;
+        
+        [self getProductList];
+
+    }
+}
+- (void)getAllTabTypesFaild:(NSDictionary*)resultDict
+{
+    
 }
 
 

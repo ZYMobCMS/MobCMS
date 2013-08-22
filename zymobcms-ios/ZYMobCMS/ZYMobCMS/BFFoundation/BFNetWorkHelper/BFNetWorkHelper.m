@@ -235,6 +235,18 @@ static BFNetWorkHelper *_instance = nil;
             urlString = ZYCMS_Cancel_Favorite_Article_Interface;
             break;
             
+            case ZYCMSRequestTypePictureDetail:
+            urlString = ZYCMS_Picture_Detail_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureTabTypes:
+            urlString = ZYCMS_Picture_Tab_Type_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductTabTypes:
+            urlString = ZYCMS_Product_Tab_Type_Interface;
+            break;
+            
         default:
             break;
     }

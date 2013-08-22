@@ -23,6 +23,8 @@ class ProductController extends Controller{
         $pageIndex = $_GET['pageIndex'];
         $pageSize = $_GET['pageSize'];
         $userId = $_GET['userId'];
+        $categoryId = $_GET['categoryId'];
+        $tabTypeId = $_GET['tabTypeId'];
         
         if($appId==NULL || $userId == NULL){
             
@@ -49,6 +51,42 @@ class ProductController extends Controller{
         
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        
+        //查询缓存是否存在
+        $cacheManager = new CacheManager($appId);
+        $isCached = $cacheManager->isProductListCacheExist($categoryId,$tabTypeId,$pageIndex);
+        if($isCached){
+        
+        	$resultArr = $cacheManager->returnProductCacheListByPageIndex($categoryId,$tabTypeId,$pageIndex);
+        
+        	foreach ($resultArr as $key=>$value){
+        
+        		//是否已经收藏过图片
+        		if(is_array($value)){
+        			$currentRecord = current($value);
+                			
+        			while ($currentRecord){
+        				 
+        				$articleId = $currentRecord['id'];
+        				$checkIfUserSupport = "select id from zy_user_product_favorite where product_id = $articleId and user_id=$userId";
+        
+        				$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        				if ($resultCheck) {
+        					$currentRecord['isFavorited']="1";
+        				}else{
+        					$currentRecord['isFavorited']="0";
+        				}
+        				$currentRecord = next($value);
+        
+        			}
+        		}
+        	}
+        
+        	echo json_encode($resultArr);
+        
+        	return ;
+        }
+        
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
         $sql = "select id,title,summary,support_count,images from zy_product limit $startIndex,$pageSize";
@@ -74,6 +112,8 @@ class ProductController extends Controller{
         
         echo json_encode($jsonArr);
         
+        //缓存数据
+        $cacheManager->cacheProductNewList($categoryId, $tabTypeId,$pageIndex,$jsonArr);
     }
     
     /*
@@ -96,6 +136,18 @@ class ProductController extends Controller{
             return;
         }
         
+        //是否存在缓存
+        $cacheManager = new CacheManager($appId);
+        $isCached = $cacheManager->isProductDetailCacheExist($productId);
+        if($isCached){
+        
+        	$cacheObj = $cacheManager->returnProductDetailCache($productId);
+        
+        	echo $cacheObj;
+        
+        	return ;
+        }
+        
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
@@ -103,18 +155,21 @@ class ProductController extends Controller{
         
         $resultObj = $dbOperation->queryBySql($sql);
         
-        //是否已经收藏过该产品
-        //查询是否收藏该文章
-        $checkFavorite = "select id from zy_user_product_favorite where product_id=$productId and user_id=$userId";
-        $checkResult = $dbOperation->queryBySql($checkFavorite);
-        $resultType = $checkResult?  1:0;
-        $resultObj->isFavorite=$resultType;
+//         //是否已经收藏过该产品
+//         //查询是否收藏该文章
+//         $checkFavorite = "select id from zy_user_product_favorite where product_id=$productId and user_id=$userId";
+//         $checkResult = $dbOperation->queryBySql($checkFavorite);
+//         $resultType = $checkResult?  1:0;
+//         $resultObj->isFavorited=$resultType;
         
         if($resultObj){
             
             $resultArr = array('status'=>'1','data'=>$resultObj);
             
             echo json_encode($resultArr);
+            
+            //缓存
+            $cacheManager->cacheProductDetail($productId,$resultArr);
             
         }else{
             
@@ -525,6 +580,48 @@ class ProductController extends Controller{
             
         }
     
+        /*
+         * 查询某个产品下面得所有Category分类
+         */
+        public function actionTabTypesByCategoryId(){
+        	
+        	$productId = $_GET['appId'];
+        	$categoryId = $_GET['categoryId'];
+        	 
+        	if($productId==NULL||$categoryId==NULL){
+        	
+        		$resultArr = array('status'=>'0','msg'=>'参数缺失');
+        	
+        		echo json_encode($resultArr);
+        	
+        		return;
+        	}
+        	 
+        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        	
+        	$sqlCheck="select * from zy_product_tab_type where category_id = $categoryId";
+        	 
+        	$resultArr = $dbOperation->queryAllBySql($sqlCheck);
+        	 
+        	if ($resultArr) {
+        	
+        		$jsonArr = array('status'=>'1','data'=>$resultArr);
+        	
+        		echo json_encode($jsonArr);
+        	
+        		return ;
+        	
+        	}else{
+        	
+        		$jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+        	
+        		echo json_encode($jsonArr);
+        	
+        		return ;
+        	}
+        	
+        }
+        
 }
 
 ?>

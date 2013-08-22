@@ -24,8 +24,10 @@ class PictureController extends Controller {
         $pageIndex = $_GET['pageIndex'];
         $pageSize = $_GET['pageSize'];
         $userId   = $_GET['userId'];
+        $categoryId = $_GET['categoryId'];
+        $tabTypeId = $_GET['tabTypeId'];
         
-        if(!$productId){
+        if($productId==NULL || $categoryId == NULL || $tabTypeId==NULL){
             
             $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -50,6 +52,42 @@ class PictureController extends Controller {
         
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        
+        //查询缓存是否存在
+        $cacheManager = new CacheManager($productId);
+        $isCached = $cacheManager->isPictureListCacheExist($categoryId,$tabTypeId,$pageIndex);
+        if($isCached){
+        
+        	$resultArr = $cacheManager->returnPictureCacheListByPageIndex($categoryId,$tabTypeId,$pageIndex);
+        
+        	foreach ($resultArr as $key=>$value){
+        
+        		//是否已经收藏过图片
+        		if(is_array($value)){
+        			$currentRecord = current($value);
+        
+        			while ($currentRecord){
+        				 
+        				$articleId = $currentRecord['id'];
+        				$checkIfUserSupport = "select id from zy_user_picture_favorite where picture_id = $articleId and user_id=$userId";
+        					 
+        				$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        				if ($resultCheck) {
+        					$currentRecord['isFavorited']="1";
+        				}else{
+        					$currentRecord['isFavorited']="0";
+        				}
+        				$currentRecord = next($value);
+        			}
+        		}
+        	}
+        	 
+        	echo json_encode($resultArr);
+        	 
+        	return ;
+        }
+        
+        
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
         $sql = "select * from zy_picture limit $startIndex,$pageSize";
@@ -72,8 +110,11 @@ class PictureController extends Controller {
         }
         
         $jsonArr = array('status'=>'1','data'=>$resultArr);
-        
+    
         echo json_encode($jsonArr);
+        
+        //缓存数据
+        $cacheManager->cachePictureNewList($categoryId, $tabTypeId,$pageIndex,$jsonArr);
         
     }
     
@@ -282,8 +323,9 @@ class PictureController extends Controller {
             $articleId = $_GET['pictureId'];
             $productId = $_GET['appId'];
             $userId  = $_GET['userId'];
+
             
-            if(!$articleId || !$productId || !$userId){
+            if($articleId ==NULL || $productId==NULL){
                 
                 $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -478,6 +520,102 @@ class PictureController extends Controller {
             
         }
     
+        /*
+         * 图片某个Category下得所有子Tab分类
+         */
+        public function actionTabTypesByCategoryId(){
+        	
+        	$productId = $_GET['appId'];
+        	$categoryId = $_GET['categoryId'];
+        	
+        	if($productId==NULL||$categoryId==NULL){
+        		
+        		$resultArr = array('status'=>'0','msg'=>'参数缺失');
+        		
+        		echo json_encode($resultArr);
+        		
+        		return;
+        	}
+        	
+        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        	 
+        	$sqlCheck="select * from zy_picture_tab_type where category_id = $categoryId";
+        	
+        	$resultArr = $dbOperation->queryAllBySql($sqlCheck);
+        	
+        	if ($resultArr) {
+        		
+        		$jsonArr = array('status'=>'1','data'=>$resultArr);
+        		
+        		echo json_encode($jsonArr);
+        		
+        		return ;
+        		
+        	}else{
+        		
+        		$jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+        		
+        		echo json_encode($jsonArr);
+        		
+        		return ;
+        	}
+        	
+        }
+        
+        /*
+         * 获取图片详情
+         */
+        public function actionPictureDetail(){
+        	
+        	$productId = $_GET['pictureId'];
+        	$appId = $_GET['appId'];
+        	$userId = $_GET['userId'];
+        	
+        	if($productId == NULL || $appId==NULL || $userId==NULL){
+        	
+        		$resultArr = array('status'=>'0','msg'=>'参数缺失');
+        	
+        		echo json_encode($resultArr);
+        	
+        		return;
+        	}
+        	
+        	//是否存在缓存
+        	$cacheManager = new CacheManager($productId);
+        	$isCached = $cacheManager->isPictureDetailCacheExist($productId);
+        	if($isCached){
+        		
+        		$cacheObj = $cacheManager->returnPictureDetailCache($productId);
+        		
+        		echo $cacheObj;
+        		
+        		return ;
+        	}
+        	//查询
+        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        	
+        	$sql = "select * from zy_picture where id=$productId";
+        	
+        	$resultObj = $dbOperation->queryBySql($sql);
+        	
+        	if($resultObj){
+        	
+        		$resultArr = array('status'=>'1','data'=>$resultObj);
+        	
+        		echo json_encode($resultArr);
+        		
+        		//缓存
+        		$cacheManager->cachePictureDetail($productId,$resultArr);
+        	
+        	}else{
+        	
+        		$resultArr = array ('status'=>'0','msg'=>'查询失败');
+        	
+        		echo json_encode($resultArr);
+        	
+        	}
+        	
+        }
     
 }
 

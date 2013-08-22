@@ -52,6 +52,9 @@ typedef enum {
     ZYCMSRequestTypePictureCommentUnSupport,
     ZYCMSRequestTypeProductCommentSupport,
     ZYCMSRequestTypeProductCommentUnSupport,
+    ZYCMSRequestTypePictureDetail,
+    ZYCMSRequestTypePictureTabTypes,
+    ZYCMSRequestTypeProductTabTypes,
     
 }ZYCMSRequestType;
 

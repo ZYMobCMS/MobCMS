@@ -21,6 +21,7 @@
 
 @implementation ZYProductDetail_0_ViewController
 @synthesize productId;
+@synthesize isFavorited;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -255,7 +256,7 @@
         [favAndComments setObject:[productItem objectForKey:@"favorite_count"] forKey:@"favorite_count"];
         [favAndComments setObject:[productItem objectForKey:@"comment_count"] forKey:@"comment_count"];
         [favAndComments setObject:self.productId forKey:@"product_id"];
-        [favAndComments setObject:[productItem objectForKey:@"isFavorite"] forKey:@"isFavorite"];
+        [favAndComments setObject:[NSNumber numberWithBool:self.isFavorited] forKey:@"isFavorite"];
         [listArray addObject:[NSArray arrayWithObject:favAndComments]];
         
         //底部各种参数

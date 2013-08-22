@@ -165,6 +165,10 @@
 
 #define ZYCMS_Picture_Comment_unSupport_Interface @"Mobile/picture/unSupportComment"
 
+#define ZYCMS_Picture_Detail_Interface      @"Mobile/picture/pictureDetail"
+
+#define ZYCMS_Picture_Tab_Type_Interface    @"Mobile/picture/tabTypesByCategoryId"
+
 
 /*
      分类信息详情页
@@ -188,6 +192,8 @@
 #define ZYCMS_Product_Comment_Support_Interface @"Mobile/product/supportComment"
 
 #define ZYCMS_Product_Comment_unSupport_Interface @"Mobile/product/unSupportComment"
+
+#define ZYCMS_Product_Tab_Type_Interface        @"Mobile/product/tabTypesByCategoryId"
 
 /*
      微博分类信息详情页

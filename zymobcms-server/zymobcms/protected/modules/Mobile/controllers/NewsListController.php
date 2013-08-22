@@ -26,7 +26,7 @@ class NewsListController extends Controller {
         $productId = $_GET['appId'];
         $userId = $_GET['userId'];
         
-        if(!$productId){
+        if($productId==NULL||$categoryId==NULL||$tabTypeId==NULL){
             
             $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -47,28 +47,73 @@ class NewsListController extends Controller {
             $pageSize = 10;
         }
         
-        //查询
+        //建立数据库链接
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        
+        //是否存在缓存
+        $cacheManager = new CacheManager($productId);
+        $isCached = $cacheManager->isCacheDataForCategoryIdAndTabType($categoryId,$tabTypeId,$pageIndex);
+        if($isCached){
+        
+        	$resultArr = $cacheManager->returnCacheDataForCategoryIdAndTabType($categoryId,$tabTypeId,$pageIndex);
+        
+        	foreach ($resultArr as $key=>$value){
+        		
+        		//是否已经收藏过文章
+        		if(is_array($value)){
+        			$currentRecord = current($value);
+        			        			
+        			while ($currentRecord){
+        			
+        				for ($i = 0;$i<count($currentRecord);$i++){
+        					
+        					$articleId = $currentRecord[$i]['id'];
+        					$checkIfUserSupport = "select id from zy_user_favorite where article_id = $articleId and user_id=$userId";
+        					         					
+        					$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        					if ($resultCheck) {
+        						$currentRecord[$i]['isFavorited']="1";
+        					}else{
+        						$currentRecord[$i]['isFavorited']="0";
+        					}
+        					$currentRecord = next($value);
+        					
+        				}
+        				
+        			}
+        		}
+        	}
+        	
+        	echo json_encode($resultArr);
+        	
+        	return ;
+        }
+        
+       
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
         
-        //hotNews
-        $hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1";
-        $hotNews = $dbOperation->queryAllBySql($hotNewsSql);
-        //是否已经收藏过文章
-        $currentRecord = current($hotNews);
-        while ($currentRecord){
-        
-        	$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
-        
-        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        	if ($resultCheck) {
-        		$currentRecord->isFavorited="1";
-        	}else{
-        		$currentRecord->isFavorited="0";
+        $hotNews = array();
+        if($pageIndex<=1){
+        	//hotNews
+        	$hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1";
+        	$hotNews = $dbOperation->queryAllBySql($hotNewsSql);
+        	
+        	//是否已经收藏过文章
+        	$currentRecord = current($hotNews);
+        	while ($currentRecord){
+        	
+        		$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+        	
+        		$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+        		if ($resultCheck) {
+        			$currentRecord->isFavorited="1";
+        		}else{
+        			$currentRecord->isFavorited="0";
+        		}
+        		$currentRecord = next($hotNews);
         	}
-        	$currentRecord = next($hotNews);
-        }  
+        }
         
         $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 limit $startIndex,$pageSize";
         $resultArr = $dbOperation->queryAllBySql($normalNewsSql);
@@ -90,6 +135,9 @@ class NewsListController extends Controller {
         
         echo json_encode($jsonArr);
         
+        //save cache
+        $cacheManager->cacheNewsListByCategoryAndTabType($categoryId,$tabTypeId,$pageIndex,$jsonArr);
+        
     }
     
     /*
@@ -109,6 +157,18 @@ class NewsListController extends Controller {
             
             return;                     
         }
+                
+        //是否存在缓存
+        $cacheManager = new CacheManager($productId);
+        $isCached = $cacheManager->isArticleDetailCacheExist($articleId);
+        if($isCached){
+        
+        	$cacheObj = $cacheManager->returnArticleDetailCache($articleId);
+        
+        	echo $cacheObj;
+        
+        	return ;
+        }
         
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
@@ -126,6 +186,9 @@ class NewsListController extends Controller {
             
             echo json_encode($resultArr);
 
+            //缓存
+            $cacheManager->cacheArticleDetail($articleId,$resultArr);
+            
         }else{
             $resultArr = array('status'=>'0','msg'=>'没有查询到数据');
             

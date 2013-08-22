@@ -32,17 +32,12 @@ class MenuController extends Controller {
         
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
-        
-     
-        //category类型放一个数组
-        $categorySql = "select * from zy_rights where is_category=1";
-        $resultCategory = $dbOperation->queryAllBySql($categorySql);
-        
-        $sql = "select * from zy_rights where is_category=0";
+         
+        $sql = "select * from zy_rights order by module_id";
+      
         $resultArr = $dbOperation->queryAllBySql($sql);
         
-        $combineArr = array('category'=>$resultCategory,'notcategory'=>$resultArr);
-        $jsonArr = array('status'=>'1','data'=>$combineArr);
+        $jsonArr = array('status'=>'1','data'=>$resultArr);
         
         echo json_encode($jsonArr);
         

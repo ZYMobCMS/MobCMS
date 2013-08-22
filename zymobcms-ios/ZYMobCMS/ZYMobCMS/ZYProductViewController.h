@@ -18,8 +18,12 @@
     
     UITableView *listTable;
     NSMutableArray *listArray;
+    NSMutableArray *tabTypesArray;
+    
     BOOL hideLoadMore;
     NSInteger pageIndex;
 
 }
+@property (nonatomic,retain)NSString *categoryId;
+@property (nonatomic,retain)NSString *currentTabType;
 @end

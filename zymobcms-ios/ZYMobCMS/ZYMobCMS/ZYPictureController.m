@@ -18,6 +18,7 @@
 @end
 
 @implementation ZYPictureController
+@synthesize categoryId,currentTabType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +31,9 @@
 
 - (void)dealloc
 {
+    self.categoryId = nil;
+    self.currentTabType = nil;
+    [tabTypeArray release];
     [sourceArray release];
     [super dealloc];
 }
@@ -38,6 +42,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     sourceArray = [[NSMutableArray alloc]init];
+    tabTypeArray = [[NSMutableArray alloc]init];
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44)];
     listTable.dataSource = self;
     listTable.delegate = self;
@@ -45,7 +50,7 @@
     listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [listTable release];
     
-    [self getPictureList];
+    [self getAllTabTypes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,6 +145,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSNumber numberWithInt:PageSize]  forKey:@"pageSize"];
     [params setObject:[NSNumber  numberWithInt:pageIndex] forKey:@"pageIndex"];
+    [params setObject:self.categoryId forKey:@"categoryId"];
+    [params setObject:self.currentTabType forKey:@"tabTypeId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureListSuccess:" withFaildRequestMethod:@"getPictureListFaild:"];
 }
@@ -181,6 +188,31 @@
     
 }
 
-
+#pragma mark - 获取所有子分类
+- (void)getAllTabTypes
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.categoryId forKey:@"categoryId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureTabTypes withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getAllTabTypesSuccess:" withFaildRequestMethod:@"getAllTabTypesFaild:"];
+}
+- (void)getAllTabTypesSuccess:(NSDictionary*)resultDict
+{
+    BOOL status = [[resultDict objectForKey:@"status"]boolValue];
+    if (status) {
+        NSLog(@"resultDict===>%@",resultDict);
+        
+        NSArray *allTabs = [resultDict objectForKey:@"data"];
+        
+        currentTabType = [[allTabs objectAtIndex:0]objectForKey:@"id"] ;
+        
+        [self getPictureList];
+        
+    }
+}
+- (void)getAllTabTypesFaild:(NSDictionary*)resultDict
+{
+    
+}
 
 @end

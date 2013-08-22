@@ -234,16 +234,10 @@
 {
     NSString *className = nil;
     switch (code) {
-        case 13:
-            className = @"ZYPictureController";
-            break;
-        case 14:
-            className = @"ZYProductViewController";
-            break;
-        case 15:
+        case 4:
             className = @"ZYCommentViewController";
             break;
-        case 16:
+        case 5:
             className = @"ZYSettingViewController";
             break;
             
@@ -261,32 +255,44 @@
     for (int i=0; i<sortArray.count; i++) {
         
         NSDictionary *item = [sortArray objectAtIndex:i];
-        
-        NSInteger featureCode = [[item objectForKey:@"id"]intValue];
+        NSLog(@"item in return feature+++++++++++++>%@",item);
         
         NSString *featureName = [item objectForKey:@"name"];
         
-        NSString *isCategory = [item objectForKey:@"is_category"];
+        NSString *moduleId = [item objectForKey:@"module_id"];
         
-        if ([isCategory intValue]==1) {
+        if ([moduleId intValue]==1) {
             
             NSMutableArray *itemArray = [NSMutableArray arrayWithObject:@"ZYCategoryViewController"];
             [itemArray addObject:featureName];
             [itemArray addObject:[item objectForKey:@"id"]];
-            [itemArray addObject:isCategory];
+            [itemArray addObject:moduleId];
             [featureClassArray addObject:itemArray];
             
-            continue;
-        }
-        
-        if ([self featureCodeToClassName:featureCode]!=nil) {
-            
-            NSMutableArray *itemArray = [NSMutableArray arrayWithObject:[self featureCodeToClassName:featureCode]];
+        }else if ([moduleId intValue]==2) {
+            NSMutableArray *itemArray = [NSMutableArray arrayWithObject:@"ZYPictureViewController"];
             [itemArray addObject:featureName];
             [itemArray addObject:[item objectForKey:@"id"]];
-            [itemArray addObject:isCategory];
+            [itemArray addObject:moduleId];
             [featureClassArray addObject:itemArray];
             
+        }else if([moduleId intValue]==3){
+            NSMutableArray *itemArray = [NSMutableArray arrayWithObject:@"ZYProductViewController"];
+            [itemArray addObject:featureName];
+            [itemArray addObject:[item objectForKey:@"id"]];
+            [itemArray addObject:moduleId];
+            [featureClassArray addObject:itemArray];
+            
+        }else{
+            if ([self featureCodeToClassName:[moduleId intValue]]!=nil) {
+                
+                NSMutableArray *itemArray = [NSMutableArray arrayWithObject:[self featureCodeToClassName:[moduleId intValue]]];
+                [itemArray addObject:featureName];
+                [itemArray addObject:[item objectForKey:@"id"]];
+                [itemArray addObject:moduleId];
+                [featureClassArray addObject:itemArray];
+                
+            }
         }
     }
     
@@ -301,6 +307,8 @@
         
         NSArray *itemArray = [featureArray objectAtIndex:i];
         
+        NSLog(@"build feature page item Array ------++++++++++>%@",itemArray);
+        
         if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYCategoryViewController"]) {
             
             ZYCategoryViewController *newCategory = [[ZYCategoryViewController alloc]init];
@@ -312,10 +320,11 @@
             
         }
         
-        if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYPictureController"]) {
+        if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYPictureViewController"]) {
             
             ZYPictureController *pictureController = [[ZYPictureController alloc]init];
             pictureController.mainTitle = [itemArray objectAtIndex:1];
+            pictureController.categoryId = [itemArray objectAtIndex:2];
             [ZYMobCMSUitil setBFNNavItemForMenu:pictureController];
             [viewControllers addObject:pictureController];
             [pictureController release];
@@ -326,6 +335,7 @@
             
             ZYProductViewController *productVC = [[ZYProductViewController alloc]init];
             productVC.mainTitle = [itemArray objectAtIndex:1];
+            productVC.categoryId = [itemArray objectAtIndex:2];
             [ZYMobCMSUitil setBFNNavItemForMenu:productVC];
             [viewControllers addObject:productVC];
             [productVC release];
@@ -427,26 +437,24 @@
     BOOL status = [[resultDict objectForKey:@"status"] boolValue];
     if (status) {
         
-        //        NSLog(@"get menu data ====>%@",[resultDict objectForKey:@"data"]);
+        NSLog(@"get menu data ====>%@",[resultDict objectForKey:@"data"]);
         
         //category类型
-        NSArray *categoryArray  = [[resultDict objectForKey:@"data"]objectForKey:@"category"];
-        NSArray *notcategoryArray = [[resultDict objectForKey:@"data"]objectForKey:@"notcategory"];
-        
-        NSArray *categorySortArray = [self orderMenuItemWithArray:categoryArray];
-        NSArray *notcategorySortArray = [self orderMenuItemWithArray:notcategoryArray];
-        
-        if (categoryArray.count != 0 || notcategoryArray.count != 0) {
+        NSArray *categoryArray  = [resultDict objectForKey:@"data"];
+                
+        if (categoryArray.count != 0) {
             
             NSMutableArray *featureArray = [NSMutableArray array];
-            NSArray *categoryFeatureArray = [self returnFeatureClassArrayWithSortArray:categorySortArray];
+            NSArray *categoryFeatureArray = [self returnFeatureClassArrayWithSortArray:categoryArray];
             [featureArray addObjectsFromArray:categoryFeatureArray];
-            NSArray *notCategoryFeatureArray = [self returnFeatureClassArrayWithSortArray:notcategorySortArray];
-            [featureArray addObjectsFromArray:notCategoryFeatureArray];
+            
+            NSLog(@"featureArray ---->%@",featureArray);
             
             [self buildMenuTitleArrayWithFeatureArray:featureArray];
             
             [self buildFeaturePagesWithFeatureClassArray:featureArray];
+            
+            NSLog(@"viewControllers--->%@",viewControllers);
             
             [menuTableView reloadData];
             

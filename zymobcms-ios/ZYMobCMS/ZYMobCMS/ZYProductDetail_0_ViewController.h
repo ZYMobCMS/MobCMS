@@ -14,5 +14,6 @@
     NSMutableArray *listArray;
 }
 @property (nonatomic,retain)NSString *productId;
+@property (nonatomic,assign)BOOL      isFavorited;
 
 @end
