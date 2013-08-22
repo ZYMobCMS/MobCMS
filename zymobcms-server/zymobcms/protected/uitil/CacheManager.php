@@ -185,7 +185,7 @@ class CacheManager {
         
         $cacheKey = 'hot_comment_list_'.$pageIndex;
         
-        $this->_cache->store($cacheKey,$data);
+        $this->_cache->store($cacheKey,json_encode($data));
         
     }
     

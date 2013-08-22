@@ -423,6 +423,15 @@ class NewsListController extends Controller {
                 $pageSize=10;
             }
             
+            //检查是否有缓存
+            $cacheManager = new CacheManager($appId);
+            $isCached = $cacheManager->isHotCommentListCacheExist($pageIndex);
+            if($isCached){
+                $resultArr = $cacheManager->returnHotCommentCacheListByPageIndex($pageIndex);
+                echo $resultArr;
+                return;
+            }
+            
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
@@ -434,6 +443,8 @@ class NewsListController extends Controller {
             
             echo json_encode($josnArr);
             
+            //缓存
+            $cacheManager->cacheHotCommentNewList($pageIndex,$josnArr);
         }
         
         /*
