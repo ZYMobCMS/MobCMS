@@ -423,6 +423,47 @@ class UserController extends Controller {
             echo json_encode($jsonArr);
             
         }
+        
+        /*
+         * 保存用户推送token
+         */
+        public function actionSaveUserDeviceToken(){
+            
+            $deviceToken = $_GET['token'];
+            $deviceType  = $_GET['type'];
+            $appId = $_GET['appId'];
+            
+            if($deviceToken==NULL){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($deviceType==NULL){
+                
+                $deviceType = 0;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $insertSql = "insert into zy_device(token,type_id)value('$deviceToken',$deviceType)";
+            
+            $saveResult = $dbOperation->saveBySql($insertSql);
+            
+            if($saveResult){
+                
+               $jsonArr = array('status'=>'1','data'=>'注册设备成功');
+               echo json_encode($jsonArr);
+               
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'注册设备失败');
+                echo json_encode($jsonArr);
+            }
+            
+        }
 }
 
 ?>
