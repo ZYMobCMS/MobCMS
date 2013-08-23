@@ -208,7 +208,13 @@ class UserController extends Controller {
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
-            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            if($resultArr){
+                $jsonArr = array('status'=>'1','data'=>$resultArr);
+
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+
+            }
             
             echo json_encode($jsonArr);
             
@@ -377,8 +383,13 @@ class UserController extends Controller {
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
-            $jsonArr = array('status'=>'1','data'=>$resultArr);
-            
+            if($resultArr){
+                $jsonArr = array('status'=>'1','data'=>$resultArr);
+
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+
+            }            
             echo json_encode($jsonArr);
         }
         
@@ -418,7 +429,13 @@ class UserController extends Controller {
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
-            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            if($resultArr){
+                $jsonArr = array('status'=>'1','data'=>$resultArr);
+
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+
+            }
             
             echo json_encode($jsonArr);
             

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 __barfoo__. All rights reserved.
 //
 
-#define ZYCMS_Base_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/index.php?r="
-#define ZYCMS_image_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/"
+#define ZYCMS_Base_Url @"http://172.16.28.45/MobCMS/zymobcms-server/zymobcms/index.php?r="
+#define ZYCMS_image_Url @"http://172.16.28.45/MobCMS/zymobcms-server/zymobcms/"
 //#define MCM_Base_Url @"https://61.136.59.251:8017"
 
 #define APPID            @"zymobcms"
@@ -48,6 +48,11 @@
 #define ZYCMS_Login_Interface            @"Mobile/user/login"
 
 #define ZYCMS_User_Commit_Token_Interface @"Mobile/user/saveUserDeviceToken"
+
+#define ZYCMS_User_Picture_Favorite_List_Interface @"Mobile/user/pictureFavoriteList"
+
+#define ZYCMS_User_Product_Favorite_List_Interface @"Mobile/user/productFavoriteList"
+
 /*
  修改用户信息
  

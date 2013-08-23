@@ -66,10 +66,6 @@ class PushNotiManager {
          $devices = $this->foundIOSRightTokeWithLoginName($param);
      }
      
-//      print_r($devices);
-          
-      
-     
      $apnsHost = $this->_environment? $this->_public:$this->_sandbox;
      $apnsCert = $this->_pemPath;
      $apnsPort = $this->_port;
@@ -79,7 +75,7 @@ class PushNotiManager {
      		'badge'=>$bageCount,
      		'sound'=>'default');
      $payload = json_encode($payload);
-     print_r($payload);
+//     print_r($payload);
      
      $streamContext = stream_context_create();
      stream_context_set_option($streamContext, 'ssl', 'local_cert', $apnsCert);
@@ -87,34 +83,28 @@ class PushNotiManager {
     
      if (!$apns) {
      	print "Failed to connect $error";
-     
-     	return;
      }
      
-     print "Connection OK ";
+//     print "Connection OK ";
      
    if(is_object($devices)){    
 
         $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '',$devices->token)) . chr(0) . chr(strlen($payload)) . $payload;
         fwrite($apns, $apnsMessage);
-       
-       echo 'sending to one .....';
-           
+                  
    }else if(is_array($devices)){
        for($i=0;$i<count($devices);$i++){
        	       	                
         $cDevice = $devices[$i];
         $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '',$cDevice->token)) . chr(0) . chr(strlen($payload)) . $payload;
         fwrite($apns, $apnsMessage);
-        
-      }       
-       echo 'sending..... to all.....';        
-   }
-   print_r($error);
-   print_r($errorString);
-   
-   socket_close($apns);
+      }   
+   }   
+   @socket_close($apns);//苹果服务默认会发一个socket错误警告，用@隐藏就好了
    fclose($apns);
+   
+   $resultArr = array('status'=>'1','data'=>'推送成功');
+   echo json_encode($resultArr);
    
    }
    

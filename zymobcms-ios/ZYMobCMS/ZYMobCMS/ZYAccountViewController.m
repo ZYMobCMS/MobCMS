@@ -157,7 +157,11 @@
                 break;
             case 1:
             {
-                
+                ZYMyFavoriteViewController *favoriteVC = [[ZYMyFavoriteViewController alloc]init];
+                favoriteVC.mainTitle = [sourceArray objectAtIndex:indexPath.row];
+                [ZYMobCMSUitil setBFNNavItemForReturn:favoriteVC];
+                [self.navigationController pushViewController:favoriteVC animated:YES];
+                [favoriteVC release];
             }
                 break;
             default:

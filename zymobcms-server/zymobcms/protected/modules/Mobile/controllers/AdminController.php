@@ -89,8 +89,24 @@ class AdminController extends Controller {
             return;
         }
                 
+        //查询pem位置
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        
+        $checkSql = "select pem_path from zy_application_owner";
+        
+        $resultObj = $dbOperation->queryBySql($checkSql);
+        
+        if(!$resultObj){
+            $resultArr = array('status'=>'0','msg'=>'此应用没有开启推送服务');
+            
+            echo json_encode($resultArr);
+            
+            return;
+        }
+        
+        
         //新建推送
-        $pemPath = Yii::app()->basePath.'/uitil/ck.pem';
+        $pemPath = Yii::app()->basePath.'/apnspem/'.$resultObj->pem_path;
         $pushManager = new PushNotiManager($appId,$pemPath,$this->_publicPush);
                 
         $newMsg = new PushMessage();
@@ -110,17 +126,15 @@ class AdminController extends Controller {
             
         }else if($destUserId&&$destLoginName==NULL){
             
-            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destUserId, TRUE,FALSE);
+           $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destUserId, TRUE,FALSE);
         }else if($destLoginName&&$destUserId==NULL){
             
-            echo 'push noti by login name !!!';
-
-            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destLoginName,FALSE,FALSE);
+           $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destLoginName,FALSE,FALSE);
             
             
         }else if($destLoginName != NULL && $destUserId!=NULL){
              
-            $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destUserId,TRUE,FALSE);
+           $pushManager->pushMessageForIOSDevicesByUserId($newMsg->title,$bageCount,$newMsg,$destUserId,TRUE,FALSE);
         }
         
         

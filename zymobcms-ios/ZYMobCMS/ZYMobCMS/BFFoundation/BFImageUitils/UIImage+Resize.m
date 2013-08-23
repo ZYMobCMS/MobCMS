@@ -133,22 +133,22 @@
           transparentBorder:(NSUInteger)borderSize
                cornerRadius:(NSUInteger)cornerRadius
        interpolationQuality:(CGInterpolationQuality)quality {
-  UIImage *resizedImage = [self resizedImageWithContentMode:UIViewContentModeScaleAspectFill
-                                                     bounds:CGSizeMake(thumbnailSize, thumbnailSize)
-                                       interpolationQuality:quality];
+//  UIImage *resizedImage = [self resizedImageWithContentMode:UIViewContentModeScaleAspectFill
+//                                                     bounds:CGSizeMake(thumbnailSize, thumbnailSize)
+//                                       interpolationQuality:quality];
   
   // Crop out any part of the image that's larger than the thumbnail size
   // The cropped rect must be centered on the resized image
   // Round the origin points so that the size isn't altered when CGRectIntegral is later invoked
-  CGRect cropRect = CGRectMake(round((resizedImage.size.width - thumbnailSize) / 2),
-                               round((resizedImage.size.height - thumbnailSize) / 2),
-                               thumbnailSize,
-                               thumbnailSize);
-  UIImage *croppedImage = [resizedImage croppedImage:cropRect];
+//  CGRect cropRect = CGRectMake(round((resizedImage.size.width - thumbnailSize) / 2),
+//                               round((resizedImage.size.height - thumbnailSize) / 2),
+//                               thumbnailSize,
+//                               thumbnailSize);
+//  UIImage *croppedImage = [resizedImage croppedImage:cropRect];
   
-  UIImage *transparentBorderImage = borderSize ? [croppedImage transparentBorderImage:borderSize] : croppedImage;
-  
-  return [transparentBorderImage roundedCornerImage:cornerRadius borderSize:borderSize];
+//  UIImage *transparentBorderImage = borderSize ? [croppedImage transparentBorderImage:borderSize] : croppedImage;
+//  
+//  return [transparentBorderImage roundedCornerImage:cornerRadius borderSize:borderSize];
 }
 
 // Returns a rescaled copy of the image, taking into account its orientation

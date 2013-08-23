@@ -30,7 +30,14 @@
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *currentTabType;
 @property (nonatomic,retain)NSString *requestFlag;
+@property (nonatomic,assign)NSInteger pageIndex;
+@property (nonatomic,retain)BFSegmentControl *segmentCtrl;
+@property (nonatomic,retain)UITableView *listTable;
 
 - (void)refreshContent;
+
+- (void)getNewsList;
+
+- (void)getTabType;
 
 @end

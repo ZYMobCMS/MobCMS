@@ -165,7 +165,6 @@
 {
     self.lastSelectIndexPath = self.selectVCIndexPath;
     
-    
     self.selectVCIndexPath = [NSIndexPath indexPathForRow:index inSection:section];
     
     NSInteger itemIndexLast;
@@ -190,7 +189,8 @@
     
     ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     
-    UIViewController *currentVC = [self currentVC];
+    BFNBaseViewController *currentVC = (BFNBaseViewController*)[self currentVC];
+    currentVC.isCategoryType = YES;
     
     //不可以为空
     if (currentVC == nil) {
@@ -209,6 +209,7 @@
     newNav.view.frame = appDelegate.rootViewController.view.frame;
     appDelegate.rootViewController.detailViewController = newNav;
     [newNav release];
+    [currentVC getCategoryData];//网络数据
     
     [appDelegate hiddenMaster];
 }

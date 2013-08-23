@@ -17,6 +17,7 @@
 
 @implementation ZYProductViewController
 @synthesize categoryId,currentTabType;
+@synthesize pageIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +54,7 @@
     listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:listTable];
     [listTable release];
+    self.pageIndex = 1;
     
     // 拉取刷新
     _refreshHeaderView = [[EGORefreshTableHeaderView alloc]
@@ -62,9 +64,7 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
-    
-    [self getAllTabTypes];
-    
+        
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,8 +81,16 @@
 
 - (void)refresh{
     
+    if (self.isCategoryType) {
+        if (tabTypesArray.count==0) {
+            [self getAllTabTypes];
+            return;
+        }
+    }
+    
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    self.pageIndex = 1;
     [self getProductList];
 }
 
@@ -151,7 +159,11 @@
     detailVC.productId = [[listArray objectAtIndex:indexPath.row]objectForKey:@"id"];
     detailVC.mainTitle = @"产品详情";
     [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
-    [self.navigationController pushViewController:detailVC animated:YES];
+    if (self.superNavigationController) {
+        [self.superNavigationController pushViewController:detailVC animated:YES];
+    }else{
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
     [detailVC release];
 }
 
@@ -186,7 +198,7 @@
 }
 
 - (void)getProductList
-{
+{    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:10] forKey:@"pageSize"];
@@ -219,6 +231,12 @@
         
         [listTable reloadData];
         
+    }else{
+        NSString *errMsg = [resultDict objectForKey:@"msg"];
+        [SVProgressHUD showErrorWithStatus:errMsg];
+        BFLoadMoreView *footer = (BFLoadMoreView*)listTable.tableFooterView;
+        [footer stopAnimation];
+        self.pageIndex--;
     }
     
     if (_reloading) {
@@ -233,6 +251,8 @@
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    self.pageIndex--;
+
 }
 
 #pragma mark - 获取所有子分类
@@ -264,5 +284,17 @@
     
 }
 
+- (void)getListData
+{
+    [self refresh];
+}
+
+- (void)getCategoryData
+{
+    if (tabTypesArray.count>0) {
+        return;
+    }
+    [self getAllTabTypes];
+}
 
 @end

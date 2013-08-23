@@ -7,9 +7,9 @@
 //
 
 #import "ZYMyFavoriteViewController.h"
-#import "ZYPictureCell.h"
-#import "ZYProductCell.h"
-#import "ZYCategoryCell.h"
+#import "ZYMyArticleFavoriteViewController.h"
+#import "ZYMyPictureFavoriteViewController.h"
+#import "ZYMyProductFavoriteViewController.h"
 
 @interface ZYMyFavoriteViewController ()
 
@@ -26,16 +26,118 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [segmentArray release];
+    [viewControllers release];
+    [super dealloc];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    if (!segmentArray) {
+        segmentArray = [[NSMutableArray alloc]init];
+    }
+    if (!viewControllers) {
+        viewControllers = [[NSMutableArray alloc]init];
+    }
+    
+    //build
+    [segmentArray addObject:@"文章收藏"];
+    [segmentArray addObject:@"图片收藏"];
+    [segmentArray addObject:@"产品收藏"];
+    
+    segmentCtrl = [[BFSegmentControl alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,45) withDataSource:self];
+    [self.view addSubview:segmentCtrl];
+    [segmentCtrl release];
+    
+    //controllers
+    ZYMyArticleFavoriteViewController *articleVC = [[ZYMyArticleFavoriteViewController alloc]init];
+    articleVC.superNavigationController = self.navigationController;
+    [viewControllers addObject:articleVC];
+    [articleVC release];
+    
+    ZYMyPictureFavoriteViewController *pictureVC = [[ZYMyPictureFavoriteViewController alloc]init];
+    pictureVC.superNavigationController = self.navigationController;
+    [viewControllers addObject:pictureVC];
+    [pictureVC release];
+    
+    ZYMyProductFavoriteViewController *productVC = [[ZYMyProductFavoriteViewController alloc]init];
+    productVC.superNavigationController = self.navigationController;
+    [viewControllers addObject:productVC];
+    [productVC release];
+    
+    //默认选中
+    [self shouldSelectVCAtIndex:0];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - segment delegate
+//菜单里面有多少项
+- (NSInteger)numberOfItemsInSegmentControl:(BFSegmentControl*)sgmCtrl
+{
+    return segmentArray.count;
+}
+
+//每一项得宽度是多少
+- (CGFloat)widthForEachItemInsegmentControl:(BFSegmentControl*)sgmCtrl
+{
+    NSInteger itemCount = MIN(segmentArray.count,4);
+    return 320.0/itemCount;
+}
+
+//对应索引项得标题是什么
+- (NSString*)segmentControl:(BFSegmentControl*)sgmCtrl titleForItemAtIndex:(NSInteger)index
+{
+    return [segmentArray objectAtIndex:index];
+}
+
+//当前可见项有多少
+- (NSInteger)visiableItemsOfsegmentControl:(BFSegmentControl*)sgmCtrl
+{
+    NSInteger itemCount = MIN(segmentArray.count,4);
+    return itemCount;
+}
+
+//菜单选中了哪一项
+- (void)segmentControl:(BFSegmentControl*)sgmCtrl didSelectAtIndex:(NSInteger)index
+{
+    [self shouldSelectVCAtIndex:index];
+    
+}
+
+- (void)shouldSelectVCAtIndex:(NSInteger)index
+{
+    BFNBaseViewController *selectVC = [viewControllers objectAtIndex:index];
+    
+    if (![self.view.subviews containsObject:selectVC.view]) {
+        selectVC.view.frame = CGRectMake(0,segmentCtrl.frame.size.height,self.view.frame.size.width,self.view.frame.size.height);
+        [self.view addSubview:selectVC.view];
+    }
+    
+    for (UIView *subView in self.view.subviews) {
+        
+        if (selectVC.view == subView) {
+            selectVC.view.hidden = NO;
+        }else{
+            
+            if ([subView isKindOfClass:[BFSegmentControl class]]) {
+                subView.hidden=NO;
+            }else{
+                subView.hidden = YES;
+            }
+        }
+    }
+    
+    [selectVC getListData];//网络数据
 }
 
 @end

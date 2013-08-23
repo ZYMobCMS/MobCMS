@@ -15,10 +15,15 @@
 }
 @property (nonatomic,retain)NSString *mainTitle;
 @property (nonatomic,assign)BOOL      isSwipTurnOn;
+@property (nonatomic,assign)BOOL      isCategoryType;
+@property (nonatomic,assign)UINavigationController *superNavigationController;
 
 - (void)enableSwipRightToReturn;
 - (void)desableSwipRightToReturn;
 - (void)startLoading;
 - (void)stopLoading;
+
+- (void)getListData;
+- (void)getCategoryData;
 
 @end
