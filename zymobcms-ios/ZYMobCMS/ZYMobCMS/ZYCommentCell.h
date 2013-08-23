@@ -25,7 +25,7 @@ typedef void (^tapOnSupportBtn) (void);
     BFAttributedView *titleView;
     BFAttributedView *contentView;
     BFAttributedView *articleTitleView;
-    BFAttributedView *dateView;
+    UILabel *dateView;
     
     UIButton         *supportBtn;
     UILabel          *supportCountLabel;

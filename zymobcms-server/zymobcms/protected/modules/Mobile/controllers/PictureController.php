@@ -89,7 +89,7 @@ class PictureController extends Controller {
         
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
-        $sql = "select * from zy_picture limit $startIndex,$pageSize";
+        $sql = "select * from zy_picture limit order by id desc $startIndex,$pageSize";
         
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
@@ -160,11 +160,13 @@ class PictureController extends Controller {
                 //为该文章增加一条评论数
                 $updateSql = "update zy_picture set comment_count=comment_count+1 where id=$pictureId";
                 $updateResult = $dbOperation->saveBySql($updateSql);
-                if($updateResult){
-                    
-                }
-            
+                
                 echo json_encode($resultArr);
+                
+                //插入一条活动纪录
+                
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createAnCommentPictureRecord($content,$userId,'','',$pictureId);
             
                 return;
                 
@@ -227,7 +229,7 @@ class PictureController extends Controller {
             
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select zy_picture_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_picture_comment inner join zy_user on zy_picture_comment.create_user = zy_user.id where picture_id=$pictureId limit $startIndex,$pageSize";
+            $sql = "select zy_picture_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_picture_comment inner join zy_user on zy_picture_comment.create_user = zy_user.id where picture_id=$pictureId order by comment_id desc limit $startIndex,$pageSize";
             
             $commentArr = $dbOperation->queryAllBySql($sql);
             
@@ -303,6 +305,10 @@ class PictureController extends Controller {
                 
                 echo json_encode($resultArr);
             
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createFavPictureRecord('',$userId,'','',$articleId);
+                
                 return;
                 
             }else{
@@ -358,12 +364,16 @@ class PictureController extends Controller {
                 
                 $resultArr = array('status'=>'1','msg'=>'取消成功');
             
-                //文章收藏数加1
+                //文章收藏数减1
                 $updateFavoriteSql = "update zy_picture set favorite_count=favorite_count-1 where id=$articleId";
                 $dbOperation->saveBySql($updateFavoriteSql);
                 
                 echo json_encode($resultArr);
             
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createUnFavPictureRecord('',$userId,'','',$articleId);
+                
                 return;
                 
             }else{
@@ -467,11 +477,23 @@ class PictureController extends Controller {
                 
                 if($resultObj){
                    $josnArr = array('status'=>'1','data'=>'支持成功');
+                   echo json_encode($josnArr);
+                    
+                   //插入一条活动纪录
+                   $sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
+                   $resultObj = $dbOperation->queryBySql($sql);
+                   if($resultObj){
+                   	$activeRecordManager = new UserActiveRecordManager($appId);
+                   	$activeRecordManager->createSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
+                   }
+                   
+                   
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                   echo json_encode($josnArr);
+                   
                 }
             
-            echo json_encode($josnArr);
             
             }else{
                 $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
@@ -508,15 +530,26 @@ class PictureController extends Controller {
                 $resultObj = $dbOperation->saveBySql($sql);
             
                 if($resultObj){
-                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                   $josnArr = array('status'=>'1','data'=>'取消支持成功');
+                   echo json_encode($josnArr);
+                    
+                   //插入一条活动纪录
+                   $sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
+                   $resultObj = $dbOperation->queryBySql($sql);
+                   if($resultObj){
+                   	$activeRecordManager = new UserActiveRecordManager($appId);
+                   	$activeRecordManager->createUnSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
+                   }
+                   
+                   
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                   echo json_encode($josnArr);
+                    
                 }
             
-                echo json_encode($josnArr);
             }else{
                 $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
-                echo json_encode($josnArr);
             }
             
         }

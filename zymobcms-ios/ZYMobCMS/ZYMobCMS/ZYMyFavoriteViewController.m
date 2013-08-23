@@ -53,6 +53,8 @@
     [self.view addSubview:segmentCtrl];
     [segmentCtrl release];
     
+    NSLog(@"self.navi --->%@",self.navigationController);
+    
     //controllers
     ZYMyArticleFavoriteViewController *articleVC = [[ZYMyArticleFavoriteViewController alloc]init];
     articleVC.superNavigationController = self.navigationController;

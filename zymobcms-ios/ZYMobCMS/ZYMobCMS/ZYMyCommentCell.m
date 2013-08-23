@@ -34,10 +34,11 @@
     NSString *articleTitle = [contentDict objectForKey:@"title"];
     NSString *content = [contentDict objectForKey:@"content"];
     NSString *date = [contentDict objectForKey:@"create_time"];
-    
+    date = [NSString stringWithFormat:@"发表于 %@",[BFUitils intervalSinceNow:date]];
+
     
 //    [titleView setContentText:title];
-    [dateView setContentText:date];
+    [dateView setText:date];
     [contentView setContentText:content];
     [articleTitleView setContentText:articleTitle];
     
@@ -56,8 +57,8 @@
     backImgView.frame = CGRectMake(LeftMargin,TopMargin/2,self.frame.size.width-2*LeftMargin,originY);
     originY = originY + TopMargin/2;
     
-    CGFloat dateViewHeight = [BFAttributedView getAttributedContentHeight:dateView.contentAttributedString withWdith:self.frame.size.width];
-    dateView.frame = CGRectMake(self.frame.size.width-LeftMargin-95,originY,95,dateViewHeight);
+    CGSize dateSize = [date sizeWithFont:[UIFont systemFontOfSize:TitleFontSize] constrainedToSize:CGSizeMake(totalWidth/2,999999)];
+    dateView.frame = CGRectMake(self.frame.size.width-2*LeftMargin-dateSize.width,originY,dateSize.width,dateSize.height);
     originY = dateView.frame.origin.y+dateView.frame.size.height + TextMargin;
     
 
@@ -69,12 +70,8 @@
     NSString *articleTitle = [contentDict objectForKey:@"title"];
     NSString *content = [contentDict objectForKey:@"content"];
     NSString *date = [contentDict objectForKey:@"create_time"];
+    date = [NSString stringWithFormat:@"发表于 %@",[BFUitils intervalSinceNow:date]];
 
-    BFAttributeDescriptor *dateDes = [[BFAttributeDescriptor alloc]init];
-    dateDes.fontSize = TitleFontSize;
-    NSAttributedString *dateAtti = [BFAttributedView createAttributedString:date withDescriptor:dateDes];
-    [dateDes release];
-    
     BFAttributeDescriptor *contentDes = [[BFAttributeDescriptor alloc]init];
     contentDes.fontSize = ContentFontSize;
     contentDes.lineSpace = ContentLineSpace;
@@ -99,8 +96,8 @@
     CGRect contentRect = CGRectMake(LeftMargin+LeftMargin/2,originY,totalWidth,contentHeight);
     originY = contentRect.origin.y+contentRect.size.height+TextMargin;
     
-    CGFloat dateViewHeight = [BFAttributedView getAttributedContentHeight:dateAtti withWdith:totalWidth];
-    CGRect dateRect = CGRectMake(table.frame.size.width-LeftMargin-95,originY,95,dateViewHeight);
+    CGSize dateSize = [date sizeWithFont:[UIFont systemFontOfSize:TitleFontSize] constrainedToSize:CGSizeMake(totalWidth/2,999999)];
+    CGRect dateRect = CGRectMake(table.frame.size.width-2*LeftMargin-dateSize.width,originY,dateSize.width,dateSize.height);
     originY = dateRect.origin.y+dateRect.size.height + TextMargin;
     
     return originY;

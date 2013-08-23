@@ -31,9 +31,11 @@
         [self.contentView addSubview:titleView];
         [titleView release];
         
-        dateView = [[BFAttributedView alloc]initWithFrame:initRect];
-        dateView.textDescriptor.fontSize = TitleFontSize;
-        dateView.textDescriptor.textColor = [UIColor grayColor];
+        dateView = [[UILabel alloc]initWithFrame:initRect];
+        dateView.backgroundColor = [UIColor clearColor];
+        dateView.font = [UIFont systemFontOfSize:TitleFontSize];
+        dateView.textAlignment = UITextAlignmentRight;
+        dateView.textColor = [UIColor grayColor];
         [self.contentView addSubview:dateView];
         [dateView release];
         
@@ -65,10 +67,11 @@
     NSString *articleTitle = [contentDict objectForKey:@"title"];
     NSString *content = [contentDict objectForKey:@"content"];
     NSString *date = [contentDict objectForKey:@"create_time"];
+    date = [NSString stringWithFormat:@"发表于 %@",[BFUitils intervalSinceNow:date]];
     
     
     [titleView setContentText:title];
-    [dateView setContentText:date];
+    [dateView setText:date];
     [contentView setContentText:content];
     [articleTitleView setContentText:articleTitle];
     
@@ -79,8 +82,8 @@
     CGFloat titleViewHeight = [BFAttributedView getAttributedContentHeight:titleView.contentAttributedString withWdith:totalWidth];
     titleView.frame = CGRectMake(LeftMargin+LeftMargin/2,originY,totalWidth-95,titleViewHeight);
     
-    CGFloat dateViewHeight = [BFAttributedView getAttributedContentHeight:dateView.contentAttributedString withWdith:self.frame.size.width];
-    dateView.frame = CGRectMake(self.frame.size.width-LeftMargin-95-LeftMargin/2,originY,95,dateViewHeight);
+    CGSize dateSize = [date sizeWithFont:[UIFont systemFontOfSize:TitleFontSize] constrainedToSize:CGSizeMake(totalWidth/2,999999)];
+    dateView.frame = CGRectMake(self.frame.size.width-2*LeftMargin-dateSize.width-10,originY,dateSize.width,dateSize.height);
     originY = titleView.frame.origin.y+titleView.frame.size.height + TextMargin;
     
     CGFloat contentHeight = [BFAttributedView getAttributedContentHeight:contentView.contentAttributedString withWdith:totalWidth];

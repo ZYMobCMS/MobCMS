@@ -96,7 +96,7 @@ class NewsListController extends Controller {
         $hotNews = array();
         if($pageIndex<=1){
         	//hotNews
-        	$hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1";
+        	$hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1 order by id desc";
         	$hotNews = $dbOperation->queryAllBySql($hotNewsSql);
         	
 //         	//是否已经收藏过文章
@@ -115,7 +115,7 @@ class NewsListController extends Controller {
 //         	}
         }
         
-        $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 limit $startIndex,$pageSize";
+        $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 order by id desc limit $startIndex,$pageSize";
         $resultArr = $dbOperation->queryAllBySql($normalNewsSql);
         
         //列表内查询用户是否收藏，加重服务器负担，改在详情内查询
@@ -254,7 +254,7 @@ class NewsListController extends Controller {
             
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select zy_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_comment inner join zy_user on zy_comment.create_user = zy_user.id where article_id=$articleId limit $startIndex,$pageSize";
+            $sql = "select zy_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_comment inner join zy_user on zy_comment.create_user = zy_user.id where article_id=$articleId order by comment_id desc limit $startIndex,$pageSize";
                         
             $commentArr = $dbOperation->queryAllBySql($sql);
                         
@@ -328,6 +328,10 @@ class NewsListController extends Controller {
             
                 echo json_encode($resultArr);
             
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createAnCommentNewsRecord($content,$userId,'','',$articleId);
+                
                 return;
                 
             }else{
@@ -391,6 +395,10 @@ class NewsListController extends Controller {
                 
                 echo json_encode($resultArr);
             
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createFavNewsRecord('',$userId,'','',$articleId);
+                
                 return;
                 
             }else{
@@ -501,11 +509,25 @@ class NewsListController extends Controller {
                 
                 if($resultObj){
                    $josnArr = array('status'=>'1','data'=>'支持成功');
+                   
+                   echo json_encode($josnArr);
+                    
+                   //插入一条活动纪录
+                   $sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                   $resultObj = $dbOperation->queryBySql($sql);
+                   if($resultObj){
+                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager->createSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
+                   	
+                   }
+                   
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                   
+                   echo json_encode($josnArr);
+                    
                 }
             
-            echo json_encode($josnArr);
             
             }else{
                 $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
@@ -543,11 +565,23 @@ class NewsListController extends Controller {
             
                 if($resultObj){
                    $josnArr = array('status'=>'1','data'=>'支持成功');
+                   echo json_encode($josnArr);
+                    
+                   //插入一条活动纪录
+                   $sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                   $resultObj = $dbOperation->queryBySql($sql);
+                   if($resultObj){
+                   	$activeRecordManager = new UserActiveRecordManager($appId);
+                   	$activeRecordManager->createUnSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
+                   }
+                   
+                   
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'已经踩过了');
+                   echo json_encode($josnArr);
+                    
                 }
             
-                echo json_encode($josnArr);
             }else{
                 $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
                 echo json_encode($josnArr);
@@ -602,6 +636,10 @@ class NewsListController extends Controller {
                 
                 echo json_encode($resultArr);
             
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createUnFavNewsRecord('',$userId,'','',$articleId);
+                
                 return;
                 
             }else{

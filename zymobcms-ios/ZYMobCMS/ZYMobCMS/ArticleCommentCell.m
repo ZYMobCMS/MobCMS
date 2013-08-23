@@ -43,6 +43,7 @@
         
         dateView = [[UILabel alloc]initWithFrame:initRect];
         dateView.font = [UIFont systemFontOfSize:DateFontSize];
+        dateView.textAlignment = UITextAlignmentRight;
         [self.contentView addSubview:dateView];
         [dateView release];
         
@@ -82,6 +83,7 @@
     NSString *content = [contentDict objectForKey:@"content"];
     NSString *location = [contentDict objectForKey:@"location"];
     NSString *date = [contentDict objectForKey:@"create_time"];
+    date = [NSString stringWithFormat:@"发表于 %@",[BFUitils intervalSinceNow:date]];
     NSString *supportCount = [contentDict objectForKey:@"support_count"];
     NSString *isSupport = [contentDict objectForKey:@"isSupported"];
     self.commentId = [contentDict objectForKey:@"comment_id"];
@@ -129,6 +131,7 @@
     NSString *content = [contentDict objectForKey:@"content"];
 //    NSString *location = [contentDict objectForKey:@"location"];
     NSString *date = [contentDict objectForKey:@"create_time"];
+    date = [NSString stringWithFormat:@"发表于%@",[BFUitils intervalSinceNow:date]];
     NSString *supportCount = [contentDict objectForKey:@"support_count"];
     
 //    NSString *locationUserCombine = [NSString stringWithFormat:@"%@  %@",location,creater];

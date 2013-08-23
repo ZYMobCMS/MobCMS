@@ -10,6 +10,7 @@
 #import "MenuCell.h"
 #import "SystemCell.h"
 #import "BFNMenuHeaderView.h"
+#import "ZYPublicHomeViewController.h"
 
 #define ApplicationNameUDF @"ApplicationNameUDF"
 
@@ -239,6 +240,9 @@
             className = @"ZYCommentViewController";
             break;
         case 5:
+            className = @"ZYPublicHomeViewController";
+            break;
+        case 6:
             className = @"ZYSettingViewController";
             break;
             
@@ -329,6 +333,16 @@
             
         }
         
+        if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYPublicHomeViewController"]) {
+            
+            ZYPublicHomeViewController *productVC = [[ZYPublicHomeViewController alloc]init];
+            productVC.mainTitle = [itemArray objectAtIndex:1];
+            [ZYMobCMSUitil setBFNNavItemForMenu:productVC];
+            [viewControllers addObject:productVC];
+            [productVC release];
+            
+        }
+        
         if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYProductViewController"]) {
             
             ZYProductViewController *productVC = [[ZYProductViewController alloc]init];
@@ -339,6 +353,7 @@
             [productVC release];
             
         }
+        
         
         if ([[itemArray objectAtIndex:0]isEqualToString:@"ZYCommentViewController"]) {
 

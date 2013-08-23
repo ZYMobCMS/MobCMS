@@ -58,6 +58,7 @@ typedef enum {
     ZYCMSRequestTypeUserSaveDeivceToken,
     ZYCMSRequestTypeUserPictureFavoriteList,
     ZYCMSRequestTypeUserProductFavoriteList,
+    ZYCMSRequestTypeUserPublicHome,
     
 }ZYCMSRequestType;
 

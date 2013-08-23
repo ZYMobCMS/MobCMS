@@ -253,7 +253,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_comment.*,zy_article.title,zy_article.publish_time,zy_article.source from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id where create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_comment.*,zy_article.title,zy_article.publish_time,zy_article.source from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id where create_user=$userId order by comment_id desc limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -295,7 +295,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source,zy_picture.summary,zy_picture.images from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where zy_picture_comment.create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source,zy_picture.summary,zy_picture.images from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where zy_picture_comment.create_user=$userId order by comment_id desc limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -337,7 +337,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_product_comment.*,zy_product.title,zy_product.create_time,zy_product.source from zy_product_comment inner join zy_product on zy_product_comment.product_id=zy_product.id where zy_product_comment.create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_product_comment.*,zy_product.title,zy_product.create_time,zy_product.source from zy_product_comment inner join zy_product on zy_product_comment.product_id=zy_product.id where zy_product_comment.create_user=$userId order by comment_id desc limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -379,7 +379,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_user_picture_favorite.*,zy_picture.title,zy_picture.summary,zy_picture.create_time,zy_picture.source,zy_picture.images from zy_user_picture_favorite inner join zy_picture on zy_picture.id=zy_user_picture_favorite.picture_id  where user_id=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_user_picture_favorite.*,zy_picture.title,zy_picture.summary,zy_picture.create_time,zy_picture.source,zy_picture.images from zy_user_picture_favorite inner join zy_picture on zy_picture.id=zy_user_picture_favorite.picture_id  where user_id=$userId order by id desc limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -425,7 +425,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_user_product_favorite.*,zy_product.title,zy_product.summary,zy_product.create_time,zy_product.source,zy_product.images from zy_user_product_favorite inner join zy_product on zy_product.id=zy_user_product_favorite.product_id  where user_id=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_user_product_favorite.*,zy_product.title,zy_product.summary,zy_product.create_time,zy_product.source,zy_product.images from zy_user_product_favorite inner join zy_product on zy_product.id=zy_user_product_favorite.product_id   where user_id=$userId order by id desc limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -498,10 +498,49 @@ class UserController extends Controller {
         
         
         /*
-         * 用户每天登陆记录
+         * 用户每天活动记录，作为公共主页模块上线
          */
-        public function actionUserActiveRecord(){
+        public function actionUserPublicHome(){
             
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if($pageSize>10){
+            	$pageSize=10;
+            }
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            if($appId==NULL){
+            	$resultArr = array('status'=>'0','msg'=>'参数缺失');
+            	
+            	echo json_encode($resultArr);
+            	
+            	return;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            $checksql = "select * from zy_user_active order by id desc limit $truePageIndex,$pageSize";
+            
+            $recordsArr = $dbOperation->queryAllBySql($checksql);
+            
+            if($recordsArr){
+            	
+            	$resultArr = array('status'=>'1','data'=>$recordsArr);
+            	 
+            	echo json_encode($resultArr);
+            	 
+            	return;
+            	
+            }else{
+            	$resultArr = array('status'=>'0','msg'=>'获取失败');
+            	
+            	echo json_encode($resultArr);
+            	
+            	return;
+            }
             
             
         }

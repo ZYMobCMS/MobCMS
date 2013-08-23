@@ -259,6 +259,10 @@ static BFNetWorkHelper *_instance = nil;
             urlString = ZYCMS_User_Product_Favorite_List_Interface;
             break;
             
+            case ZYCMSRequestTypeUserPublicHome:
+            urlString = ZYCMS_User_Pulic_Home_Interface;
+            break;
+            
         default:
             break;
     }

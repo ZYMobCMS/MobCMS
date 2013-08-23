@@ -138,9 +138,14 @@
     //60s * 60m = 1h 时间差不足一小时
     if (cha/3600<1) {
         timeString = [NSString stringWithFormat:@"%f", cha/60];
+    
         timeString = [timeString substringToIndex:timeString.length-7];
         
-        timeString=[NSString stringWithFormat:@"%@分钟前", timeString];
+        if ([timeString intValue]>=0 && [timeString intValue]<=5) {
+            timeString=@"刚刚";
+        }else{
+            timeString=[NSString stringWithFormat:@"%@分钟前", timeString];
+        }
     }
     // 60s * 60m * 24 = 1d 时间差超过一小时 且 不足一天
     if (cha/3600>1&&cha/86400<1) {
@@ -151,9 +156,7 @@
     //时间差超过一天
     if (cha/86400>1)
     {
-        timeString = [NSString stringWithFormat:@"%f", cha/86400];
-        timeString = [timeString substringToIndex:timeString.length-7];
-        timeString=[NSString stringWithFormat:@"%@天前", timeString];
+        timeString=theDate;
         
     }
     [date release];
