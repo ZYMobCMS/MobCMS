@@ -491,6 +491,21 @@ class UserController extends Controller {
             }
             
         }
+        
+        /*
+         * 用户活动记录
+         */
+        
+        
+        /*
+         * 用户每天登陆记录
+         */
+        public function actionUserActiveRecord(){
+            
+            
+            
+        }
+        
 }
 
 ?>
