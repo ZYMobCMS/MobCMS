@@ -11,6 +11,10 @@
 		3B2B845E17C31862001E3B94 /* support_finished.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B845D17C31862001E3B94 /* support_finished.png */; };
 		3B2B846117C318CA001E3B94 /* support_finished_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B845F17C318CA001E3B94 /* support_finished_selected@2x.png */; };
 		3B2B846217C318CA001E3B94 /* support_finished_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B2B846017C318CA001E3B94 /* support_finished_selected.png */; };
+		3B2B85B417C6F7B8001E3B94 /* ZYMyArticleFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85B317C6F7B8001E3B94 /* ZYMyArticleFavoriteViewController.m */; };
+		3B2B85B717C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85B617C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.m */; };
+		3B2B85BA17C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85B917C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m */; };
+		3B2B85BD17C72C7F001E3B94 /* ZYProductPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85BC17C72C7E001E3B94 /* ZYProductPreViewController.m */; };
 		3B5BE4D217C1C87A0086D842 /* ZYPullHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D117C1C87A0086D842 /* ZYPullHeaderView.m */; };
 		3B5BE4D817C1EA4F0086D842 /* ZYPictureCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D717C1EA4F0086D842 /* ZYPictureCommentViewController.m */; };
 		3B5BE4DA17C1EA6D0086D842 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D917C1EA6D0086D842 /* CommentListViewController.m */; };
@@ -63,7 +67,6 @@
 		E43AF71F17B75698008FD5A5 /* category_cell_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E43AF71017B75698008FD5A5 /* category_cell_bg_ipad.png */; };
 		E43AF72017B75698008FD5A5 /* category_cell_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E43AF71117B75698008FD5A5 /* category_cell_bg.png */; };
 		E43AF72317B75AAF008FD5A5 /* ZYProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E43AF72217B75AAE008FD5A5 /* ZYProductCell.m */; };
-		E43AF72517B7688E008FD5A5 /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43AF72417B7688E008FD5A5 /* test.xib */; };
 		E43AF92A17B7924B008FD5A5 /* frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E43AF92917B79247008FD5A5 /* frame@2x.png */; };
 		E43AF92D17B7B73E008FD5A5 /* ZYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E43AF92C17B7B73D008FD5A5 /* ZYCommentCell.m */; };
 		E44B99A517B605FD00B8FE3E /* BFNMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44B99A417B605FD00B8FE3E /* BFNMenuViewController.m */; };
@@ -446,6 +449,14 @@
 		3B2B845D17C31862001E3B94 /* support_finished.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = support_finished.png; sourceTree = "<group>"; };
 		3B2B845F17C318CA001E3B94 /* support_finished_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "support_finished_selected@2x.png"; sourceTree = "<group>"; };
 		3B2B846017C318CA001E3B94 /* support_finished_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = support_finished_selected.png; sourceTree = "<group>"; };
+		3B2B85B217C6F7B8001E3B94 /* ZYMyArticleFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyArticleFavoriteViewController.h; sourceTree = "<group>"; };
+		3B2B85B317C6F7B8001E3B94 /* ZYMyArticleFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyArticleFavoriteViewController.m; sourceTree = "<group>"; };
+		3B2B85B517C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyPictureFavoriteViewController.h; sourceTree = "<group>"; };
+		3B2B85B617C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyPictureFavoriteViewController.m; sourceTree = "<group>"; };
+		3B2B85B817C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyProductFavoriteViewController.h; sourceTree = "<group>"; };
+		3B2B85B917C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyProductFavoriteViewController.m; sourceTree = "<group>"; };
+		3B2B85BB17C72C7D001E3B94 /* ZYProductPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProductPreViewController.h; sourceTree = "<group>"; };
+		3B2B85BC17C72C7E001E3B94 /* ZYProductPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProductPreViewController.m; sourceTree = "<group>"; };
 		3B5BE4D017C1C87A0086D842 /* ZYPullHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPullHeaderView.h; sourceTree = "<group>"; };
 		3B5BE4D117C1C87A0086D842 /* ZYPullHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPullHeaderView.m; sourceTree = "<group>"; };
 		3B5BE4D617C1EA4F0086D842 /* ZYPictureCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPictureCommentViewController.h; sourceTree = "<group>"; };
@@ -523,7 +534,6 @@
 		E43AF71117B75698008FD5A5 /* category_cell_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = category_cell_bg.png; sourceTree = "<group>"; };
 		E43AF72117B75AAE008FD5A5 /* ZYProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProductCell.h; sourceTree = "<group>"; };
 		E43AF72217B75AAE008FD5A5 /* ZYProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProductCell.m; sourceTree = "<group>"; };
-		E43AF72417B7688E008FD5A5 /* test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 		E43AF92917B79247008FD5A5 /* frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame@2x.png"; sourceTree = "<group>"; };
 		E43AF92B17B7B73D008FD5A5 /* ZYCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCommentCell.h; sourceTree = "<group>"; };
 		E43AF92C17B7B73D008FD5A5 /* ZYCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCommentCell.m; sourceTree = "<group>"; };
@@ -1139,7 +1149,6 @@
 				E484A4FD17ACB385009CE1BA /* ZYProductViewController.m */,
 				E43AF72117B75AAE008FD5A5 /* ZYProductCell.h */,
 				E43AF72217B75AAE008FD5A5 /* ZYProductCell.m */,
-				E43AF72417B7688E008FD5A5 /* test.xib */,
 				E488078D17C3D3880047A23C /* ZYProductDetail_1_ViewController.h */,
 				E488078E17C3D3880047A23C /* ZYProductDetail_1_ViewController.m */,
 				E488079017C3D4E00047A23C /* ZYProductDetail_0_ViewController.h */,
@@ -1154,6 +1163,8 @@
 				E488079D17C3DAED0047A23C /* ZYProductDetail_0_Control_Cell.m */,
 				E488079F17C3FA7C0047A23C /* ZYProductCommentViewController.h */,
 				E48807A017C3FA7E0047A23C /* ZYProductCommentViewController.m */,
+				3B2B85BB17C72C7D001E3B94 /* ZYProductPreViewController.h */,
+				3B2B85BC17C72C7E001E3B94 /* ZYProductPreViewController.m */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -1200,6 +1211,12 @@
 				E48419C817C0CD2B00CA3320 /* ZYAboutCell.m */,
 				E421515A17C26FFF00BCB601 /* ZYReplyViewController.h */,
 				E421515B17C2700000BCB601 /* ZYReplyViewController.m */,
+				3B2B85B217C6F7B8001E3B94 /* ZYMyArticleFavoriteViewController.h */,
+				3B2B85B317C6F7B8001E3B94 /* ZYMyArticleFavoriteViewController.m */,
+				3B2B85B517C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.h */,
+				3B2B85B617C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.m */,
+				3B2B85B817C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.h */,
+				3B2B85B917C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -2582,7 +2599,6 @@
 				E43AF71E17B75698008FD5A5 /* category_cell_bg_s_ipad.png in Resources */,
 				E43AF71F17B75698008FD5A5 /* category_cell_bg_ipad.png in Resources */,
 				E43AF72017B75698008FD5A5 /* category_cell_bg.png in Resources */,
-				E43AF72517B7688E008FD5A5 /* test.xib in Resources */,
 				E43AF92A17B7924B008FD5A5 /* frame@2x.png in Resources */,
 				E415D16A17BD087100E90729 /* bubbleSelf.png in Resources */,
 				E415D3CD17BD12BC00E90729 /* login.png in Resources */,
@@ -2815,6 +2831,10 @@
 				E488079B17C3D87D0047A23C /* ZYProductDetail_0_MutilText_Cell.m in Sources */,
 				E488079E17C3DAEE0047A23C /* ZYProductDetail_0_Control_Cell.m in Sources */,
 				E48807A117C3FA800047A23C /* ZYProductCommentViewController.m in Sources */,
+				3B2B85B417C6F7B8001E3B94 /* ZYMyArticleFavoriteViewController.m in Sources */,
+				3B2B85B717C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.m in Sources */,
+				3B2B85BA17C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m in Sources */,
+				3B2B85BD17C72C7F001E3B94 /* ZYProductPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

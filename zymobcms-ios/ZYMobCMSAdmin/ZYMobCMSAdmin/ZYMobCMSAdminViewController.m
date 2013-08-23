@@ -116,8 +116,12 @@
 - (void)sendPushNotiSucess:(NSDictionary*)resultDict
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
-    if(!status){
+    if(status){
         
+        NSString *msg = [resultDict objectForKey:@"data"];
+        
+        [SVProgressHUD showSuccessWithStatus:msg];
+    }else{
         NSString *msg = [resultDict objectForKey:@"msg"];
         
         [SVProgressHUD showErrorWithStatus:msg];
@@ -126,7 +130,7 @@
 
 - (void)sendPushNotiFaild:(NSDictionary*)resultDict
 {
-    
+    [SVProgressHUD showErrorWithStatus:@"网络不给力啊!"];
 }
 
 

@@ -10,8 +10,12 @@
 #import "BFNBaseViewController.h"
 #import "ZYPictureCell.h"
 
-@interface ZYPictureController : BFNBaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ZYPictureController : BFNBaseViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate>
 {
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _isLoadMore;
+    BOOL _reloading;
+    
     UITableView *listTable;
     
     NSMutableArray *sourceArray;
@@ -22,5 +26,8 @@
 }
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *currentTabType;
+@property (nonatomic,assign)NSInteger      pageIndex;
 
+- (void)getPictureList;
+- (void)getAllTabTypes;
 @end

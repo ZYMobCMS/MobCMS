@@ -19,6 +19,7 @@
 
 @implementation ZYPictureController
 @synthesize categoryId,currentTabType;
+@synthesize pageIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,14 +50,84 @@
     [self.view addSubview:listTable];
     listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [listTable release];
+    self.pageIndex = 1;
     
-    [self getAllTabTypes];
+    // 拉取刷新
+    _refreshHeaderView = [[EGORefreshTableHeaderView alloc]
+                          initWithFrame:
+                          CGRectMake(0.0f, 0.0f - listTable.bounds.size.height, self.view.frame.size.width,listTable.bounds.size.height)];
+    _refreshHeaderView.delegate = self;
+    [listTable addSubview:_refreshHeaderView];
+    [_refreshHeaderView release];
+	[_refreshHeaderView refreshLastUpdatedDate];
+    
+    //设置右上角刷新
+    BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
+        [self refresh];
+    }];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
+    [refreshBtn release];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - refresh
+- (void)refreshContent
+{
+    [_refreshHeaderView startLoading:listTable];
+}
+
+- (void)refresh{
+    
+    if (self.isCategoryType) {
+        if (tabTypeArray.count==0) {
+            [self getAllTabTypes];
+            return;
+        }
+    }
+    
+    [_refreshHeaderView startLoading:listTable];
+    _reloading = YES;
+    self.pageIndex = 1;
+    [self getPictureList];
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+	
+    //在这里写更新的数据
+	[self performSelector:@selector(refresh) withObject:nil afterDelay:.0];
+	
+}
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return _reloading; // should return if data source model is reloading
+	
+}
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	
+	return [NSDate date]; // should return date data source was last changed
+	
 }
 
 #pragma mark - Table view data source
@@ -93,7 +164,11 @@
             preVC.mainTitle = [item objectForKey:@"title"];
             preVC.pictureId = [item objectForKey:@"id"];
             [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
-            [self.navigationController pushViewController:preVC animated:YES];
+            if (self.superNavigationController) {
+                [self.superNavigationController pushViewController:preVC animated:YES];
+            }else{
+                [self.navigationController pushViewController:preVC animated:YES];
+            }
             [preVC release];
             
             
@@ -134,13 +209,8 @@
     [self getPictureList];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    
-}
-
 - (void)getPictureList
-{
+{    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSNumber numberWithInt:PageSize]  forKey:@"pageSize"];
     [params setObject:[NSNumber  numberWithInt:pageIndex] forKey:@"pageIndex"];
@@ -157,6 +227,10 @@
         
         NSArray *resultArray = [resultDict objectForKey:@"data"];
         NSLog(@"resultArray ___%@",resultArray);
+        
+        if (_reloading) {
+            [sourceArray removeAllObjects];
+        }
         
         if (resultArray.count ==0 || resultArray.count <PageSize) {
             hideLoadMore = YES;
@@ -178,13 +252,29 @@
         
         [listTable reloadData];
         
+    }else{
+        NSString *errMsg = [resultDict objectForKey:@"msg"];
+        [SVProgressHUD showErrorWithStatus:errMsg];
+        BFLoadMoreView *footer = (BFLoadMoreView*)listTable.tableFooterView;
+        [footer stopAnimation];
+        self.pageIndex--;
+    }
+    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
     }
     
 }
 
 - (void)getPictureListFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+        _reloading = NO;
+    }
+    self.pageIndex--;
+
 }
 
 #pragma mark - 获取所有子分类
@@ -214,4 +304,15 @@
     
 }
 
+- (void)getListData
+{
+    [self refresh];
+}
+- (void)getCategoryData
+{
+    if (tabTypeArray.count>0) {
+        return;
+    }
+    [self getAllTabTypes];
+}
 @end

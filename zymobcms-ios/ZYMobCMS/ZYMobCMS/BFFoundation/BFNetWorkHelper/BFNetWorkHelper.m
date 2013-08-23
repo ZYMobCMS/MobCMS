@@ -251,6 +251,14 @@ static BFNetWorkHelper *_instance = nil;
             urlString = ZYCMS_User_Commit_Token_Interface;
             break;
             
+            case ZYCMSRequestTypeUserPictureFavoriteList:
+            urlString = ZYCMS_User_Picture_Favorite_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserProductFavoriteList:
+            urlString = ZYCMS_User_Product_Favorite_List_Interface;
+            break;
+            
         default:
             break;
     }

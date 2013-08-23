@@ -8,6 +8,13 @@
 
 #import "BFNBaseViewController.h"
 
-@interface ZYMyFavoriteViewController : ZYCategoryViewController
+
+@interface ZYMyFavoriteViewController : BFNBaseViewController<BFSegmentControlDataSource>
+{
+    BFSegmentControl *segmentCtrl;
+    NSMutableArray *segmentArray;
+    NSMutableArray *viewControllers;
+    NSInteger       currentTabType;
+}
 
 @end

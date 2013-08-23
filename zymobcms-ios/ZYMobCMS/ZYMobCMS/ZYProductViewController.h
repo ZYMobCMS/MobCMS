@@ -26,4 +26,9 @@
 }
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *currentTabType;
+@property (nonatomic,assign)NSInteger pageIndex;
+
+- (void)getProductList;
+- (void)getAllTabTypes;
+
 @end

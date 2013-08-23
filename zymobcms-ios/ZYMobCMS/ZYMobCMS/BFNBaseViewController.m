@@ -15,12 +15,15 @@
 @implementation BFNBaseViewController
 @synthesize mainTitle;
 @synthesize isSwipTurnOn;
+@synthesize isCategoryType;
+@synthesize superNavigationController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.isCategoryType = NO;
     }
     return self;
 }
@@ -36,6 +39,7 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.isSwipTurnOn = NO;
+    self.isCategoryType = NO;
     
     lodingView = [[ZYLoadingView alloc]initWithFrame:CGRectMake((self.view.frame.size.width-160)/2,(self.view.frame.size.height-50-44)/2,160,50)];
     lodingView.backgroundColor = [UIColor darkGrayColor];
@@ -91,6 +95,15 @@
 - (void)stopLoading
 {
     [lodingView stopLoading];
+}
+
+- (void)getListData
+{
+    
+}
+- (void)getCategoryData
+{
+    
 }
 
 @end

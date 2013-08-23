@@ -138,7 +138,7 @@ class PictureController extends Controller {
                 return; 
             }
             
-            $create_time = date('y-m-d h:i:s');
+            $create_time = date('y-m-d H:i:s');
             
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             //文章是否还存在

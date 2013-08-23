@@ -50,14 +50,14 @@
         
         //seprator line
         UIImageView *sepratorX = [[UIImageView alloc]init];
-        sepratorX.frame = CGRectMake(0,(ZYProductDetail_0_ControllCellHeight)/2,self.frame.size.width-20, 2);
-        sepratorX.backgroundColor = [UIColor lightGrayColor];
+        sepratorX.frame = CGRectMake(0,(ZYProductDetail_0_ControllCellHeight)/2,self.frame.size.width-20, 1);
+        sepratorX.backgroundColor = [BFUitils rgbColor:211 green:211 blue:211];
         [self.contentView addSubview:sepratorX];
         [sepratorX release];
         
         UIImageView *sepratorY = [[UIImageView alloc]init];
-        sepratorY.frame = CGRectMake((self.frame.size.width-20)/2,0,2,ZYProductDetail_0_ControllCellHeight);
-        sepratorY.backgroundColor = [UIColor lightGrayColor];
+        sepratorY.frame = CGRectMake((self.frame.size.width-20)/2,0,1,ZYProductDetail_0_ControllCellHeight);
+        sepratorY.backgroundColor = [BFUitils rgbColor:211 green:211 blue:211];
         [self.contentView addSubview:sepratorY];
         [sepratorY release];
     }
