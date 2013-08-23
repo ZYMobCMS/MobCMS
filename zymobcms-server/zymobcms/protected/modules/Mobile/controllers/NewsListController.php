@@ -174,7 +174,6 @@ class NewsListController extends Controller {
         	$checkFavorite = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
         	$checkResult = $dbOperation->queryBySql($checkFavorite);
         	$resultType = $checkResult?  1:0;
-        	
         	$cacheObj['data']['isFavorite']=$resultType;
         	
         	echo json_encode($cacheObj);
