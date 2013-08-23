@@ -20,5 +20,8 @@
 @property (nonatomic,assign)BOOL isFavorited;
 
 - (id)initWithImageString:(NSString *)imageString withSummaryText:(NSString*)summary;
+- (void)commentListAction;
+- (void)favoriteAction;
+- (void)getPictureDetail;
 
 @end

@@ -14,7 +14,7 @@
     BFSegmentControl *segmentCtrl;
     NSMutableArray *segmentArray;
     NSMutableArray *viewControllers;
-
+    NSInteger       currentTabType;
 }
 
 @end

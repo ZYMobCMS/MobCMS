@@ -47,6 +47,15 @@
     currentRequestType = ZYCommentArticle;
     [segmentCtrl release];
     
+    //设置右上角刷新
+    BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
+        [self refresh];
+    }];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
+    [refreshBtn release];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
+    
 }
 
 #pragma mark - segment delegate
@@ -81,8 +90,7 @@
 - (void)segmentControl:(BFSegmentControl*)sgmCtrl didSelectAtIndex:(NSInteger)index
 {
     currentRequestType = index;
-    _reloading = YES;
-    [self getHotCommentList];
+    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning

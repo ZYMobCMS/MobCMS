@@ -69,6 +69,15 @@
     [viewControllers addObject:productVC];
     [productVC release];
     
+    //设置右上角刷新
+    BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
+        [self refresh];
+    }];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
+    [refreshBtn release];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
+    
     //默认选中
     [self shouldSelectVCAtIndex:0];
     
@@ -110,8 +119,8 @@
 //菜单选中了哪一项
 - (void)segmentControl:(BFSegmentControl*)sgmCtrl didSelectAtIndex:(NSInteger)index
 {
+    currentTabType = index;
     [self shouldSelectVCAtIndex:index];
-    
 }
 
 - (void)shouldSelectVCAtIndex:(NSInteger)index
@@ -119,7 +128,7 @@
     BFNBaseViewController *selectVC = [viewControllers objectAtIndex:index];
     
     if (![self.view.subviews containsObject:selectVC.view]) {
-        selectVC.view.frame = CGRectMake(0,segmentCtrl.frame.size.height,self.view.frame.size.width,self.view.frame.size.height);
+        selectVC.view.frame = CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height);
         [self.view addSubview:selectVC.view];
     }
     
@@ -131,6 +140,7 @@
             
             if ([subView isKindOfClass:[BFSegmentControl class]]) {
                 subView.hidden=NO;
+                [self.view bringSubviewToFront:subView];
             }else{
                 subView.hidden = YES;
             }
@@ -138,6 +148,13 @@
     }
     
     [selectVC getListData];//网络数据
+}
+
+- (void)refresh
+{
+    BFNBaseViewController *selectVC = [viewControllers objectAtIndex:currentTabType];
+    
+    [selectVC getListData];
 }
 
 @end

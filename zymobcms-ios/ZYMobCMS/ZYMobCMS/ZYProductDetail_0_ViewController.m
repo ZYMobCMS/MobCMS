@@ -14,6 +14,7 @@
 #import "ZYProductDetail_0_Text_Cell.h"
 #import "CommentListViewController.h"
 #import "ZYProductCommentViewController.h"
+#import "ZYProductPreViewController.h"
 
 @interface ZYProductDetail_0_ViewController ()
 
@@ -48,6 +49,10 @@
         listArray = [[NSMutableArray alloc]init];
     }
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStyleGrouped];
+    UIView *tableBack = [[UIView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,listTable.frame.size.height)];
+    tableBack.backgroundColor = [UIColor whiteColor];
+    listTable.backgroundView = tableBack;
+    [tableBack release];
     listTable.dataSource = self;
     listTable.delegate = self;
     [self.view addSubview:listTable];
@@ -138,6 +143,7 @@
             ZYProductDetail_0_Header_Cell * cell = (ZYProductDetail_0_Header_Cell*)[tableView dequeueReusableCellWithIdentifier:myCell];
             if (cell == nil) {
                 cell = [[[ZYProductDetail_0_Header_Cell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             [cell setProductImageUrl:[[listArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row]];
             
@@ -229,6 +235,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UITableViewCell *tapCell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([tapCell isKindOfClass:[ZYProductDetail_0_Header_Cell class]]) {
+        
+        NSString *imageUrl = [[listArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
+        ZYProductPreViewController *productPreVC = [[ZYProductPreViewController alloc]initWithImageString:imageUrl withSummaryText:@""];
+        productPreVC.mainTitle = @"产品图片详情";
+        productPreVC.pictureId = self.productId;
+        [ZYMobCMSUitil setBFNNavItemForReturn:productPreVC];
+        [self.navigationController pushViewController:productPreVC animated:YES];
+        [productPreVC release];
+    }
 }
 
 - (void)getProductDetail

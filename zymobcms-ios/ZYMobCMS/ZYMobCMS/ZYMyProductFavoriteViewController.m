@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    listTable.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44-45);
+    listTable.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44-35);
 }
 
 - (void)didReceiveMemoryWarning

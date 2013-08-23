@@ -42,6 +42,7 @@
     
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStyleGrouped];
     UIView *tableBack = [[UIView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,listTable.frame.size.height)];
+    tableBack.backgroundColor = [UIColor whiteColor];
     listTable.backgroundView = tableBack;
     [tableBack release];
     listTable.dataSource = self;
@@ -152,6 +153,7 @@
                 commentVC.mainTitle = [sourceArray objectAtIndex:indexPath.row];
                 [ZYMobCMSUitil setBFNNavItemForReturn:commentVC];
                 [self.navigationController pushViewController:commentVC animated:YES];
+                [commentVC refresh];
                 [commentVC release];
             }
                 break;

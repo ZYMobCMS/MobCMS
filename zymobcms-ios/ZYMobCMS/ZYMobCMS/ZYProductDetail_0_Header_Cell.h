@@ -13,6 +13,7 @@
 @interface ZYProductDetail_0_Header_Cell : UITableViewCell
 {
     BFImageView *contentImageView;
+    
 }
 @property (nonatomic,retain)UIImageView *contentImageView;
 

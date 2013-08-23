@@ -24,5 +24,6 @@
 @property (nonatomic,assign)NSInteger pageIndex;
 
 - (void)getHotCommentList;
+- (void)refresh;
 
 @end

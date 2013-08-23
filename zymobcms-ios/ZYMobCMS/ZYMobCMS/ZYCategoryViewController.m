@@ -72,6 +72,15 @@
     [self.view addSubview:segmentCtrl];
     [segmentCtrl release];
     
+    //设置右上角刷新
+    BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
+        [self refresh];
+    }];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
+    [refreshBtn release];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
+    
 }
 
 - (void)didReceiveMemoryWarning
