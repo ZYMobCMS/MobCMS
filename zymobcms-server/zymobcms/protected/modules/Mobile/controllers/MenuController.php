@@ -91,6 +91,18 @@ class MenuController extends Controller {
             return;
         }
         
+        //是否有缓存
+        $cacheManager = new CacheManager($appId);
+        $isCached = $cacheManager->isNewsListTabTypesCachedExist($categoryId);
+        if($isCached){
+        
+        	$resultArr = $cacheManager->returnNewsListTabTypes($categoryId);
+        
+        	echo $resultArr;
+        
+        	return ;
+        }
+        
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
@@ -99,6 +111,9 @@ class MenuController extends Controller {
         $resultArr = $dbOperation->queryAllBySql($sql);
         
         $jsonArr = array('status'=>'1','data'=>$resultArr);
+        
+        //缓存
+        $cacheManager->cacheNewsListTabTypes($categoryId,$jsonArr);
         
         echo json_encode($jsonArr);
         

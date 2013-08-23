@@ -92,7 +92,6 @@
             ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
             preVC.mainTitle = [item objectForKey:@"title"];
             preVC.pictureId = [item objectForKey:@"id"];
-            preVC.isFavorited = [[item objectForKey:@"isFavorited"]boolValue];
             [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
             [self.navigationController pushViewController:preVC animated:YES];
             [preVC release];

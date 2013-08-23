@@ -61,6 +61,8 @@
 		3B2B85AD17C5ECEA001E3B94 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85AC17C5ECEA001E3B94 /* JSONKit.m */; };
 		3B2B85B017C5EE16001E3B94 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B85AF17C5EE16001E3B94 /* MobileCoreServices.framework */; };
 		3B2B85B117C5EE46001E3B94 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2B859F17C5E87C001E3B94 /* SystemConfiguration.framework */; };
+		E432767417C6697F005D9FFA /* input.png in Resources */ = {isa = PBXBuildFile; fileRef = E432767217C6697F005D9FFA /* input.png */; };
+		E432767517C6697F005D9FFA /* input@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E432767317C6697F005D9FFA /* input@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +174,8 @@
 		3B2B85AC17C5ECEA001E3B94 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		3B2B85AE17C5ED1C001E3B94 /* ZYGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYGlobalConfig.h; sourceTree = "<group>"; };
 		3B2B85AF17C5EE16001E3B94 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E432767217C6697F005D9FFA /* input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input.png; sourceTree = "<group>"; };
+		E432767317C6697F005D9FFA /* input@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +435,8 @@
 		3B2B85A617C5EA5C001E3B94 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E432767217C6697F005D9FFA /* input.png */,
+				E432767317C6697F005D9FFA /* input@2x.png */,
 				3B2B848717C5E320001E3B94 /* ZYMobCMSAdminViewController.h */,
 				3B2B848817C5E320001E3B94 /* ZYMobCMSAdminViewController.m */,
 				3B2B849217C5E380001E3B94 /* ZYLoginViewController.h */,
@@ -507,6 +513,8 @@
 				3B2B848417C5E320001E3B94 /* Default@2x.png in Resources */,
 				3B2B848617C5E320001E3B94 /* Default-568h@2x.png in Resources */,
 				3B2B858F17C5E630001E3B94 /* SVProgressHUD.bundle in Resources */,
+				E432767417C6697F005D9FFA /* input.png in Resources */,
+				E432767517C6697F005D9FFA /* input@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +687,7 @@
 				3B2B849117C5E320001E3B94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

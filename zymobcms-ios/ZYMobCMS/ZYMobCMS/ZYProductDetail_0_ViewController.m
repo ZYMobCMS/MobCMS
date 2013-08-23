@@ -256,7 +256,7 @@
         [favAndComments setObject:[productItem objectForKey:@"favorite_count"] forKey:@"favorite_count"];
         [favAndComments setObject:[productItem objectForKey:@"comment_count"] forKey:@"comment_count"];
         [favAndComments setObject:self.productId forKey:@"product_id"];
-        [favAndComments setObject:[NSNumber numberWithBool:self.isFavorited] forKey:@"isFavorite"];
+        [favAndComments setObject:[productItem objectForKey:@"isFavorited"]forKey:@"isFavorited"];
         [listArray addObject:[NSArray arrayWithObject:favAndComments]];
         
         //底部各种参数

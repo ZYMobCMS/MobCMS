@@ -367,7 +367,18 @@
     }else{
         NSString *errorMsg = [result objectForKey:@"msg"];
         [SVProgressHUD showErrorWithStatus:errorMsg];
-        [self setFavoriteState:NO];
+        
+        if ([errorMsg isEqualToString:@"已经收藏过该文章"]) {
+            [self setFavoriteState:YES];
+        }
+        
+        if ([errorMsg isEqualToString:@"已经收藏过该产品"]) {
+            [self setFavoriteState:YES];
+        }
+        
+        if ([errorMsg isEqualToString:@"已经收藏过该图片"]) {
+            [self setFavoriteState:YES];
+        }
     }
     
 }

@@ -21,61 +21,66 @@
     
     UILabel *titleTagLabel = [[UILabel alloc]init];
     titleTagLabel.text = @"标题:";
-    titleTagLabel.frame = CGRectMake(40,40,80,40);
+    titleTagLabel.frame = CGRectMake(35,40,65,25);
     [self.view addSubview:titleTagLabel];
     [titleTagLabel release];
     
     messageTitle = [[UITextField alloc]init];
-    messageTitle.frame = CGRectMake(90,40,150,40);
+    messageTitle.background = [UIImage imageNamed:@"input.png"];
+    messageTitle.frame = CGRectMake(100,40,180,40);
     [self.view addSubview:messageTitle];
     [messageTitle release];
     
     UILabel *contentTagLabel = [[UILabel alloc]init];
     contentTagLabel.text = @"内容:";
-    contentTagLabel.frame = CGRectMake(40,65,80,40);
+    contentTagLabel.frame = CGRectMake(35,100,65,25);
     [self.view addSubview:contentTagLabel];
     [contentTagLabel release];
     
     messageContent = [[UITextField alloc]init];
-    messageContent.frame = CGRectMake(90,55,150,40);
+    messageContent.background = [UIImage imageNamed:@"input.png"];
+    messageContent.frame = CGRectMake(100,100,180,40);
     [self.view addSubview:messageContent];
     [messageContent release];
     
     UILabel *typeTagLabel = [[UILabel alloc]init];
     typeTagLabel.text = @"类型:";
-    typeTagLabel.frame = CGRectMake(40,135,80,40);
+    typeTagLabel.frame = CGRectMake(35,160,65,25);
     [self.view addSubview:typeTagLabel];
     [typeTagLabel release];
     
     messageType = [[UITextField alloc]init];
-    messageType.frame = CGRectMake(90,115,150,40);
+    messageType.background = [UIImage imageNamed:@"input.png"];
+    messageType.frame = CGRectMake(100,160,180,40);
     [self.view addSubview:messageType];
     [messageType release];
     
     UILabel *idTagLabel = [[UILabel alloc]init];
     idTagLabel.text = @"数据Id:";
-    idTagLabel.frame = CGRectMake(40,170,80,40);
+    idTagLabel.frame = CGRectMake(35,210,65,25);
     [self.view addSubview:idTagLabel];
     [idTagLabel release];
     
     messageId = [[UITextField alloc]init];
-    messageId.frame = CGRectMake(90,170,150,40);
+    messageId.background = [UIImage imageNamed:@"input.png"];
+    messageId.frame = CGRectMake(100,210,180,40);
     [self.view addSubview:messageId];
     [messageId release];
     
     UILabel *destTagLabel = [[UILabel alloc]init];
     destTagLabel.text = @"目标用户:";
-    destTagLabel.frame = CGRectMake(40,220,80,40);
+    destTagLabel.frame = CGRectMake(15,260,85,25);
     [self.view addSubview:destTagLabel];
     [destTagLabel release];
     
     destUserLoginName = [[UITextField alloc]init];
-    destUserLoginName.frame = CGRectMake(90,220,150,40);
+    destUserLoginName.background = [UIImage imageNamed:@"input.png"];
+    destUserLoginName.frame = CGRectMake(100,260,180,40);
     [self.view addSubview:destUserLoginName];
     [destUserLoginName release];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    loginBtn.frame = CGRectMake(150,280,80,35);
+    loginBtn.frame = CGRectMake(150,320,80,35);
     [loginBtn setTitle:@"发送" forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(sendPushNoti) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
@@ -91,11 +96,17 @@
 - (void)sendPushNoti
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:messageTitle.text forKey:@"title"];
-    [params setObject:messageContent.text forKey:@"msgContent"];
-    [params setObject:messageType.text forKey:@"msgType"];
-    [params setObject:messageId.text forKey:@"msgId"];
-    [params setObject:destUserLoginName.text forKey:@"destLoginName"];
+    NSString *msgTitle = messageTitle.text? messageTitle.text:@"";
+    NSString *msgContent = messageContent.text? messageContent.text:@"";
+    NSString *msgType= messageType.text? messageType.text:@"";
+    NSString *msgId = messageId.text? messageId.text:@"";
+    NSString *msgDestUser = destUserLoginName.text? destUserLoginName.text:@"";
+
+    [params setObject:msgTitle forKey:@"title"];
+    [params setObject:msgContent forKey:@"msgContent"];
+    [params setObject:msgType forKey:@"msgType"];
+    [params setObject:msgId forKey:@"msgId"];
+    [params setObject:msgDestUser forKey:@"destLoginName"];
     [params setObject:@"" forKey:@"destUserId"];
     [params setObject:[ZYAdminManager shareManager].adminLoginName forKey:@"adminLoginName"];
     

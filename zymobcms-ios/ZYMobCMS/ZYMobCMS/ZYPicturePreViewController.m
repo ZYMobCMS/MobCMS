@@ -88,6 +88,8 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:oveaSeaBtn];
     self.navigationItem.rightBarButtonItem = rightItem;
     [rightItem release];
+    
+    [self getPictureDetail];
 }
 
 - (void)didReceiveMemoryWarning
@@ -177,6 +179,39 @@
 - (void)disableFavorite
 {
     [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_yes.png"] forState:UIControlStateNormal];
+}
+
+- (void)getPictureDetail
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.pictureId forKey:@"pictureId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureDetail withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureDetailSuccess:" withFaildRequestMethod:@"getPictureDetailFaild:"];
+}
+
+- (void)getPictureDetailSuccess:(NSDictionary*)resultDict
+{
+    BOOL status = [[resultDict objectForKey:@"status"]boolValue];
+    if (status) {
+        
+        NSLog(@"pictureDetail----->%@",resultDict);
+        
+        NSDictionary *item = [resultDict objectForKey:@"data"];
+        if ([[item objectForKey:@"isFavorited"]boolValue]) {
+            [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_yes.png"] forState:UIControlStateNormal];
+            self.isFavorited = YES;
+        }else{
+            self.isFavorited = NO;
+            [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_no.png"] forState:UIControlStateNormal];
+        }
+
+        
+    }
+}
+
+- (void)getPictureDetailFaild:(NSDictionary*)resultDict
+{
+    
 }
 
 

@@ -55,7 +55,8 @@ class CacheManager {
         
         $cacheKey = $categoryId.'_'.$tabTypeId.'_'.$pageIndex;
         
-        $this->_cache->store($cacheKey,$data);
+        //直接保存json数据
+        $this->_cache->store($cacheKey,json_encode($data));
         
         
     }   
@@ -115,7 +116,7 @@ class CacheManager {
         
         $cacheKey = 'picture_list_'.$mainCategoryId.'_'.$subTabTypeId.'_'.$pageIndex;
     	        
-        $this->_cache->store($cacheKey,$data);
+        $this->_cache->store($cacheKey,json_encode($data));
         
     }
     
@@ -150,7 +151,7 @@ class CacheManager {
         
         $cacheKey = 'product_list_'.$mainCategoryId.'_'.$subTabTypeId.'_'.$pageIndex;
     	        
-        $this->_cache->store($cacheKey,$data);
+        $this->_cache->store($cacheKey,json_encode($data));
         
     }
     
@@ -229,7 +230,7 @@ class CacheManager {
     	
     	$cacheKey = 'article_detail_'.$articleId;
     	    	
-    	$this->_cache->store($cacheKey,json_encode($data));
+    	$this->_cache->store($cacheKey,$data);
     }
     
     /*
@@ -263,7 +264,7 @@ class CacheManager {
     	
     	$cacheKey = 'picture_detail_'.$pictureId;
     	    	
-    	$this->_cache->store($cacheKey,json_encode($data));
+    	$this->_cache->store($cacheKey,$data);
     }
     
     /*
@@ -297,8 +298,96 @@ class CacheManager {
     	
     	$cacheKey = 'product_detail_'.$productId;
     	    	
-    	$this->_cache->store($cacheKey,json_encode($data));
+    	$this->_cache->store($cacheKey,$data);
     	
+    }
+    
+    /*
+     * 为Article模块的TabType创建缓存
+     */
+    public function isNewsListTabTypesCachedExist($categoryId){
+    	
+    	$preKey = 'newsList';
+    	
+    	$this->isCacheTabTypesExist($preKey, $categoryId);
+    	
+    }
+    public function cacheNewsListTabTypes($categoryId,$data){
+    	
+    	$preKey = 'newsList';
+    	 
+    	$this->cacheTabTypes($preKey, $categoryId,$data);
+    }
+    public function returnNewsListTabTypes($categoryId){
+    	$preKey = 'newsList';
+    	
+    	$this->returnTabTypes($preKey, $categoryId);
+    }
+    
+    /*
+     * 为图片模块的TabType创建缓存
+     */
+    public function isPictureTabTypesCacheExist($categoryId){
+    	$preKey = 'picture';
+    	 
+    	$this->isCacheTabTypesExist($preKey, $categoryId);
+    }
+    public function cachePictureTabTypes($categoryId,$data){
+    	$preKey = 'picture';
+    	
+    	$this->cacheTabTypes($preKey, $categoryId,$data);
+    }
+    public function returnPictureTabTypes($categoryId){
+    	$preKey = 'picture';
+    	 
+    	$this->returnTabTypes($preKey, $categoryId);
+    }
+    
+    /*
+     * 为产品模块的TabType创建缓存
+     */
+    public function isProductTabTypesCacheExist($categoryId){
+    	$preKey = 'product';
+    	
+    	$this->isCacheTabTypesExist($preKey, $categoryId);
+    }
+    public function cacheProductTabTypes($categoryId,$data){
+    	$preKey = 'product';
+    	 
+    	$this->cacheTabTypes($preKey, $categoryId,$data);
+    }
+    public function returnProductTabTypes($categoryId){
+    	$preKey = 'product';
+    	
+    	$this->returnTabTypes($preKey, $categoryId);
+    }
+    
+    private function isCacheTabTypesExist($preKey,$categoryId){
+    	
+    	$cacheKey = $preKey.'_'.$categoryId;
+    	
+    	$isNewsCached = $this->_cache->isCached($cacheKey);
+    	 
+    	if ($isNewsCached) {
+    		 
+    		return TRUE;
+    		 
+    	}else{
+    		return FALSE;
+    	}
+    }
+    private function cacheTabTypes($preKey,$categoryId,$data){
+    	$cacheKey = $preKey.'_'.$categoryId;
+    	
+    	$this->_cache->store($cacheKey,json_encode($data));
+    }
+    private function returnTabTypes($preKey,$categoryId){
+    	
+    	$cacheKey = $preKey.'_'.$categoryId;
+    	
+    	$cacheData = $this->_cache->retrieve($cacheKey);
+    	
+    	return $cacheData;
     }
 }
 

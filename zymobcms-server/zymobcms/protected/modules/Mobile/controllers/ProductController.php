@@ -48,10 +48,7 @@ class ProductController extends Controller{
         if($pageSize>10 || $pageSize<0){
                  $pageSize = 10;
         }
-        
-        //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
-        
+           
         //查询缓存是否存在
         $cacheManager = new CacheManager($appId);
         $isCached = $cacheManager->isProductListCacheExist($categoryId,$tabTypeId,$pageIndex);
@@ -59,54 +56,59 @@ class ProductController extends Controller{
         
         	$resultArr = $cacheManager->returnProductCacheListByPageIndex($categoryId,$tabTypeId,$pageIndex);
         
-        	foreach ($resultArr as $key=>$value){
+        	//加重服务器负担
+//         	foreach ($resultArr as $key=>$value){
         
-        		//是否已经收藏过图片
-        		if(is_array($value)){
-        			$currentRecord = current($value);
+//         		//是否已经收藏过图片
+//         		if(is_array($value)){
+//         			$currentRecord = current($value);
                 			
-        			while ($currentRecord){
+//         			while ($currentRecord){
         				 
-        				$articleId = $currentRecord['id'];
-        				$checkIfUserSupport = "select id from zy_user_product_favorite where product_id = $articleId and user_id=$userId";
+//         				$articleId = $currentRecord['id'];
+//         				$checkIfUserSupport = "select id from zy_user_product_favorite where product_id = $articleId and user_id=$userId";
         
-        				$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        				if ($resultCheck) {
-        					$currentRecord['isFavorited']="1";
-        				}else{
-        					$currentRecord['isFavorited']="0";
-        				}
-        				$currentRecord = next($value);
+//         				$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         				if ($resultCheck) {
+//         					$currentRecord['isFavorited']="1";
+//         				}else{
+//         					$currentRecord['isFavorited']="0";
+//         				}
+//         				$currentRecord = next($value);
         
-        			}
-        		}
-        	}
+//         			}
+//         		}
+//         	}
         
-        	echo json_encode($resultArr);
+        	echo $resultArr;
         
         	return ;
         }
         
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
+        
+        //查询
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+         
         $sql = "select id,title,summary,support_count,images from zy_product limit $startIndex,$pageSize";
         
         $resultArr = $dbOperation->queryAllBySql($sql);
         
-        //是否已经收藏过这个图片
-        $currentRecord = current($resultArr);
-        while ($currentRecord){
+        //是否已经收藏过这个图片,加重服务器负担
+//         $currentRecord = current($resultArr);
+//         while ($currentRecord){
         
-        	$checkIfUserSupport = "select id from zy_user_product_favorite where product_id = $currentRecord->id and user_id=$userId";
+//         	$checkIfUserSupport = "select id from zy_user_product_favorite where product_id = $currentRecord->id and user_id=$userId";
         
-        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        	if ($resultCheck) {
-        		$currentRecord->isFavorited="1";
-        	}else{
-        		$currentRecord->isFavorited="0";
-        	}
-        	$currentRecord = next($resultArr);
-        }
+//         	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         	if ($resultCheck) {
+//         		$currentRecord->isFavorited="1";
+//         	}else{
+//         		$currentRecord->isFavorited="0";
+//         	}
+//         	$currentRecord = next($resultArr);
+//         }
         
         $jsonArr = array('status'=>'1','data'=>$resultArr);
         
@@ -136,6 +138,9 @@ class ProductController extends Controller{
             return;
         }
         
+        //查询
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        
         //是否存在缓存
         $cacheManager = new CacheManager($appId);
         $isCached = $cacheManager->isProductDetailCacheExist($productId);
@@ -143,24 +148,29 @@ class ProductController extends Controller{
         
         	$cacheObj = $cacheManager->returnProductDetailCache($productId);
         
-        	echo $cacheObj;
+        	//是否已经收藏过该产品
+        	//查询是否收藏该文章
+        	$checkFavorite = "select id from zy_user_product_favorite where product_id=$productId and user_id=$userId";
+        	$checkResult = $dbOperation->queryBySql($checkFavorite);
+        	$resultType = $checkResult?  1:0;
+        	$cacheObj['data']['isFavorited']=$resultType;
+        	        	
+        	echo json_encode($cacheObj);
         
         	return ;
         }
         
-        //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
         $sql = "select * from zy_product where id=$productId";
         
         $resultObj = $dbOperation->queryBySql($sql);
         
-//         //是否已经收藏过该产品
-//         //查询是否收藏该文章
-//         $checkFavorite = "select id from zy_user_product_favorite where product_id=$productId and user_id=$userId";
-//         $checkResult = $dbOperation->queryBySql($checkFavorite);
-//         $resultType = $checkResult?  1:0;
-//         $resultObj->isFavorited=$resultType;
+        //是否已经收藏过该产品
+        //查询是否收藏该文章
+        $checkFavorite = "select id from zy_user_product_favorite where product_id=$productId and user_id=$userId";
+        $checkResult = $dbOperation->queryBySql($checkFavorite);
+        $resultType = $checkResult?  1:0;
+        $resultObj->isFavorited=$resultType;
         
         if($resultObj){
             
@@ -596,6 +606,18 @@ class ProductController extends Controller{
         	
         		return;
         	}
+        	
+        	//是否有缓存
+        	$cacheManager = new CacheManager($productId);
+        	$isCached = $cacheManager->isProductTabTypesCacheExist($categoryId);
+        	if($isCached){
+        	
+        		$resultArr = $cacheManager->returnProductTabTypes($categoryId);
+        	
+        		echo $resultArr;
+        	
+        		return ;
+        	}
         	 
         	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         	
@@ -609,6 +631,9 @@ class ProductController extends Controller{
         	
         		echo json_encode($jsonArr);
         	
+        		//缓存
+        		$cacheManager->cacheProductTabTypes($categoryId,$jsonArr);
+        		
         		return ;
         	
         	}else{

@@ -74,71 +74,47 @@ class PushNotiManager {
      $apnsCert = $this->_pemPath;
      $apnsPort = $this->_port;
      
+     $payload['aps']=array(
+     		'alert'=>$title,
+     		'badge'=>$bageCount,
+     		'sound'=>'default');
+     $payload = json_encode($payload);
+     print_r($payload);
+     
+     $streamContext = stream_context_create();
+     stream_context_set_option($streamContext, 'ssl', 'local_cert', $apnsCert);
+     $apns = stream_socket_client('ssl://' . $apnsHost . ':' . $apnsPort, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext);
+    
+     if (!$apns) {
+     	print "Failed to connect $error";
+     
+     	return;
+     }
+     
+     print "Connection OK ";
+     
    if(is_object($devices)){    
 
-		$payload['aps']=array(
-                    'alert'=>$title,
-                    'badge'=>$bageCount,
-                    'sound'=>'default');
-        $payload = json_encode($payload);
-        print_r($payload);
-        
-        $streamContext = stream_context_create();
-        stream_context_set_option($streamContext, 'ssl', 'local_cert', $apnsCert);
-        $apns = stream_socket_client('ssl://' . $apnsHost . ':' . $apnsPort, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext);
-        if (!$apns) {
-            print "Failed to connect $error";
-            
-            return;
-        }
-        print "Connection OK ";
-                
         $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '',$devices->token)) . chr(0) . chr(strlen($payload)) . $payload;
         fwrite($apns, $apnsMessage);
-        
-        print_r($error);
-        print_r($errorString);
-        
-        socket_close($apns);
-        fclose($apns);
        
        echo 'sending to one .....';
            
    }else if(is_array($devices)){
        for($i=0;$i<count($devices);$i++){
-       	       	
-       	$payload['aps']=array(
-                    'alert'=>$title,
-                    'badge'=>$bageCount,
-                    'sound'=>'default');
-        $payload = json_encode($payload);
-        print_r($payload);
-        
-        $streamContext = stream_context_create();
-        stream_context_set_option($streamContext, 'ssl', 'local_cert', $apnsCert);
-        $apns = stream_socket_client('ssl://' . $apnsHost . ':' . $apnsPort, $error, $errorString, 2, STREAM_CLIENT_CONNECT, $streamContext);
-        if (!$apns) {
-            print "Failed to connect $error";
-                        
-            return;
-        }
-        print "Connection OK ";
-                
+       	       	                
         $cDevice = $devices[$i];
         $apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '',$cDevice->token)) . chr(0) . chr(strlen($payload)) . $payload;
         fwrite($apns, $apnsMessage);
         
-        print_r($error);
-        print_r($errorString);
-        
-        socket_close($apns);
-        fclose($apns);
-		       
-      }
-       
-       echo 'sending..... to all.....';
-               
+      }       
+       echo 'sending..... to all.....';        
    }
+   print_r($error);
+   print_r($errorString);
+   
+   socket_close($apns);
+   fclose($apns);
    
    }
    

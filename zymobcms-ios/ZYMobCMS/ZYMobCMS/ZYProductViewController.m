@@ -149,7 +149,6 @@
     
     ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
     detailVC.productId = [[listArray objectAtIndex:indexPath.row]objectForKey:@"id"];
-    detailVC.isFavorited = [[[listArray objectAtIndex:indexPath.row]objectForKey:@"isFavorited"]boolValue];
     detailVC.mainTitle = @"产品详情";
     [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
     [self.navigationController pushViewController:detailVC animated:YES];
@@ -252,7 +251,9 @@
         
         NSArray *allTabs = [resultDict objectForKey:@"data"];
         
-        currentTabType = [[allTabs objectAtIndex:0]objectForKey:@"id"] ;
+        self.currentTabType = [[allTabs objectAtIndex:0]objectForKey:@"id"] ;
+        
+        [tabTypesArray addObjectsFromArray:allTabs];
         
         [self getProductList];
 

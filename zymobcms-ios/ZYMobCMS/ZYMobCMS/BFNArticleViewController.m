@@ -358,6 +358,7 @@
         NSLog(@"articleDict --->%@",self.articleDict);
 
         [self setBaseContentDict:[data objectForKey:@"data"] isShowDetail:YES];
+        [commentBar setFavoriteState:[[[data objectForKey:@"data"]objectForKey:@"isFavorite"]boolValue]];
         
     }
 }

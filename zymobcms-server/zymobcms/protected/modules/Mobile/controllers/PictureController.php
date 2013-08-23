@@ -50,9 +50,7 @@ class PictureController extends Controller {
                  $pageSize = 10;
         }
         
-        //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
-        
+
         //查询缓存是否存在
         $cacheManager = new CacheManager($productId);
         $isCached = $cacheManager->isPictureListCacheExist($categoryId,$tabTypeId,$pageIndex);
@@ -60,29 +58,30 @@ class PictureController extends Controller {
         
         	$resultArr = $cacheManager->returnPictureCacheListByPageIndex($categoryId,$tabTypeId,$pageIndex);
         
-        	foreach ($resultArr as $key=>$value){
+        	//列表内获取是否收藏，加重服务器负担
+//         	foreach ($resultArr as $key=>$value){
         
-        		//是否已经收藏过图片
-        		if(is_array($value)){
-        			$currentRecord = current($value);
+//         		//是否已经收藏过图片
+//         		if(is_array($value)){
+//         			$currentRecord = current($value);
         
-        			while ($currentRecord){
+//         			while ($currentRecord){
         				 
-        				$articleId = $currentRecord['id'];
-        				$checkIfUserSupport = "select id from zy_user_picture_favorite where picture_id = $articleId and user_id=$userId";
+//         				$articleId = $currentRecord['id'];
+//         				$checkIfUserSupport = "select id from zy_user_picture_favorite where picture_id = $articleId and user_id=$userId";
         					 
-        				$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        				if ($resultCheck) {
-        					$currentRecord['isFavorited']="1";
-        				}else{
-        					$currentRecord['isFavorited']="0";
-        				}
-        				$currentRecord = next($value);
-        			}
-        		}
-        	}
+//         				$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         				if ($resultCheck) {
+//         					$currentRecord['isFavorited']="1";
+//         				}else{
+//         					$currentRecord['isFavorited']="0";
+//         				}
+//         				$currentRecord = next($value);
+//         			}
+//         		}
+//         	}
         	 
-        	echo json_encode($resultArr);
+        	echo $resultArr;
         	 
         	return ;
         }
@@ -92,22 +91,24 @@ class PictureController extends Controller {
         $startIndex = $truePageIndex*$pageSize;
         $sql = "select * from zy_picture limit $startIndex,$pageSize";
         
+        //查询
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         $resultArr = $dbOperation->queryAllBySql($sql);
         
-        //是否已经收藏过这个图片
-        $currentRecord = current($resultArr);
-        while ($currentRecord){
+        //是否已经收藏过这个图片,//列表内获取是否收藏，加重服务器负担
+//         $currentRecord = current($resultArr);
+//         while ($currentRecord){
         	 
-        	$checkIfUserSupport = "select id from zy_user_picture_favorite where picture_id = $currentRecord->id and user_id=$userId";
+//         	$checkIfUserSupport = "select id from zy_user_picture_favorite where picture_id = $currentRecord->id and user_id=$userId";
         	 
-        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        	if ($resultCheck) {
-        		$currentRecord->isFavorited="1";
-        	}else{
-        		$currentRecord->isFavorited="0";
-        	}
-        	$currentRecord = next($resultArr);
-        }
+//         	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         	if ($resultCheck) {
+//         		$currentRecord->isFavorited="1";
+//         	}else{
+//         		$currentRecord->isFavorited="0";
+//         	}
+//         	$currentRecord = next($resultArr);
+//         }
         
         $jsonArr = array('status'=>'1','data'=>$resultArr);
     
@@ -537,6 +538,18 @@ class PictureController extends Controller {
         		return;
         	}
         	
+        	//是否有缓存
+        	$cacheManager = new CacheManager($productId);
+        	$isCached = $cacheManager->isPictureTabTypesCacheExist($categoryId);
+        	if($isCached){
+        		
+        		$resultArr = $cacheManager->returnPictureTabTypes($categoryId);
+        		
+        		echo $resultArr;
+        		
+        		return ;
+        	}
+        	
         	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         	 
         	$sqlCheck="select * from zy_picture_tab_type where category_id = $categoryId";
@@ -548,6 +561,9 @@ class PictureController extends Controller {
         		$jsonArr = array('status'=>'1','data'=>$resultArr);
         		
         		echo json_encode($jsonArr);
+        		
+        		//创建缓存
+        		$cacheManager->cachePictureTabTypes($categoryId,$jsonArr);
         		
         		return ;
         		
@@ -580,23 +596,38 @@ class PictureController extends Controller {
         		return;
         	}
         	
+        	//查询
+        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        	 
         	//是否存在缓存
-        	$cacheManager = new CacheManager($productId);
+        	$cacheManager = new CacheManager($appId);
         	$isCached = $cacheManager->isPictureDetailCacheExist($productId);
         	if($isCached){
         		
         		$cacheObj = $cacheManager->returnPictureDetailCache($productId);
         		
-        		echo $cacheObj;
+        		//是否已经收藏过该图片
+        		//查询是否收藏该图片
+        		$checkFavorite = "select id from zy_user_picture_favorite where picture_id=$productId and user_id=$userId";
+        		$checkResult = $dbOperation->queryBySql($checkFavorite);
+        		$resultType = $checkResult?  1:0;
+        		$cacheObj['data']['isFavorited']=$resultType;
+        		
+        		echo json_encode($cacheObj);
         		
         		return ;
         	}
-        	//查询
-        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         	
         	$sql = "select * from zy_picture where id=$productId";
         	
         	$resultObj = $dbOperation->queryBySql($sql);
+        	
+        	//是否已经收藏过该图片
+        	//查询是否收藏该图片
+        	$checkFavorite = "select id from zy_user_picture_favorite where picture_id=$productId and user_id=$userId";
+        	$checkResult = $dbOperation->queryBySql($checkFavorite);
+        	$resultType = $checkResult?  1:0;
+        	$resultObj->isFavorited=$resultType;
         	
         	if($resultObj){
         	

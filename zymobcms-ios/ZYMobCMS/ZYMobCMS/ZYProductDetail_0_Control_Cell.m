@@ -88,7 +88,7 @@
     NSString *favoriteCount = [contentDict objectForKey:@"favorite_count"];
     NSString *commentCount = [contentDict objectForKey:@"comment_count"];
     self.productId = [contentDict objectForKey:@"product_id"];
-    self.isFavorited = [[contentDict objectForKey:@"isFavorite"]boolValue];
+    self.isFavorited = [[contentDict objectForKey:@"isFavorited"]boolValue];
     
     if (isFavorited) {
         [favBtn setBackgroundImage:[UIImage imageNamed:@"favorite_yes.png"] forState:UIControlStateNormal];

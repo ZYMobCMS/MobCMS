@@ -46,10 +46,7 @@ class NewsListController extends Controller {
         if($pageSize>10 || $pageSize<0){
             $pageSize = 10;
         }
-        
-        //建立数据库链接
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
-        
+ 
         //是否存在缓存
         $cacheManager = new CacheManager($productId);
         $isCached = $cacheManager->isCacheDataForCategoryIdAndTabType($categoryId,$tabTypeId,$pageIndex);
@@ -57,34 +54,34 @@ class NewsListController extends Controller {
         
         	$resultArr = $cacheManager->returnCacheDataForCategoryIdAndTabType($categoryId,$tabTypeId,$pageIndex);
         
-        	foreach ($resultArr as $key=>$value){
+//         	foreach ($resultArr as $key=>$value){
         		
-        		//是否已经收藏过文章
-        		if(is_array($value)){
-        			$currentRecord = current($value);
+//         		//是否已经收藏过文章
+//         		if(is_array($value)){
+//         			$currentRecord = current($value);
         			        			
-        			while ($currentRecord){
+//         			while ($currentRecord){
         			
-        				for ($i = 0;$i<count($currentRecord);$i++){
+//         				for ($i = 0;$i<count($currentRecord);$i++){
         					
-        					$articleId = $currentRecord[$i]['id'];
-        					$checkIfUserSupport = "select id from zy_user_favorite where article_id = $articleId and user_id=$userId";
+//         					$articleId = $currentRecord[$i]['id'];
+//         					$checkIfUserSupport = "select id from zy_user_favorite where article_id = $articleId and user_id=$userId";
         					         					
-        					$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        					if ($resultCheck) {
-        						$currentRecord[$i]['isFavorited']="1";
-        					}else{
-        						$currentRecord[$i]['isFavorited']="0";
-        					}
-        					$currentRecord = next($value);
+//         					$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         					if ($resultCheck) {
+//         						$currentRecord[$i]['isFavorited']="1";
+//         					}else{
+//         						$currentRecord[$i]['isFavorited']="0";
+//         					}
+//         					$currentRecord = next($value);
         					
-        				}
+//         				}
         				
-        			}
-        		}
-        	}
+//         			}
+//         		}
+//         	}
         	
-        	echo json_encode($resultArr);
+        	echo $resultArr;
         	
         	return ;
         }
@@ -93,43 +90,48 @@ class NewsListController extends Controller {
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
         
+        //建立数据库链接
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        
         $hotNews = array();
         if($pageIndex<=1){
         	//hotNews
         	$hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1";
         	$hotNews = $dbOperation->queryAllBySql($hotNewsSql);
         	
-        	//是否已经收藏过文章
-        	$currentRecord = current($hotNews);
-        	while ($currentRecord){
+//         	//是否已经收藏过文章
+//         	$currentRecord = current($hotNews);
+//         	while ($currentRecord){
         	
-        		$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+//         		$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
         	
-        		$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        		if ($resultCheck) {
-        			$currentRecord->isFavorited="1";
-        		}else{
-        			$currentRecord->isFavorited="0";
-        		}
-        		$currentRecord = next($hotNews);
-        	}
+//         		$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         		if ($resultCheck) {
+//         			$currentRecord->isFavorited="1";
+//         		}else{
+//         			$currentRecord->isFavorited="0";
+//         		}
+//         		$currentRecord = next($hotNews);
+//         	}
         }
         
         $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 limit $startIndex,$pageSize";
         $resultArr = $dbOperation->queryAllBySql($normalNewsSql);
-        $currentRecord = current($resultArr);
-        while ($currentRecord){
         
-        	$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+        //列表内查询用户是否收藏，加重服务器负担，改在详情内查询
+//         $currentRecord = current($resultArr);
+//         while ($currentRecord){
         
-        	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
-        	if ($resultCheck) {
-        		$currentRecord->isFavorited="1";
-        	}else{
-        		$currentRecord->isFavorited="0";
-        	}
-        	$currentRecord = next($resultArr);
-        }
+//         	$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+        
+//         	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         	if ($resultCheck) {
+//         		$currentRecord->isFavorited="1";
+//         	}else{
+//         		$currentRecord->isFavorited="0";
+//         	}
+//         	$currentRecord = next($resultArr);
+//         }
         
         $jsonArr = array('status'=>'1','data'=>array('hotNews'=>$hotNews,'newsList'=>$resultArr));
         
@@ -158,6 +160,9 @@ class NewsListController extends Controller {
             return;                     
         }
                 
+        //查询
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        
         //是否存在缓存
         $cacheManager = new CacheManager($productId);
         $isCached = $cacheManager->isArticleDetailCacheExist($articleId);
@@ -165,13 +170,18 @@ class NewsListController extends Controller {
         
         	$cacheObj = $cacheManager->returnArticleDetailCache($articleId);
         
-        	echo $cacheObj;
+        	//查询是否收藏该文章
+        	$checkFavorite = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
+        	$checkResult = $dbOperation->queryBySql($checkFavorite);
+        	$resultType = $checkResult?  1:0;
+        	
+        	$cacheObj['data']['isFavorite']=$resultType;
+        	
+        	echo json_encode($cacheObj);
         
         	return ;
         }
         
-        //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         $sql = "select * from zy_article where id=$articleId";
         $resultObj = $dbOperation->queryBySql($sql);
         
