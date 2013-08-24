@@ -65,10 +65,15 @@
     NSRange textRange = NSMakeRange(0,string.length);
     
     //创建字体
-    const char *fontName = [descriptor.textFont UTF8String];
-    CTFontRef fontRef = CTFontCreateWithName(CFStringCreateWithCString(CFAllocatorGetDefault(), fontName,kCFStringEncodingUTF8),descriptor.fontSize,NULL);
-    [attributedString addAttribute:(id)kCTFontAttributeName value:(id)fontRef range:NSMakeRange(0,string.length)];
-    CFRelease(fontRef);
+//    CTFontRef fontRef = CTFontCreateWithName(CFStringCreateWithCString(CFAllocatorGetDefault(),[descriptor.textFont UTF8String],kCFStringEncodingUTF8),descriptor.fontSize,NULL);
+    CFStringRef fontNameRef = CFStringCreateWithCString(CFAllocatorGetDefault(),[descriptor.textFont UTF8String],kCFStringEncodingUTF8);
+    CTFontRef fontRef = CTFontCreateWithName(fontNameRef,descriptor.fontSize,NULL);
+    if (fontNameRef) {
+        [attributedString addAttribute:(id)kCTFontAttributeName value:(id)fontRef range:NSMakeRange(0,string.length)];
+        CFRelease(fontRef);
+    }
+    CFRelease(fontNameRef);
+    
     
     //创建字体颜色
     [attributedString addAttribute:(NSString*)(kCTForegroundColorAttributeName)  value:(id)[descriptor textColor].CGColor range:NSMakeRange(0, string.length)];
@@ -236,10 +241,13 @@
     NSRange textRange = NSMakeRange(0,string.length);
     
     //创建字体
-    const char *fontName = [descriptor.textFont UTF8String];
-    CTFontRef fontRef = CTFontCreateWithName(CFStringCreateWithCString(CFAllocatorGetDefault(), fontName,kCFStringEncodingUTF8),descriptor.fontSize,NULL);
-    [attributedString addAttribute:(id)kCTFontAttributeName value:(id)fontRef range:NSMakeRange(0,string.length)];
-    CFRelease(fontRef);
+    CFStringRef fontNameRef = CFStringCreateWithCString(CFAllocatorGetDefault(),[descriptor.textFont UTF8String],kCFStringEncodingUTF8);
+    CTFontRef fontRef = CTFontCreateWithName(fontNameRef,descriptor.fontSize,NULL);
+    if (fontNameRef) {
+        [attributedString addAttribute:(id)kCTFontAttributeName value:(id)fontRef range:NSMakeRange(0,string.length)];
+        CFRelease(fontRef);
+    }
+    CFRelease(fontNameRef);
     
     //创建字体颜色
     [attributedString addAttribute:(NSString*)(kCTForegroundColorAttributeName)  value:(id)[descriptor textColor].CGColor range:NSMakeRange(0, string.length)];

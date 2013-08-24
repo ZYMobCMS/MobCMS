@@ -150,7 +150,119 @@ static BFNetWorkHelper *_instance = nil;
             case ZYCMSRequestTypeUserFavorite:
             urlString = ZYCMS_User_Favorite_Interface;
             break;
-                    
+            
+            case ZYCMSRequestTypeHotCommentList:
+            urlString = ZYCMS_Hot_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeApplicationName:
+            urlString = ZYCMS_Menu_Application_Name_Interface;
+            break;
+            
+            case ZYCMSRequestTypeSupportComment:
+            urlString = ZYCMS_Supprot_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUnSupportComment:
+            urlString = ZYCMS_UnSupport_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCancelFavoritePicture:
+            urlString = ZYCMS_Cancel_Favorite_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCancelFavoriteProduct:
+            urlString = ZYCMS_Cancel_Favorite_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCommentPicture:
+            urlString = ZYCMS_Comment_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCommentProduct:
+            urlString = ZYCMS_Comment_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypeFavoritePicture:
+            urlString = ZYCMS_Favorite_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeFavoriteProduct:
+            urlString = ZYCMS_Favorite_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureCommentList:
+            urlString = ZYCMS_Picture_Comment_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductCommentList:
+            urlString = ZYCMS_Product_Comment_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeIsFavoritePicture:
+            urlString = ZYCMS_Is_Favorite_Picture_Interface;
+            break;
+            
+            case ZYCMSRequestTypeIsFavoriteProduct:
+            urlString = ZYCMS_Is_Favorite_Product_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserPictureCommentList:
+            urlString = ZYCMS_User_Picture_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserProductCommentList:
+            urlString = ZYCMS_User_Product_Comment_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureCommentSupport:
+            urlString = ZYCMS_Picture_Comment_Support_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureCommentUnSupport:
+            urlString = ZYCMS_Picture_Comment_unSupport_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductCommentSupport:
+            urlString = ZYCMS_Product_Comment_Support_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductCommentUnSupport:
+            urlString = ZYCMS_Product_Comment_unSupport_Interface;
+            break;
+            
+            case ZYCMSRequestTypeCancelFavoriteArticle:
+            urlString = ZYCMS_Cancel_Favorite_Article_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureDetail:
+            urlString = ZYCMS_Picture_Detail_Interface;
+            break;
+            
+            case ZYCMSRequestTypePictureTabTypes:
+            urlString = ZYCMS_Picture_Tab_Type_Interface;
+            break;
+            
+            case ZYCMSRequestTypeProductTabTypes:
+            urlString = ZYCMS_Product_Tab_Type_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserSaveDeivceToken:
+            urlString = ZYCMS_User_Commit_Token_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserPictureFavoriteList:
+            urlString = ZYCMS_User_Picture_Favorite_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserProductFavoriteList:
+            urlString = ZYCMS_User_Product_Favorite_List_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserPublicHome:
+            urlString = ZYCMS_User_Pulic_Home_Interface;
+            break;
+            
         default:
             break;
     }
@@ -163,7 +275,7 @@ static BFNetWorkHelper *_instance = nil;
 - (NSString *)pulicParams
 {
     NSMutableString *turl = [NSMutableString stringWithCapacity:50];
-    [turl appendFormat:@"&appId=%@",APPID];
+    [turl appendFormat:@"&appId=%@&userId=%@",APPID,[ZYUserManager getCurrentUserId]];
     return turl;//[[Passport getCurrentUser]urlEncodedString];
 }
 
@@ -314,11 +426,7 @@ static BFNetWorkHelper *_instance = nil;
     if (timeStamp==nil) {
         return;
     }
-    
-    NSInteger condition = 1;
-    NSConditionLock *lock = [[NSConditionLock alloc]initWithCondition:condition];
-    [lock tryLockWhenCondition:1];
-    
+        
     //如果链接已经完成了
     if (![[_connectionsForCallBackDict allKeys]containsObject:timeStamp]) {
         return;
@@ -339,10 +447,6 @@ static BFNetWorkHelper *_instance = nil;
         [_connectionsForCallBackDict removeObjectForKey:timeStamp];
         
     }
-    
-    condition = 0;
-    [lock unlockWithCondition:0];
-    [lock release];
 }
 
 

@@ -24,8 +24,9 @@ class NewsListController extends Controller {
         $pageIndex = $_GET['pageIndex'];
         $pageSize  = $_GET['pageSize'];
         $productId = $_GET['appId'];
+        $userId = $_GET['userId'];
         
-        if(!$productId){
+        if($productId==NULL||$categoryId==NULL||$tabTypeId==NULL){
             
             $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -45,22 +46,99 @@ class NewsListController extends Controller {
         if($pageSize>10 || $pageSize<0){
             $pageSize = 10;
         }
+ 
+        //是否存在缓存
+        $cacheManager = new CacheManager($productId);
+        $isCached = $cacheManager->isCacheDataForCategoryIdAndTabType($categoryId,$tabTypeId,$pageIndex);
+        if($isCached){
         
-        //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        	$resultArr = $cacheManager->returnCacheDataForCategoryIdAndTabType($categoryId,$tabTypeId,$pageIndex);
+        
+//         	foreach ($resultArr as $key=>$value){
+        		
+//         		//是否已经收藏过文章
+//         		if(is_array($value)){
+//         			$currentRecord = current($value);
+        			        			
+//         			while ($currentRecord){
+        			
+//         				for ($i = 0;$i<count($currentRecord);$i++){
+        					
+//         					$articleId = $currentRecord[$i]['id'];
+//         					$checkIfUserSupport = "select id from zy_user_favorite where article_id = $articleId and user_id=$userId";
+        					         					
+//         					$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         					if ($resultCheck) {
+//         						$currentRecord[$i]['isFavorited']="1";
+//         					}else{
+//         						$currentRecord[$i]['isFavorited']="0";
+//         					}
+//         					$currentRecord = next($value);
+        					
+//         				}
+        				
+//         			}
+//         		}
+//         	}
+        	
+        	echo $resultArr;
+        	
+        	return ;
+        }
+        
+       
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
         
-        //hotNews
-        $hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1";
-        $hotNews = $dbOperation->queryAllBySql($hotNewsSql);
-          
-        $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 limit $startIndex,$pageSize";
+        //建立数据库链接
+        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        
+        $hotNews = array();
+        if($pageIndex<=1){
+        	//hotNews
+        	$hotNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=1 order by id desc";
+        	$hotNews = $dbOperation->queryAllBySql($hotNewsSql);
+        	
+//         	//是否已经收藏过文章
+//         	$currentRecord = current($hotNews);
+//         	while ($currentRecord){
+        	
+//         		$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+        	
+//         		$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         		if ($resultCheck) {
+//         			$currentRecord->isFavorited="1";
+//         		}else{
+//         			$currentRecord->isFavorited="0";
+//         		}
+//         		$currentRecord = next($hotNews);
+//         	}
+        }
+        
+        $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 order by id desc limit $startIndex,$pageSize";
         $resultArr = $dbOperation->queryAllBySql($normalNewsSql);
+        
+        //列表内查询用户是否收藏，加重服务器负担，改在详情内查询
+//         $currentRecord = current($resultArr);
+//         while ($currentRecord){
+        
+//         	$checkIfUserSupport = "select id from zy_user_favorite where article_id = $currentRecord->id and user_id=$userId";
+        
+//         	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+//         	if ($resultCheck) {
+//         		$currentRecord->isFavorited="1";
+//         	}else{
+//         		$currentRecord->isFavorited="0";
+//         	}
+//         	$currentRecord = next($resultArr);
+//         }
         
         $jsonArr = array('status'=>'1','data'=>array('hotNews'=>$hotNews,'newsList'=>$resultArr));
         
         echo json_encode($jsonArr);
+        
+        //save cache
+        $cacheManager->cacheNewsListByCategoryAndTabType($categoryId,$tabTypeId,$pageIndex,$jsonArr);
         
     }
     
@@ -81,22 +159,45 @@ class NewsListController extends Controller {
             
             return;                     
         }
-        
+                
         //查询
         $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        
+        //是否存在缓存
+        $cacheManager = new CacheManager($productId);
+        $isCached = $cacheManager->isArticleDetailCacheExist($articleId);
+        if($isCached){
+        
+        	$cacheObj = $cacheManager->returnArticleDetailCache($articleId);
+        
+        	//查询是否收藏该文章
+        	$checkFavorite = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
+        	$checkResult = $dbOperation->queryBySql($checkFavorite);
+        	$resultType = $checkResult?  1:0;
+        	$cacheObj['data']['isFavorite']=$resultType;
+        	
+        	echo json_encode($cacheObj);
+        
+        	return ;
+        }
+        
         $sql = "select * from zy_article where id=$articleId";
         $resultObj = $dbOperation->queryBySql($sql);
         
         //查询是否收藏该文章
         $checkFavorite = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
         $checkResult = $dbOperation->queryBySql($checkFavorite);
-        $resultObj->isFavorite=(int)$checkResult;
+        $resultType = $checkResult?  1:0;
+        $resultObj->isFavorite=$resultType;
         
         if($resultObj){
             $resultArr = array('status'=>'1','data'=>$resultObj);
             
             echo json_encode($resultArr);
 
+            //缓存
+            $cacheManager->cacheArticleDetail($articleId,$resultArr);
+            
         }else{
             $resultArr = array('status'=>'0','msg'=>'没有查询到数据');
             
@@ -115,8 +216,9 @@ class NewsListController extends Controller {
             $productId = $_GET['appId'];
             $pageIndex = $_GET['pageIndex'];
             $pageSize  = $_GET['pageSize'];
+            $userId    = $_GET['userId'];
             
-            if(!$articleId || !$productId){
+            if($articleId==NULL || $productId==NULL || $userId==NULL){
                 
                 $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -152,9 +254,25 @@ class NewsListController extends Controller {
             
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select * from zy_comment where article_id=$articleId limit $startIndex,$pageSize";
-            
+            $sql = "select zy_comment.*,zy_user.login_name,zy_user.nick_name,zy_user.location from zy_comment inner join zy_user on zy_comment.create_user = zy_user.id where article_id=$articleId order by comment_id desc limit $startIndex,$pageSize";
+                        
             $commentArr = $dbOperation->queryAllBySql($sql);
+                        
+            //是否已经支持
+            $currentRecord = current($commentArr);
+            while ($currentRecord){
+            	
+            	$currentCommentId = $currentRecord->comment_id;
+            	$checkIfUserSupport = "select id from zy_comment_support where comment_id = $currentCommentId and user_id=$userId";
+            	
+            	$resultCheck = $dbOperation->queryBySql($checkIfUserSupport);
+            	if ($resultCheck) {
+            		$currentRecord->isSupported="1";
+            	}else{
+            		$currentRecord->isSupported="0";
+            	}            	
+            	$currentRecord = next($commentArr);
+            }
             
             $resultArr = array('status'=>'1','data'=>$commentArr);
             
@@ -182,7 +300,7 @@ class NewsListController extends Controller {
                 return; 
             }
             
-            $create_time = date('y-m-d h:i:s');
+            $create_time = date('y-m-d H:i:s');
             
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             //文章是否还存在
@@ -210,6 +328,10 @@ class NewsListController extends Controller {
             
                 echo json_encode($resultArr);
             
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createAnCommentNewsRecord($content,$userId,'','',$articleId);
+                
                 return;
                 
             }else{
@@ -273,6 +395,10 @@ class NewsListController extends Controller {
                 
                 echo json_encode($resultArr);
             
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createFavNewsRecord('',$userId,'','',$articleId);
+                
                 return;
                 
             }else{
@@ -314,10 +440,19 @@ class NewsListController extends Controller {
                 $pageSize=10;
             }
             
+            //检查是否有缓存
+            $cacheManager = new CacheManager($appId);
+            $isCached = $cacheManager->isHotCommentListCacheExist($pageIndex);
+            if($isCached){
+                $resultArr = $cacheManager->returnHotCommentCacheListByPageIndex($pageIndex);
+                echo $resultArr;
+                return;
+            }
+            
             $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
-            $sql = "select zy_comment.*,zy_article.title,zy_article.publish_time,zy_article.source,zy_article.summary,zy_article.images from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id where support_count>20 limit $startIndex,$pageSize";
+            $sql = "select zy_comment.*,zy_article.title,zy_user.login_name,zy_user.location from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id inner join zy_user on zy_comment.create_user=zy_user.id order by support_count desc limit $startIndex,$pageSize ";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -325,8 +460,198 @@ class NewsListController extends Controller {
             
             echo json_encode($josnArr);
             
+            //缓存
+            $cacheManager->cacheHotCommentNewList($pageIndex,$josnArr);
         }
         
+        /*
+         * 支持某条评论
+         * 
+         */
+        public function actionSupportComment(){
+            
+               $appId = $_GET['appId'];
+               $commentId = $_GET['commentId'];
+               $userId = $_GET['userId'];
+               
+               if($appId==NULL || $commentId == NULL || $userId==NULL){
+                   $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                    echo json_encode($resultArr);
+            
+                    return;
+               }
+           
+               
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            //是否已经支持过了
+            $sqlCheck = "select id from zy_comment_support where comment_id=$commentId and user_id=$userId";
+
+            $checkResult = $dbOperation->queryBySql($sqlCheck);
+            
+            if($checkResult){
+            	
+            	$josnArr = array('status'=>'0','msg'=>'已经支持过了');
+            	
+            	echo json_encode($josnArr);
+            	 
+            	return ;
+            }
+            
+            $sqlInsert = "insert into zy_comment_support(comment_id,user_id)values($commentId,$userId)";
+            
+            $inserResult = $dbOperation->saveBySql($sqlInsert);
+            
+            if($inserResult){
+                $sql = "update zy_comment set support_count=support_count+1 where comment_id = $commentId";
+                $resultObj = $dbOperation->saveBySql($sql);
+                
+                if($resultObj){
+                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                   
+                   echo json_encode($josnArr);
+                    
+                   //插入一条活动纪录
+                   $sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                   $resultObj = $dbOperation->queryBySql($sql);
+                   if($resultObj){
+                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager->createSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
+                   	
+                   }
+                   
+                }  else {
+                   $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                   
+                   echo json_encode($josnArr);
+                    
+                }
+            
+            
+            }else{
+                $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                echo json_encode($josnArr);
+            } 
+        }
+        
+        /*
+         *  踩某条评论
+         */
+        public function actionUnSupportComment(){
+            
+               $appId = $_GET['appId'];
+               $commentId = $_GET['commentId'];
+               $userId = $_GET['userId'];
+               
+               if($appId==NULL || $commentId == NULL || $userId==NULL){
+                   $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                    echo json_encode($resultArr);
+            
+                    return;
+               }
+               
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            $sqlDelete = "delete from zy_comment_support where user_id=$userId and comment_id=$commentId";
+            
+            $deleteResult = $dbOperation->saveBySql($sqlDelete);
+            
+            if($deleteResult){
+                $sql = "update zy_comment set support_count=support_count-1 where comment_id = $commentId";
+            
+                $resultObj = $dbOperation->saveBySql($sql);
+            
+                if($resultObj){
+                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                   echo json_encode($josnArr);
+                    
+                   //插入一条活动纪录
+                   $sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                   $resultObj = $dbOperation->queryBySql($sql);
+                   if($resultObj){
+                   	$activeRecordManager = new UserActiveRecordManager($appId);
+                   	$activeRecordManager->createUnSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
+                   }
+                   
+                   
+                }  else {
+                   $josnArr = array('status'=>'0','msg'=>'已经踩过了');
+                   echo json_encode($josnArr);
+                    
+                }
+            
+            }else{
+                $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
+                echo json_encode($josnArr);
+            }
+            
+        }
+        
+        /*
+         * 取消收藏
+         */
+        public function actionDeleteFavorite(){
+            
+            $articleId = $_GET['articleId'];
+            $productId = $_GET['appId'];
+            $userId  = $_GET['userId'];
+            
+            if(!$articleId || !$productId || !$userId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+                        
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            
+            //不允许重复收藏
+            $favoriteExistSql = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
+            $favoriteExist = $dbOperation->queryBySql($favoriteExistSql);
+            if(!$favoriteExist){
+              
+                $resultArr = array('status'=>'0','msg'=>'你没有收藏过该文章');
+                
+                echo json_encode($resultArr);
+                
+                return;
+                
+            } 
+            
+            
+            $insertSql = "delete from zy_user_favorite where article_id = $articleId and user_id=$userId";            
+            $insertResult = $dbOperation->saveBySql($insertSql);
+            
+            if($insertResult){
+                
+                $resultArr = array('status'=>'1','msg'=>'取消成功');
+            
+                //文章收藏数加1
+                $updateFavoriteSql = "update zy_article set favorite_count=favorite_count-1 where id=$articleId";
+                $dbOperation->saveBySql($updateFavoriteSql);
+                
+                echo json_encode($resultArr);
+            
+                //插入一条活动纪录
+                $activeRecordManager = new UserActiveRecordManager($productId);
+                $activeRecordManager->createUnFavNewsRecord('',$userId,'','',$articleId);
+                
+                return;
+                
+            }else{
+                
+                $resultArr = array('status'=>'0','msg'=>'收藏失败');
+            
+                echo json_encode($resultArr);
+            
+                return;
+            }
+            
+        }
         
 } 
 

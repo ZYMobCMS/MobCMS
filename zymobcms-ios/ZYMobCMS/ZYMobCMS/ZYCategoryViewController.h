@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BFSegmentControl.h"
 #import "EGORefreshTableHeaderView.h"
+#import "BFNBaseViewController.h"
 
-@interface ZYCategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource,EGORefreshTableHeaderDelegate>
+@interface ZYCategoryViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource,EGORefreshTableHeaderDelegate>
 {
     BFSegmentControl *segmentCtrl;
     NSMutableArray   *segmentArray;
     
-    UITableView *_tableView;
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _isLoadMore;
     BOOL _reloading;
@@ -30,7 +30,14 @@
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *currentTabType;
 @property (nonatomic,retain)NSString *requestFlag;
+@property (nonatomic,assign)NSInteger pageIndex;
+@property (nonatomic,retain)BFSegmentControl *segmentCtrl;
+@property (nonatomic,retain)UITableView *listTable;
 
 - (void)refreshContent;
+
+- (void)getNewsList;
+
+- (void)getTabType;
 
 @end

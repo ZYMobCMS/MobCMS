@@ -9,6 +9,10 @@
 #import "BFImageDownloader.h"
 #import "BFImageCache.h"
 
+#define MaxImageWidth 1024
+#define MaxImageHeight 1800
+#define kIndicatorTag 879870
+
 static BFImageDownloader *_instance = nil;
 @implementation BFImageDownloader
 
@@ -49,6 +53,40 @@ static BFImageDownloader *_instance = nil;
     
     if (loadImage != nil) {
         
+        CGFloat increase = 0.f;
+        CGSize newImageSize = CGSizeZero;
+        if (loadImage.size.width > MaxImageWidth || loadImage.size.height > MaxImageHeight) {
+            
+            BOOL increaseXOrY = loadImage.size.height>loadImage.size.width? YES:NO;
+            
+            if (increaseXOrY) {
+                CGFloat newImageHeight = 0.f;
+                newImageHeight = loadImage.size.height > MaxImageHeight ? MaxImageHeight:loadImage.size.height;
+                
+                if (newImageHeight==MaxImageHeight) {
+                    increase = MaxImageHeight/loadImage.size.height;
+                }
+                
+                CGFloat newImageWidth = loadImage.size.width*increase;
+                
+                newImageSize = CGSizeMake(newImageWidth,newImageHeight);
+            }else{
+                CGFloat newImageWidth = 0.f;
+                newImageWidth = loadImage.size.width > MaxImageWidth ? MaxImageWidth:loadImage.size.width;
+                
+                if (newImageWidth==MaxImageWidth) {
+                    increase = MaxImageWidth/loadImage.size.width;
+                }
+                
+                CGFloat newImageHeight = loadImage.size.height*increase;
+                
+                newImageSize = CGSizeMake(newImageWidth,newImageHeight);
+            }
+        }
+        if(!CGSizeEqualToSize(newImageSize,CGSizeZero)){
+            loadImage = [loadImage resizedImage:newImageSize interpolationQuality:kCGInterpolationDefault];
+        }
+        
         if (state) {
             CGSize itemSize = CGSizeMake(imageView.bounds.size.width, imageView.bounds.size.height);
             UIGraphicsBeginImageContext(itemSize);
@@ -88,9 +126,7 @@ static BFImageDownloader *_instance = nil;
         //直接去缓存获取图片
         UIImageView *forView = (UIImageView *)view;
         UIImage *cacheImage = [BFImageCache imageForUrl:url];
-        forView.image = cacheImage;
-        [forView setNeedsDisplay];
-        
+        forView.image = cacheImage;        
 //        BFMLog(cacheImage);
 //        BFMLog(url);
     }else {
@@ -101,6 +137,7 @@ static BFImageDownloader *_instance = nil;
         
         [_loadQueue addOperation:loadOperation];
         [loadOperation release];
+        
     }
 }
 

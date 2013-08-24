@@ -288,12 +288,12 @@
 #pragma mark - scrollViewDelegate 
 - (void)setLeftTagViewHidden:(BOOL)state
 {
-    self.leftTagView.frame = CGRectMake(0,0,self.frame.size.width*1/9,self.frame.size.height*7/8);
+    self.leftTagView.frame = CGRectMake(0,0,self.frame.size.width*1/9,backScrollView.frame.size.height*3/4);
     self.leftTagView.hidden = state;
 }
 - (void)setRightTagViewHidden:(BOOL)state
 {
-    self.rightTagView.frame = CGRectMake(self.frame.size.width-self.frame.size.width*1/9,0,self.frame.size.width*1/9,self.frame.size.height*7/8);
+    self.rightTagView.frame = CGRectMake(self.frame.size.width-self.frame.size.width*1/9,0,self.frame.size.width*1/9,backScrollView.frame.size.height*3/4);
     self.rightTagView.hidden = state;
 }
 //decide if need hide left or right tag view,0.5 is a float value

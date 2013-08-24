@@ -45,7 +45,8 @@ class UserController extends Controller {
 				
 		}else{
 			
-                        $insertSql = "insert into zy_user(login_name,password)values('$loginName','$password')";
+			$enypassword = $this->enypt($password);
+                        $insertSql = "insert into zy_user(login_name,password,user_type_id)values('$loginName','$enypassword',1)";
                         $rigistResult = $dbOperation->saveBySql($insertSql);
 			if($rigistResult){
 	
@@ -98,7 +99,7 @@ class UserController extends Controller {
 	
 		//检查是否已经存在用户
                 $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
-		$sql = "select * from zy_user where login_name='$loginName'";
+		$sql = "select zy_user.*,zy_user_type.type_name from zy_user inner join zy_user_type on zy_user.user_type_id = zy_user_type.id where login_name='$loginName'";
                 $userExist = $dbOperation->queryBySql($sql);               
 	
 		if(!$userExist){
@@ -207,7 +208,13 @@ class UserController extends Controller {
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
-            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            if($resultArr){
+                $jsonArr = array('status'=>'1','data'=>$resultArr);
+
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+
+            }
             
             echo json_encode($jsonArr);
             
@@ -246,7 +253,7 @@ class UserController extends Controller {
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             
-            $sql = "select zy_comment.*,zy_article.title,zy_article.publish_time,zy_article.source from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id where create_user=$userId limit $startIndex,$pageSize";
+            $sql = "select zy_comment.*,zy_article.title,zy_article.publish_time,zy_article.source from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id where create_user=$userId order by comment_id desc limit $startIndex,$pageSize";
             
             $resultArr = $dbOperation->queryAllBySql($sql);
             
@@ -255,6 +262,289 @@ class UserController extends Controller {
             echo json_encode($jsonArr);
             
         }
+        
+        /*
+         * 用户图片评论
+         */
+        public function actionPictureCommentList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_picture_comment.*,zy_picture.title,zy_picture.create_time,zy_picture.source,zy_picture.summary,zy_picture.images from zy_picture_comment inner join zy_picture on zy_picture_comment.picture_id=zy_picture.id where zy_picture_comment.create_user=$userId order by comment_id desc limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
+            
+        }
+        
+        /*
+         * 用户产品评论
+         */
+        public function actionProductCommentList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_product_comment.*,zy_product.title,zy_product.create_time,zy_product.source from zy_product_comment inner join zy_product on zy_product_comment.product_id=zy_product.id where zy_product_comment.create_user=$userId order by comment_id desc limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            $jsonArr = array('status'=>'1','data'=>$resultArr);
+            
+            echo json_encode($jsonArr);
+            
+        }
+        
+        /*
+         * 用户图片收藏列表
+         */
+        public function actionPictureFavoriteList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_user_picture_favorite.*,zy_picture.title,zy_picture.summary,zy_picture.create_time,zy_picture.source,zy_picture.images from zy_user_picture_favorite inner join zy_picture on zy_picture.id=zy_user_picture_favorite.picture_id  where user_id=$userId order by id desc limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            if($resultArr){
+                $jsonArr = array('status'=>'1','data'=>$resultArr);
+
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+
+            }            
+            echo json_encode($jsonArr);
+        }
+        
+        /*
+         * 用户产品收藏列表
+         */
+        public function actionProductFavoriteList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_user_product_favorite.*,zy_product.title,zy_product.summary,zy_product.create_time,zy_product.source,zy_product.images from zy_user_product_favorite inner join zy_product on zy_product.id=zy_user_product_favorite.product_id   where user_id=$userId order by id desc limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            if($resultArr){
+                $jsonArr = array('status'=>'1','data'=>$resultArr);
+
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+
+            }
+            
+            echo json_encode($jsonArr);
+            
+        }
+        
+        /*
+         * 保存用户推送token
+         */
+        public function actionSaveUserDeviceToken(){
+            
+            $deviceToken = $_GET['token'];
+            $deviceType  = $_GET['type'];
+            $appId = $_GET['appId'];
+            $loginName = $_GET['loginName'];
+            
+            if($deviceToken==NULL){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($deviceType==NULL){
+                
+                $deviceType = 0;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            //处理用户token去空格
+            $subToken = substr($deviceToken,1,strlen($deviceToken)-2);
+            $token = str_replace(' ','',$subToken);
+            if($loginName != NULL){
+                $insertSql = "insert into zy_device(token,type_id,login_name)value('$token',$deviceType,'$loginName')";
+
+            }else{
+                $insertSql = "insert into zy_device(token,type_id)value('$token',$deviceType)";
+
+            }
+            
+            $saveResult = $dbOperation->saveBySql($insertSql);
+            
+            if($saveResult){
+                
+               $jsonArr = array('status'=>'1','data'=>'注册设备成功');
+               echo json_encode($jsonArr);
+               
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'注册设备失败');
+                echo json_encode($jsonArr);
+            }
+            
+        }
+        
+        /*
+         * 用户活动记录
+         */
+        
+        
+        /*
+         * 用户每天活动记录，作为公共主页模块上线
+         */
+        public function actionUserPublicHome(){
+            
+            $appId = $_GET['appId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if($pageSize>10){
+            	$pageSize=10;
+            }
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            if($appId==NULL){
+            	$resultArr = array('status'=>'0','msg'=>'参数缺失');
+            	
+            	echo json_encode($resultArr);
+            	
+            	return;
+            }
+            
+            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            
+            $checksql = "select * from zy_user_active order by id desc limit $truePageIndex,$pageSize";
+            
+            $recordsArr = $dbOperation->queryAllBySql($checksql);
+            
+            if($recordsArr){
+            	
+            	$resultArr = array('status'=>'1','data'=>$recordsArr);
+            	 
+            	echo json_encode($resultArr);
+            	 
+            	return;
+            	
+            }else{
+            	$resultArr = array('status'=>'0','msg'=>'获取失败');
+            	
+            	echo json_encode($resultArr);
+            	
+            	return;
+            }
+            
+            
+        }
+        
 }
 
 ?>

@@ -51,7 +51,7 @@
     
     //添加背景
     UIImageView *backImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,totalWidth,totalHeight)];
-//    backImgView.image = [OPCommon getThemeImage:@"bar_background.png"];
+    backImgView.image = [UIImage imageNamed:@"bar_background.png"];
     [self addSubview:backImgView];
     [backImgView release];
     
@@ -82,18 +82,18 @@
     
     //添加选中背景滑块
     selectTagView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,itemWidth,backScrollView.frame.size.height)];
-//    selectTagView.image = [BFUitils streghtImage:[OPCommon getThemeImage:@"segment_selected.png"]];
+    selectTagView.image = [BFUitils streghtImage:[UIImage imageNamed:@"segment_selected.png"]];
     [backScrollView addSubview:selectTagView];
     [selectTagView release];
     
     //左右指示项
-//    leftTagView = [[UIImageView alloc]initWithImage:[OPCommon getThemeImage:@"segment_left_tag.png"]];
+    leftTagView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"segment_left_tag.png"]];
     [self setLeftTagViewHidden:YES];
     [self  addSubview:leftTagView];
     [leftTagView release];
     
     //
-//    rightTagView = [[UIImageView alloc]initWithImage:[OPCommon getThemeImage:@"segment_right_tag.png"]];
+    rightTagView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"segment_right_tag.png"]];
     [self setRightTagViewHidden:YES];
     [self addSubview:rightTagView];
     [rightTagView release];

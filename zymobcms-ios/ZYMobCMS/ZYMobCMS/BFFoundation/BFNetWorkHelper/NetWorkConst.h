@@ -6,11 +6,11 @@
 //  Copyright (c) 2012年 __barfoo__. All rights reserved.
 //
 
-#define ZYCMS_Base_Url @"http://www.zyprosoft.com/zymobcms/index.php?r="
-#define ZYCMS_image_Url @"http://www.zyprosoft.com/zymobcms/"
-#define MCM_Base_Url @"https://61.136.59.251:8017"
+#define ZYCMS_Base_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/index.php?r="
+#define ZYCMS_image_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/"
+//#define MCM_Base_Url @"https://61.136.59.251:8017"
 
-#define APPID            @"ruyijian_zymobcms"
+#define APPID            @"zymobcms"
 
 #define PPF_HOST_KEY @"ppf12" //对应服务器返回主机列表的key TODO
 #define MCM_HOST_KEY @"mcm"
@@ -47,6 +47,13 @@
 
 #define ZYCMS_Login_Interface            @"Mobile/user/login"
 
+#define ZYCMS_User_Commit_Token_Interface @"Mobile/user/saveUserDeviceToken"
+
+#define ZYCMS_User_Picture_Favorite_List_Interface @"Mobile/user/pictureFavoriteList"
+
+#define ZYCMS_User_Product_Favorite_List_Interface @"Mobile/user/productFavoriteList"
+
+#define ZYCMS_User_Pulic_Home_Interface @"Mobile/user/userPublicHome"
 
 /*
  修改用户信息
@@ -59,6 +66,12 @@
 
 #define ZYCMS_Rigist_Interface            @"Mobile/user/rigist"
 
+
+/*
+ *
+ *
+*/
+#define ZYCMS_Menu_Application_Name_Interface @"Mobile/menu/applicationName"
 
 /*
     获取host
@@ -113,6 +126,16 @@
  */
 #define ZYCMS_Comment_Article_Interface     @"Mobile/newsList/commentArticle" //@"/m/classify/tree"
 
+/*
+ *
+ */
+#define ZYCMS_Supprot_Comment_Interface     @"Mobile/newsList/supportComment"
+
+/*
+ *
+ */
+#define ZYCMS_UnSupport_Comment_Interface   @"Mobile/newsList/unSupportComment"
+
    
 /*
      获取分类数据
@@ -124,6 +147,8 @@
  */
 #define ZYCMS_Favorite_Article_Interface     @"Mobile/newsList/favoriteArticle"
 
+#define ZYCMS_Cancel_Favorite_Article_Interface @"Mobile/newsList/deleteFavorite"
+
 
 /*
     获取分类子类TAB
@@ -132,6 +157,24 @@
  */
 
 #define ZYCMS_Picture_Interface        @"Mobile/picture/pictureList"
+
+#define ZYCMS_Picture_Comment_List_Interface @"Mobile/picture/pictureCommentList"
+
+#define ZYCMS_Comment_Picture_Interface @"Mobile/picture/commentPicture"
+
+#define ZYCMS_Favorite_Picture_Interface @"Mobile/picture/favoritePicture"
+
+#define ZYCMS_Cancel_Favorite_Picture_Interface @"Mobile/picture/removeFavoritePicture"
+
+#define ZYCMS_Is_Favorite_Picture_Interface @"Mobile/picture/isFavoritePicture"
+
+#define ZYCMS_Picture_Comment_Support_Interface @"Mobile/picture/supportComment"
+
+#define ZYCMS_Picture_Comment_unSupport_Interface @"Mobile/picture/unSupportComment"
+
+#define ZYCMS_Picture_Detail_Interface      @"Mobile/picture/pictureDetail"
+
+#define ZYCMS_Picture_Tab_Type_Interface    @"Mobile/picture/tabTypesByCategoryId"
 
 
 /*
@@ -143,6 +186,21 @@
  */
 #define ZYCMS_Product_List_Interface     @"Mobile/product/productList"
 
+#define ZYCMS_Product_Comment_List_Interface @"Mobile/product/productCommentList"
+
+#define ZYCMS_Comment_Product_Interface      @"Mobile/product/commentProduct"
+
+#define ZYCMS_Favorite_Product_Interface     @"Mobile/product/favoriteProduct"
+
+#define ZYCMS_Cancel_Favorite_Product_Interface @"Mobile/product/removeFavoriteProduct"
+
+#define ZYCMS_Is_Favorite_Product_Interface  @"Mobile/product/isFavoriteProduct"
+
+#define ZYCMS_Product_Comment_Support_Interface @"Mobile/product/supportComment"
+
+#define ZYCMS_Product_Comment_unSupport_Interface @"Mobile/product/unSupportComment"
+
+#define ZYCMS_Product_Tab_Type_Interface        @"Mobile/product/tabTypesByCategoryId"
 
 /*
      微博分类信息详情页
@@ -161,6 +219,10 @@
  */
 #define ZYCMS_User_Favorite_Interface     @"Mobile/user/favoriteList"
 
+#define ZYCMS_User_Picture_Favorite_Interface @"Mobile/user/pictureFavoriteList"
+
+#define ZYCMS_User_Product_Favorite_Interface @"Mobile/user/productFavoriteList"
+
 /*
      获取预警，关注，线索列表
      参数
@@ -171,6 +233,10 @@
 //#define Opinion_WarningList_Interface     @"/m/warning/getlist"
 
 #define ZYCMS_User_Comment_Interface     @"Mobile/user/commentList"
+
+#define ZYCMS_User_Picture_Comment_Interface @"Mobile/user/pictureCommentList"
+
+#define ZYCMS_User_Product_Comment_Interface @"Mobile/user/productCommentList"
 
 
 /*

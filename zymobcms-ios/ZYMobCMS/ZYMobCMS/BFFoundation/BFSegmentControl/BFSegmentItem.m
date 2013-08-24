@@ -48,7 +48,7 @@
 }
 - (void)switchToSelected
 {
-    self.titleLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:66.0/255.0 blue:94.0/255.0 alpha:1];
+    self.titleLabel.textColor = [UIColor blackColor];
 }
 
 - (id)initWithFrame:(CGRect)frame withSepratorLine:(UIImage *)sepImage withTitle:(NSString *)title isLastRightItem:(BOOL)state withBackgroundImage:(UIImage *)backImage

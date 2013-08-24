@@ -7,8 +7,9 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'picture-form',
+	'id'=>'images-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('enctype'=>'multipart/form-data'),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -29,7 +30,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'images'); ?>
-		<?php echo $form->textField($model,'images',array('size'=>60,'maxlength'=>3000)); ?>
+		<?php echo CHtml::activeFileField($model,'images'); ?>
 		<?php echo $form->error($model,'images'); ?>
 	</div>
 

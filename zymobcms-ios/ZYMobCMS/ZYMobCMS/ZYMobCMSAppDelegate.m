@@ -11,13 +11,25 @@
 @implementation ZYMobCMSAppDelegate
 @synthesize sMenuController;
 @synthesize zMenuController;
+@synthesize rootViewController;
 
 - (void)dealloc
 {
     [_window release];
     self.sMenuController = nil;
-    self.zMenuController = nil;
+    self.bMenuController = nil;
+    self.rootViewController = nil;
     [super dealloc];
+}
+
+- (void)showMaster
+{
+    [self.rootViewController setShowingMasterViewController:YES animated:YES completion:nil];
+}
+
+- (void)hiddenMaster
+{
+    [self.rootViewController setShowingMasterViewController:NO animated:YES completion:nil];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -28,13 +40,66 @@
     
 //    self.sMenuController = [[STMenuViewController alloc]init];
 //    [self.window addSubview:self.sMenuController.view];
-    self.zMenuController = [[ZYMenuViewController alloc]init];
-    [self.window addSubview:self.zMenuController.view];
+    
+    self.rootViewController = [[IRSlidingSplitViewController alloc]init];
+    self.bMenuController = [[BFNMenuViewController alloc]init];
+    self.rootViewController.masterViewController = self.bMenuController;
+    [self.bMenuController tryGetNewApplicationRights];
+    [self.window addSubview:self.rootViewController.view];
     
     [self.window makeKeyAndVisible];
     
+    // 注册推送服务
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(
+                                                                           UIRemoteNotificationTypeAlert |
+                                                                           UIRemoteNotificationTypeBadge |
+                                                                           UIRemoteNotificationTypeSound
+                                                                           )];
+    
     return YES;
 }
+
+#pragma mark - 推送通知
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"token===>>>%@", deviceToken);
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:deviceToken forKey:@"token"];
+    [params setObject:@"1" forKey:@"type"];
+    //保存TOKEN
+    if ([ZYUserManager getCurrentUserLoginName]) {
+        [params setObject:[ZYUserManager getCurrentUserLoginName] forKey:@"loginName"];
+    }else{
+        [params setObject:@"" forKey:@"loginName"];
+    }
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserSaveDeivceToken withParams:params withHelperDelegate:self withSuccessRequestMethod:@"saveTokenSuccess:" withFaildRequestMethod:@"saveTokenFaild:"];
+    
+}
+- (void)saveTokenSuccess:(NSDictionary*)resultDict
+{
+    if ([[resultDict objectForKey:@"status"]boolValue]==NO) {
+        NSString *msg = [resultDict objectForKey:@"msg"];
+        
+        NSLog(@"%@",msg);
+    }
+}
+- (void)saveTokenFaild:(NSDictionary*)resultDict
+{
+    
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSString *str = [NSString stringWithFormat: @"Error: %@", error];
+    NSLog(@"gettoken fail===>>>%@", str);
+}
+
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    NSLog(@"push info recieved ------->%@",userInfo);
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

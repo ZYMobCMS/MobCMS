@@ -13,3 +13,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BFImageDownloader.h"
 #import "BFLoadMoreView.h"
+#import "BFImageView.h"
+#import "BFImageCache.h"
+#import "BFAnimationHelper.h"
+#import "BFNBarButton.h"
+

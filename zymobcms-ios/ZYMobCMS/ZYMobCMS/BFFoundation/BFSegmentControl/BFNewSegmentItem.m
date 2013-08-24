@@ -105,7 +105,7 @@
 - (void)switchToNormal
 {
     backgroundImgView.hidden = YES;
-//    self.backgroundImgView.image = [OPCommon getThemeImage:self.normalImgName];
+    self.backgroundImgView.image = [UIImage imageNamed:self.normalImgName];
     self.titleLabel.textColor = [UIColor whiteColor];
     
 //    self.backgroundImgView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height);
@@ -118,9 +118,9 @@
     
     self.backgroundImgView.frame = CGRectMake(0,1,self.frame.size.width,self.frame.size.height);
 
-//    UIImage *sImg = [BFUitils streghtImage: [OPCommon getThemeImage:self.selectImgName]];
+    UIImage *sImg = [BFUitils streghtImage: [UIImage imageNamed:self.selectImgName]];
 
-//    self.backgroundImgView.image = sImg;
+    self.backgroundImgView.image = sImg;
     
     
     self.titleLabel.textColor = [UIColor colorWithRed:0 green:160/255.0 blue:255/255.0 alpha:1];

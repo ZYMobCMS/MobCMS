@@ -19,6 +19,7 @@
 @synthesize detailViewController = _detailViewController;
 @synthesize panGestureRecognizer = _panGestureRecognizer;
 @synthesize tapGestureRecognizer = _tapGestureRecognizer;
+@synthesize openTouchRecieve;
 
 //check ios version
 - (BOOL)isIOSOver5{
@@ -276,11 +277,19 @@
 	
 	if (gestureRecognizer == _panGestureRecognizer) {
 	
-		if (touchInDetailVisibleRect)
-			return ![[touch view] isKindOfClass:[UISlider class]];
-			
-		return NO;
-		
+        if (touchInDetailVisibleRect){
+            
+            if (self.openTouchRecieve) {
+                if ([[touch view] isKindOfClass:[UISlider class]]) {
+                    self.openTouchRecieve = NO;
+                }
+            }
+            
+            return self.openTouchRecieve;
+        }else{
+            return NO;
+        }
+        
 	} else if (gestureRecognizer == _tapGestureRecognizer) {
 		
 		return self.showingMasterViewController && touchInDetailVisibleRect;
@@ -342,7 +351,7 @@
 	#pragma unused(panGR)
 
     //can't pan
-//    return;
+    //    return;
     
 	switch (panGR.state) {
 		

@@ -55,6 +55,7 @@
 + (UIView*)viewFromNibWithName:(NSString*)name owner:(id)owner;
 
 + (BOOL)isIOSVersionOver5;
++ (BOOL)isIOSVersionOver6;
 
 //返回拉伸图片
 + (UIImage*)streghtImageWithName:(NSString*)imageName;
