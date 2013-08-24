@@ -183,6 +183,7 @@
         
         NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userDict];
         [newUser setObject:[NSString stringWithFormat:@"%d",state] forKey:@"status"];
+        [newUser setObject:@"1" forKey:ZY_USER_ACTIVE_OPEN_UDF];
         [userList addObject:newUser];
         [[NSUserDefaults standardUserDefaults]setObject:userList forKey:ZY_USER_UDF];
         
@@ -205,6 +206,7 @@
         if (!userExist) {
             NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userDict];
             [newUser setObject:[NSString stringWithFormat:@"%d",state] forKey:@"status"];
+            [newUser setObject:@"1" forKey:ZY_USER_ACTIVE_OPEN_UDF];
             [userList addObject:newUser];
         }
         [[NSUserDefaults standardUserDefaults]setObject:userList forKey:ZY_USER_UDF];
@@ -296,6 +298,51 @@
         
     }
     [[NSUserDefaults standardUserDefaults]setObject:userMutil forKey:ZY_USER_UDF];
+}
+
++ (void)changeUserActiveOpenState:(BOOL)state
+{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]) {
+        return;
+    }
+    
+    NSArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
+    NSMutableArray *userMutil = [NSMutableArray arrayWithArray:userList];
+    for (int i=0;i<userMutil.count;i++) {
+        
+        NSDictionary *userItem = [userList objectAtIndex:i];
+        NSMutableDictionary *newUser = [NSMutableDictionary dictionaryWithDictionary:userItem];
+        if ([[newUser objectForKey:@"status"]boolValue]) {
+            
+            [newUser setObject:[NSString stringWithFormat:@"%d",state] forKey:ZY_USER_ACTIVE_OPEN_UDF];
+            
+            [userMutil replaceObjectAtIndex:i withObject:newUser];
+        }
+        
+    }
+    [[NSUserDefaults standardUserDefaults]setObject:userMutil forKey:ZY_USER_UDF];
+}
+
++ (BOOL)getUserActiveRecordState
+{
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]) {
+        return nil;
+    }
+    
+    NSMutableArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
+    NSLog(@"userList --->%@",userList);
+    NSString *userResult = nil;
+    for (NSDictionary *userItem in userList) {
+        
+        if ([[userItem objectForKey:@"status"]boolValue]) {
+            
+            userResult = [userItem objectForKey:ZY_USER_ACTIVE_OPEN_UDF];
+            break;
+        }
+        
+    }
+    NSLog(@"current UserId--->%@",userResult);
+    return [userResult boolValue];
 }
 
 @end

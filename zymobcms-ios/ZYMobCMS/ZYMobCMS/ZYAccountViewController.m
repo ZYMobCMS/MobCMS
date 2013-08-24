@@ -11,6 +11,7 @@
 #import "ZYMyFavoriteViewController.h"
 #import "ZYLoginViewController.h"
 #import "ZYButtonCell.h"
+#import "ZYSwitchCell.h"
 
 @interface ZYAccountViewController ()
 
@@ -39,6 +40,8 @@
     sourceArray = [[NSMutableArray alloc]init];
     [sourceArray addObject:@"我的评论"];
     [sourceArray addObject:@"我的收藏"];
+    [sourceArray addObject:@"是否分享我的活动"];
+    
     
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStyleGrouped];
     UIView *tableBack = [[UIView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,listTable.frame.size.height)];
@@ -104,21 +107,38 @@
         return cell;
 
     }else if (indexPath.section == 1){
-        static NSString *CellIdentifier = @"Cell";
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        // Configure the cell...
-        if (!cell) {
-            cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            UIImageView *cellNormalBack = [[UIImageView alloc]init];
-            cellNormalBack.backgroundColor = [BFUitils rgbColor:212 green:212 blue:212];
-            cell.selectedBackgroundView = cellNormalBack;
-            [cellNormalBack release];
+        if (indexPath.row!=sourceArray.count-1) {
+            static NSString *CellIdentifier = @"Cell";
+            UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            // Configure the cell...
+            if (!cell) {
+                cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                UIImageView *cellNormalBack = [[UIImageView alloc]init];
+                cellNormalBack.backgroundColor = [BFUitils rgbColor:212 green:212 blue:212];
+                cell.selectedBackgroundView = cellNormalBack;
+                [cellNormalBack release];
+            }
+            cell.textLabel.text = [sourceArray objectAtIndex:indexPath.row];
+            
+            return cell;
+        }else{
+            static NSString *CellIdentifier = @"Cell";
+            ZYSwitchCell *cell = (ZYSwitchCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            // Configure the cell...
+            if (!cell) {
+                cell = [[[ZYSwitchCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                [cell setTapSwitchAction:^(BOOL switchState) {
+                    [ZYUserManager changeUserActiveOpenState:switchState];
+                }];
+            }
+            [cell setTitle:[sourceArray objectAtIndex:indexPath.row]];
+            
+            return cell;
         }
-        cell.textLabel.text = [sourceArray objectAtIndex:indexPath.row];
-        
-        return cell;
         
     }else{
         static NSString *CellIdentifier = @"ButtonCell";

@@ -275,7 +275,7 @@ static BFNetWorkHelper *_instance = nil;
 - (NSString *)pulicParams
 {
     NSMutableString *turl = [NSMutableString stringWithCapacity:50];
-    [turl appendFormat:@"&appId=%@&userId=%@",APPID,[ZYUserManager getCurrentUserId]];
+    [turl appendFormat:@"&appId=%@&userId=%@&userActiveOpen=%d",APPID,[ZYUserManager getCurrentUserId],[ZYUserManager getUserActiveRecordState]];
     return turl;//[[Passport getCurrentUser]urlEncodedString];
 }
 

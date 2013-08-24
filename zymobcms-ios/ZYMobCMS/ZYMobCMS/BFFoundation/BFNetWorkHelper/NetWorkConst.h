@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 __barfoo__. All rights reserved.
 //
 
-#define ZYCMS_Base_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/index.php?r="
-#define ZYCMS_image_Url @"http://192.168.1.103/MobCMS/zymobcms-server/zymobcms/"
+#define ZYCMS_Base_Url @"http://192.168.28.163/MobCMS/zymobcms-server/zymobcms/index.php?r="
+#define ZYCMS_image_Url @"http://192.168.28.163/MobCMS/zymobcms-server/zymobcms/"
 //#define MCM_Base_Url @"https://61.136.59.251:8017"
 
 #define APPID            @"zymobcms"

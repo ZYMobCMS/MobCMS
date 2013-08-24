@@ -276,6 +276,7 @@ class ProductController extends Controller{
             $productId = $_GET['appId'];
             $content = $_GET['content'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$pictureId || !$productId || !$content || !$userId){
                 
@@ -315,9 +316,11 @@ class ProductController extends Controller{
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createAnProductCommentRecord($content,$userId,'','',$pictureId);
-                
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createAnProductCommentRecord($content,$userId,'','',$pictureId);
+                }
+
                 return;
                 
             }else{
@@ -339,6 +342,7 @@ class ProductController extends Controller{
             $articleId = $_GET['productId'];
             $productId = $_GET['appId'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$articleId || !$productId || !$userId){
                 
@@ -381,9 +385,11 @@ class ProductController extends Controller{
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createFavProductRecord('',$userId,'','',$articleId);
-                
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createFavProductRecord('',$userId,'','',$articleId);
+                }
+
                 return;
                 
             }else{
@@ -405,6 +411,7 @@ class ProductController extends Controller{
         $articleId = $_GET['productId'];
             $productId = $_GET['appId'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$articleId || !$productId || !$userId){
                 
@@ -445,8 +452,11 @@ class ProductController extends Controller{
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createUnFavProductRecord('',$userId,'','',$articleId);
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createUnFavProductRecord('',$userId,'','',$articleId);
+                }
+                
                 
                 return;
                 
@@ -513,7 +523,8 @@ class ProductController extends Controller{
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
                $userId = $_GET['userId'];
-               
+               $userActiveOpen = $_GET['userActiveOpen'];
+                
                if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -551,14 +562,15 @@ class ProductController extends Controller{
                    echo json_encode($josnArr);
                    
                    //插入一条活动纪录
-                   $sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
-                   $resultObj = $dbOperation->queryBySql($sql);
-                   if($resultObj){
-                   	$activeRecordManager = new UserActiveRecordManager($appId);
-                   	$activeRecordManager->createSupportAnProductCommentRecord($resultObj->content,$userId,'','',$resultObj->product_id);
+                   if($userActiveOpen==TRUE){
+                   	$sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
+                   	$resultObj = $dbOperation->queryBySql($sql);
+                   	if($resultObj){
+                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager->createSupportAnProductCommentRecord($resultObj->content,$userId,'','',$resultObj->product_id);
+                   	}
                    }
                    
-                    
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
                    echo json_encode($josnArr);
@@ -580,7 +592,8 @@ class ProductController extends Controller{
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
                $userId = $_GET['userId'];
-               
+               $userActiveOpen = $_GET['userActiveOpen'];
+                
                if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -605,12 +618,15 @@ class ProductController extends Controller{
                    echo json_encode($josnArr);
                    
                    //插入一条活动纪录
-                   $sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
-                   $resultObj = $dbOperation->queryBySql($sql);
-                   if($resultObj){
-                   	$activeRecordManager = new UserActiveRecordManager($appId);
-                   	$activeRecordManager->createUnSupportAnProductCommentRecord($resultObj->content,$userId,'','',$resultObj->product_id);
+                   if($userActiveOpen==TRUE){
+                   	$sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
+                   	$resultObj = $dbOperation->queryBySql($sql);
+                   	if($resultObj){
+                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager->createUnSupportAnProductCommentRecord($resultObj->content,$userId,'','',$resultObj->product_id);
+                   	}
                    }
+                   
                    
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
