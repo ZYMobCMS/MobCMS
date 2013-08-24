@@ -214,6 +214,9 @@
 
 - (void)commentListAction
 {
+    if (![self.articleDict objectForKey:@"id"]) {
+        return;
+    }
     CommentListViewController *commentVC = [[CommentListViewController alloc]initWithArticleId:[self.articleDict objectForKey:@"id"]];
     commentVC.mainTitle = @"跟贴";
     [ZYMobCMSUitil setBFNNavItemForReturn:commentVC];
@@ -369,6 +372,9 @@
 
 - (void)loadArticleDetailWithId:(NSString *)articleId
 {
+    if (!articleId) {
+        return;
+    }
     //set params
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     [params setObject:articleId forKey:@"articleId"];

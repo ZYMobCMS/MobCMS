@@ -8,6 +8,9 @@
 
 #import "ZYPublicHomeViewController.h"
 #import "ZYPublicHomeCell.h"
+#import "ZYProductDetail_0_ViewController.h"
+#import "ZYPicturePreViewController.h"
+#import "BFNArticleViewController.h"
 
 @interface ZYPublicHomeViewController ()
 
@@ -147,6 +150,39 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary *item = [listArray objectAtIndex:indexPath.row];
+    NSString *relation = [item objectForKey:@"relation_table"];
+    NSString *relationId = [item objectForKey:@"relation_id"];
+    
+    if ([relation rangeOfString:@"article"].location!=NSNotFound) {
+        BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithArticleId:relationId];
+        articleDetailVC.mainTitle = @"文章详情";
+        [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
+        [self.navigationController pushViewController:articleDetailVC animated:YES];
+        [articleDetailVC enableSwipRightToReturn];
+        [articleDetailVC release];
+    }
+    
+    if ([relation rangeOfString:@"picture"].location!=NSNotFound) {
+        ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
+        preVC.mainTitle = @"图片详情";
+        preVC.pictureId = relationId;
+        [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
+        [self.navigationController pushViewController:preVC animated:YES];
+        [preVC getPictureDetail];
+        [preVC release];
+
+    }
+    
+    if ([relation rangeOfString:@"product"].location!=NSNotFound) {
+        ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
+        detailVC.productId = relationId;
+        detailVC.mainTitle = @"产品详情";
+        [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
+        [self.navigationController pushViewController:detailVC animated:YES];
+        [detailVC release];
+    }
     
 }
 

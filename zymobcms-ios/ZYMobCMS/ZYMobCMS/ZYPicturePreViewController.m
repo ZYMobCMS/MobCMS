@@ -131,6 +131,10 @@
         return;
     }
 
+    if (!self.pictureId) {
+        return;
+    }
+    
     if (isFavorited) {
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         [params setObject:self.pictureId forKey:@"pictureId"];
@@ -183,6 +187,9 @@
 
 - (void)getPictureDetail
 {
+    if (!self.pictureId) {
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:self.pictureId forKey:@"pictureId"];
     
@@ -195,7 +202,7 @@
     if (status) {
         
         NSLog(@"pictureDetail----->%@",resultDict);
-        
+                
         NSDictionary *item = [resultDict objectForKey:@"data"];
         if ([[item objectForKey:@"isFavorited"]boolValue]) {
             [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_yes.png"] forState:UIControlStateNormal];
@@ -204,7 +211,9 @@
             self.isFavorited = NO;
             [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_no.png"] forState:UIControlStateNormal];
         }
-
+        //resetimageView
+        self.imgString = [item objectForKey:@"images"];
+        [self getAllImagesNow];
         
     }
 }
