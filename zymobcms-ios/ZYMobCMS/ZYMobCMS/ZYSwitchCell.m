@@ -26,6 +26,7 @@
         
         switcher = [[UISwitch alloc]initWithFrame:CGRectMake(self.frame.size.width-10-95,8,60,44-10)];
         switcher.onTintColor = [BFUitils rgbColor:200 green:50 blue:40];
+        [switcher addTarget:self action:@selector(switcherOnOffAction:) forControlEvents:UIControlEventValueChanged];
         switcher.on = [ZYUserManager getUserActiveRecordState];
         [self.contentView addSubview:switcher];
         [switcher release];

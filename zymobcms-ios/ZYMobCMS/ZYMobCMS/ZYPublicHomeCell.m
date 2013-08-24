@@ -117,6 +117,7 @@
         relationImageView.hidden = NO;
         originY = contentTextView.frame.origin.y+contentTextView.frame.size.height+TextMargin;
 
+        originY = MAX(MaxImageHeight+TopMargin+TextMargin,originY);
         dateView.text = date;
         CGSize dateSize = [date sizeWithFont:[UIFont systemFontOfSize:DateFontSize] constrainedToSize:CGSizeMake(totalContentWidth,99999)];
         dateView.frame = CGRectMake(totalContentWidth-dateSize.width+LeftMargin,originY,dateSize.width,dateSize.height);
@@ -198,7 +199,8 @@
         CGRect contentRect = CGRectMake(LeftMargin,originY,textContentWidth,contentHeight);
         
         originY = contentRect.origin.y+contentRect.size.height+TextMargin;
-        
+        originY = MAX(MaxImageHeight+TopMargin+TextMargin,originY);
+
         CGSize dateSize = [date sizeWithFont:[UIFont systemFontOfSize:DateFontSize] constrainedToSize:CGSizeMake(totalContentWidth,99999)];
         CGRect dateRect = CGRectMake(totalContentWidth-dateSize.width+LeftMargin,originY,dateSize.width,dateSize.height);
         
@@ -222,7 +224,7 @@
         
     }
     
-    return originY;
+    return MAX(originY,MaxImageHeight+2*TopMargin+TextMargin);
 }
 
 
