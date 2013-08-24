@@ -505,6 +505,7 @@ class UserController extends Controller {
             $appId = $_GET['appId'];
             $pageIndex = $_GET['pageIndex'];
             $pageSize = $_GET['pageSize'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if($pageSize>10){
             	$pageSize=10;

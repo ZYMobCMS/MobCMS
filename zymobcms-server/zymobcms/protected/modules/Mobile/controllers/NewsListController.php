@@ -290,6 +290,7 @@ class NewsListController extends Controller {
             $productId = $_GET['appId'];
             $content = $_GET['content'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$articleId || !$productId || !$content || !$userId){
                 
@@ -329,8 +330,11 @@ class NewsListController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createAnCommentNewsRecord($content,$userId,'','',$articleId);
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createAnCommentNewsRecord($content,$userId,'','',$articleId);
+                }
+                
                 
                 return;
                 
@@ -354,6 +358,7 @@ class NewsListController extends Controller {
             $articleId = $_GET['articleId'];
             $productId = $_GET['appId'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$articleId || !$productId || !$userId){
                 
@@ -396,8 +401,11 @@ class NewsListController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createFavNewsRecord('',$userId,'','',$articleId);
+                if ($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createFavNewsRecord('',$userId,'','',$articleId);
+                }
+                
                 
                 return;
                 
@@ -473,7 +481,8 @@ class NewsListController extends Controller {
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
                $userId = $_GET['userId'];
-               
+               $userActiveOpen = $_GET['userActiveOpen'];
+                
                if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -513,13 +522,16 @@ class NewsListController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   $sql = "select content,article_id from zy_comment where comment_id = $commentId";
-                   $resultObj = $dbOperation->queryBySql($sql);
-                   if($resultObj){
+                   if ($userActiveOpen==TRUE) {
+                   	$sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                   	$resultObj = $dbOperation->queryBySql($sql);
+                   	if($resultObj){
                    		$activeRecordManager = new UserActiveRecordManager($appId);
                    		$activeRecordManager->createSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
                    	
+                   	}
                    }
+                   
                    
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
@@ -543,7 +555,8 @@ class NewsListController extends Controller {
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
                $userId = $_GET['userId'];
-               
+               $userActiveOpen = $_GET['userActiveOpen'];
+                
                if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -568,14 +581,15 @@ class NewsListController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   $sql = "select content,article_id from zy_comment where comment_id = $commentId";
-                   $resultObj = $dbOperation->queryBySql($sql);
-                   if($resultObj){
-                   	$activeRecordManager = new UserActiveRecordManager($appId);
-                   	$activeRecordManager->createUnSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
+                   if($userActiveOpen==TRUE){
+                   	$sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                   	$resultObj = $dbOperation->queryBySql($sql);
+                   	if($resultObj){
+                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager->createUnSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
+                   	}
                    }
-                   
-                   
+
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'已经踩过了');
                    echo json_encode($josnArr);
@@ -597,6 +611,7 @@ class NewsListController extends Controller {
             $articleId = $_GET['articleId'];
             $productId = $_GET['appId'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$articleId || !$productId || !$userId){
                 
@@ -637,9 +652,11 @@ class NewsListController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createUnFavNewsRecord('',$userId,'','',$articleId);
-                
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createUnFavNewsRecord('',$userId,'','',$articleId);
+                }
+
                 return;
                 
             }else{

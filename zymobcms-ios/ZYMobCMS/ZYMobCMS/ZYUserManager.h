@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define ZY_USER_UDF @"ZY_USER_UDF"
+#define ZY_USER_ACTIVE_OPEN_UDF @"ZY_USER_ACTIVE_OPEN_UDF"
 
 @interface ZYUserManager : NSObject
 
@@ -39,5 +40,8 @@
 
 + (void)loginOutCurrentUser;
 
++ (void)changeUserActiveOpenState:(BOOL)state;
+
++ (BOOL)getUserActiveRecordState;
 
 @end

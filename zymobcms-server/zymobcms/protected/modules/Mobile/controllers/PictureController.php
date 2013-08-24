@@ -128,6 +128,7 @@ class PictureController extends Controller {
             $productId = $_GET['appId'];
             $content = $_GET['content'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$pictureId || !$productId || !$content || !$userId){
                 
@@ -164,10 +165,11 @@ class PictureController extends Controller {
                 echo json_encode($resultArr);
                 
                 //插入一条活动纪录
-                
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createAnCommentPictureRecord($content,$userId,'','',$pictureId);
-            
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createAnCommentPictureRecord($content,$userId,'','',$pictureId);
+                }
+
                 return;
                 
             }else{
@@ -264,6 +266,7 @@ class PictureController extends Controller {
             $articleId = $_GET['pictureId'];
             $productId = $_GET['appId'];
             $userId  = $_GET['userId'];
+            $userActiveOpen = $_GET['userActiveOpen'];
             
             if(!$articleId || !$productId || !$userId){
                 
@@ -306,8 +309,11 @@ class PictureController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createFavPictureRecord('',$userId,'','',$articleId);
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createFavPictureRecord('',$userId,'','',$articleId);
+                }
+                
                 
                 return;
                 
@@ -330,7 +336,8 @@ class PictureController extends Controller {
             $articleId = $_GET['pictureId'];
             $productId = $_GET['appId'];
             $userId  = $_GET['userId'];
-
+            $userActiveOpen = $_GET['userActiveOpen'];
+            
             
             if($articleId ==NULL || $productId==NULL){
                 
@@ -371,8 +378,11 @@ class PictureController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                $activeRecordManager = new UserActiveRecordManager($productId);
-                $activeRecordManager->createUnFavPictureRecord('',$userId,'','',$articleId);
+                if($userActiveOpen==TRUE){
+                	$activeRecordManager = new UserActiveRecordManager($productId);
+                	$activeRecordManager->createUnFavPictureRecord('',$userId,'','',$articleId);
+                }
+                
                 
                 return;
                 
@@ -439,7 +449,8 @@ class PictureController extends Controller {
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
                $userId = $_GET['userId'];
-               
+               $userActiveOpen = $_GET['userActiveOpen'];
+                
                if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -480,14 +491,15 @@ class PictureController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   $sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
-                   $resultObj = $dbOperation->queryBySql($sql);
-                   if($resultObj){
-                   	$activeRecordManager = new UserActiveRecordManager($appId);
-                   	$activeRecordManager->createSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
+                   if($userActiveOpen==TRUE){
+                   	$sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
+                   	$resultObj = $dbOperation->queryBySql($sql);
+                   	if($resultObj){
+                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager->createSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
+                   	}
                    }
-                   
-                   
+
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
                    echo json_encode($josnArr);
@@ -509,7 +521,8 @@ class PictureController extends Controller {
                $appId = $_GET['appId'];
                $commentId = $_GET['commentId'];
                $userId = $_GET['userId'];
-               
+               $userActiveOpen = $_GET['userActiveOpen'];
+                
                if($appId==NULL || $commentId == NULL || $userId==NULL){
                    $resultArr = array('status'=>'0','msg'=>'参数缺失');
             
@@ -534,14 +547,15 @@ class PictureController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   $sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
-                   $resultObj = $dbOperation->queryBySql($sql);
-                   if($resultObj){
-                   	$activeRecordManager = new UserActiveRecordManager($appId);
-                   	$activeRecordManager->createUnSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
+                   if($userActiveOpen==TRUE){
+                   	$sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
+                   	$resultObj = $dbOperation->queryBySql($sql);
+                   	if($resultObj){
+                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager->createUnSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
+                   	}
                    }
-                   
-                   
+
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
                    echo json_encode($josnArr);
