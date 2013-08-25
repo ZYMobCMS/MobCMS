@@ -17,4 +17,6 @@
     NSInteger       currentTabType;
 }
 
+- (void)setNavigationControllerForSubViewControllers:(UINavigationController*)navigationController;
+
 @end

@@ -163,12 +163,9 @@
             ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
             preVC.mainTitle = [item objectForKey:@"title"];
             preVC.pictureId = [item objectForKey:@"id"];
+            preVC.pictureTitle = [item objectForKey:@"title"];
             [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
-            if (self.superNavigationController) {
-                [self.superNavigationController pushViewController:preVC animated:YES];
-            }else{
-                [self.navigationController pushViewController:preVC animated:YES];
-            }
+            [self.navigationController pushViewController:preVC animated:YES];
             [preVC release];
             
             

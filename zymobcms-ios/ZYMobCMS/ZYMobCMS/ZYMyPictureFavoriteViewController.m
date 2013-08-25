@@ -7,6 +7,7 @@
 //
 
 #import "ZYMyPictureFavoriteViewController.h"
+#import "ZYPicturePreViewController.h"
 
 @interface ZYMyPictureFavoriteViewController ()
 
@@ -44,5 +45,34 @@
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPictureFavoriteList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureListSuccess:" withFaildRequestMethod:@"getPictureListFaild:"];
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"PictureCell";
+    ZYPictureCell *cell = (ZYPictureCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    if (!cell) {
+        cell = [[[ZYPictureCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withTapOnCell:^(ZYPictureCell *tapCell,NSInteger tapItemIndex) {
+            
+            NSIndexPath *cellIndexPath = [tableView indexPathForCell:tapCell];
+            NSDictionary *item = [[sourceArray objectAtIndex:cellIndexPath.row]objectAtIndex:tapItemIndex];
+            
+            ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
+            preVC.mainTitle = [item objectForKey:@"title"];
+            preVC.pictureId = [item objectForKey:@"picture_id"];
+            preVC.pictureTitle = [item objectForKey:@"title"];
+            [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
+            [self.superNavigationController pushViewController:preVC animated:YES];
+            [preVC release];
+            
+            
+        }]autorelease];
+    }
+    [cell setContentArray:[sourceArray objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+
 
 @end

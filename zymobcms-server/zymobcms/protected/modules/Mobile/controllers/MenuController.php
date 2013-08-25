@@ -31,7 +31,7 @@ class MenuController extends Controller {
         }
         
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
          
         $sql = "select * from zy_rights order by module_id";
       
@@ -62,7 +62,7 @@ class MenuController extends Controller {
         }
         
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
         $sql = "select * from zy_category";
         
@@ -104,7 +104,7 @@ class MenuController extends Controller {
         }
         
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
         $sql = "select * from zy_tab_type where category_id = $categoryId";
         
@@ -135,7 +135,7 @@ class MenuController extends Controller {
     		return;
     	}
     	
-    	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+    	$dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
     	
     	$sql = "select * from zy_application_owner";
     	

@@ -34,7 +34,7 @@ class AdminController extends Controller {
         }
         
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
         $checkSql = "select * from zy_admin where login_name='$loginName'";
         
@@ -90,7 +90,7 @@ class AdminController extends Controller {
         }
                 
         //查询pem位置
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
         $checkSql = "select pem_path from zy_application_owner";
         

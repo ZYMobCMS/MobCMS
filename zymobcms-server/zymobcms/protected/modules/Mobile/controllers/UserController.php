@@ -31,7 +31,7 @@ class UserController extends Controller {
 		}
 	
 		//检查是否已经存在用户
-                $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
+                $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
 		$sql = "select login_name from zy_user where login_name='$loginName'";
                 $userExist = $dbOperation->queryBySql($sql);                
                 
@@ -98,7 +98,7 @@ class UserController extends Controller {
 		}
 	
 		//检查是否已经存在用户
-                $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
+                $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
 		$sql = "select zy_user.*,zy_user_type.type_name from zy_user inner join zy_user_type on zy_user.user_type_id = zy_user_type.id where login_name='$loginName'";
                 $userExist = $dbOperation->queryBySql($sql);               
 	
@@ -117,6 +117,10 @@ class UserController extends Controller {
 				$resultArr = array('status'=>'1','data'=>$userExist);
 	
 				echo json_encode($resultArr);
+				
+				//纪录用户操作
+				$newUserRecord = new UserActiveRecordManager($appName,'1');
+				$newUserRecord->createUserLoginRecord('no','',$userExist->id,$userExist->login_name,$userExist->nick_name);
 	
 				return ;
 	
@@ -199,7 +203,7 @@ class UserController extends Controller {
                 $pageSize = 10;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
@@ -248,7 +252,7 @@ class UserController extends Controller {
                 $pageSize = 10;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
@@ -290,7 +294,7 @@ class UserController extends Controller {
                 $pageSize = 10;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
@@ -332,7 +336,7 @@ class UserController extends Controller {
                 $pageSize = 10;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
@@ -374,7 +378,7 @@ class UserController extends Controller {
                 $pageSize = 10;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
@@ -420,7 +424,7 @@ class UserController extends Controller {
                 $pageSize = 10;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
@@ -465,7 +469,7 @@ class UserController extends Controller {
                 $deviceType = 0;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
 
             //处理用户token去空格
             $subToken = substr($deviceToken,1,strlen($deviceToken)-2);
@@ -521,9 +525,9 @@ class UserController extends Controller {
             	return;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             
-            $checksql = "select * from zy_user_active order by id desc limit $truePageIndex,$pageSize";
+            $checksql = "select zy_user_active.*,zy_user.login_name,zy_user.nick_name from zy_user_active inner join zy_user on zy_user.id = zy_user_active.create_user where zy_user_active.user_active_open = 1 and zy_user_active.active_type_id in ( select id from zy_active_type where can_show_detail=1) order by id desc limit $truePageIndex,$pageSize";
             
             $recordsArr = $dbOperation->queryAllBySql($checksql);
             
@@ -544,6 +548,69 @@ class UserController extends Controller {
             }
             
             
+        }
+        
+        /*
+         * 用户登出
+         */
+        public function actionUserLoginOut(){
+        	
+        	$appId = $_GET['appId'];
+        	$userId = $_GET['userId'];
+        	$userLoginName = $_GET['loginName'];
+        	$userNickName = $_GET['nickName'];
+        	
+        	if($appId==NULL||$userId==NULL){
+        		$resultArr = array('status'=>'0','msg'=>'参数缺失');
+        		 
+        		echo json_encode($resultArr);
+        		 
+        		return;
+        	}
+        	
+        	$newUserRecord = new UserActiveRecordManager($appId,1);
+        	
+        	$newUserRecord->createUserLoginOutRecord('', $userId, $userLoginName, $userNickName);
+        	
+        }
+        
+        /*
+         * 用户分享纪录接口
+         */
+        public function actionUserShareRecord(){
+        	
+        	$appId = $_GET['appId'];
+        	$userId = $_GET['userId'];
+        	$typeId = $_GET['typeId'];
+        	$relationId = $_GET['relationId'];
+        	$userActiveOpen = $_GET['userActiveOpen'];
+        	
+        	$newRecord = new UserActiveRecordManager($appId, $userActiveOpen);
+        	switch ($typeId){
+        		
+        		case 1:
+        			{
+        				$newRecord->createShareNewsRecord('','',$userId,$relationId,'','');
+        			}
+        		break;
+        		
+        		case 2:
+        		{
+        			$newRecord->createSharePictureRecord('','',$userId,$relationId,'','');
+        		}
+        		break;
+        		
+        		case 3:
+        			{
+        				$newRecord->createShareProductRecord('','',$userId,$relationId,'','');
+        			}
+        		break;
+        		
+        		default:
+        			{
+        				
+        			}
+        	}
         }
         
 }

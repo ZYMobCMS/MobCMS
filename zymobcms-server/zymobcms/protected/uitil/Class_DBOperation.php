@@ -8,7 +8,7 @@
  * 修改时间:2013年7月29日
  */
 
-class class_DBOperation{	
+class Class_DBOperation{	
 	
 	private $host;
 	private $user_name;
@@ -17,7 +17,7 @@ class class_DBOperation{
 	private $charset;
 	
 	
-	function class_DBOperation($host,$user,$pwd,$db,$charset){
+	function Class_DBOperation($host,$user,$pwd,$db,$charset){
 	
 		//
 		$this->host = $host;

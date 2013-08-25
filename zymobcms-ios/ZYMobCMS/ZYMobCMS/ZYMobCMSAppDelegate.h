@@ -13,6 +13,8 @@
 #import "IRSlidingSplitViewController.h"
 #import "BFNMenuViewController.h"
 
+#define useAppkey @"5219554b56240b5ade061e1f"
+
 @interface ZYMobCMSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

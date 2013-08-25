@@ -91,7 +91,7 @@ class NewsListController extends Controller {
         $startIndex = $truePageIndex*$pageSize;
         
         //建立数据库链接
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         
         $hotNews = array();
         if($pageIndex<=1){
@@ -161,7 +161,7 @@ class NewsListController extends Controller {
         }
                 
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         
         //是否存在缓存
         $cacheManager = new CacheManager($productId);
@@ -241,7 +241,7 @@ class NewsListController extends Controller {
              }
              
              //查询
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //文章是否还存在
             $checkSql = "select id from zy_article where id=$articleId";
@@ -303,7 +303,7 @@ class NewsListController extends Controller {
             
             $create_time = date('y-m-d H:i:s');
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             //文章是否还存在
             $checkSql = "select id from zy_article where id=$articleId";
             $checkResult = $dbOperation->queryAllBySql($checkSql);
@@ -330,10 +330,8 @@ class NewsListController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createAnCommentNewsRecord($content,$userId,'','',$articleId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createAnCommentNewsRecord($content,$userId,'','',$articleId);
                 
                 
                 return;
@@ -371,7 +369,7 @@ class NewsListController extends Controller {
             
             $create_time = date('y-m-d h:i:s');
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
@@ -401,10 +399,8 @@ class NewsListController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if ($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createFavNewsRecord('',$userId,'','',$articleId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createFavNewsRecord('',$userId,'','',$articleId);
                 
                 
                 return;
@@ -457,7 +453,7 @@ class NewsListController extends Controller {
                 return;
             }
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
             $startIndex = $truePageIndex*$pageSize;
             $sql = "select zy_comment.*,zy_article.title,zy_user.login_name,zy_user.location from zy_comment inner join zy_article on zy_comment.article_id=zy_article.id inner join zy_user on zy_comment.create_user=zy_user.id order by support_count desc limit $startIndex,$pageSize ";
@@ -492,7 +488,7 @@ class NewsListController extends Controller {
                }
            
                
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             
             //是否已经支持过了
             $sqlCheck = "select id from zy_comment_support where comment_id=$commentId and user_id=$userId";
@@ -522,15 +518,12 @@ class NewsListController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   if ($userActiveOpen==TRUE) {
-                   	$sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                	$sql = "select content,article_id from zy_comment where comment_id = $commentId";
                    	$resultObj = $dbOperation->queryBySql($sql);
                    	if($resultObj){
-                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager = new UserActiveRecordManager($appId,$userActiveOpen);
                    		$activeRecordManager->createSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
-                   	
                    	}
-                   }
                    
                    
                 }  else {
@@ -565,7 +558,7 @@ class NewsListController extends Controller {
                     return;
                }
                
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             
             $sqlDelete = "delete from zy_comment_support where user_id=$userId and comment_id=$commentId";
             
@@ -581,14 +574,12 @@ class NewsListController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   if($userActiveOpen==TRUE){
-                   	$sql = "select content,article_id from zy_comment where comment_id = $commentId";
+                	$sql = "select content,article_id from zy_comment where comment_id = $commentId";
                    	$resultObj = $dbOperation->queryBySql($sql);
                    	if($resultObj){
-                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager = new UserActiveRecordManager($appId,$userActiveOpen);
                    		$activeRecordManager->createUnSupportAnNewsCommentRecord($resultObj->content,$userId,'','',$resultObj->article_id);
                    	}
-                   }
 
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'已经踩过了');
@@ -622,7 +613,7 @@ class NewsListController extends Controller {
                 return; 
             }
                         
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_favorite where article_id=$articleId and user_id=$userId";
@@ -652,10 +643,8 @@ class NewsListController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createUnFavNewsRecord('',$userId,'','',$articleId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createUnFavNewsRecord('',$userId,'','',$articleId);
 
                 return;
                 

@@ -71,6 +71,8 @@
     [viewControllers addObject:productVC];
     [productVC release];
     
+    NSLog(@"productVC navigationController--->%@",productVC.superNavigationController);
+    
     //设置右上角刷新
     BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
         [self refresh];
@@ -157,6 +159,13 @@
     BFNBaseViewController *selectVC = [viewControllers objectAtIndex:currentTabType];
     
     [selectVC getListData];
+}
+
+- (void)setNavigationControllerForSubViewControllers:(UINavigationController *)navigationController
+{
+    for (BFNBaseViewController *controller in viewControllers) {
+        controller.superNavigationController = navigationController;
+    }
 }
 
 @end

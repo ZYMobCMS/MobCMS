@@ -263,6 +263,14 @@ static BFNetWorkHelper *_instance = nil;
             urlString = ZYCMS_User_Pulic_Home_Interface;
             break;
             
+            case ZYCMSRequestTypeUserLoginOut:
+            urlString = ZYCMS_User_Login_Out_Interface;
+            break;
+            
+            case ZYCMSRequestTypeUserShareRecord:
+            urlString = ZYCMS_User_Share_Record_Interface;
+            break;
+            
         default:
             break;
     }
@@ -285,12 +293,60 @@ static BFNetWorkHelper *_instance = nil;
 - (NSString*)requestDataWithApplicationType:(ZYCMSRequestType)requestType withParams:(NSDictionary *)params withHelperDelegate:(id)CallBackDelegate withSuccessRequestMethod:(NSString *)successMethod withFaildRequestMethod:(NSString *)faildMethod
 {
     
+//    //是否需要读取缓存
+//    if ([[params allKeys]containsObject:@"pageIndex"] && [[params objectForKey:@"pageIndex"]intValue]==1) {
+//        NSMutableDictionary *configDict = nil;
+//        if ([[params allKeys]containsObject:@"categoryId"]&&[[params allKeys]containsObject:@"tabTypeId"]) {
+//            
+//            configDict = [NSMutableDictionary dictionary];
+//            [configDict setObject:[params objectForKey:@"categoryId"] forKey:@"type"];
+//            [configDict setObject:[params objectForKey:@"tabTypeId"] forKey:@"Id"];
+//        }
+//        
+//        if (![[ZYCacheCenter shareCenter]isRequestTypeNeedRefreshData:requestType withConfig:configDict]) {
+//            NSDictionary *cacheDict = [[ZYCacheCenter shareCenter]readCacheDictWithRequestType:requestType withConfig:nil];
+//            
+//            if (cacheDict) {
+//                [CallBackDelegate performSelector:NSSelectorFromString(successMethod) withObject:cacheDict];
+//                
+//                return nil;
+//            }
+//        }
+//    }
+
     //如果没有链接网络
     if (![BFNetWorkChecker isConnectedToNetWork]) {
         
-        [CallBackDelegate performSelector:NSSelectorFromString(faildMethod) withObject:@"noNetwork" afterDelay:0.0f ];
+//        //是否需要读取缓存
+//        if ([[params allKeys]containsObject:@"pageIndex"] && [[params objectForKey:@"pageIndex"]intValue]==1) {
+//            NSMutableDictionary *configDict = nil;
+//            if ([[params allKeys]containsObject:@"categoryId"]&&[[params allKeys]containsObject:@"tabTypeId"]) {
+//                
+//                configDict = [NSMutableDictionary dictionary];
+//                [configDict setObject:[params objectForKey:@"categoryId"] forKey:@"type"];
+//                [configDict setObject:[params objectForKey:@"tabTypeId"] forKey:@"Id"];
+//            }
+//            if ([[ZYCacheCenter shareCenter]isRequestTypeCacheDataExist:requestType withConfig:configDict]) {
+//                NSDictionary *cacheDict = [[ZYCacheCenter shareCenter]readCacheDictWithRequestType:requestType withConfig:nil];
+//                
+//                if (cacheDict) {
+//                    [CallBackDelegate performSelector:NSSelectorFromString(successMethod) withObject:cacheDict];
+//                    
+//                    return nil;
+//                }else{
+//                    [CallBackDelegate performSelector:NSSelectorFromString(faildMethod) withObject:@"noNetwork" afterDelay:0.0f ];
+//                    return nil;
+//                }
+//            }else{
+//                [CallBackDelegate performSelector:NSSelectorFromString(faildMethod) withObject:@"noNetwork" afterDelay:0.0f ];
+//
+//                return nil;
+//            }
+//        }else{
+           [CallBackDelegate performSelector:NSSelectorFromString(faildMethod) withObject:@"noNetwork" afterDelay:0.0f ];
+            return nil;
+//        }
         
-        return nil;
     }
     
     //build URL with Requestion type
@@ -312,6 +368,8 @@ static BFNetWorkHelper *_instance = nil;
     finalUrl = [NSString stringWithFormat:@"%@%@&%@", [requestUrl absoluteString], [self pulicParams], string];
     NSLog(@"final Url --->%@",finalUrl);
 
+    
+    
     //生成正确得请求地址
     requestUrl = [NSURL URLWithString:finalUrl];
     //设置请求参数
@@ -321,6 +379,10 @@ static BFNetWorkHelper *_instance = nil;
     
     request.timeOutSeconds = self.requestTimeoutInterval;
     request.RequestType = requestType;
+    //需要缓存第一页
+    if ([[paramDict allKeys]containsObject:@"pageIndex"] && [[paramDict objectForKey:@"pageIndex"]intValue]==1) {
+        request.requestPageIndex = 1;
+    }
     request.requestFlagMark = [self getTimeStamp];
     request.responseEncoding = NSUTF8StringEncoding;
     [_connectionsForCallBackDict setObject:callBackDict forKey:request.requestFlagMark];
@@ -346,6 +408,7 @@ static BFNetWorkHelper *_instance = nil;
         [SVProgressHUD showErrorWithStatus:@"没有网络链接"];
         return;
     }
+    
     //接收callbackDelegate 和 成功调用方法 失败调用方法
     NSMutableDictionary *callBackDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:CallBackDelegate,@"delegate",successMethod,@"success",faildMethod,@"faild", nil];
     
@@ -390,6 +453,29 @@ static BFNetWorkHelper *_instance = nil;
     
     NSDictionary *targetCallBack = [_connectionsForCallBackDict objectForKey:request.requestFlagMark];
     [[targetCallBack objectForKey:@"delegate"] performSelector:NSSelectorFromString([targetCallBack objectForKey:@"success"]) withObject:result];
+    
+    
+//    //缓存
+//    NSDictionary *params = [targetCallBack objectForKey:@"params"];
+//    if ([[params allKeys]containsObject:@"pageIndex"] && [[params objectForKey:@"pageIndex"]intValue]==1) {
+//        
+//        NSMutableDictionary *configDict = nil;
+//        if ([[params allKeys]containsObject:@"categoryId"]&&[[params allKeys]containsObject:@"tabTypeId"]) {
+//            
+//            configDict = [NSMutableDictionary dictionary];
+//            [configDict setObject:[params objectForKey:@"categoryId"] forKey:@"type"];
+//            [configDict setObject:[params objectForKey:@"tabTypeId"] forKey:@"Id"];
+//        }
+//        
+//        if ([[ZYCacheCenter shareCenter] isRequestTypeNeedRefreshData:request.RequestType withConfig:configDict]) {
+//            
+//            if ([[result objectForKey:@"status"]boolValue]) {
+//                
+//                [[ZYCacheCenter shareCenter]cacheDataWithRequestType:request.RequestType withDict:result withConfig:configDict];
+//                
+//            }
+//        }
+//    }
     
 	[_connectionsForCallBackDict removeObjectForKey:request.requestFlagMark];
     

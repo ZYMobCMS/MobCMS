@@ -89,7 +89,7 @@ class ProductController extends Controller{
         $startIndex = $truePageIndex*$pageSize;
         
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
          
         $sql = "select id,title,summary,support_count,images from zy_product order by id desc limit $startIndex,$pageSize";
         
@@ -139,7 +139,7 @@ class ProductController extends Controller{
         }
         
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         
         //是否存在缓存
         $cacheManager = new CacheManager($appId);
@@ -225,7 +225,7 @@ class ProductController extends Controller{
              }
              
              //查询
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //文章是否还存在
             $checkSql = "select id from zy_product where id=$pictureId";
@@ -289,7 +289,7 @@ class ProductController extends Controller{
             
             $create_time = date('y-m-d H:i:s');
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             //文章是否还存在
             $checkSql = "select id from zy_product where id=$pictureId";
             $checkResult = $dbOperation->queryAllBySql($checkSql);
@@ -316,10 +316,8 @@ class ProductController extends Controller{
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createAnProductCommentRecord($content,$userId,'','',$pictureId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createAnProductCommentRecord($content,$userId,'','',$pictureId);
 
                 return;
                 
@@ -355,7 +353,7 @@ class ProductController extends Controller{
             
             $create_time = date('y-m-d h:i:s');
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_product_favorite where product_id=$articleId and user_id=$userId";
@@ -385,10 +383,8 @@ class ProductController extends Controller{
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createFavProductRecord('',$userId,'','',$articleId);
-                }
+               	$activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createFavProductRecord('',$userId,'','',$articleId);
 
                 return;
                 
@@ -422,7 +418,7 @@ class ProductController extends Controller{
                 return; 
             }
                         
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_product_favorite where product_id=$articleId and user_id=$userId";
@@ -452,10 +448,8 @@ class ProductController extends Controller{
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createUnFavProductRecord('',$userId,'','',$articleId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createUnFavProductRecord('',$userId,'','',$articleId);
                 
                 
                 return;
@@ -489,7 +483,7 @@ class ProductController extends Controller{
                 return; 
             }
                         
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_product_favorite where product_id=$articleId and user_id=$userId";
@@ -533,7 +527,7 @@ class ProductController extends Controller{
                     return;
                }
                     
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             
             //是否已经支持过了
             $sqlCheck = "select id from zy_product_comment_support where comment_id=$commentId and user_id=$userId";
@@ -562,14 +556,12 @@ class ProductController extends Controller{
                    echo json_encode($josnArr);
                    
                    //插入一条活动纪录
-                   if($userActiveOpen==TRUE){
-                   	$sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
+                	$sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
                    	$resultObj = $dbOperation->queryBySql($sql);
                    	if($resultObj){
-                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager = new UserActiveRecordManager($appId,$userActiveOpen);
                    		$activeRecordManager->createSupportAnProductCommentRecord($resultObj->content,$userId,'','',$resultObj->product_id);
                    	}
-                   }
                    
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
@@ -602,7 +594,7 @@ class ProductController extends Controller{
                     return;
                }
                
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             
             $sqlDelete = "delete from zy_product_comment_support where user_id=$userId and comment_id=$commentId";
             
@@ -618,14 +610,12 @@ class ProductController extends Controller{
                    echo json_encode($josnArr);
                    
                    //插入一条活动纪录
-                   if($userActiveOpen==TRUE){
-                   	$sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
+                	$sql = "select content,product_id from zy_product_comment where comment_id = $commentId";
                    	$resultObj = $dbOperation->queryBySql($sql);
                    	if($resultObj){
-                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager = new UserActiveRecordManager($appId,$userActiveOpen);
                    		$activeRecordManager->createUnSupportAnProductCommentRecord($resultObj->content,$userId,'','',$resultObj->product_id);
                    	}
-                   }
                    
                    
                 }  else {
@@ -670,7 +660,7 @@ class ProductController extends Controller{
         		return ;
         	}
         	 
-        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        	$dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         	
         	$sqlCheck="select * from zy_product_tab_type where category_id = $categoryId";
         	 
