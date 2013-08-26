@@ -257,6 +257,11 @@
     return userResult;
 }
 
++ (NSDictionary*)getCurrentUserDict
+{
+   return [self getUserDictWithUserId:[self getCurrentUserId]];
+}
+
 + (BOOL)userIsLogined
 {
     if (![[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF]) {

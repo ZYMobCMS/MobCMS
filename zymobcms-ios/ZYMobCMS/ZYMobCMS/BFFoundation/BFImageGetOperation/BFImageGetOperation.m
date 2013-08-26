@@ -7,6 +7,13 @@
 //
 
 #import "BFImageGetOperation.h"
+#import "UIImage+Resize.h"
+
+#define MaxImageWidth 1024
+#define MaxImageHeight 1800
+
+#define ThumbSize CGSizeMake(80,50)
+#define ThumbRoundSize CGSizeMake (150,150)
 
 @interface BFImageGetOperation(PrivateMethod)
 - (id)initWithImageUrl:(NSString *)url withFinishDelegate:(id)aDelegate withNewRect:(CGRect)newRect;
@@ -64,11 +71,11 @@
 - (void)main{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
     if (!_imageUrl) {
-        NSAssert(_imageUrl = nil,@"image url can't be nil");
+        NSLog(_imageUrl = nil,@"image url can't be nil");
         [self cancel];
     }
     if (_delegate == nil) {
-        NSAssert(_delegate = nil,@"image get delegate can't be nil");
+        NSLog(_delegate = nil,@"image get delegate can't be nil");
         [self cancel];
     }
     

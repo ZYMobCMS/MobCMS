@@ -9,9 +9,14 @@
 #import "BFImageView.h"
 #import "BFImageCache.h"
 #import "UIImage+Resize.h"
+#import <ImageIO/CGImageSource.h>
+
 
 #define MaxImageWidth 1024
 #define MaxImageHeight 1800
+
+#define ThumbSize CGSizeMake(80,50)
+#define ThumbRoundSize CGSizeMake (150,150)
 
 @interface BFImageView(PrivateMethod)
 - (void)imageDidLoad:(UIImage *)loadImage;
@@ -107,10 +112,11 @@
     if(!CGSizeEqualToSize(newImageSize,CGSizeZero)){
         loadImage = [loadImage resizedImage:newImageSize interpolationQuality:kCGInterpolationDefault];
     }
-    self.image = loadImage;
-    
     //缓存图片
-    [BFImageCache cacheImage:self.image withUrl:_imageUrl]; 
+    [BFImageCache cacheImage:loadImage withUrl:_imageUrl];
+    
+    self.image = loadImage;
+
 }
 /*
 // Only override drawRect: if you perform custom drawing.

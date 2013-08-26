@@ -400,6 +400,7 @@
     BFNImagePreViewController *imagePreView = [[BFNImagePreViewController alloc]initWithImageString:imageString];
     imagePreView.superVC = self;
     [self presentModalViewController:imagePreView animated:YES];
+    [imagePreView getAllImagesNow];
     [imagePreView release];
 }
 

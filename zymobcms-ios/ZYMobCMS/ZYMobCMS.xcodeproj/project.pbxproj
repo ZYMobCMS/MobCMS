@@ -15,6 +15,8 @@
 		3B2B85B717C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85B617C6F7DD001E3B94 /* ZYMyPictureFavoriteViewController.m */; };
 		3B2B85BA17C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85B917C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m */; };
 		3B2B85BD17C72C7F001E3B94 /* ZYProductPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B85BC17C72C7E001E3B94 /* ZYProductPreViewController.m */; };
+		3B313A5317CB5421002AA09E /* ZYUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B313A5217CB5421002AA09E /* ZYUserInfoCell.m */; };
+		3B313A5517CB67E4002AA09E /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B313A5417CB67E4002AA09E /* ImageIO.framework */; };
 		3B5BE4D217C1C87A0086D842 /* ZYPullHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D117C1C87A0086D842 /* ZYPullHeaderView.m */; };
 		3B5BE4D817C1EA4F0086D842 /* ZYPictureCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D717C1EA4F0086D842 /* ZYPictureCommentViewController.m */; };
 		3B5BE4DA17C1EA6D0086D842 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BE4D917C1EA6D0086D842 /* CommentListViewController.m */; };
@@ -484,6 +486,9 @@
 		3B2B85B917C6F7FD001E3B94 /* ZYMyProductFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyProductFavoriteViewController.m; sourceTree = "<group>"; };
 		3B2B85BB17C72C7D001E3B94 /* ZYProductPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProductPreViewController.h; sourceTree = "<group>"; };
 		3B2B85BC17C72C7E001E3B94 /* ZYProductPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProductPreViewController.m; sourceTree = "<group>"; };
+		3B313A5117CB5420002AA09E /* ZYUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYUserInfoCell.h; sourceTree = "<group>"; };
+		3B313A5217CB5421002AA09E /* ZYUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYUserInfoCell.m; sourceTree = "<group>"; };
+		3B313A5417CB67E4002AA09E /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		3B5BE4D017C1C87A0086D842 /* ZYPullHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPullHeaderView.h; sourceTree = "<group>"; };
 		3B5BE4D117C1C87A0086D842 /* ZYPullHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPullHeaderView.m; sourceTree = "<group>"; };
 		3B5BE4D617C1EA4F0086D842 /* ZYPictureCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPictureCommentViewController.h; sourceTree = "<group>"; };
@@ -1145,6 +1150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B313A5517CB67E4002AA09E /* ImageIO.framework in Frameworks */,
 				E4F0A32617C98D5500CA995C /* CoreLocation.framework in Frameworks */,
 				E421515E17C2796000BCB601 /* MessageUI.framework in Frameworks */,
 				E47F111117A362EC0011780E /* OpenAL.framework in Frameworks */,
@@ -1306,6 +1312,8 @@
 				E441F67517C89F53000AEEA0 /* ZYSwitchCell.m */,
 				E4F0A32917C9964400CA995C /* ZYShareSettingViewController.h */,
 				E4F0A32A17C9964400CA995C /* ZYShareSettingViewController.m */,
+				3B313A5117CB5420002AA09E /* ZYUserInfoCell.h */,
+				3B313A5217CB5421002AA09E /* ZYUserInfoCell.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1627,6 +1635,7 @@
 		E47F0F6B17A35C330011780E = {
 			isa = PBXGroup;
 			children = (
+				3B313A5417CB67E4002AA09E /* ImageIO.framework */,
 				E4F0A32517C98D5500CA995C /* CoreLocation.framework */,
 				E47F0F7D17A35C330011780E /* ZYMobCMS */,
 				E47F0F7617A35C330011780E /* Frameworks */,
@@ -3067,6 +3076,7 @@
 				E4F0A33417C9B11600CA995C /* ZYSocialShareService.m in Sources */,
 				E4F0A33717CA038500CA995C /* ZYCacheCenter.m in Sources */,
 				E4F0A33A17CA367000CA995C /* NSDateHelper.m in Sources */,
+				3B313A5317CB5421002AA09E /* ZYUserInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3161,7 +3171,7 @@
 					"\"$(SRCROOT)/ZYMobCMS/UMSocial_Sdk_2.2.1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "45B4E788-299B-472B-B7BA-32DAA2D505AE";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4880B5D-3749-4245-825A-EBC3579AEED0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3180,7 +3190,7 @@
 					"\"$(SRCROOT)/ZYMobCMS/UMSocial_Sdk_2.2.1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "45B4E788-299B-472B-B7BA-32DAA2D505AE";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4880B5D-3749-4245-825A-EBC3579AEED0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

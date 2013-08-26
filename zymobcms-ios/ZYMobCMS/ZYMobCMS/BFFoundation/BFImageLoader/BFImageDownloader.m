@@ -8,10 +8,15 @@
 
 #import "BFImageDownloader.h"
 #import "BFImageCache.h"
+#import "UIImage+Resize.h"
 
 #define MaxImageWidth 1024
 #define MaxImageHeight 1800
 #define kIndicatorTag 879870
+
+#define ThumbSize CGSizeMake(80,50)
+#define ThumbRoundSize CGSizeMake (150,150)
+
 
 static BFImageDownloader *_instance = nil;
 @implementation BFImageDownloader
@@ -102,6 +107,9 @@ static BFImageDownloader *_instance = nil;
         
         //缓存图片
         [BFImageCache cacheImage:loadImage withUrl:[imageUrl absoluteString]];
+        
+        imageView.image = loadImage;
+
     }else {
         
         imageView.image = nil;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BFImageGetOperation.h"
+#define ThumbKey @"thumb_cache_key"
 
 @interface BFImageView : UIImageView
 {

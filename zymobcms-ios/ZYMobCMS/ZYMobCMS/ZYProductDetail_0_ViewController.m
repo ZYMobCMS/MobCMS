@@ -259,6 +259,7 @@
         productPreVC.pictureId = self.productId;
         [ZYMobCMSUitil setBFNNavItemForReturn:productPreVC];
         [self.navigationController pushViewController:productPreVC animated:YES];
+        [productPreVC getAllImagesNow];
         [productPreVC release];
     }
 }

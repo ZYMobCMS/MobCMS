@@ -244,6 +244,6 @@
 
 - (void)getCategoryData
 {
-    [self getHotCommentList];
+    [self refresh];
 }
 @end

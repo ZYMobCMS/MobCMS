@@ -36,4 +36,6 @@
 
 - (BOOL)isRequestTypeCacheDataExist:(ZYCMSRequestType)requestType withConfig:(NSDictionary*)config;
 
++ (NSString *)dictToConfigString:(NSDictionary*)dict;
+
 @end

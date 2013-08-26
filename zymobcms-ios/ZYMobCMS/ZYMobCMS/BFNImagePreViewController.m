@@ -80,7 +80,6 @@
     [closeBtn setBackgroundImage:[UIImage imageNamed:@"pre_image_close.png"] forState:UIControlStateNormal];
     [self.view addSubview:closeBtn];
     
-    [self getAllImagesNow];
 }
 
 - (void)didReceiveMemoryWarning

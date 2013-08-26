@@ -367,7 +367,7 @@
 
 - (void)getNewsListSuccess:(NSDictionary*)resultDict
 {
-    NSLog(@"resultDict --->%@",resultDict);
+//    NSLog(@"resultDict --->%@",resultDict);
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         
@@ -403,7 +403,7 @@
         }
         
         
-        NSLog(@"listArray -->%@",listArray);
+//        NSLog(@"listArray -->%@",listArray);
         
         [listTable reloadData];
     }else{

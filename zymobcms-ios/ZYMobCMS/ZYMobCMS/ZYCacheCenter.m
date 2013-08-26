@@ -61,27 +61,22 @@ static ZYCacheCenter *_zycacheInstance = nil;
 
 - (void)cacheDataWithRequestType:(ZYCMSRequestType)requestType withData:(NSData *)data withConfig:(NSDictionary*)config 
 {
-    NSString *configTag = nil;
-    if (config) {
-        if ([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]) {
-            configTag = [NSString stringWithFormat:@"%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"]];
-        }else if([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]&&[[config allKeys]containsObject:@"pageIndex"]){
-            configTag = [NSString stringWithFormat:@"%@_%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"],[config objectForKey:@"pageIndex"]];
-        }else{
-            configTag = @"default";
-        }
+    NSString *configString = nil;
+    if (config==nil) {
+        configString = @"default";
     }else{
-        configTag = @"default";
+        configString = [ZYCacheCenter dictToConfigString:config];
     }
-    
     
     NSString *currentTime = [BFUitils returnCurrentDateTime];
     
     NSMutableDictionary *cacheDict = [NSMutableDictionary dictionary];
     [cacheDict setObject:data forKey:currentTime];
     
-    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configTag];
+    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configString];
     NSString *filePath = [[self cacheBasePath]stringByAppendingPathComponent:fileName];
+    
+    NSLog(@"cache path ---->%@",filePath);
     
     NSData *cacheData = [self archieveDict:cacheDict];
     
@@ -90,22 +85,16 @@ static ZYCacheCenter *_zycacheInstance = nil;
 
 - (BOOL)isRequestTypeNeedRefreshData:(ZYCMSRequestType)requestType withConfig:(NSDictionary*)config 
 {
-    NSString *configTag = nil;
-    if (config) {
-        if ([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]) {
-            configTag = [NSString stringWithFormat:@"%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"]];
-        }else if([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]&&[[config allKeys]containsObject:@"pageIndex"]){
-            configTag = [NSString stringWithFormat:@"%@_%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"],[config objectForKey:@"pageIndex"]];
-        }else{
-            configTag = @"default";
-        }
+    NSString *configString = nil;
+    if (config==nil) {
+        configString = @"default";
     }else{
-        configTag = @"default";
+        configString = [ZYCacheCenter dictToConfigString:config];
     }
-    
    
-    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configTag];
+    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configString];
     NSString *filePath = [[self cacheBasePath]stringByAppendingPathComponent:fileName];
+    
     
     if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         
@@ -135,22 +124,17 @@ static ZYCacheCenter *_zycacheInstance = nil;
 
 - (BOOL)isRequestTypeCacheDataExist:(ZYCMSRequestType)requestType withConfig:(NSDictionary *)config
 {
-    NSString *configTag = nil;
-    if (config) {
-        if ([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]) {
-            configTag = [NSString stringWithFormat:@"%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"]];
-        }else if([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]&&[[config allKeys]containsObject:@"pageIndex"]){
-            configTag = [NSString stringWithFormat:@"%@_%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"],[config objectForKey:@"pageIndex"]];
-        }else{
-            configTag = @"default";
-        }
+    NSString *configString = nil;
+    if (config==nil) {
+        configString = @"default";
     }else{
-        configTag = @"default";
+        configString = [ZYCacheCenter dictToConfigString:config];
     }
     
-    
-    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configTag];
+    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configString];
     NSString *filePath = [[self cacheBasePath]stringByAppendingPathComponent:fileName];
+    
+    NSLog(@"check is exist cache file path ---->%@",filePath);
     
     if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         
@@ -164,20 +148,14 @@ static ZYCacheCenter *_zycacheInstance = nil;
 
 - (NSData*)readCacheWithRequestType:(ZYCMSRequestType)requestType withConfig:(NSDictionary*)config 
 {
-    NSString *configTag = nil;
-    if (config) {
-        if ([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]) {
-            configTag = [NSString stringWithFormat:@"%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"]];
-        }else if([[config allKeys]containsObject:@"type"]&&[[config allKeys]containsObject:@"Id"]&&[[config allKeys]containsObject:@"pageIndex"]){
-            configTag = [NSString stringWithFormat:@"%@_%@_%@",[config objectForKey:@"type"],[config objectForKey:@"Id"],[config objectForKey:@"pageIndex"]];
-        }else{
-            configTag = @"default";
-        }
+    NSString *configString = nil;
+    if (config==nil) {
+        configString = @"default";
     }else{
-        configTag = @"default";
+        configString = [ZYCacheCenter dictToConfigString:config];
     }
     
-    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configTag];
+    NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configString];
     NSString *filePath = [[self cacheBasePath]stringByAppendingPathComponent:fileName];
     
     if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
@@ -261,5 +239,25 @@ static ZYCacheCenter *_zycacheInstance = nil;
 {
     return [NSKeyedUnarchiver unarchiveObjectWithData:dData];
 }
+
++ (NSString *)dictToConfigString:(NSDictionary *)dict
+{
+    NSMutableString *configString = [NSMutableString string];
+    
+    for(NSObject *value in [dict allValues]){
+        
+        if([value isKindOfClass:[NSString class]]){
+            
+            [configString appendFormat:@"_%@",value];
+        }else if([value isKindOfClass:[NSNumber class]]){
+            [configString appendFormat:@"_%d",[(NSNumber*)value intValue]];
+        }
+    }
+    //加入用户Id
+    [configString appendFormat:@"_%@",[ZYUserManager getCurrentUserId]];
+    
+    return configString;
+}
+
 
 @end
