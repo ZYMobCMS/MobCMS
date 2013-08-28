@@ -332,19 +332,22 @@
         
         [segmentCtrl reloadData];
         [self getNewsList];
-    }
-    if (_reloading) {
+    }else{
+        if (_reloading) {
+            _reloading = NO;
+        }
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
-        _reloading = NO;
     }
+    
 }
 
 - (void)getTabTypeFaild:(NSDictionary*)resultDict
 {
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+
 }
 
 
@@ -416,18 +419,18 @@
     }
     
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+
 }
 - (void)getNewsListFaild:(NSDictionary*)resultDict
 {
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
     self.pageIndex--;
-
 }
 
 - (void)getListData
@@ -439,6 +442,7 @@
     if (segmentArray.count>0) {
         return;
     }
+    [_refreshHeaderView startLoading:listTable];
     [self getTabType];
 }
 

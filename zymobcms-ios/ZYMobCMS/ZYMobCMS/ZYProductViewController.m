@@ -284,11 +284,19 @@
         
         [self getProductList];
 
+    }else{
+        if (_reloading) {
+            _reloading = NO;
+        }
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
     }
 }
 - (void)getAllTabTypesFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        _reloading = NO;
+    }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
 }
 
 - (void)getListData
@@ -301,6 +309,7 @@
     if (tabTypesArray.count>0) {
         return;
     }
+    [_refreshHeaderView startLoading:listTable];
     [self getAllTabTypes];
 }
 

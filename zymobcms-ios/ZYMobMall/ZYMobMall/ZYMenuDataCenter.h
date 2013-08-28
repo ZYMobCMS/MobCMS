@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZYApplicationModel.h"
+#import "ZYMenuItemModel.h"
 
 typedef void (^GetMenuListSccessAction) (NSArray *menuListArray);
 typedef void (^GetMenuListFaildAction) (NSString *errMsg);

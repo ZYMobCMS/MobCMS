@@ -24,25 +24,25 @@
         CGFloat totalWidth = (self.frame.size.width-20)/2-4*ProductDetail_0_Left_Margin;
         
         supportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        supportBtn.frame = CGRectMake((totalWidth-30)/2,ProductDetail_0_Top_Margin,30,30);
+        supportBtn.frame = CGRectMake(((self.frame.size.width)/2-30-10)/2,ProductDetail_0_Top_Margin,30,30);
         [self.contentView addSubview:supportBtn];
         [supportBtn setBackgroundImage:[UIImage imageNamed:@"comment_btn_normal.png"] forState:UIControlStateNormal];
         [supportBtn addTarget:self action:@selector(commentAction) forControlEvents:UIControlEventTouchUpInside];
         
         supportLabel = [[UILabel alloc]init];
-        supportLabel.frame = CGRectMake(ProductDetail_0_Left_Margin,30+2*ProductDetail_0_Top_Margin,totalWidth,40);
+        supportLabel.frame = CGRectMake(ProductDetail_0_Left_Margin+10,30+2*ProductDetail_0_Top_Margin,totalWidth,40);
         [self.contentView addSubview:supportLabel];
         [supportLabel release];
         supportLabel.textAlignment = UITextAlignmentCenter;
         supportLabel.backgroundColor = [UIColor clearColor];
         
         favBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        favBtn.frame = CGRectMake(totalWidth+(totalWidth-30)/2+10,ProductDetail_0_Top_Margin,30, 30);
+        favBtn.frame = CGRectMake(self.frame.size.width/2+((self.frame.size.width)/2-30-10)/2,ProductDetail_0_Top_Margin,30, 30);
         [self.contentView addSubview:favBtn];
         [favBtn addTarget:self action:@selector(favoriteAction) forControlEvents:UIControlEventTouchUpInside];
         
         favLabel = [[UILabel alloc]init];
-        favLabel.frame = CGRectMake(totalWidth+ProductDetail_0_Left_Margin,30+3*ProductDetail_0_Top_Margin,totalWidth,40);
+        favLabel.frame = CGRectMake(self.frame.size.width/2,30+3*ProductDetail_0_Top_Margin,self.frame.size.width/2-10,40);
         [self.contentView addSubview:favLabel];
         [favLabel release];
         favLabel.backgroundColor = [UIColor clearColor];

@@ -491,6 +491,7 @@
         }
         
     }
+    [self stopLoading];
     
 }
 - (void)getMenuFaild:(NSDictionary*)resultDict
@@ -506,10 +507,13 @@
     ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     
     [appDelegate showMaster];
+    
+    [self stopLoading];
         
 }
 - (void)getMenuDataNow
 {
+    [self startLoading];
     [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeMenuList
                                                        withParams:nil
                                                withHelperDelegate:self

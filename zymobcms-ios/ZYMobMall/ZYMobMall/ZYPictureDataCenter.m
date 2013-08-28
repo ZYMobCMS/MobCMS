@@ -54,6 +54,11 @@
             [pool drain];
         }
         
+        if ([_actionsDict objectForKey:@"listSuccess"]) {
+            
+            SuccessGetNewPictureListData successAction = [_actionsDict objectForKey:@"listSuccess"];
+            successAction(modelArray);
+        }
 
     }else{
         

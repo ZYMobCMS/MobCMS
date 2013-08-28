@@ -266,6 +266,7 @@
 
 - (void)getProductDetail
 {
+    [self startLoading];
     //set params
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     [params setObject:self.productId forKey:@"productId"];
@@ -361,12 +362,14 @@
         [listTable reloadData];
     }
     
+    [self stopLoading];
+    
 }
 
 - (void)getProductDetailFaild:(NSDictionary*)resultDict
 {
     
-    
+    [self stopLoading];
 }
 
 - (NSString*)replaceNullString:(NSObject*)source

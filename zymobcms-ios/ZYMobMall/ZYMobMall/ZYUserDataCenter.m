@@ -106,6 +106,19 @@
     }
 }
 
+- (void)startGetUserPicFavList
+{
+    
+}
+- (void)getUserPicFavListSuccess:(NSDictionary*)resultDict
+{
+    
+}
+- (void)getUserPicFavListFaild:(NSDictionary*)resultDict
+{
+    
+}
+
 - (void)setLoginSuccessAction:(LoginSuccessAction)successAction
 {
     LoginSuccessAction loginSuccessAction = [successAction copy];
@@ -130,6 +143,19 @@
 {
     RigistSuccessAction rigistFaildAction = [faildAction copy];
     [_actionDict setObject:rigistFaildAction forKey:@"rigistFaild"];
+    [rigistFaildAction release];
+}
+
+- (void)setGetuserPicFavSuccessAction:(GetUserPicFavSuccessAction)successAction
+{
+    GetUserPicFavSuccessAction rigistSuccessAction = [successAction copy];
+    [_actionDict setObject:rigistSuccessAction forKey:@"picFavSuccess"];
+    [rigistSuccessAction release];
+}
+- (void)setGetuserPicFavFaildAction:(GetUserPicFavFaildAction)faildAction
+{
+    GetUserPicFavFaildAction rigistFaildAction = [faildAction copy];
+    [_actionDict setObject:rigistFaildAction forKey:@"picFavFaild"];
     [rigistFaildAction release];
 }
 

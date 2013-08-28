@@ -13,6 +13,12 @@ typedef void (^LoginSuccessAction) (void);
 typedef void (^LoginFaildAction) (NSString *errMsg);
 typedef void (^RigistSuccessAction) (void);
 typedef void (^RigistFaildAction) (NSString *errMsg);
+typedef void (^GetUserNewsFavSuccessAction) (NSArray *favListArray);
+typedef void (^GetUserNewsFavFaildAction) (NSString *errMsg);
+typedef void (^GetUserPicFavSuccessAction) (NSArray *favListArray);
+typedef void (^GetUserPicFavFaildAction) (NSString *errMsg);
+typedef void (^GetUserProductFavSuccessAction) (NSArray *favListArray);
+typedef void (^GetUserProductFavFaildAction) (NSString *errMsg);
 
 @interface ZYUserDataCenter : NSObject
 {
@@ -28,6 +34,13 @@ typedef void (^RigistFaildAction) (NSString *errMsg);
 
 - (void)setRigistSuccessAction:(RigistSuccessAction)successAction;
 - (void)setRigistFaildAction:(RigistFaildAction)faildAction;
+
+- (void)setGetUserNewsFavSuccessAction:(GetUserNewsFavSuccessAction)successAction;
+- (void)setGetUserNewsFavFaildAction:(GetUserNewsFavFaildAction)faildAction;
+
+- (void)startGetUserPicFavList;
+- (void)setGetuserPicFavSuccessAction:(GetUserPicFavSuccessAction)successAction;
+- (void)setGetuserPicFavFaildAction:(GetUserPicFavFaildAction)faildAction;
 
 
 @end

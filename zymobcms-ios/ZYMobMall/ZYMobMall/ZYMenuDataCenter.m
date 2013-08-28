@@ -25,28 +25,112 @@
 
 - (void)startGetMenuList
 {
-    
+    [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeMenuList
+                                                       withParams:nil
+                                               withHelperDelegate:self
+                                         withSuccessRequestMethod:@"getMenuListSuccess:"
+                                           withFaildRequestMethod:@"getMenuListFaild:"];
 }
 - (void)getMenuListSuccess:(NSDictionary*)resultDict
 {
-    
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        NSArray *resultArray = [resultDict objectForKey:@"data"];
+        NSMutableArray *menuArray = [NSMutableArray array];
+        for (int i=0; i<resultArray.count;i++) {
+            
+            ZYMenuItemModel *newItem = [[ZYMenuItemModel alloc]initWithContentDict:[resultArray objectAtIndex:i]];
+            [menuArray addObject:newItem];
+            [newItem release];
+            
+        }
+        
+        if ([_actionsDict objectForKey:@"listSuccess"]) {
+            
+            GetMenuListSccessAction successAction = [_actionsDict objectForKey:@"listSuccess"];
+            successAction(menuArray);
+        }
+        
+        
+    }else{
+        
+        if ([_actionsDict objectForKey:@"listFaild"]) {
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            GetMenuListFaildAction faildAction = [_actionsDict objectForKey:@"listFaild"];
+            faildAction(errMsg);
+        }
+        
+    }
 }
 - (void)getMenuListFaild:(NSDictionary*)resultDict
 {
-    
+    if ([_actionsDict objectForKey:@"listFaild"]) {
+        
+        GetMenuListFaildAction faildAction = [_actionsDict objectForKey:@"listFaild"];
+        faildAction(NetWorkError);
+    }
 }
 - (void)startGetApplicationInfo
 {
-    
+    [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeApplicationName
+                                                       withParams:nil
+                                               withHelperDelegate:self
+                                         withSuccessRequestMethod:@"getApplicationInfoSuccess:"
+                                           withFaildRequestMethod:@"getApplicaitonInfoFaild:"];
 }
 - (void)getApplicationInfoSuccess:(NSDictionary*)resultDict
 {
-    
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        NSDictionary *infoDict = [resultDict objectForKey:@"data"];
+        
+        ZYApplicationModel *applicationModel = [[ZYApplicationModel alloc]initWithContentDict:infoDict];
+        if ([_actionsDict objectForKey:@"applicationSuccess"]) {
+            GetApplicationInfoSuccessAction successAction = [_actionsDict objectForKey:@"applicationSuccess"];
+            successAction (applicationModel);
+        }
+    }else{
+        if ([_actionsDict objectForKey:@"applicationFaild"]) {
+            GetAppliactionInfoFaildAction faildAction = [_actionsDict objectForKey:@"applicationFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            faildAction(errMsg);
+        }
+        
+    }
 }
 - (void)getApplicaitonInfoFaild:(NSDictionary*)resultDict
 {
-    
+    if ([_actionsDict objectForKey:@"applicationFaild"]) {
+        GetAppliactionInfoFaildAction faildAction = [_actionsDict objectForKey:@"applicationFaild"];
+        faildAction(NetWorkError);
+    }
 }
 
+- (void)setGetMenuListSuccessAction:(GetMenuListSccessAction)successAction
+{
+    GetMenuListSccessAction menuListSuccessAction = [successAction copy];
+    [_actionsDict setObject:menuListSuccessAction forKey:@"listSuccess"];
+    [menuListSuccessAction release];
+}
+- (void)setGetMenuListFaildAction:(GetMenuListFaildAction)faildAction
+{
+    GetMenuListFaildAction menuListFaildAction = [faildAction copy];
+    [_actionsDict setObject:menuListFaildAction forKey:@"listFaild"];
+    [menuListFaildAction release];
+}
+- (void)setGetApplicationInfoSuccessAction:(GetApplicationInfoSuccessAction)successAction
+{
+    GetApplicationInfoSuccessAction applicationSccess = [successAction copy];
+    [_actionsDict setObject:applicationSccess forKey:@"applicationSuccess"];
+    [applicationSccess release];
+}
+- (void)setGetApplicationInfoFaildAction:(GetAppliactionInfoFaildAction)faildAction
+{
+    GetAppliactionInfoFaildAction applicationFaild = [faildAction copy];
+    [_actionsDict setObject:applicationFaild forKey:@"applicationFaild"];
+    [applicationFaild release];
+}
 
 @end
