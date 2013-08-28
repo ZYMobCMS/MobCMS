@@ -14,13 +14,13 @@
 - (id)init
 {
     if (self = [super init]) {
-        _actionsDict = [[NSMutableDictionary alloc]init];
+        self.actionsDict = [[NSMutableDictionary alloc]init];
     }
     return self;
 }
 - (void)dealloc
 {
-    [_actionsDict release];
+    [self.actionsDict release];
     [super dealloc];
 }
 
@@ -54,27 +54,27 @@
             [pool drain];
         }
         
-        if ([_actionsDict objectForKey:@"listSuccess"]) {
+        if ([self.actionsDict objectForKey:@"listSuccess"]) {
             
-            SuccessGetNewPictureListData successAction = [_actionsDict objectForKey:@"listSuccess"];
+            SuccessGetNewPictureListData successAction = [self.actionsDict objectForKey:@"listSuccess"];
             successAction(modelArray);
         }
 
     }else{
         
         NSString *errMsg = [resultDict objectForKey:@"msg"];
-        if ([_actionsDict objectForKey:@"listFaild"]) {
+        if ([self.actionsDict objectForKey:@"listFaild"]) {
             
-            FaildGetNewPictureListData faildAction = [_actionsDict objectForKey:@"listFaild"];
+            FaildGetNewPictureListData faildAction = [self.actionsDict objectForKey:@"listFaild"];
             faildAction(errMsg);
         }
     }
 }
 - (void)getPictureListFaild:(NSDictionary*)resultDict
 {
-    if ([_actionsDict objectForKey:@"listFaild"]) {
+    if ([self.actionsDict objectForKey:@"listFaild"]) {
         
-        FaildGetNewPictureListData faildAction = [_actionsDict objectForKey:@"listFaild"];
+        FaildGetNewPictureListData faildAction = [self.actionsDict objectForKey:@"listFaild"];
         faildAction(NetWorkError);
     }
 }
@@ -95,9 +95,9 @@
 {
     if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
         
-        if ([_actionsDict objectForKey:@"detailSuccess"]) {
+        if ([self.actionsDict objectForKey:@"detailSuccess"]) {
             
-            SuccessGetPictureDetailData successAction = [_actionsDict objectForKey:@"detailSuccess"];
+            SuccessGetPictureDetailData successAction = [self.actionsDict objectForKey:@"detailSuccess"];
             
             ZYPictureModel *newModel = [[ZYPictureModel alloc]initWithDetailDict:[resultDict objectForKey:@"data"]];
             successAction(newModel);
@@ -106,9 +106,9 @@
         
     }else{
         
-        if ([_actionsDict objectForKey:@"detailFaild"]) {
+        if ([self.actionsDict objectForKey:@"detailFaild"]) {
             
-            FaildGetPictureDetailData faildAction = [_actionsDict objectForKey:@"detailFaild"];
+            FaildGetPictureDetailData faildAction = [self.actionsDict objectForKey:@"detailFaild"];
             
             NSString *errMsg = [resultDict objectForKey:@"msg"];
             
@@ -120,9 +120,9 @@
 }
 - (void)getPictureDetailFaild:(NSDictionary*)resultDict
 {
-    if ([_actionsDict objectForKey:@"detailFaild"]) {
+    if ([self.actionsDict objectForKey:@"detailFaild"]) {
         
-        FaildGetPictureDetailData faildAction = [_actionsDict objectForKey:@"detailFaild"];
+        FaildGetPictureDetailData faildAction = [self.actionsDict objectForKey:@"detailFaild"];
                 
         faildAction(NetWorkError);
         
@@ -145,9 +145,9 @@
 {
     if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
         
-        if ([_actionsDict objectForKey:@"tabTypeSuccess"]) {
+        if ([self.actionsDict objectForKey:@"tabTypeSuccess"]) {
             
-            SuccessGetTabTypeListData successAction = [_actionsDict objectForKey:@"tabTypeSuccess"];
+            SuccessGetTabTypeListData successAction = [self.actionsDict objectForKey:@"tabTypeSuccess"];
             
             NSArray *resultArray = [resultDict objectForKey:@"data"];
             NSMutableArray *tabTypesArray = [NSMutableArray array];
@@ -164,9 +164,9 @@
     }else{
        
         NSString *errMsg = [resultDict objectForKey:@"msg"];
-        if ([_actionsDict objectForKey:@"tabTypeFaild"]) {
+        if ([self.actionsDict objectForKey:@"tabTypeFaild"]) {
             
-            FaildGetTabTypeListData faildAction = [_actionsDict objectForKey:@"tabTypeFaild"];
+            FaildGetTabTypeListData faildAction = [self.actionsDict objectForKey:@"tabTypeFaild"];
             
             faildAction(errMsg);
         }
@@ -174,9 +174,9 @@
 }
 - (void)getTabTypeFaild:(NSDictionary *)resultDict
 {
-    if ([_actionsDict objectForKey:@"tabTypeFaild"]) {
+    if ([self.actionsDict objectForKey:@"tabTypeFaild"]) {
         
-        FaildGetTabTypeListData faildAction = [_actionsDict objectForKey:@"tabTypeFaild"];
+        FaildGetTabTypeListData faildAction = [self.actionsDict objectForKey:@"tabTypeFaild"];
         
         faildAction(NetWorkError);
     }
@@ -185,39 +185,39 @@
 - (void)setSuccessGetNewPictureListAction:(SuccessGetNewPictureListData)successAction
 {
     SuccessGetNewPictureListData successListAction = [successAction copy];
-    [_actionsDict setObject:successListAction forKey:@"listSuccess"];
+    [self.actionsDict setObject:successListAction forKey:@"listSuccess"];
     [successListAction release];
 }
 - (void)setFaildGetNewPictureListAction:(FaildGetNewPictureListData)faildAction
 {
     FaildGetNewPictureListData faildListAction = [faildAction copy];
-    [_actionsDict setObject:faildListAction forKey:@"listFaild"];
+    [self.actionsDict setObject:faildListAction forKey:@"listFaild"];
     [faildListAction release];
 }
 
 - (void)setSuccessGetPictureDetailAction:(SuccessGetPictureDetailData)successAction
 {
     SuccessGetPictureDetailData successDetailAction = [successAction copy];
-    [_actionsDict setObject:successDetailAction forKey:@"detailSuccess"];
+    [self.actionsDict setObject:successDetailAction forKey:@"detailSuccess"];
     [successDetailAction release];
 }
 - (void)setFaildGetPictureDetailAction:(FaildGetPictureDetailData)faildAction
 {
     FaildGetPictureDetailData faildDetailAction = [faildAction copy];
-    [_actionsDict setObject:faildDetailAction forKey:@"detailFaild"];
+    [self.actionsDict setObject:faildDetailAction forKey:@"detailFaild"];
     [faildDetailAction release];
 }
 
 - (void)setGetTabTypesSuccessAction:(SuccessGetTabTypeListData)successAction
 {
     SuccessGetTabTypeListData successDetailAction = [successAction copy];
-    [_actionsDict setObject:successDetailAction forKey:@"tabTypeSuccess"];
+    [self.actionsDict setObject:successDetailAction forKey:@"tabTypeSuccess"];
     [successDetailAction release];
 }
 - (void)setGetTabTypesFaildAction:(FaildGetTabTypeListData)faildAction
 {
     FaildGetTabTypeListData faildDetailAction = [faildAction copy];
-    [_actionsDict setObject:faildDetailAction forKey:@"tabTypeFaild"];
+    [self.actionsDict setObject:faildDetailAction forKey:@"tabTypeFaild"];
     [faildDetailAction release];
 }
 

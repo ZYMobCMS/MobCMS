@@ -10,9 +10,13 @@
 
 @implementation ZYPictureModel
 @synthesize pictureId,categoryId,tabTypeId,title,source,price,links,favoriteCount;
+@synthesize commentCount,isFavorited,summary;
 
 - (void)dealloc
 {
+    self.commentCount = nil;
+    self.isFavorited = nil;
+    self.summary = nil;
     self.pictureId = nil;
     self.categoryId = nil;
     self.tabTypeId = nil;
@@ -36,6 +40,9 @@
         self.price = [aDecoder decodeObjectForKey:@"price"];
         self.links = [aDecoder decodeObjectForKey:@"links"];
         self.favoriteCount = [aDecoder decodeObjectForKey:@"favoriteCount"];
+        self.commentCount = [aDecoder decodeObjectForKey:@"commentCount"];
+        self.isFavorited = [aDecoder decodeObjectForKey:@"isFavorited"];
+        self.summary = [aDecoder decodeObjectForKey:@"summary"];
 
     }
     return self;
@@ -51,6 +58,9 @@
     [aCoder encodeObject:self.price forKey:@"price"];
     [aCoder encodeObject:self.links forKey:@"links"];
     [aCoder encodeObject:self.favoriteCount forKey:@"favoriteCount"];
+    [aCoder encodeObject:self.commentCount forKey:@"commentCount"];
+    [aCoder encodeObject:self.isFavorited forKey:@"isFavorited"];
+    [aCoder encodeObject:self.summary forKey:@"summary"];
 
 }
 
@@ -65,8 +75,11 @@
         self.source = [contentDict objectForKey:@"source"];
         self.price = [contentDict objectForKey:@"price"];
         self.links = [contentDict objectForKey:@"links"];
-        self.links = [contentDict objectForKey:@"favorite_count"];
-
+        self.favoriteCount = [contentDict objectForKey:@"favorite_count"];
+        self.commentCount = [contentDict objectForKey:@"comment_count"];
+        self.isFavorited = [contentDict objectForKey:@"isFavorited"];
+        self.summary = [contentDict objectForKey:@"summary"];
+        
     }
     return self;
 }

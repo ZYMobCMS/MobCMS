@@ -9,5 +9,6 @@
 #import "ZYUserDataCenter.h"
 #import "BFNetworkHelper.h"
 #import "ZYBaseModel.h"
+#import "ZYBaseDataCenter.h"
 
 #define ZYListPageSize 10

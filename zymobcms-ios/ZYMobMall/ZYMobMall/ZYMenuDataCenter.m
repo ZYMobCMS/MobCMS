@@ -13,13 +13,13 @@
 {
     self = [super init];
     if (self) {
-        _actionsDict = [[NSMutableDictionary alloc]init];
+        self.actionsDict = [[NSMutableDictionary alloc]init];
     }
     return self;
 }
 - (void)dealloc
 {
-    [_actionsDict release];
+    [self.actionsDict release];
     [super dealloc];
 }
 
@@ -45,19 +45,19 @@
             
         }
         
-        if ([_actionsDict objectForKey:@"listSuccess"]) {
+        if ([self.actionsDict objectForKey:@"listSuccess"]) {
             
-            GetMenuListSccessAction successAction = [_actionsDict objectForKey:@"listSuccess"];
+            GetMenuListSccessAction successAction = [self.actionsDict objectForKey:@"listSuccess"];
             successAction(menuArray);
         }
         
         
     }else{
         
-        if ([_actionsDict objectForKey:@"listFaild"]) {
+        if ([self.actionsDict objectForKey:@"listFaild"]) {
             
             NSString *errMsg = [resultDict objectForKey:@"msg"];
-            GetMenuListFaildAction faildAction = [_actionsDict objectForKey:@"listFaild"];
+            GetMenuListFaildAction faildAction = [self.actionsDict objectForKey:@"listFaild"];
             faildAction(errMsg);
         }
         
@@ -65,9 +65,9 @@
 }
 - (void)getMenuListFaild:(NSDictionary*)resultDict
 {
-    if ([_actionsDict objectForKey:@"listFaild"]) {
+    if ([self.actionsDict objectForKey:@"listFaild"]) {
         
-        GetMenuListFaildAction faildAction = [_actionsDict objectForKey:@"listFaild"];
+        GetMenuListFaildAction faildAction = [self.actionsDict objectForKey:@"listFaild"];
         faildAction(NetWorkError);
     }
 }
@@ -86,13 +86,13 @@
         NSDictionary *infoDict = [resultDict objectForKey:@"data"];
         
         ZYApplicationModel *applicationModel = [[ZYApplicationModel alloc]initWithContentDict:infoDict];
-        if ([_actionsDict objectForKey:@"applicationSuccess"]) {
-            GetApplicationInfoSuccessAction successAction = [_actionsDict objectForKey:@"applicationSuccess"];
+        if ([self.actionsDict objectForKey:@"applicationSuccess"]) {
+            GetApplicationInfoSuccessAction successAction = [self.actionsDict objectForKey:@"applicationSuccess"];
             successAction (applicationModel);
         }
     }else{
-        if ([_actionsDict objectForKey:@"applicationFaild"]) {
-            GetAppliactionInfoFaildAction faildAction = [_actionsDict objectForKey:@"applicationFaild"];
+        if ([self.actionsDict objectForKey:@"applicationFaild"]) {
+            GetAppliactionInfoFaildAction faildAction = [self.actionsDict objectForKey:@"applicationFaild"];
             
             NSString *errMsg = [resultDict objectForKey:@"msg"];
             faildAction(errMsg);
@@ -102,8 +102,8 @@
 }
 - (void)getApplicaitonInfoFaild:(NSDictionary*)resultDict
 {
-    if ([_actionsDict objectForKey:@"applicationFaild"]) {
-        GetAppliactionInfoFaildAction faildAction = [_actionsDict objectForKey:@"applicationFaild"];
+    if ([self.actionsDict objectForKey:@"applicationFaild"]) {
+        GetAppliactionInfoFaildAction faildAction = [self.actionsDict objectForKey:@"applicationFaild"];
         faildAction(NetWorkError);
     }
 }
@@ -111,25 +111,25 @@
 - (void)setGetMenuListSuccessAction:(GetMenuListSccessAction)successAction
 {
     GetMenuListSccessAction menuListSuccessAction = [successAction copy];
-    [_actionsDict setObject:menuListSuccessAction forKey:@"listSuccess"];
+    [self.actionsDict setObject:menuListSuccessAction forKey:@"listSuccess"];
     [menuListSuccessAction release];
 }
 - (void)setGetMenuListFaildAction:(GetMenuListFaildAction)faildAction
 {
     GetMenuListFaildAction menuListFaildAction = [faildAction copy];
-    [_actionsDict setObject:menuListFaildAction forKey:@"listFaild"];
+    [self.actionsDict setObject:menuListFaildAction forKey:@"listFaild"];
     [menuListFaildAction release];
 }
 - (void)setGetApplicationInfoSuccessAction:(GetApplicationInfoSuccessAction)successAction
 {
     GetApplicationInfoSuccessAction applicationSccess = [successAction copy];
-    [_actionsDict setObject:applicationSccess forKey:@"applicationSuccess"];
+    [self.actionsDict setObject:applicationSccess forKey:@"applicationSuccess"];
     [applicationSccess release];
 }
 - (void)setGetApplicationInfoFaildAction:(GetAppliactionInfoFaildAction)faildAction
 {
     GetAppliactionInfoFaildAction applicationFaild = [faildAction copy];
-    [_actionsDict setObject:applicationFaild forKey:@"applicationFaild"];
+    [self.actionsDict setObject:applicationFaild forKey:@"applicationFaild"];
     [applicationFaild release];
 }
 

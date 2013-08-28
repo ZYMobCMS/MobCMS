@@ -18,10 +18,8 @@ typedef void (^FaildGetNewPictureListData) (NSString *errMsg);
 typedef void (^SuccessGetPictureDetailData) (ZYPictureModel *newPicture);
 typedef void (^FaildGetPictureDetailData) (NSString *errMsg);
 
-@interface ZYPictureDataCenter : NSObject
-{
-    NSMutableDictionary *_actionsDict;
-}
+@interface ZYPictureDataCenter : ZYBaseDataCenter
+
 
 - (void)startGetPictureListWithCategoryId:(NSString*)categoryId withTabTypeId:(NSString*)tabTypeId withPageIndex:(NSInteger)pageIndex;
 - (void)startGetPictureDetailWithPictureId:(NSString*)pictureId;

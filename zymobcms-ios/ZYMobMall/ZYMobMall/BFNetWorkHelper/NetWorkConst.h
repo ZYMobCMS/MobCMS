@@ -12,8 +12,7 @@
 
 #define APPID            @"ruyijian_zymobcms"
 
-#define PPF_HOST_KEY @"ppf12" //对应服务器返回主机列表的key TODO
-#define MCM_HOST_KEY @"mcm"
+#define NetWorkError     @"网络不给力啊!"
 
 /* 
  参数说明
@@ -34,8 +33,6 @@
 #define _pageSize       15
 #define _total         100
 
-#define ZYCMS_Admin_Login_Interface @"Mobile/admin/login"
-#define ZYCMS_Admin_Send_Push_IOS_Interface @"Mobile/admin/pushNotificationForIOSUser"
 /*
      登陆
  
@@ -49,6 +46,13 @@
 
 #define ZYCMS_Login_Interface            @"Mobile/user/login"
 
+#define ZYCMS_User_Commit_Token_Interface @"Mobile/user/saveUserDeviceToken"
+
+#define ZYCMS_User_Picture_Favorite_List_Interface @"Mobile/user/pictureFavoriteList"
+
+#define ZYCMS_User_Product_Favorite_List_Interface @"Mobile/user/productFavoriteList"
+
+#define ZYCMS_User_Pulic_Home_Interface @"Mobile/user/userPublicHome"
 
 /*
  修改用户信息
@@ -61,6 +65,9 @@
 
 #define ZYCMS_Rigist_Interface            @"Mobile/user/rigist"
 
+#define ZYCMS_User_Login_Out_Interface    @"Mobile/user/userLoginOut"
+
+#define ZYCMS_User_Share_Record_Interface @"Mobile/user/userShareRecord"
 
 /*
  *

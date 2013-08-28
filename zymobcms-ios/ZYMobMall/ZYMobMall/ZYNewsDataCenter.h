@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZYNewsDataCenter : NSObject
+@interface ZYNewsDataCenter : ZYBaseDataCenter
 
 @end

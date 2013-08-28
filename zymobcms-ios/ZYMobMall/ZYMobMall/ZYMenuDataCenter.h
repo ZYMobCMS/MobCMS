@@ -16,10 +16,7 @@ typedef void (^GetMenuListFaildAction) (NSString *errMsg);
 typedef void (^GetApplicationInfoSuccessAction) (ZYApplicationModel *appicationModel);
 typedef void (^GetAppliactionInfoFaildAction) (NSString *errMsg);
 
-@interface ZYMenuDataCenter : NSObject
-{
-    NSMutableDictionary *_actionsDict;
-}
+@interface ZYMenuDataCenter : ZYBaseDataCenter
 
 - (void)startGetMenuList;
 - (void)startGetApplicationInfo;

@@ -17,6 +17,9 @@
 @property (nonatomic,retain)NSString *price;
 @property (nonatomic,retain)NSString *links;
 @property (nonatomic,retain)NSString *favoriteCount;
+@property (nonatomic,retain)NSString *isFavorited;
+@property (nonatomic,retain)NSString *summary;
+@property (nonatomic,retain)NSString *commentCount;
 
 - (id)initWithSummaryDict:(NSDictionary*)contentDict;
 - (id)initWithDetailDict:(NSDictionary*)contentDict;

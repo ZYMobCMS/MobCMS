@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZYCommentDataCenter : NSObject
+@interface ZYCommentDataCenter : ZYBaseDataCenter
 
 @end

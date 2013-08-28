@@ -66,5 +66,12 @@
     return [NSKeyedUnarchiver unarchiveObjectWithData:dData];
 }
 
-
++ (NSString*)getCurrentUserId
+{
+    return @"1";
+}
++ (BOOL)getUserActiveRecordState
+{
+    return YES;
+}
 @end

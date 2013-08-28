@@ -13,7 +13,13 @@
 #import "NetWorkConst.h"
 #import "BFNetWorkChecker.h"
 
-#define NetWorkError @"你的网络不给力啊！"
+typedef enum {
+    
+    ZYCacheDataArticle = 0,
+    ZYCacheDataPicture,
+    ZYCacheDataProduct,
+    
+}ZYCacheDataType;
 
 typedef enum {
     ZYCMSRequestTypeLogin = 0,
@@ -56,8 +62,12 @@ typedef enum {
     ZYCMSRequestTypePictureDetail,
     ZYCMSRequestTypePictureTabTypes,
     ZYCMSRequestTypeProductTabTypes,
-    ZYCMSRequestTypeAdminLogin,
-    ZYCMSRequestTypeAdminSendIOSPush,
+    ZYCMSRequestTypeUserSaveDeivceToken,
+    ZYCMSRequestTypeUserPictureFavoriteList,
+    ZYCMSRequestTypeUserProductFavoriteList,
+    ZYCMSRequestTypeUserPublicHome,
+    ZYCMSRequestTypeUserLoginOut,
+    ZYCMSRequestTypeUserShareRecord,
     
 }ZYCMSRequestType;
 

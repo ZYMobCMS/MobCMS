@@ -8,7 +8,7 @@
 
 #import "ZYBaseViewController.h"
 
-@interface ZYLoginViewController : ZYBaseViewController
+@interface ZYLoginViewController : UIViewController
 {
     UITextField *loginNameField;
     UITextField *passwordField;

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ZYUserModel.h"
+#import "ZYUserManager.h"
+#import "ZYBaseDataCenter.h"
 
 typedef void (^LoginSuccessAction) (void);
 typedef void (^LoginFaildAction) (NSString *errMsg);
@@ -20,11 +22,7 @@ typedef void (^GetUserPicFavFaildAction) (NSString *errMsg);
 typedef void (^GetUserProductFavSuccessAction) (NSArray *favListArray);
 typedef void (^GetUserProductFavFaildAction) (NSString *errMsg);
 
-@interface ZYUserDataCenter : NSObject
-{
-    NSMutableDictionary *_actionDict;
-}
-
+@interface ZYUserDataCenter :ZYBaseDataCenter
 
 - (void)startLoginWithName:(NSString*)loginName withPassword:(NSString*)password;
 - (void)startRigistWithName:(NSString*)loginName withPassword:(NSString*)password;
@@ -38,7 +36,7 @@ typedef void (^GetUserProductFavFaildAction) (NSString *errMsg);
 - (void)setGetUserNewsFavSuccessAction:(GetUserNewsFavSuccessAction)successAction;
 - (void)setGetUserNewsFavFaildAction:(GetUserNewsFavFaildAction)faildAction;
 
-- (void)startGetUserPicFavList;
+- (void)startGetUserPicFavListWithPageIndex:(NSInteger)pageIndex;
 - (void)setGetuserPicFavSuccessAction:(GetUserPicFavSuccessAction)successAction;
 - (void)setGetuserPicFavFaildAction:(GetUserPicFavFaildAction)faildAction;
 
