@@ -224,7 +224,7 @@
     if (status) {
         
         NSArray *resultArray = [resultDict objectForKey:@"data"];
-        NSLog(@"resultArray ___%@",resultArray);
+//        NSLog(@"resultArray ___%@",resultArray);
         
         if (_reloading) {
             [sourceArray removeAllObjects];
@@ -287,7 +287,7 @@
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"resultDict===>%@",resultDict);
+//        NSLog(@"resultDict===>%@",resultDict);
         
         NSArray *allTabs = [resultDict objectForKey:@"data"];
         

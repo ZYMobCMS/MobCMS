@@ -332,7 +332,7 @@
 {
     BOOL status = [[result objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"commentSuccess");
+//        NSLog(@"commentSuccess");
         self.lastInputString = @"";
         [self commentReset];
         
@@ -353,7 +353,7 @@
 {
     BOOL status = [[result objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"favoriteSuccess");
+//        NSLog(@"favoriteSuccess");
         
         if (self.isFavorited) {
             [SVProgressHUD showSuccessWithStatus:@"取消收藏"];

@@ -18,7 +18,7 @@
     }
     
     NSMutableArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
-    NSLog(@"userList --->%@",userList);
+//    NSLog(@"userList --->%@",userList);
     NSString *userResult = nil;
     for (NSDictionary *userItem in userList) {
         
@@ -29,7 +29,7 @@
         }
         
     }
-    NSLog(@"current UserId--->%@",userResult);
+//    NSLog(@"current UserId--->%@",userResult);
     return userResult;
 }
 
@@ -335,7 +335,7 @@
     }
     
     NSMutableArray *userList = [[NSUserDefaults standardUserDefaults]objectForKey:ZY_USER_UDF];
-    NSLog(@"userList --->%@",userList);
+//    NSLog(@"userList --->%@",userList);
     NSString *userResult = nil;
     for (NSDictionary *userItem in userList) {
         
@@ -346,7 +346,7 @@
         }
         
     }
-    NSLog(@"current UserId--->%@",userResult);
+//    NSLog(@"current UserId--->%@",userResult);
     return [userResult boolValue];
 }
 

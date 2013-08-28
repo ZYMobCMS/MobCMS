@@ -424,7 +424,7 @@
 {
     //	[self updatePagesWhileScrolled];
 	
-	NSLog(@"subviewcont = %d", [self.subviews count]);
+//	NSLog(@"subviewcont = %d", [self.subviews count]);
 	
 }
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
@@ -438,7 +438,7 @@
 	//NSLog(@"scrollViewDidScroll = %@", NSStringFromCGPoint(scrollView.contentOffset));
 	[self updatePagesWhileScrolled];
 	
-	NSLog(@"subviewcont = %d", [self.subviews count]);
+//	NSLog(@"subviewcont = %d", [self.subviews count]);
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView

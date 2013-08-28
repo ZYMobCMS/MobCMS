@@ -121,7 +121,7 @@
 - (void)segmentControl:(BFSegmentControl*)sgmCtrl didSelectAtIndex:(NSInteger)index
 {
     NSDictionary *item = [segmentArray objectAtIndex:index];
-    NSLog(@"item -->%@",item);
+//    NSLog(@"item -->%@",item);
     
     pageIndex = 0;
     self.currentTabType = [item objectForKey:@"id"];

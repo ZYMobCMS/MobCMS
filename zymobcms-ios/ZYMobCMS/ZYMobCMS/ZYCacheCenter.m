@@ -45,7 +45,7 @@ static ZYCacheCenter *_zycacheInstance = nil;
         NSError *err = nil;
         [[NSFileManager defaultManager]createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&err];
         if (err) {
-            NSLog(@"create cache dir error --->%@",err);
+//            NSLog(@"create cache dir error --->%@",err);
         }
     }
     
@@ -76,7 +76,7 @@ static ZYCacheCenter *_zycacheInstance = nil;
     NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configString];
     NSString *filePath = [[self cacheBasePath]stringByAppendingPathComponent:fileName];
     
-    NSLog(@"cache path ---->%@",filePath);
+//    NSLog(@"cache path ---->%@",filePath);
     
     NSData *cacheData = [self archieveDict:cacheDict];
     
@@ -134,7 +134,7 @@ static ZYCacheCenter *_zycacheInstance = nil;
     NSString *fileName = [NSString stringWithFormat:@"%@%d_%@",CachePreKey,requestType,configString];
     NSString *filePath = [[self cacheBasePath]stringByAppendingPathComponent:fileName];
     
-    NSLog(@"check is exist cache file path ---->%@",filePath);
+//    NSLog(@"check is exist cache file path ---->%@",filePath);
     
     if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
         
@@ -217,7 +217,7 @@ static ZYCacheCenter *_zycacheInstance = nil;
         NSError *err = nil;
         [[NSFileManager defaultManager]removeItemAtPath:dirPath error:&err];
         if (err) {
-            NSLog(@"clear cache remove dir faild error --->%@",err);
+//            NSLog(@"clear cache remove dir faild error --->%@",err);
         }
     }
     

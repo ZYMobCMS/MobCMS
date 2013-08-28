@@ -543,6 +543,8 @@
 		E421515A17C26FFF00BCB601 /* ZYReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYReplyViewController.h; sourceTree = "<group>"; };
 		E421515B17C2700000BCB601 /* ZYReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYReplyViewController.m; sourceTree = "<group>"; };
 		E421515D17C2795E00BCB601 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		E4223BB717CE429F00199B68 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
+		E4223BB817CE429F00199B68 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E4304A9317B5E30100DBD1BC /* ZYCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCategoryCell.h; sourceTree = "<group>"; };
 		E4304A9417B5E30100DBD1BC /* ZYCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCategoryCell.m; sourceTree = "<group>"; };
 		E4304A9717B5E87700DBD1BC /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
@@ -2613,6 +2615,7 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = E47F0F6B17A35C330011780E;
 			productRefGroup = E47F0F7517A35C330011780E /* Products */;
@@ -3095,6 +3098,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E47F0F8117A35C330011780E /* en */,
+				E4223BB817CE429F00199B68 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3104,6 +3108,7 @@
 			children = (
 				E4F0A2F617C987FA00CA995C /* en */,
 				E4F0A31317C987FA00CA995C /* zh-Hans */,
+				E4223BB717CE429F00199B68 /* zh-Hant */,
 			);
 			name = UMSocialLocalizable.strings;
 			sourceTree = "<group>";
@@ -3182,6 +3187,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3203,6 +3209,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

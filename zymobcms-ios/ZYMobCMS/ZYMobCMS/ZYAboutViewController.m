@@ -293,14 +293,14 @@
                 [Notpermitted release];
             }else{
                 for (NSDictionary *item in sourceArray) {
-                    if ([tile rangeOfString:[item objectForKey:@"type_name"]].location != NSNotFound) {
+                    if ([[item objectForKey:@"type_name"] rangeOfString:@"手机"].location != NSNotFound) {
                         MFMessageComposeViewController *messageVC = [[MFMessageComposeViewController alloc]init];
                         messageVC.messageComposeDelegate = self;
                         [messageVC setRecipients:[NSArray arrayWithObject:[item objectForKey:@"value"]]];
                         [messageVC setBody:@"请给我们您的建议"];
                         [self presentModalViewController:messageVC animated:YES];
                         [messageVC release];
-                        
+                        found = YES;
                         break;
                         
                     }

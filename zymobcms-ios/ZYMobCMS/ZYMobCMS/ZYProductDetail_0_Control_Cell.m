@@ -148,7 +148,7 @@
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"favoriteSuccess");
+//        NSLog(@"favoriteSuccess");
         if (isFavorited) {
             [SVProgressHUD showSuccessWithStatus:@"取消收藏"];
             self.isFavorited = NO;

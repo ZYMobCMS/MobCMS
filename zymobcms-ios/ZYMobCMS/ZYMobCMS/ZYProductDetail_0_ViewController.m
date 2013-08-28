@@ -280,7 +280,7 @@
     if (status) {
         
         NSDictionary *productItem = [resultDict objectForKey:@"data"];
-        NSLog(@"product --->%@",productItem);
+//        NSLog(@"product --->%@",productItem);
         
         //头部图片
         [listArray addObject:[NSArray arrayWithObject:[productItem objectForKey:@"images"]]];

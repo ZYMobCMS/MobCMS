@@ -236,7 +236,7 @@
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         
-        NSLog(@"resultDict -->%@",resultDict);
+//        NSLog(@"resultDict -->%@",resultDict);
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
         //保存用户信息
         [ZYUserManager saveLoginUser:[resultDict objectForKey:@"data"] loginState:YES];

@@ -215,9 +215,10 @@
     newNav.view.frame = appDelegate.rootViewController.view.frame;
     appDelegate.rootViewController.detailViewController = newNav;
     [newNav release];
-    [currentVC getCategoryData];//网络数据
-    
     [appDelegate hiddenMaster];
+    
+    [currentVC getCategoryData];//网络数据
+
 }
 
 #pragma mark - 获取菜单

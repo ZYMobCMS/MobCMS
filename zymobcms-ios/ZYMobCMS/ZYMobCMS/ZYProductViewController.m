@@ -228,7 +228,7 @@
             [listArray removeAllObjects];
         }
         
-        NSLog(@"resultArray---->%@",resultArray);
+//        NSLog(@"resultArray---->%@",resultArray);
         
         if (resultArray.count ==0 || resultArray.count <PageSize) {
             hideLoadMore = YES;
@@ -274,7 +274,7 @@
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"resultDict===>%@",resultDict);
+//        NSLog(@"resultDict===>%@",resultDict);
         
         NSArray *allTabs = [resultDict objectForKey:@"data"];
         
