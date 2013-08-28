@@ -478,6 +478,8 @@
             
             [SVProgressHUD showSuccessWithStatus:@"该应用没有配置任何模块！"];
             
+            [self.tableSysData removeAllObjects];
+            
             //没有获取到，就留一个退出
             NSArray *account = [NSArray arrayWithObjects:@"重新尝试",@"18",nil];
             [self.tableSysData addObject:account];
@@ -497,6 +499,8 @@
 - (void)getMenuFaild:(NSDictionary*)resultDict
 {
     [SVProgressHUD showErrorWithStatus:@"网络不给力没有获取到任何功能模块,请重新尝试"];
+    
+    [self.tableSysData removeAllObjects];
     
     //没有获取到，就留一个退出
     NSArray *account = [NSArray arrayWithObjects:@"重新尝试",@"18",nil];

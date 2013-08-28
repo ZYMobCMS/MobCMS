@@ -11,7 +11,7 @@
 @implementation ZYProductModel
 @synthesize productCode,price,productFace,productId,wePrice,marketPrice;
 @synthesize images,title,location,favoriteCount,commentCount,source;
-@synthesize isFavorited;
+@synthesize isFavorited,content;
 
 - (void)dealloc
 {
@@ -27,6 +27,7 @@
     self.favoriteCount = nil;
     self.commentCount = nil;
     self.source = nil;
+    self.content = nil;
     [super dealloc];
 }
 
@@ -34,7 +35,7 @@
 {
     if (self = [super init]) {
         
-        self.productId = [summaryDict objectForKey:@"productId"];
+        self.productId = [summaryDict objectForKey:@"product_id"];
         self.price = [summaryDict objectForKey:@"price"];
         self.productCode = [summaryDict objectForKey:@"product_code"];
         self.productFace = [summaryDict objectForKey:@"product_face"];
@@ -46,7 +47,7 @@
         self.favoriteCount = [summaryDict objectForKey:@"favorite_count"];
         self.commentCount = [summaryDict objectForKey:@"comment_count"];
         self.source = [summaryDict objectForKey:@"source"];
-        self.isFavorited = [summaryDict objectForKey:@"isFavorited"];
+        
         
     }
     return self;
@@ -56,7 +57,7 @@
 {
     if (self = [super init]) {
         
-        self.productId = [detailDict objectForKey:@"productId"];
+        self.productId = [detailDict objectForKey:@"product_id"];
         self.price = [detailDict objectForKey:@"price"];
         self.productCode = [detailDict objectForKey:@"product_code"];
         self.productFace = [detailDict objectForKey:@"product_face"];
@@ -69,6 +70,7 @@
         self.commentCount = [detailDict objectForKey:@"comment_count"];
         self.source = [detailDict objectForKey:@"source"];
         self.isFavorited = [detailDict objectForKey:@"isFavorited"];
+        self.content = [detailDict objectForKey:@"content"];
     }
     return self;
 }

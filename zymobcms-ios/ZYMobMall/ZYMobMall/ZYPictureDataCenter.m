@@ -48,7 +48,10 @@
         NSMutableArray *modelArray = [NSMutableArray array];
         for (int i=0; i<resultArray.count;i++) {
             NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
-            ZYPictureModel *newModel = [[ZYPictureModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+            NSDictionary *oldItem = [resultArray objectAtIndex:i];
+            NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+            [item setObject:[oldItem objectForKey:@"id"] forKey:@"picture_id"];
+            ZYPictureModel *newModel = [[ZYPictureModel alloc]initWithSummaryDict:item];
             [modelArray addObject:newModel];
             [newModel release];
             [pool drain];
@@ -99,9 +102,13 @@
             
             SuccessGetPictureDetailData successAction = [self.actionsDict objectForKey:@"detailSuccess"];
             
-            ZYPictureModel *newModel = [[ZYPictureModel alloc]initWithDetailDict:[resultDict objectForKey:@"data"]];
+            NSDictionary *oldItem = [resultDict objectForKey:@"data"];
+            NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+            [item setObject:[oldItem objectForKey:@"id"] forKey:@"picture_id"];
+            ZYPictureModel *newModel = [[ZYPictureModel alloc]initWithDetailDict:item];
             successAction(newModel);
             [newModel release];
+            
         }
         
     }else{

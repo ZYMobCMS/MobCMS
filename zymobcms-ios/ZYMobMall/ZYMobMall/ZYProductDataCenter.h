@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZYProductModel.h"
+#import "ZYTabTypeModel.h"
 
 typedef void (^GetProductListSuccessAction) (NSArray *listArray);
 typedef void (^GetProductListFaildAction)   (NSString *errMsg);
 typedef void (^GetProductTabTypeSuccessAction) (NSArray *listArray);
 typedef void (^GetProductTabTypeFaildAction) (NSString *errMsg);
-typedef void (^GetProductDetailSuccessAction) (NSArray *listArray);
+typedef void (^GetProductDetailSuccessAction) (ZYProductModel *proudctModel);
 typedef void (^GetProductDetailFaildAction) (NSString *errMsg);
 
 @interface ZYProductDataCenter : ZYBaseDataCenter

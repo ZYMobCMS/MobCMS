@@ -22,6 +22,8 @@
 @property (nonatomic,retain)NSString *marketPrice;
 @property (nonatomic,retain)NSString *wePrice;
 @property (nonatomic,retain)NSString *isFavorited;
+@property (nonatomic,retain)NSString *content;
+
 
 
 - (id)initWithSummaryContentDict:(NSDictionary*)summaryDict;

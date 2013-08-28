@@ -68,7 +68,7 @@
 {
     if (self = [super init]) {
         
-        self.pictureId = [contentDict objectForKey:@"id"];
+        self.pictureId = [contentDict objectForKey:@"picture_id"];
         self.categoryId = [contentDict objectForKey:@"category_id"];
         self.tabTypeId = [contentDict objectForKey:@"tab_type_idd"];
         self.title = [contentDict objectForKey:@"title"];

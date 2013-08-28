@@ -3168,7 +3168,8 @@
 		E47F0F9217A35C330011780E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hu tao (ZCHH929E72)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: HU TAO";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HU TAO";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYMobCMS/ZYMobCMS-Prefix.pch";
 				INFOPLIST_FILE = "ZYMobCMS/ZYMobCMS-Info.plist";
@@ -3179,7 +3180,8 @@
 					"\"$(SRCROOT)/ZYMobCMS/UMSocial_Sdk_2.2.1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "45B4E788-299B-472B-B7BA-32DAA2D505AE";
+				PROVISIONING_PROFILE = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3187,7 +3189,8 @@
 		E47F0F9317A35C330011780E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hu tao (ZCHH929E72)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: HU TAO";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HU TAO";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYMobCMS/ZYMobCMS-Prefix.pch";
 				INFOPLIST_FILE = "ZYMobCMS/ZYMobCMS-Info.plist";
@@ -3198,7 +3201,8 @@
 					"\"$(SRCROOT)/ZYMobCMS/UMSocial_Sdk_2.2.1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "45B4E788-299B-472B-B7BA-32DAA2D505AE";
+				PROVISIONING_PROFILE = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -11,6 +11,8 @@
 @interface ZYTabTypeModel : ZYBaseModel
 @property (nonatomic,retain)NSString *tabTypeId;
 @property (nonatomic,retain)NSString *name;
+@property (nonatomic,retain)NSString *icon;
+@property (nonatomic,retain)NSString *isLocalIcon;
 
 - (id)initWithContentDict:(NSDictionary*)contentDict;
 
