@@ -353,7 +353,7 @@ static BFNetWorkHelper *_instance = nil;
     NSString *string = paramDict ? [paramDict urlEncodedString] : @"";//编码成http页面能够接受得参数
     
     finalUrl = [NSString stringWithFormat:@"%@%@&%@", [requestUrl absoluteString], [self pulicParams], string];
-    NSLog(@"final Url --->%@",finalUrl);
+//    NSLog(@"final Url --->%@",finalUrl);
 
     
     

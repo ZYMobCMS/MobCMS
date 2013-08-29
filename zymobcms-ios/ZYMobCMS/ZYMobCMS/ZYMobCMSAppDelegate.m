@@ -57,6 +57,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [UMSocialSnsService  applicationDidBecomeActive];
+    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
 }
 
 
@@ -107,7 +108,6 @@
         [params setObject:@"" forKey:@"loginName"];
     }
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserSaveDeivceToken withParams:params withHelperDelegate:self withSuccessRequestMethod:@"saveTokenSuccess:" withFaildRequestMethod:@"saveTokenFaild:"];
-    
 }
 - (void)saveTokenSuccess:(NSDictionary*)resultDict
 {
@@ -124,7 +124,7 @@
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSString *str = [NSString stringWithFormat: @"Error: %@", error];
-//    NSLog(@"gettoken fail===>>>%@", str);
+    NSLog(@"gettoken fail===>>>%@", str);
 }
 
 
