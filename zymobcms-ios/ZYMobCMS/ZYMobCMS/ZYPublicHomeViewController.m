@@ -161,6 +161,7 @@
         articleDetailVC.mainTitle = @"文章详情";
         [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
         [self.navigationController pushViewController:articleDetailVC animated:YES];
+        [articleDetailVC startLoading];
         [articleDetailVC enableSwipRightToReturn];
         [articleDetailVC release];
     }

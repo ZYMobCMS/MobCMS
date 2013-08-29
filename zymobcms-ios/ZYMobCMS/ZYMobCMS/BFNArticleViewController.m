@@ -374,10 +374,12 @@
         [commentBar setFavoriteState:[[[data objectForKey:@"data"]objectForKey:@"isFavorite"]boolValue]];
         
     }
+    [self stopLoading];
 }
 - (void)getArticleDetailDataFaild:(NSDictionary*)data
 {
     //    NSLog(@"faild data:%@",data);
+    [self stopLoading];
 }
 
 - (void)loadArticleDetailWithId:(NSString *)articleId
