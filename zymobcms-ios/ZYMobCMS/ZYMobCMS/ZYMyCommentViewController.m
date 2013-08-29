@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [_refreshHeaderView startLoading:self.listTable];
+
     self.listTable.frame = CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-44);
     if (!segmentArray) {
         segmentArray = [[NSMutableArray alloc]init];

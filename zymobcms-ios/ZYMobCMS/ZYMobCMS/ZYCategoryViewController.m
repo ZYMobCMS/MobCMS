@@ -64,6 +64,7 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
+    [_refreshHeaderView startLoading:listTable];
     
     if (!segmentArray) {
         segmentArray = [[NSMutableArray alloc]init];
@@ -377,6 +378,7 @@
         
         NSArray *tabTypes = [resultDict objectForKey:@"data"];
         
+        [segmentArray removeAllObjects];
         [segmentArray addObjectsFromArray:tabTypes];
         self.currentTabType = [[tabTypes objectAtIndex:0]objectForKey:@"id"];
         
