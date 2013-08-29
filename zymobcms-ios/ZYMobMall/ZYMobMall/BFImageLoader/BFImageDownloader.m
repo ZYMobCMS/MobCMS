@@ -99,23 +99,26 @@ static BFImageDownloader *_instance = nil;
             [loadImage drawInRect:imageRect];
             loadImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-            
-            imageView.image = loadImage;//圆角
-        }else {
-            imageView.image = loadImage;//圆角
         }
         
         //缓存图片
         [BFImageCache cacheImage:loadImage withUrl:[imageUrl absoluteString]];
         
-        imageView.image = loadImage;
-
+        if (imageView) {
+            imageView.image = loadImage;//圆角
+        }
+        
     }else {
         
-        imageView.image = nil;
+        if (imageView) {
+            imageView.image = nil;
+        }
     }
 }
-
+- (void)downloadImageWithUrl:(NSString *)url
+{
+    [self downloadImageWithUrl:url forView:nil];
+}
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view
 {
     [self downloadImageWithUrl:url forView:view shouldResize:NO];

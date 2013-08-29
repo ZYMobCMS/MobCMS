@@ -91,6 +91,12 @@
 #pragma mark - show ImageView
 - (void)getAllImagesNow
 {
+    for (UIView *subView in backScroller.subviews) {
+        if ([subView isKindOfClass:[BFImageScroller class]]) {
+            [subView removeFromSuperview];
+        }
+    }
+    
     NSArray *images = [self.imgString componentsSeparatedByString:@"|"];
     
     for (int i=0; i<images.count; i++) {

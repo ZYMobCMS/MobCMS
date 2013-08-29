@@ -31,7 +31,6 @@
     self.segmentCtrl.hidden = YES;
     self.listTable.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44-35);
     [_refreshHeaderView startLoading:listTable];
-
 }
 
 - (void)didReceiveMemoryWarning

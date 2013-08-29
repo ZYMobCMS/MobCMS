@@ -228,6 +228,15 @@
         [sourceArray addObjectsFromArray:[resultDict objectForKey:@"data"]];
         
         [listTable reloadData];
+        
+        if ([sourceArray count]==0) {
+            BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,self.listTable.frame.size.width,45)];
+            footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+            footer.titleLabel.text = @"这里什么东西都没有~";
+            self.listTable.tableFooterView = footer;
+            [footer release];
+        }
+        
     }
     
     if (_reloading) {

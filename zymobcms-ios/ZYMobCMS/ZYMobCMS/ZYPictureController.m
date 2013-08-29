@@ -110,12 +110,6 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-	
-    //加载可见图片
-//    if (!decelerate) {
-//        [self loadAllVisiableCellContent];
-//    }
-    
 }
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
@@ -180,11 +174,7 @@
         }]autorelease];
     }
     [cell setContentArray:[sourceArray objectAtIndex:indexPath.row]];
-    if ([cell hasCacheForImageArray:[sourceArray objectAtIndex:indexPath.row]]) {
-        [cell setCacheImageForArray:[sourceArray objectAtIndex:indexPath.row]];
-    }else{
-        [cell setImageArray:[sourceArray objectAtIndex:indexPath.row]];
-    }
+
     
     return cell;
 }
@@ -282,6 +272,14 @@
         }
         
         [listTable reloadData];
+        
+        if ([sourceArray count]==0) {
+            BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,45)];
+            footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+            footer.titleLabel.text = @"这里什么东西都没有~";
+            listTable.tableFooterView = footer;
+            [footer release];
+        }
         
     }else{
         NSString *errMsg = [resultDict objectForKey:@"msg"];

@@ -15,9 +15,8 @@
 }
 
 + (BFImageDownloader *)shareLoader;
+- (void)downloadImageWithUrl:(NSString *)url;
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view;
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view shouldResize:(BOOL)state;
-
-//down
 
 @end

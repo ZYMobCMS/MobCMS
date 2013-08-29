@@ -462,6 +462,15 @@
 //        NSLog(@"listArray -->%@",listArray);
         
         [listTable reloadData];
+        
+        if ([listArray count]==0) {
+            BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,self.listTable.frame.size.width,45)];
+            footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+            footer.titleLabel.text = @"这里什么东西都没有~";
+            self.listTable.tableFooterView = footer;
+            [footer release];
+        }
+        
     }else{
         NSString *errMsg = [resultDict objectForKey:@"msg"];
         [SVProgressHUD showErrorWithStatus:errMsg];

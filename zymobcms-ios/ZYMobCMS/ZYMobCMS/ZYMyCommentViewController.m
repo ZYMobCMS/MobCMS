@@ -58,6 +58,14 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     [rightItem release];
     
+    if ([self.sourceArray count]==0) {
+        BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,self.listTable.frame.size.width,45)];
+        footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+        footer.titleLabel.text = @"您还没有发表过评论";
+        self.listTable.tableFooterView = footer;
+        [footer release];
+    }
+    
 }
 
 #pragma mark - segment delegate
