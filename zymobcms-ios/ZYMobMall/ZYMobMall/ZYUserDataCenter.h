@@ -21,6 +21,13 @@ typedef void (^GetUserPicFavSuccessAction) (NSArray *favListArray);
 typedef void (^GetUserPicFavFaildAction) (NSString *errMsg);
 typedef void (^GetUserProductFavSuccessAction) (NSArray *favListArray);
 typedef void (^GetUserProductFavFaildAction) (NSString *errMsg);
+typedef void (^GetUserNewsCommentListSuccessAction) (NSArray *commentListArray);
+typedef void (^GetUserNewsCommentListFaildAction) (NSString *errMsg);
+typedef void (^GetUserPicCommentListSuccessAction) (NSArray *commentListArray);
+typedef void (^GetUserPicCommentListFaildAction) (NSString *errMsg);
+typedef void (^GetUserProductCommentListSuccessAction) (NSArray *commentListArray);
+typedef void (^GetUserProductCommentListFaildAction) (NSString *errMsg);
+
 
 @interface ZYUserDataCenter :ZYBaseDataCenter
 
@@ -33,6 +40,7 @@ typedef void (^GetUserProductFavFaildAction) (NSString *errMsg);
 - (void)setRigistSuccessAction:(RigistSuccessAction)successAction;
 - (void)setRigistFaildAction:(RigistFaildAction)faildAction;
 
+- (void)startGetUserNewsFavListWithPageIndex:(NSInteger)pageIndex;
 - (void)setGetUserNewsFavSuccessAction:(GetUserNewsFavSuccessAction)successAction;
 - (void)setGetUserNewsFavFaildAction:(GetUserNewsFavFaildAction)faildAction;
 
@@ -40,5 +48,20 @@ typedef void (^GetUserProductFavFaildAction) (NSString *errMsg);
 - (void)setGetuserPicFavSuccessAction:(GetUserPicFavSuccessAction)successAction;
 - (void)setGetuserPicFavFaildAction:(GetUserPicFavFaildAction)faildAction;
 
+- (void)startGetUserProductFavListWithPageIndex:(NSInteger)pageIndex;
+- (void)setGetUserProductFavSuccess:(GetUserProductFavSuccessAction)successAction;
+- (void)setGetuserProductFavFaild:(GetUserProductFavFaildAction)faildAction;
+
+- (void)startGetuserNewsCommentListWithPageIndex:(NSInteger)pageIndex;
+- (void)setGetUserNewsCommentListSuccessAction:(GetUserNewsCommentListSuccessAction)successAction;
+- (void)setGetUserNewsCommentListFaild:(GetUserNewsCommentListFaildAction)faildAction;
+
+- (void)startGetUserPictureCommentListWithPageIndex:(NSInteger)pageIndex;
+- (void)setGetUserPicCommentListSuccessAction:(GetUserPicCommentListSuccessAction)successAction;
+- (void)setGetUserPicCommentListFaildAction:(GetUserPicCommentListFaildAction)faildAction;
+
+- (void)startGetUserProductCommentListWithPageIndex:(NSInteger)pageIndex;
+- (void)setGetuserProductCommentListSuccessAction:(GetUserProductCommentListSuccessAction)successAction;
+- (void)setGetUserProductCommentListFaildAction:(GetUserProductCommentListFaildAction)faildAction;
 
 @end

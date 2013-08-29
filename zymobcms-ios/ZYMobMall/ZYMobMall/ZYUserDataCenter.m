@@ -92,6 +92,26 @@
     }
 }
 
+#pragma mark - 文章收藏
+- (void)startGetUserNewsFavListWithPageIndex:(NSInteger)pageIndex
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserFavorite withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserNewsFavListSuccess:" withFaildRequestMethod:@"getUserNewsFavListFaild:"];
+
+}
+- (void)getUserNewsFavListSuccess:(NSDictionary*)resultDict
+{
+    
+}
+- (void)getUserNewsFavListFaild:(NSDictionary*)resultDict
+{
+    
+}
+
+
 - (void)startGetUserPicFavListWithPageIndex:(NSInteger)pageIndex
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -170,6 +190,19 @@
     [rigistFaildAction release];
 }
 
+- (void)setGetUserNewsFavSuccessAction:(GetUserNewsFavSuccessAction)successAction
+{
+    GetUserNewsFavSuccessAction rigistSuccessAction = [successAction copy];
+    [self.actionsDict setObject:rigistSuccessAction forKey:@"newsFavSuccess"];
+    [rigistSuccessAction release];
+}
+- (void)setGetUserNewsFavFaildAction:(GetUserNewsFavFaildAction)faildAction
+{
+    GetUserNewsFavFaildAction rigistFaildAction = [faildAction copy];
+    [self.actionsDict setObject:rigistFaildAction forKey:@"newsFavFaild"];
+    [rigistFaildAction release];
+}
+
 - (void)setGetuserPicFavSuccessAction:(GetUserPicFavSuccessAction)successAction
 {
     GetUserPicFavSuccessAction rigistSuccessAction = [successAction copy];
@@ -180,6 +213,54 @@
 {
     GetUserPicFavFaildAction rigistFaildAction = [faildAction copy];
     [self.actionsDict setObject:rigistFaildAction forKey:@"picFavFaild"];
+    [rigistFaildAction release];
+}
+- (void)setGetUserProductFavSuccess:(GetUserProductFavSuccessAction)successAction
+{
+    GetUserProductFavSuccessAction rigistSuccessAction = [successAction copy];
+    [self.actionsDict setObject:rigistSuccessAction forKey:@"productFavSuccess"];
+    [rigistSuccessAction release];
+}
+- (void)setGetuserProductFavFaild:(GetUserProductFavFaildAction)faildAction
+{
+    GetUserProductFavFaildAction rigistFaildAction = [faildAction copy];
+    [self.actionsDict setObject:rigistFaildAction forKey:@"productFavFaild"];
+    [rigistFaildAction release];
+}
+- (void)setGetUserNewsCommentListSuccessAction:(GetUserNewsCommentListSuccessAction)successAction
+{
+    GetUserNewsCommentListSuccessAction rigistSuccessAction = [successAction copy];
+    [self.actionsDict setObject:rigistSuccessAction forKey:@"newsCommentSuccess"];
+    [rigistSuccessAction release];
+}
+- (void)setGetUserNewsCommentListFaild:(GetUserNewsCommentListFaildAction)faildAction
+{
+    GetUserNewsCommentListFaildAction rigistFaildAction = [faildAction copy];
+    [self.actionsDict setObject:rigistFaildAction forKey:@"newsCommentFaild"];
+    [rigistFaildAction release];
+}
+- (void)setGetUserPicCommentListSuccessAction:(GetUserPicCommentListSuccessAction)successAction
+{
+    GetUserPicCommentListSuccessAction rigistSuccessAction = [successAction copy];
+    [self.actionsDict setObject:rigistSuccessAction forKey:@"picCommentSuccess"];
+    [rigistSuccessAction release];
+}
+- (void)setGetUserPicCommentListFaildAction:(GetUserPicCommentListFaildAction)faildAction
+{
+    GetUserPicCommentListFaildAction rigistFaildAction = [faildAction copy];
+    [self.actionsDict setObject:rigistFaildAction forKey:@"picCommentFaild"];
+    [rigistFaildAction release];
+}
+- (void)setGetuserProductCommentListSuccessAction:(GetUserProductCommentListSuccessAction)successAction
+{
+    GetUserProductCommentListSuccessAction rigistSuccessAction = [successAction copy];
+    [self.actionsDict setObject:rigistSuccessAction forKey:@"productCommentSuccess"];
+    [rigistSuccessAction release];
+}
+- (void)setGetUserProductCommentListFaildAction:(GetUserProductCommentListFaildAction)faildAction
+{
+    GetUserPicCommentListFaildAction rigistFaildAction = [faildAction copy];
+    [self.actionsDict setObject:rigistFaildAction forKey:@"productCommentFaild"];
     [rigistFaildAction release];
 }
 
