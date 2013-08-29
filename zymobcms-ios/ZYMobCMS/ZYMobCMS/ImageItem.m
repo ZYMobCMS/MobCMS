@@ -91,13 +91,17 @@
 
 - (void)setItemContent:(NSDictionary *)contentDict
 {
-
     self.titleLabel.text = [contentDict objectForKey:@"title"];
+}
+- (void)setItemImage:(NSDictionary *)contentDict
+{
     NSString *imageUrl = [contentDict objectForKey:@"images"];
     self.contentImageView.image = [UIImage imageNamed:@"no_photo.png"];
-    
-    [self.contentImageView setImageUrl:imageUrl];
-
+    [[BFImageDownloader shareLoader]downloadImageWithUrl:imageUrl forView:self.contentImageView];
+}
+- (void)setImage:(UIImage *)contentImage
+{
+    self.contentImageView.image = contentImage;
 }
 
 - (void)tapOnSelfAction

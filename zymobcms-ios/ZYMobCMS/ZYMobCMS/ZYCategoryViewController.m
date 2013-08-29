@@ -167,6 +167,10 @@
                 }]autorelease];
             }
             [cellHot setContentArray:[listArray objectAtIndex:indexPath.row]];
+            if (listTable.decelerating==NO||listTable.dragging==NO) {
+                [cellHot setImageInfo:[listArray objectAtIndex:indexPath.row]];
+            }
+            
             return cellHot;
             
         }else{
@@ -176,6 +180,14 @@
                 cell = [[[ZYCategoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
             }
             [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
+            if ([BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]]) {
+                cell.contentImageView.image = [BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]];
+            }else{
+                if (listTable.decelerating==NO||listTable.dragging==NO) {
+                    [cell setImageInfo:[listArray objectAtIndex:indexPath.row]];
+                }
+                cell.contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
+            }
             
             return cell;
         }
@@ -188,7 +200,15 @@
             cell = [[[ZYCategoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
         }
         [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
-        
+        if ([BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]]) {
+            cell.contentImageView.image = [BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]];
+        }else{
+            if (listTable.decelerating==NO||listTable.dragging==NO) {
+                [cell setImageInfo:[listArray objectAtIndex:indexPath.row]];
+            }
+            cell.contentImageView.image = [UIImage imageNamed:@"no_photo.png"];
+        }
+
         return cell;
         
     }
@@ -222,6 +242,30 @@
 
 }
 
+#pragma mark - 加载可见cell
+- (void)loadAllVisiableCellContent
+{
+    NSArray *visiablePaths = [listTable indexPathsForVisibleRows];
+    for (NSIndexPath *vPath in visiablePaths) {
+        
+        UITableViewCell *cell = [listTable cellForRowAtIndexPath:vPath];
+        if ([cell isKindOfClass:[ZYHotNewsCell class]]) {
+            
+            ZYHotNewsCell *vCell = (ZYHotNewsCell*)cell;
+            [vCell setImageInfo:[listArray objectAtIndex:vPath.row]];
+        }
+        if ([cell isKindOfClass:[ZYCategoryCell class]]) {
+            
+            ZYCategoryCell *vCell = (ZYCategoryCell *)cell;
+            [vCell setImageInfo:[listArray objectAtIndex:vPath.row]];
+        }
+    }
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadAllVisiableCellContent];
+}
+
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -231,9 +275,10 @@
         footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
         
         if (!hideLoadMore) {
-            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+//            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
             footer.titleLabel.text = @"加载更多...";
-            footer.userInteractionEnabled = YES;
+//            footer.userInteractionEnabled = YES;
+            [self loadMore:footer];
         }else {
             NSString *title = @"已是最后一页";
             if (listArray == 0) {
@@ -273,6 +318,7 @@
     
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     self.pageIndex = 1;
     [self getNewsList];
 }
@@ -288,6 +334,10 @@
 {
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 	
+    if (!decelerate) {
+        [self loadAllVisiableCellContent];
+    }
+    
 }
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
@@ -379,9 +429,7 @@
         if(_reloading){
             [listArray removeAllObjects];
         }
-        
-        
-        
+
         if ([[resultDict objectForKey:@"data"]isKindOfClass:[NSDictionary class]]) {
             NSArray *hotNews = [dataDict objectForKey:@"hotNews"];
             NSArray *normalList = [dataDict objectForKey:@"newsList"];
@@ -389,6 +437,9 @@
             if (pageIndex==1) {
                 if (hotNews.count>0) {
                     [listArray addObject:hotNews];
+                }
+                if (normalList.count ==0 || normalList.count <PageSize) {
+                    hideLoadMore = YES;
                 }
             }else{
                 if (normalList.count ==0 || normalList.count <PageSize) {

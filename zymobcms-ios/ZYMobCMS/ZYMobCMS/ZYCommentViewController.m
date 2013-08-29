@@ -162,6 +162,7 @@
     
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     [self getHotCommentList];
 }
 

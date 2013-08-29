@@ -85,6 +85,7 @@
 
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     self.pageIndex = 1;
     [self getPublicHomeList];
 }
@@ -198,9 +199,10 @@
         footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
         
         if (!hideLoadMore) {
-            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+//            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
             footer.titleLabel.text = @"加载更多...";
-            footer.userInteractionEnabled = YES;
+//            footer.userInteractionEnabled = YES;
+            [self loadMore:footer];
         }else {
             NSString *title = @"已是最后一页";
             if (listArray == 0) {

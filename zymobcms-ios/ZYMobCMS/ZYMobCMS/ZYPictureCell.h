@@ -22,6 +22,9 @@ typedef void (^tapOnCellAction) (ZYPictureCell *tapCell,NSInteger tapItemIndex);
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withTapOnCell:(tapOnCellAction)tapOnCellAction;
 
 - (void)setContentArray:(NSArray*)imageArray;
+- (void)setImageArray:(NSArray*)imageArray;
+- (void)setCacheImageForArray:(NSArray*)imageArray;
+- (BOOL)hasCacheForImageArray:(NSArray*)imageArray;
 
 + (CGFloat)pictureCellHeight;
 

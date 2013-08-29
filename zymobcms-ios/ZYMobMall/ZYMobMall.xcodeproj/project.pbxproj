@@ -17,6 +17,13 @@
 		3B1C59E917CDFAFD007B20C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1C59E817CDFAFC007B20C7 /* QuartzCore.framework */; };
 		3B1C59ED17CDFC8F007B20C7 /* ZYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59EC17CDFC8E007B20C7 /* ZYHomeViewController.m */; };
 		3B1C59F117CE013E007B20C7 /* ZYBaseDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59F017CE013E007B20C7 /* ZYBaseDataCenter.m */; };
+		3B1C59F517CEE6C4007B20C7 /* ZYProductCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59F417CEE6C4007B20C7 /* ZYProductCategoryViewController.m */; };
+		3B1C59F817CEE6E7007B20C7 /* ZYProudctTabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59F717CEE6E7007B20C7 /* ZYProudctTabListViewController.m */; };
+		3B1C5A0517CEE731007B20C7 /* BFImageGetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59FB17CEE731007B20C7 /* BFImageGetOperation.m */; };
+		3B1C5A0617CEE731007B20C7 /* BFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59FD17CEE731007B20C7 /* BFImageView.m */; };
+		3B1C5A0717CEE731007B20C7 /* BFCellImageloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C5A0017CEE731007B20C7 /* BFCellImageloader.m */; };
+		3B1C5A0817CEE731007B20C7 /* BFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C5A0217CEE731007B20C7 /* BFImageCache.m */; };
+		3B1C5A0917CEE731007B20C7 /* BFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C5A0417CEE731007B20C7 /* BFImageDownloader.m */; };
 		3B313A6317CC765C002AA09E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B313A6217CC765C002AA09E /* UIKit.framework */; };
 		3B313A6517CC765C002AA09E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B313A6417CC765C002AA09E /* Foundation.framework */; };
 		3B313A6717CC765C002AA09E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B313A6617CC765C002AA09E /* CoreGraphics.framework */; };
@@ -110,6 +117,20 @@
 		3B1C59EC17CDFC8E007B20C7 /* ZYHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHomeViewController.m; sourceTree = "<group>"; };
 		3B1C59EF17CE013E007B20C7 /* ZYBaseDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYBaseDataCenter.h; sourceTree = "<group>"; };
 		3B1C59F017CE013E007B20C7 /* ZYBaseDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYBaseDataCenter.m; sourceTree = "<group>"; };
+		3B1C59F317CEE6C4007B20C7 /* ZYProductCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProductCategoryViewController.h; sourceTree = "<group>"; };
+		3B1C59F417CEE6C4007B20C7 /* ZYProductCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProductCategoryViewController.m; sourceTree = "<group>"; };
+		3B1C59F617CEE6E7007B20C7 /* ZYProudctTabListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProudctTabListViewController.h; sourceTree = "<group>"; };
+		3B1C59F717CEE6E7007B20C7 /* ZYProudctTabListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProudctTabListViewController.m; sourceTree = "<group>"; };
+		3B1C59FA17CEE731007B20C7 /* BFImageGetOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFImageGetOperation.h; sourceTree = "<group>"; };
+		3B1C59FB17CEE731007B20C7 /* BFImageGetOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFImageGetOperation.m; sourceTree = "<group>"; };
+		3B1C59FC17CEE731007B20C7 /* BFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFImageView.h; sourceTree = "<group>"; };
+		3B1C59FD17CEE731007B20C7 /* BFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFImageView.m; sourceTree = "<group>"; };
+		3B1C59FF17CEE731007B20C7 /* BFCellImageloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCellImageloader.h; sourceTree = "<group>"; };
+		3B1C5A0017CEE731007B20C7 /* BFCellImageloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFCellImageloader.m; sourceTree = "<group>"; };
+		3B1C5A0117CEE731007B20C7 /* BFImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFImageCache.h; sourceTree = "<group>"; };
+		3B1C5A0217CEE731007B20C7 /* BFImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFImageCache.m; sourceTree = "<group>"; };
+		3B1C5A0317CEE731007B20C7 /* BFImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFImageDownloader.h; sourceTree = "<group>"; };
+		3B1C5A0417CEE731007B20C7 /* BFImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFImageDownloader.m; sourceTree = "<group>"; };
 		3B313A5F17CC765C002AA09E /* ZYMobMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYMobMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B313A6217CC765C002AA09E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B313A6417CC765C002AA09E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -299,6 +320,41 @@
 			children = (
 			);
 			name = Hot;
+			sourceTree = "<group>";
+		};
+		3B1C59F217CEE69D007B20C7 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				3B1C59F317CEE6C4007B20C7 /* ZYProductCategoryViewController.h */,
+				3B1C59F417CEE6C4007B20C7 /* ZYProductCategoryViewController.m */,
+				3B1C59F617CEE6E7007B20C7 /* ZYProudctTabListViewController.h */,
+				3B1C59F717CEE6E7007B20C7 /* ZYProudctTabListViewController.m */,
+			);
+			name = Product;
+			sourceTree = "<group>";
+		};
+		3B1C59F917CEE731007B20C7 /* BFImageGetOperation */ = {
+			isa = PBXGroup;
+			children = (
+				3B1C59FA17CEE731007B20C7 /* BFImageGetOperation.h */,
+				3B1C59FB17CEE731007B20C7 /* BFImageGetOperation.m */,
+				3B1C59FC17CEE731007B20C7 /* BFImageView.h */,
+				3B1C59FD17CEE731007B20C7 /* BFImageView.m */,
+			);
+			path = BFImageGetOperation;
+			sourceTree = "<group>";
+		};
+		3B1C59FE17CEE731007B20C7 /* BFImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				3B1C59FF17CEE731007B20C7 /* BFCellImageloader.h */,
+				3B1C5A0017CEE731007B20C7 /* BFCellImageloader.m */,
+				3B1C5A0117CEE731007B20C7 /* BFImageCache.h */,
+				3B1C5A0217CEE731007B20C7 /* BFImageCache.m */,
+				3B1C5A0317CEE731007B20C7 /* BFImageDownloader.h */,
+				3B1C5A0417CEE731007B20C7 /* BFImageDownloader.m */,
+			);
+			path = BFImageLoader;
 			sourceTree = "<group>";
 		};
 		3B313A5617CC765C002AA09E = {
@@ -539,6 +595,7 @@
 		3B313B0F17CC777D002AA09E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3B1C59F217CEE69D007B20C7 /* Product */,
 				3B1C59EE17CDFCC7007B20C7 /* Hot */,
 				3B1C59EA17CDFC3D007B20C7 /* Home */,
 				3B313B2F17CC882F002AA09E /* ZYMobBase */,
@@ -690,6 +747,8 @@
 		3B313B2F17CC882F002AA09E /* ZYMobBase */ = {
 			isa = PBXGroup;
 			children = (
+				3B1C59F917CEE731007B20C7 /* BFImageGetOperation */,
+				3B1C59FE17CEE731007B20C7 /* BFImageLoader */,
 				3B313A8017CC7716002AA09E /* BFNetWorkHelper */,
 				3B313B1D17CC8637002AA09E /* DataCenter */,
 				3B313B6717CCA142002AA09E /* ZYMobBase.h */,
@@ -871,6 +930,13 @@
 				3B1C59E417CDFA5E007B20C7 /* BFUitils.m in Sources */,
 				3B1C59ED17CDFC8F007B20C7 /* ZYHomeViewController.m in Sources */,
 				3B1C59F117CE013E007B20C7 /* ZYBaseDataCenter.m in Sources */,
+				3B1C59F517CEE6C4007B20C7 /* ZYProductCategoryViewController.m in Sources */,
+				3B1C59F817CEE6E7007B20C7 /* ZYProudctTabListViewController.m in Sources */,
+				3B1C5A0517CEE731007B20C7 /* BFImageGetOperation.m in Sources */,
+				3B1C5A0617CEE731007B20C7 /* BFImageView.m in Sources */,
+				3B1C5A0717CEE731007B20C7 /* BFCellImageloader.m in Sources */,
+				3B1C5A0817CEE731007B20C7 /* BFImageCache.m in Sources */,
+				3B1C5A0917CEE731007B20C7 /* BFImageDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

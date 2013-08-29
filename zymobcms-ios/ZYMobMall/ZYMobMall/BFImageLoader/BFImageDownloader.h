@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZYCache.h"
 #define ThumbKey @"thumb_cache_key"
 
 @interface BFImageDownloader : NSObject
@@ -16,7 +15,6 @@
 }
 
 + (BFImageDownloader *)shareLoader;
-- (void)downloadImageWithUrl:(NSString*)url;
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view;
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view shouldResize:(BOOL)state;
 

@@ -94,6 +94,7 @@
     
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     self.pageIndex = 1;
     [self getPictureList];
 }
@@ -109,6 +110,11 @@
 {
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 	
+    //加载可见图片
+//    if (!decelerate) {
+//        [self loadAllVisiableCellContent];
+//    }
+    
 }
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
@@ -173,8 +179,33 @@
         }]autorelease];
     }
     [cell setContentArray:[sourceArray objectAtIndex:indexPath.row]];
+    if ([cell hasCacheForImageArray:[sourceArray objectAtIndex:indexPath.row]]) {
+        [cell setCacheImageForArray:[sourceArray objectAtIndex:indexPath.row]];
+    }else{
+        [cell setImageArray:[sourceArray objectAtIndex:indexPath.row]];
+    }
     
     return cell;
+}
+
+#pragma mark - 加载可见的cell图片
+#pragma mark - 加载可见cell
+- (void)loadAllVisiableCellContent
+{
+    NSArray *visiblePaths = [listTable indexPathsForVisibleRows];
+    for (NSIndexPath *path in visiblePaths) {
+        
+        ZYPictureCell *cell = (ZYPictureCell*)[listTable cellForRowAtIndexPath:path];
+        if ([cell hasCacheForImageArray:[sourceArray objectAtIndex:path.row]]) {
+            [cell setCacheImageForArray:[sourceArray objectAtIndex:path.row]];
+        }else{
+            [cell setImageArray:[sourceArray objectAtIndex:path.row]];
+        }
+    }
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+//    [self loadAllVisiableCellContent];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,9 +216,10 @@
         footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
         
         if (!hideLoadMore) {
-            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+//            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
             footer.titleLabel.text = @"加载更多...";
-            footer.userInteractionEnabled = YES;
+//            footer.userInteractionEnabled = YES;
+            [self loadMore:footer];
         }else {
             NSString *title = @"已是最后一页";
             if (sourceArray == 0) {

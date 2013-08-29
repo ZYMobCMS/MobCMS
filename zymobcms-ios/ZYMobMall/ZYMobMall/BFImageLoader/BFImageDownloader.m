@@ -121,22 +121,6 @@ static BFImageDownloader *_instance = nil;
     [self downloadImageWithUrl:url forView:view shouldResize:NO];
 }
 
-- (void)downloadImageWithUrl:(NSString *)url
-{
-    if (url == nil) {
-        return;
-    }
-    
-    if ([BFImageCache imageForUrl:url]) {
-        return;
-    }
-    
-    BFImageGetOperation *newOperation = [BFImageGetOperation initWithImageUrl:url withFinishDelegate:self];
-    
-    [_loadQueue addOperation:newOperation];
-    
-}
-
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view shouldResize:(BOOL)state
 {
     if (url == nil) {
@@ -151,7 +135,10 @@ static BFImageDownloader *_instance = nil;
         UIImageView *forView = (UIImageView *)view;
         UIImage *cacheImage = [BFImageCache imageForUrl:url];
         forView.image = cacheImage;        
+//        BFMLog(cacheImage);
+//        BFMLog(url);
     }else {
+//        BFMLog(url);
         NSArray *arguments = [NSArray arrayWithObjects:url,view,[NSNumber numberWithBool:state],nil];
         
         NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc]initWithTarget:self selector:@selector(loadImageWithArguments:) object:arguments];

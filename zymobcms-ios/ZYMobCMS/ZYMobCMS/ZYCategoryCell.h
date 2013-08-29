@@ -16,8 +16,10 @@
     BFAttributedView *summarayView;
     BFImageView      *contentImageView;
 }
+@property (nonatomic,retain)BFImageView *contentImageView;
 
 - (void)setcontentDict:(NSDictionary*)content;
+- (void)setImageInfo:(NSDictionary*)content;
 
 + (CGFloat)heightForContent:(NSDictionary*)content;
 

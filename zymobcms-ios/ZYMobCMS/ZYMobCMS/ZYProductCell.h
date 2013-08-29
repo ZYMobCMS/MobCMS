@@ -22,6 +22,8 @@
 }
 
 - (void)setProductInfo:(NSDictionary*)productDict;
+- (void)setImageInfo:(NSDictionary*)productDict;
+- (void)setCacheImage:(UIImage *)cacheImage;
 
 + (CGFloat)heightForProductCell;
 

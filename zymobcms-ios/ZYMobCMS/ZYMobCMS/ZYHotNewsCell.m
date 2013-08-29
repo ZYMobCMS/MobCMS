@@ -104,13 +104,37 @@
         
         NSDictionary *item = [contentArray objectAtIndex:i];
         NSString *articleId = [item objectForKey:@"article_id"];
-        NSString *imageUrl = [item objectForKey:@"images"];
         
         if([bScrollView viewWithTag:baseImageTag+i]==nil){
             
             HotImageView *newImageView = [[HotImageView alloc]init];
             newImageView.frame = CGRectMake(bScrollView.frame.size.width*i,0,bScrollView.frame.size.width,bScrollView.frame.size.height);
             newImageView.articleId = articleId;
+            [bScrollView addSubview:newImageView];
+            [newImageView release];
+                        
+            bScrollView.contentSize = CGSizeMake(contentArray.count*bScrollView.frame.size.width,bScrollView.frame.size.height);
+            
+        }
+        
+    }
+    titleLabel.text = [[contentArray objectAtIndex:0]objectForKey:@"title"];
+    pageControl.numberOfPages = mContentArray.count;
+}
+
+- (void)setImageInfo:(NSArray *)contentArray
+{
+    [mContentArray removeAllObjects];
+    [mContentArray addObjectsFromArray:contentArray];
+    for (int i=0; i<contentArray.count;i++) {
+        
+        NSDictionary *item = [contentArray objectAtIndex:i];
+        NSString *imageUrl = [item objectForKey:@"images"];
+        
+        if([bScrollView viewWithTag:baseImageTag+i]==nil){
+            
+            HotImageView *newImageView = [[HotImageView alloc]init];
+            newImageView.frame = CGRectMake(bScrollView.frame.size.width*i,0,bScrollView.frame.size.width,bScrollView.frame.size.height);
             [bScrollView addSubview:newImageView];
             [newImageView release];
             
@@ -121,12 +145,15 @@
         }else{
             
             HotImageView *imageView = (HotImageView*)[bScrollView viewWithTag:baseImageTag+i];
+            if ([BFImageCache imageForUrl:imageUrl]) {
+                imageView.image = [BFImageCache imageForUrl:imageUrl];
+            }else{
+                imageView.image = [UIImage imageNamed:@"img_faild.png"];
+            }
             [[BFImageDownloader shareLoader]downloadImageWithUrl:imageUrl forView:imageView];
         }
         
     }
-    titleLabel.text = [[contentArray objectAtIndex:0]objectForKey:@"title"];
-    pageControl.numberOfPages = mContentArray.count;
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView

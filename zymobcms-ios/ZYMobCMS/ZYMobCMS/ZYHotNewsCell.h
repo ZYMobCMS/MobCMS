@@ -25,5 +25,6 @@ typedef void (^didSelectArticle) (NSDictionary *articleItem);
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withSelectAction:(didSelectArticle)selectAction;
 
 - (void)setContentArray:(NSArray*)contentArray;
+- (void)setImageInfo:(NSArray *)contentArray;
 
 @end

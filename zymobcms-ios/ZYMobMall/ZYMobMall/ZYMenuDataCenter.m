@@ -83,12 +83,13 @@
 {
     if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
         
-        NSDictionary *infoDict = [resultDict objectForKey:@"data"];
-        
-        ZYApplicationModel *applicationModel = [[ZYApplicationModel alloc]initWithContentDict:infoDict];
         if ([self.actionsDict objectForKey:@"applicationSuccess"]) {
+            NSDictionary *infoDict = [resultDict objectForKey:@"data"];
+            ZYApplicationModel *applicationModel = [[ZYApplicationModel alloc]initWithContentDict:infoDict];
             GetApplicationInfoSuccessAction successAction = [self.actionsDict objectForKey:@"applicationSuccess"];
             successAction (applicationModel);
+            [applicationModel release];
+
         }
     }else{
         if ([self.actionsDict objectForKey:@"applicationFaild"]) {

@@ -98,15 +98,24 @@
     NSString *summary = [productDict objectForKey:@"summary"];
     NSString *price = [productDict objectForKey:@"price"];
     NSString *favcount = [productDict objectForKey:@"support_count"];
-    NSString *imageUrl = [productDict objectForKey:@"images"];
     
     [titleView setContentText:title];
     [summaryView setContentText:summary];
     [priceView setContentText:price];
     [favCountView setContentText:favcount];
+
+    
+}
+- (void)setImageInfo:(NSDictionary *)productDict
+{
+    NSString *imageUrl = [productDict objectForKey:@"images"];
     conentImageView.image = [UIImage imageNamed:@"no_photo.png"];
     [[BFImageDownloader shareLoader]downloadImageWithUrl:imageUrl forView:conentImageView];
-    
+}
+- (void)setCacheImage:(UIImage *)cacheImage
+{
+    conentImageView.image = cacheImage;
+
 }
 
 + (CGFloat)heightForProductCell

@@ -23,6 +23,7 @@
 #define CellWidth 320
 
 @implementation ZYCategoryCell
+@synthesize contentImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -140,8 +141,6 @@
         
         contentImageView.frame = CGRectMake(LeftMargin,TopMargin,imageWidth,imageHeight);
         contentImageView.hidden = NO;
-        contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
-        [contentImageView setImageUrl:images];
         
         originX = contentImageView.frame.origin.x+contentImageView.frame.size.width+TextMargin;
     }else{
@@ -167,6 +166,27 @@
     }
     
     }
+
+- (void)setImageInfo:(NSDictionary *)content
+{
+    NSString *images = [content objectForKey:@"images"];
+
+    BOOL hasImage = YES;
+    if([images isEqualToString:@""] || images == nil ){
+        
+        hasImage = NO;
+        
+    }
+    if (hasImage) {
+        contentImageView.hidden = NO;
+        if ([BFImageCache imageForUrl:images]) {
+            contentImageView.image = [BFImageCache imageForUrl:images];
+        }else{
+            contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
+        }
+        [[BFImageDownloader shareLoader]downloadImageWithUrl:images forView:contentImageView];
+    }
+}
 
 + (CGFloat)heightForContent:(NSDictionary *)content
 {
