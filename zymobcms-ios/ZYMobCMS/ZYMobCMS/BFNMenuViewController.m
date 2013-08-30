@@ -460,8 +460,14 @@
         
         //category类型
         NSArray *categoryArray  = [resultDict objectForKey:@"data"];
-                
+        [tableBasicData removeAllObjects];
+        [tableSysData removeAllObjects];
+        [viewControllers removeAllObjects];
+        [sysViewControllers removeAllObjects];
+        
         if (categoryArray.count != 0) {
+            
+
             
             NSMutableArray *featureArray = [NSMutableArray array];
             NSArray *categoryFeatureArray = [self returnFeatureClassArrayWithSortArray:categoryArray];
