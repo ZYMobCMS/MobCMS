@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZYNewsModel : NSObject
+@interface ZYNewsModel : ZYBaseModel
 @property (nonatomic,retain)NSString *articleId;
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *tabTypeId;
 @property (nonatomic,retain)NSString *title;
 @property (nonatomic,retain)NSString *source;
 @property (nonatomic,retain)NSString *publishTime;
+
+- (id)initWithSummaryContent:(NSDictionary *)content;
+- (id)initWithDetailContent:(NSDictionary*)content;
 
 @end

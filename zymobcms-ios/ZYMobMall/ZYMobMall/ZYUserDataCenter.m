@@ -8,6 +8,7 @@
 
 #import "ZYUserDataCenter.h"
 #import "ZYPictureModel.h"
+#import "ZYNewsModel.h"
 
 @implementation ZYUserDataCenter
 
@@ -104,11 +105,47 @@
 }
 - (void)getUserNewsFavListSuccess:(NSDictionary*)resultDict
 {
-    
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"newsFavSuccess"]) {
+            
+            GetUserNewsFavSuccessAction successAction = [self.actionsDict objectForKey:@"newsFavSuccess"];
+            
+            NSArray *resultArray = [resultDict objectForKey:@"data"];
+            NSMutableArray *modelArray = [NSMutableArray array];
+            for (int i=0; i<resultArray.count;i++) {
+                
+                NSDictionary *oldItem = [resultArray objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                
+                ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:newItem];
+                [modelArray addObject:model];
+                [model release];
+            }
+            
+            successAction(modelArray);
+        }
+        
+    }else{
+       
+        if([self.actionsDict objectForKey:@"newsFavFaild"]){
+            
+            GetUserNewsFavFaildAction faildAction = [self.actionsDict objectForKey:@"newsFavFaild"];
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+        }
+        
+        
+    }
 }
 - (void)getUserNewsFavListFaild:(NSDictionary*)resultDict
 {
-    
+    if([self.actionsDict objectForKey:@"newsFavFaild"]){
+        
+        GetUserNewsFavFaildAction faildAction = [self.actionsDict objectForKey:@"newsFavFaild"];        
+        faildAction(NetWorkError);
+    }
 }
 
 
@@ -161,6 +198,19 @@
         
         faildAction(NetWorkError);
     }
+}
+
+- (void)startGetUserProductFavListWithPageIndex:(NSInteger)pageIndex
+{
+    
+}
+- (void)getUserProductFavListSuccess:(NSDictionary*)resultDict
+{
+    
+}
+- (void)getUserProductFavListFaild:(NSDictionary*)resultDict
+{
+    
 }
 
 - (void)setLoginSuccessAction:(LoginSuccessAction)successAction
