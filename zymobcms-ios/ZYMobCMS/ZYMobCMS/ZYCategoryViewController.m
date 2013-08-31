@@ -47,7 +47,7 @@
     
     if(!listArray){
         listArray = [[NSMutableArray alloc]init];
-        pageIndex = 0;
+        self.pageIndex = 1;
     }
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-44) style:UITableViewStylePlain];
     listTable.dataSource = self;
@@ -80,8 +80,7 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
     [refreshBtn release];
     self.navigationItem.rightBarButtonItem = rightItem;
-    [rightItem release];
-    
+    [rightItem release];    
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,19 +123,23 @@
     NSDictionary *item = [segmentArray objectAtIndex:index];
 //    NSLog(@"item -->%@",item);
     
-    pageIndex = 0;
+    pageIndex = 1;
     self.currentTabType = [item objectForKey:@"id"];
     [self refresh];
 }
 
 #pragma mark - tableView delegate and source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [listArray count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
+    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]&&[[listArray objectAtIndex:0]count]>0) {
         if (indexPath.row == 0) {
             return 170.0f;
         }else{
@@ -150,7 +153,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
+    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]&&[[listArray objectAtIndex:0]count]>0) {
         
         if (indexPath.row == 0) {
             
@@ -181,8 +184,9 @@
                 cell = [[[ZYCategoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
             }
             [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
-            if ([BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]]) {
-                cell.contentImageView.image = [BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]];
+            NSString *firstImage = [[[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+            if ([BFImageCache imageForUrl:firstImage]) {
+                cell.contentImageView.image = [BFImageCache imageForUrl:firstImage];
             }else{
                 if (listTable.decelerating==NO||listTable.dragging==NO) {
                     [cell setImageInfo:[listArray objectAtIndex:indexPath.row]];
@@ -202,12 +206,13 @@
         }
         [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
         if ([BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]]) {
-            cell.contentImageView.image = [BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]];
+            NSString *firstImage = [[[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+            cell.contentImageView.image = [BFImageCache imageForUrl:firstImage];
         }else{
             if (listTable.decelerating==NO||listTable.dragging==NO) {
                 [cell setImageInfo:[listArray objectAtIndex:indexPath.row]];
             }
-            cell.contentImageView.image = [UIImage imageNamed:@"no_photo.png"];
+            cell.contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
         }
 
         return cell;
@@ -217,7 +222,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[listArray objectAtIndex:0]isKindOfClass:[NSArray class]]) {
+    if ([[listArray objectAtIndex:0]isKindOfClass:[NSArray class]]&&[[listArray objectAtIndex:0]count]>0) {
         
         if (indexPath.row != 0) {
             BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:[listArray objectAtIndex:indexPath.row]];
@@ -440,16 +445,13 @@
                 if (hotNews.count>0) {
                     [listArray addObject:hotNews];
                 }
-                if (normalList.count ==0 || normalList.count <PageSize) {
-                    hideLoadMore = YES;
-                }
             }else{
                 if (normalList.count ==0 || normalList.count <PageSize) {
                     hideLoadMore = YES;
                 }
             }
-            
             [listArray addObjectsFromArray:normalList];
+            
         }else{
             NSArray *resultArray = [resultDict objectForKey:@"data"];
             if (resultArray.count ==0 || resultArray.count <PageSize) {
@@ -457,9 +459,6 @@
             }
             [listArray addObjectsFromArray:resultArray];
         }
-        
-        
-//        NSLog(@"listArray -->%@",listArray);
         
         [listTable reloadData];
         
@@ -476,7 +475,9 @@
         [SVProgressHUD showErrorWithStatus:errMsg];
         BFLoadMoreView *footer = (BFLoadMoreView*)listTable.tableFooterView;
         [footer stopAnimation];
-        self.pageIndex--;
+        if (self.pageIndex>1) {
+            self.pageIndex--;
+        }
         
     }
     
@@ -492,7 +493,9 @@
         _reloading = NO;
     }
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
-    self.pageIndex--;
+    if (self.pageIndex>1) {
+        self.pageIndex--;
+    }
 }
 
 - (void)getListData

@@ -377,7 +377,8 @@
     if ([source isKindOfClass:[NSNull class]]||[(NSString*)source isEqualToString:@""]||source==nil) {
         return @"暂未填写";
     }else{
-        return (NSString*)source;
+        
+        return [ZYMobCMSUitil replaceNBSP:(NSString*)source];
     }
     
 }
