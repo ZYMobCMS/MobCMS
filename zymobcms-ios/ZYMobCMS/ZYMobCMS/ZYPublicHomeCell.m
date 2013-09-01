@@ -71,7 +71,8 @@
     NSString *content = [contentDict objectForKey:@"content"];
     NSString *date = [contentDict objectForKey:@"create_time"];
     date = [NSString stringWithFormat:@"%@",[BFUitils intervalSinceNow:date]];
-    NSString *images = [contentDict objectForKey:@"relation_images"];    
+    NSString *images = [contentDict objectForKey:@"relation_images"];
+    images = [[images componentsSeparatedByString:@"|"]objectAtIndex:0];
     NSString *relationTitle = [contentDict objectForKey:@"relation_title"];
     
     BOOL hasImage = YES;
