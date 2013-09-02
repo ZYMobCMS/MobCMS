@@ -102,6 +102,8 @@
 		3B313B7017CCB0B2002AA09E /* ZYMenuItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B313B6F17CCB0B2002AA09E /* ZYMenuItemModel.m */; };
 		3B313B7317CCB16D002AA09E /* ZYTabTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B313B7217CCB16C002AA09E /* ZYTabTypeModel.m */; };
 		3B313B7617CCB5FA002AA09E /* ZYApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B313B7517CCB5F9002AA09E /* ZYApplicationModel.m */; };
+		E451109A17D4B6E70050B173 /* ZYUserActiveDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E451109917D4B6E70050B173 /* ZYUserActiveDataCenter.m */; };
+		E451109D17D4B7070050B173 /* ZYUserActiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E451109C17D4B7070050B173 /* ZYUserActiveModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,6 +300,10 @@
 		3B313B7217CCB16C002AA09E /* ZYTabTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTabTypeModel.m; sourceTree = "<group>"; };
 		3B313B7417CCB5F8002AA09E /* ZYApplicationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYApplicationModel.h; sourceTree = "<group>"; };
 		3B313B7517CCB5F9002AA09E /* ZYApplicationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYApplicationModel.m; sourceTree = "<group>"; };
+		E451109817D4B6E70050B173 /* ZYUserActiveDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYUserActiveDataCenter.h; sourceTree = "<group>"; };
+		E451109917D4B6E70050B173 /* ZYUserActiveDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYUserActiveDataCenter.m; sourceTree = "<group>"; };
+		E451109B17D4B7070050B173 /* ZYUserActiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYUserActiveModel.h; sourceTree = "<group>"; };
+		E451109C17D4B7070050B173 /* ZYUserActiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYUserActiveModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -732,6 +738,7 @@
 		3B313B1D17CC8637002AA09E /* DataCenter */ = {
 			isa = PBXGroup;
 			children = (
+				E451109717D4B6C30050B173 /* UserActiveDataCenter */,
 				3B313B6A17CCB077002AA09E /* MenuCenter */,
 				3B313B5717CC9397002AA09E /* BaseModel */,
 				3B313B2217CC86BC002AA09E /* UserDataCenter */,
@@ -852,6 +859,17 @@
 				3B313B7517CCB5F9002AA09E /* ZYApplicationModel.m */,
 			);
 			name = MenuCenter;
+			sourceTree = "<group>";
+		};
+		E451109717D4B6C30050B173 /* UserActiveDataCenter */ = {
+			isa = PBXGroup;
+			children = (
+				E451109817D4B6E70050B173 /* ZYUserActiveDataCenter.h */,
+				E451109917D4B6E70050B173 /* ZYUserActiveDataCenter.m */,
+				E451109B17D4B7070050B173 /* ZYUserActiveModel.h */,
+				E451109C17D4B7070050B173 /* ZYUserActiveModel.m */,
+			);
+			name = UserActiveDataCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1003,6 +1021,8 @@
 				3B1C5A2117CF1AFB007B20C7 /* UIImage+Resize.m in Sources */,
 				3B1C5A2217CF1AFB007B20C7 /* UIImage+RoundedCorner.m in Sources */,
 				3B1C5A2317CF1AFB007B20C7 /* UIImage+SubImage.m in Sources */,
+				E451109A17D4B6E70050B173 /* ZYUserActiveDataCenter.m in Sources */,
+				E451109D17D4B7070050B173 /* ZYUserActiveModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

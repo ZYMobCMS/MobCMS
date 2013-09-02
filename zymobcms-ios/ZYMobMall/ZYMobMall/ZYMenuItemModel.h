@@ -12,6 +12,9 @@
 @property (nonatomic,retain)NSString *moduleId;
 @property (nonatomic,retain)NSString *index;
 @property (nonatomic,retain)NSString *name;
+@property (nonatomic,retain)NSString *icon;
+@property (nonatomic,retain)NSString *isLocalIcon;
+@property (nonatomic,retain)NSString *categoryId;
 
 - (id)initWithContentDict:(NSDictionary*)contentDict;
 

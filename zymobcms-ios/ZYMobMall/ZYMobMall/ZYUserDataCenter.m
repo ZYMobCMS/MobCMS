@@ -39,7 +39,7 @@
         if ([self.actionsDict objectForKey:@"loginSuccess"]) {
             
             LoginSuccessAction loginSuccessAction = [self.actionsDict objectForKey:@"loginSuccess"];
-            loginSuccessAction();
+            loginSuccessAction(@"登陆成功");
         }
         
     }else{
@@ -72,7 +72,7 @@
         if ([self.actionsDict objectForKey:@"rigistSuccess"]) {
             
             RigistSuccessAction rigistAction = [self.actionsDict objectForKey:@"rigistSuccess"];
-            rigistAction();
+            rigistAction(@"注册成功");
         }
         
     }else{

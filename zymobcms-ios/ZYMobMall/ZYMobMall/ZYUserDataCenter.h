@@ -11,9 +11,9 @@
 #import "ZYUserManager.h"
 #import "ZYBaseDataCenter.h"
 
-typedef void (^LoginSuccessAction) (void);
+typedef void (^LoginSuccessAction) (NSString *successMsg);
 typedef void (^LoginFaildAction) (NSString *errMsg);
-typedef void (^RigistSuccessAction) (void);
+typedef void (^RigistSuccessAction) (NSString *successMsg);
 typedef void (^RigistFaildAction) (NSString *errMsg);
 typedef void (^GetUserNewsFavSuccessAction) (NSArray *favListArray);
 typedef void (^GetUserNewsFavFaildAction) (NSString *errMsg);
