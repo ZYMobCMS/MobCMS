@@ -100,9 +100,9 @@
 {
     [mContentArray removeAllObjects];
     [mContentArray addObjectsFromArray:contentArray];
-    for (int i=0; i<contentArray.count;i++) {
+    for (int i=0; i<mContentArray.count;i++) {
         
-        NSDictionary *item = [contentArray objectAtIndex:i];
+        NSDictionary *item = [mContentArray objectAtIndex:i];
         NSString *articleId = [item objectForKey:@"article_id"];
         
         if([bScrollView viewWithTag:baseImageTag+i]==nil){
@@ -126,10 +126,11 @@
 {
     [mContentArray removeAllObjects];
     [mContentArray addObjectsFromArray:contentArray];
-    for (int i=0; i<contentArray.count;i++) {
+    for (int i=0; i<mContentArray.count;i++) {
         
-        NSDictionary *item = [contentArray objectAtIndex:i];
-        NSString *imageUrl = [item objectForKey:@"images"];
+        NSDictionary *item = [mContentArray objectAtIndex:i];
+        NSString *firstImage = [[[item objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+        NSString *imageUrl = firstImage;
         
         if([bScrollView viewWithTag:baseImageTag+i]==nil){
             

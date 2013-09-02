@@ -15,6 +15,7 @@
     NSMutableArray *sourceArray;
     UITableView    *listTable;
     
+    BOOL _reloading;
 }
 
 

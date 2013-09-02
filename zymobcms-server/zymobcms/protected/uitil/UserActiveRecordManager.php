@@ -40,7 +40,7 @@ class UserActiveRecordManager {
         
         //如果查到了关联内容的表
         $buildRecordContent = '';
-        if($findActiveTypeTable){
+        if($findActiveTypeResultObj){
         	
         	if($findActiveTypeResultObj->can_show_detail){
         		

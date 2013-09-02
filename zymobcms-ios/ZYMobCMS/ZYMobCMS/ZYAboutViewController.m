@@ -58,6 +58,15 @@
     [listTable addSubview:headView];
     [headView release];
 
+    //设置右上角刷新
+    BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
+        [self getAboutInfo];
+    }];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
+    [refreshBtn release];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
+
     [self getAboutInfo];
     
 }
@@ -161,6 +170,8 @@
 #pragma mark - 获取关于信息
 - (void)getAboutInfo
 {
+    [self startLoading];
+    _reloading = YES;
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeAbout  withParams:nil withHelperDelegate:self withSuccessRequestMethod:@"getAboutInfoSuccess:" withFaildRequestMethod:@"getAboutInfoFaild:"];
 }
 
@@ -168,22 +179,34 @@
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
+        if (_reloading) {
+            [sourceArray removeAllObjects];
+        }
         [sourceArray addObjectsFromArray:[resultDict objectForKey:@"data"]];
         [listTable reloadData];
         
-    }else{
-        
-        
     }
+    if (_reloading) {
+        _reloading = NO;
+    }
+    [self stopLoading];
 }
 
 - (void)getAboutInfoFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        _reloading = NO;
+    }
+    [self stopLoading];
 }
 
 - (void)contactUsNow
 {
+    if (sourceArray.count==0) {
+        [self getAboutInfo];
+        return;
+    }
+    
     UIActionSheet *chooseSheet = [[UIActionSheet alloc]initWithTitle:@"选择方式" delegate:self cancelButtonTitle:@"退出" destructiveButtonTitle:@"呼叫座机" otherButtonTitles:@"呼叫手机",@"在线反馈",@"邮件反馈",@"短信反馈",nil];
     [chooseSheet showInView:self.view];
     [chooseSheet release];

@@ -86,6 +86,8 @@
     NSString *date = [content objectForKey:@"publish_time"];
     NSString *summary = [content objectForKey:@"summary"];
     NSString *images = [content objectForKey:@"images"];
+    images = [[[content objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+
     
     [titleView setContentText:title];
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
@@ -169,7 +171,11 @@
 
 - (void)setImageInfo:(NSDictionary *)content
 {
-    NSString *images = [content objectForKey:@"images"];
+    if ([content objectForKey:@"images"]==nil||[[content objectForKey:@"images"]isEqualToString:@""]) {
+        return;
+    }
+    NSString *firstImage = [[[content objectForKey:@"images"] componentsSeparatedByString:@"|"]objectAtIndex:0];
+    NSString *images = firstImage;
 
     BOOL hasImage = YES;
     if([images isEqualToString:@""] || images == nil ){
@@ -195,6 +201,8 @@
     NSString *source = [content objectForKey:@"source"];
     NSString *summary = [content objectForKey:@"summary"];
     NSString *images = [content objectForKey:@"images"];
+    images = [[[content objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+
 
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
 
