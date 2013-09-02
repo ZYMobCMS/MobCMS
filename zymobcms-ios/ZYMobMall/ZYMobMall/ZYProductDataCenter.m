@@ -165,6 +165,153 @@
         faildAction(NetWorkError);
     }
 }
+- (void)startGetProductCommentListWithPictureId:(NSString *)productId withPageIndex:(NSInteger)pageIndex
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:productId forKey:@"productId"];
+    [params setObject:[NSNumber numberWithInt:pageIndex]  forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getCommentListSuccess:" withFaildRequestMethod:@"getCommentListFaild:"];
+}
+- (void)getCommentListSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"commentListSuccess"]) {
+            
+            GetProductCommentListSuccessAction successAction = [self.actionsDict objectForKey:@"commentListSuccess"];
+            
+            NSArray *resultArray = [resultDict objectForKey:@"data"];
+            NSMutableArray *modelArray = [NSMutableArray array];
+            
+            for (int i=0; i<resultArray.count;i++) {
+                
+                NSDictionary *oldItem = [resultArray objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                
+                ZYCommentModel *model = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
+                [modelArray addObject:model];
+                [model release];
+            }
+            
+            successAction(modelArray);
+        }
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"commentListFaild"]) {
+            
+            GetProductCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"commentListFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+        }
+        
+    }
+}
+- (void)getCommentListFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"commentListFaild"]) {
+        
+        GetProductCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"commentListFaild"];
+                
+        faildAction(NetWorkError);
+    }
+}
+- (void)commentProductWithProductId:(NSString *)productId withContent:(NSString *)content
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:content forKey:@"content"];
+    
+    [params setObject:productId forKey:@"productId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCommentProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"commentProductSuccess:" withFaildRequestMethod:@"commentProductFaild:"];
+}
+- (void)commentProductSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"commentSuccess"]) {
+            
+            CommentProductSuccessAction successAction = [self.actionsDict objectForKey:@"commentSuccess"];
+            
+            NSDictionary *oldItem = [resultDict objectForKey:@"data"];
+            NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+            
+            ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
+            
+            successAction(commentModel);
+            
+            [commentModel release];
+        }
+        
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"commentFaild"]) {
+            
+            CommentProductFaildAction faildAction = [self.actionsDict objectForKey:@"commentFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+        }
+        
+    }
+}
+- (void)commentProductFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"commentFaild"]) {
+        
+        CommentProductFaildAction faildAction = [self.actionsDict objectForKey:@"commentFaild"];
+        
+        faildAction(NetWorkError);
+    }
+    
+}
+- (void)favoriteProductWithProductId:(NSString *)productId
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:productId forKey:@"productId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoriteProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoriteProductSuccess:" withFaildRequestMethod:@"favoriteProductFaild:"];
+}
+- (void)favoriteProductSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"favoriteSuccess"]) {
+            
+            FavoriteProductSuccessAction successAction = [self.actionsDict objectForKey:@"favoriteSuccess"];
+            
+            successAction(@"收藏成功");
+            
+        }
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"favoriteFaild"]) {
+            
+            FavoriteProductFaildAction faildAction = [self.actionsDict objectForKey:@"favoriteFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+        }
+        
+    }
+}
+- (void)favoriteProductFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"favoriteFaild"]) {
+        
+        FavoriteProductFaildAction faildAction = [self.actionsDict objectForKey:@"favoriteFaild"];
+        
+        faildAction(NetWorkError);
+    }
+}
 
 - (void)setGetProductListSuccessAction:(GetProductListSuccessAction)successAction
 {
@@ -204,6 +351,41 @@
     [self.actionsDict setObject:detailFaild forKey:@"detailFaild"];
     [detailFaild release];
 }
-
+- (void)setGetProductCommentListSuccessAction:(GetProductCommentListSuccessAction)successAction
+{
+    GetProductCommentListSuccessAction commentListSuccess = [successAction copy];
+    [self.actionsDict setObject:commentListSuccess forKey:@"commentListSuccess"];
+    [commentListSuccess release];
+}
+- (void)setGetProductCommentListFaildAction:(GetProductCommentListFaildAction)faildAction
+{
+    GetProductCommentListFaildAction commentListFaild = [faildAction copy];
+    [self.actionsDict setObject:commentListFaild forKey:@"commentListFaild"];
+    [commentListFaild release];
+}
+- (void)setCommentProductSuccessAction:(CommentProductSuccessAction)successAction
+{
+    CommentProductSuccessAction commentSuccess = [successAction copy];
+    [self.actionsDict setObject:commentSuccess forKey:@"commentSuccess"];
+    [commentSuccess release];
+}
+- (void)setCommentProductFaildAction:(CommentProductFaildAction)faildAction
+{
+    CommentProductFaildAction commentFaild = [faildAction copy];
+    [self.actionsDict setObject:commentFaild forKey:@"commentFaild"];
+    [commentFaild release];
+}
+- (void)setFavoriteProductSuccessAction:(FavoriteProductSuccessAction)successAction
+{
+    FavoriteProductSuccessAction favoriteSuccess = [successAction copy];
+    [self.actionsDict setObject:favoriteSuccess forKey:@"favoriteSuccess"];
+    [favoriteSuccess release];
+}
+- (void)setFavoriteProductFaildAction:(FavoriteProductFaildAction)faildAction
+{
+    FavoriteProductFaildAction favoriteFaild = [faildAction copy];
+    [self.actionsDict setObject:favoriteFaild forKey:@"favoriteFaild"];
+    [favoriteFaild release];
+}
 
 @end

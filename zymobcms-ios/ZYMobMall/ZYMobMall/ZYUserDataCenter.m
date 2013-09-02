@@ -9,6 +9,8 @@
 #import "ZYUserDataCenter.h"
 #import "ZYPictureModel.h"
 #import "ZYNewsModel.h"
+#import "ZYProductModel.h"
+#import "ZYCommentModel.h"
 
 @implementation ZYUserDataCenter
 
@@ -202,15 +204,221 @@
 
 - (void)startGetUserProductFavListWithPageIndex:(NSInteger)pageIndex
 {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserProductFavoriteList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserProductFavListSuccess:" withFaildRequestMethod:@"getUserProductFavListFaild:"];
 }
 - (void)getUserProductFavListSuccess:(NSDictionary*)resultDict
 {
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+     
+        if ([self.actionsDict objectForKey:@"productFavSuccess"]) {
+            
+            GetUserProductFavSuccessAction successAction = [self.actionsDict objectForKey:@"productFavSuccess"];
+            
+            NSArray *resultArray = [resultDict objectForKey:@"data"];
+            
+            NSMutableArray *modelArray = [NSMutableArray array];
+            for (int i=0; i<resultArray.count; i++) {
+                
+                ZYProductModel *pModel = [[ZYProductModel alloc]initWithSummaryContentDict:[resultArray objectAtIndex:i]];
+                [modelArray addObject:pModel];
+                [pModel release];
+                
+            }
+            
+            successAction(modelArray);
     
+        }
+        
+    }else{
+        
+        if([self.actionsDict objectForKey:@"productFavFaild"]){
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            GetUserProductFavFaildAction faildAction = [self.actionsDict objectForKey:@"productFavFaild"];
+            
+            faildAction(errMsg);
+        }
+        
+    
+    }
 }
 - (void)getUserProductFavListFaild:(NSDictionary*)resultDict
 {
+    if([self.actionsDict objectForKey:@"productFavFaild"]){
+                
+        GetUserProductFavFaildAction faildAction = [self.actionsDict objectForKey:@"productFavFaild"];
+        
+        faildAction(NetWorkError);
+    }
+}
+
+- (void)startGetuserNewsCommentListWithPageIndex:(NSInteger)pageIndex
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInt:ZYListPageSize ] forKey:@"pageSize"];
     
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserComment  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getNewsCommentListSuccess:" withFaildRequestMethod:@"getNewsCommentListFaild:"];
+}
+- (void)getNewsCommentListSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"newsCommentSuccess"]) {
+            
+            GetUserNewsCommentListSuccessAction successAction = [self.actionsDict objectForKey:@"newsCommentSuccess"];
+            
+            NSArray *resultArray = [resultDict objectForKey:@"data"];
+            
+            NSMutableArray *modelArray = [NSMutableArray array];
+            for (int i=0; i<resultArray.count; i++) {
+                
+                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+                [modelArray addObject:pModel];
+                [pModel release];
+                
+            }
+            
+            successAction(modelArray);
+            
+        }
+        
+    }else{
+        
+        if([self.actionsDict objectForKey:@"newsCommentFaild"]){
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            GetUserNewsCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"newsCommentFaild"];
+            
+            faildAction(errMsg);
+        }
+        
+        
+    }
+
+}
+- (void)getNewsCommentListFaild:(NSDictionary*)resultDict
+{
+    if([self.actionsDict objectForKey:@"newsCommentFaild"]){
+                
+        GetUserNewsCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"newsCommentFaild"];
+        
+        faildAction(NetWorkError);
+    }
+}
+- (void)startGetUserPictureCommentListWithPageIndex:(NSInteger)pageIndex
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInt:ZYListPageSize ] forKey:@"pageSize"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPictureCommentList  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPicCommentListSuccess:" withFaildRequestMethod:@"getUserPicCommentListFaild:"];
+}
+- (void)getUserPicCommentListSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"picCommentSuccess"]) {
+            
+            GetUserPicCommentListSuccessAction successAction = [self.actionsDict objectForKey:@"picCommentSuccess"];
+            
+            NSArray *resultArray = [resultDict objectForKey:@"data"];
+            
+            NSMutableArray *modelArray = [NSMutableArray array];
+            for (int i=0; i<resultArray.count; i++) {
+                
+                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+                [modelArray addObject:pModel];
+                [pModel release];
+                
+            }
+            
+            successAction(modelArray);
+            
+        }
+        
+    }else{
+        
+        if([self.actionsDict objectForKey:@"picCommentFaild"]){
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            GetUserPicCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"picCommentFaild"];
+            
+            faildAction(errMsg);
+        }
+        
+        
+    }
+}
+- (void)getUserPicCommentListFaild:(NSDictionary*)resultDict
+{
+    if([self.actionsDict objectForKey:@"picCommentFaild"]){
+                
+        GetUserPicCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"picCommentFaild"];
+        
+        faildAction(NetWorkError);
+    }
+}
+- (void)startGetUserProductCommentListWithPageIndex:(NSInteger)pageIndex
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInt:ZYListPageSize ] forKey:@"pageSize"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserProductCommentList  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPodcutCommentListSuccess:" withFaildRequestMethod:@"getUserProductCommentListFaild:"];
+}
+- (void)getUserPodcutCommentListSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"productCommentSuccess"]) {
+            
+            GetUserProductCommentListSuccessAction successAction = [self.actionsDict objectForKey:@"productCommentSuccess"];
+            
+            NSArray *resultArray = [resultDict objectForKey:@"data"];
+            
+            NSMutableArray *modelArray = [NSMutableArray array];
+            for (int i=0; i<resultArray.count; i++) {
+                
+                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+                [modelArray addObject:pModel];
+                [pModel release];
+                
+            }
+            
+            successAction(modelArray);
+            
+        }
+        
+    }else{
+        
+        if([self.actionsDict objectForKey:@"productCommentFaild"]){
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            GetUserProductCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"productCommentFaild"];
+            
+            faildAction(errMsg);
+        }
+        
+        
+    }
+}
+- (void)getUserProductCommentListFaild:(NSDictionary*)resultDict
+{
+    if([self.actionsDict objectForKey:@"productCommentFaild"]){
+                
+        GetUserProductCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"productCommentFaild"];
+        
+        faildAction(NetWorkError);
+    }
 }
 
 - (void)setLoginSuccessAction:(LoginSuccessAction)successAction

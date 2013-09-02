@@ -7,7 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZYCommentModel.h"
+#import "ZYNewsModel.h"
+#import "ZYTabTypeModel.h"
+
+typedef void (^GetNewsListSuccessAction) (NSArray *modelArray);
+typedef void (^GetNewsListFaildAction) (NSString *errMsg);
+typedef void (^CommentNewsSuccessAction) (ZYCommentModel *commentModel);
+typedef void (^CommentNewsFaildAction) (NSString *errMsg);
+typedef void (^FavoriteNewsSuccessAction) (NSString *successMsg);
+typedef void (^FavoriteNewsFaildAction) (NSString *errMsg);
+typedef void (^GetArticleCommentListSuccessAction) (NSArray *modelArray);
+typedef void (^GetArticleCommentListFaildAction) (NSString *errMsg);
+typedef void (^GetTabTypesSuccessAction) (NSArray *modelArray);
+typedef void (^GetTabTypesFaildAction) (NSString *errMsg);
 
 @interface ZYNewsDataCenter : ZYBaseDataCenter
+
+- (void)startGetNewsListWithPageIndex:(NSInteger)pageIndex withCategoryId:(NSString *)categoryId withTabTypeId:(NSString *)tabTypeId;
+- (void)setGetNewsListSuccessAction:(GetNewsListSuccessAction)successAction;
+- (void)setGetNewsListFaildAction:(GetNewsListFaildAction)faildAction;
+
+- (void)commentArticleWithId:(NSString *)articleId withContent:(NSString *)content;
+- (void)setCommentArticleSuccessAction:(CommentNewsSuccessAction)successAction;
+- (void)setCommentArticleFaildAction:(CommentNewsFaildAction)faildAction;
+
+- (void)favoriteArticleWithId:(NSString *)articleId;
+- (void)setFavoriteArticleSuccess:(FavoriteNewsSuccessAction)successAction;
+- (void)setFavoriteArticleFaild:(FavoriteNewsFaildAction)faildAction;
+
+- (void)startGetArticleCommentListWithArticleId:(NSString *)articleId withPageIndex:(NSInteger)pageIndex;
+- (void)setGetArticleCommentListSuccessAction:(GetArticleCommentListSuccessAction)successAction;
+- (void)setGetArticleCommentListFaildAction:(GetArticleCommentListFaildAction)faildAction;
+
+- (void)startGetTabTypesByCategoryId:(NSString *)categoryId;
+- (void)setGetTabTypesSuccessAction:(GetTabTypesSuccessAction)successAction;
+- (void)setGetTabTypesFaildAction:(GetTabTypesFaildAction)faildAction;
 
 @end

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZYCommentModel : NSObject
+@interface ZYCommentModel : ZYBaseModel
+
+- (id)initWithSummaryDict:(NSDictionary*)contentDict;
+- (id)initWithDetailDict:(NSDictionary*)contentDict;
 
 @end

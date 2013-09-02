@@ -11,4 +11,12 @@
 #import "ZYBaseModel.h"
 #import "ZYBaseDataCenter.h"
 
+typedef enum {
+
+    ZYBaseTypeArticle = 0,
+    ZYBaseTypePicture,
+    ZYBaseTypeProduct,
+    
+}ZYBaseType;
+
 #define ZYListPageSize 10

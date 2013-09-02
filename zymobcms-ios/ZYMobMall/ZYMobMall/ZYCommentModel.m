@@ -9,5 +9,21 @@
 #import "ZYCommentModel.h"
 
 @implementation ZYCommentModel
+- (id)initWithSummaryDict:(NSDictionary*)contentDict
+{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
+- (id)initWithDetailDict:(NSDictionary*)contentDict
+{
+    if (self = [super init]) {
+        
+        
+    }
+    return self;
+}
 
 @end
