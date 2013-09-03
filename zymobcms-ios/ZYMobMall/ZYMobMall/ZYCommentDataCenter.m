@@ -31,7 +31,10 @@
             NSMutableArray *modelArray = [NSMutableArray array];
             for (int i=0;i<resultArray.count;i++) {
                 
-                ZYCommentModel *model = [[ZYCommentModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+                NSDictionary *oldItem = [resultArray objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                [newItem setObject:[oldItem objectForKey:@"article_id"] forKey:@"relation_id"];
+                ZYCommentModel *model = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
                 [modelArray addObject:model];
                 [model release];
             }

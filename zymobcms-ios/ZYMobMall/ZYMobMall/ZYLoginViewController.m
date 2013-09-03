@@ -47,8 +47,9 @@
     [passwordField release];
     
     userCenter = [[ZYUserDataCenter alloc]init];
-    [userCenter setLoginSuccessAction:^{
-        [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+    [userCenter setLoginSuccessAction:^(NSString *successMsg) {
+        [SVProgressHUD showSuccessWithStatus:successMsg];
+
     }];
     [userCenter setLoginFaildAction:^(NSString *errMsg) {
         [SVProgressHUD showErrorWithStatus:errMsg];
@@ -57,8 +58,8 @@
     [userCenter setRigistFaildAction:^(NSString *errMsg) {
         [SVProgressHUD showSuccessWithStatus:errMsg];
     }];
-    [userCenter setRigistSuccessAction:^{
-        [SVProgressHUD showSuccessWithStatus:@"注册成功"];
+    [userCenter setRigistSuccessAction:^(NSString *successMsg) {
+        [SVProgressHUD showSuccessWithStatus:successMsg];
     }];
     
     BFNBarButton *loginBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(50,160,60,35) withImage:nil withTapOnBarButton:^(BFNBarButton *sender) {

@@ -27,11 +27,26 @@
         if ([self.actionsDict objectForKey:@"listSuccess"]) {
             
             GetNewsListSuccessAction successAction = [self.actionsDict objectForKey:@"listSuccess"];
-            NSArray *resultArray = [resultDict objectForKey:@"data"];
+            NSDictionary *allDict = [resultDict objectForKey:@"data"];
             NSMutableArray *modelArray = [NSMutableArray array];
-            for (int i=0; i<resultArray.count; i++) {
+
+            NSArray *hotNews = [allDict objectForKey:@"hotNews"];
+            NSArray *normalList = [allDict objectForKey:@"newsList"];
+            
+            if (hotNews.count>0) {
+                NSMutableArray *hotArray = [NSMutableArray array];
+                for (int i=0; i<hotNews.count; i++) {
+                    
+                    ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:[hotNews objectAtIndex:i]];
+                    [hotArray addObject:model];
+                    [model release];
+                }
+                [modelArray addObject:hotArray];
+            }
+            
+            for (int i=0; i<normalList.count; i++) {
                 
-                ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:[resultArray objectAtIndex:i]];
+                ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:[normalList objectAtIndex:i]];
                 [modelArray addObject:model];
                 [model release];
             }
@@ -134,8 +149,10 @@
             CommentNewsSuccessAction successAction = [self.actionsDict objectForKey:@"commentSuccess"];
             
             NSDictionary *resultComment = [resultDict objectForKey:@"data"];
+            NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:resultComment];
+            [newItem setObject:[resultComment objectForKey:@"article_id"] forKey:@"relation_id"];
             
-            ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:resultComment];
+            ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
             
             successAction (commentModel);
             
@@ -224,6 +241,7 @@
                 
                 NSDictionary *oldItem = [resultArray objectAtIndex:i];
                 NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                [newItem setObject:[oldItem objectForKey:@"article_id"] forKey:@"relation_id"];
                 
                 ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
                 [modelArray addObject:commentModel];

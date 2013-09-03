@@ -8,6 +8,7 @@
 
 #import "ZYMobMallAppDelegate.h"
 #import "ZYLoginViewController.h"
+#import "ZYTestViewController.h"
 
 @implementation ZYMobMallAppDelegate
 
@@ -23,8 +24,12 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    ZYLoginViewController *loginVC = [[ZYLoginViewController alloc]init];
-    self.window.rootViewController = loginVC;
+//    ZYLoginViewController *loginVC = [[ZYLoginViewController alloc]init];
+//    self.window.rootViewController = loginVC;
+    
+    ZYTestViewController *testVC = [[ZYTestViewController alloc]initWithNibName:@"ZYTestViewController" bundle:nil];
+    self.window.rootViewController = testVC;
+    
     [self.window makeKeyAndVisible];
 
     return YES;

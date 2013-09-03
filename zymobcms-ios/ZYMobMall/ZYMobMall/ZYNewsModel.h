@@ -12,11 +12,22 @@
 @property (nonatomic,retain)NSString *articleId;
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *tabTypeId;
+
 @property (nonatomic,retain)NSString *title;
 @property (nonatomic,retain)NSString *source;
 @property (nonatomic,retain)NSString *publishTime;
+@property (nonatomic,retain)NSString *images;
+@property (nonatomic,retain)NSString *author;
+@property (nonatomic,retain)NSString *commentCount;
+@property (nonatomic,retain)NSString *favoriteCount;
+@property (nonatomic,retain)NSString *links;
+@property (nonatomic,retain)NSString *commentable;
+@property (nonatomic,retain)NSString *hotNews;
+@property (nonatomic,retain)NSString *industryId;
+@property (nonatomic,retain)NSString *summary;
+@property (nonatomic,retain)NSString *content;
 
-- (id)initWithSummaryContent:(NSDictionary *)content;
-- (id)initWithDetailContent:(NSDictionary*)content;
+- (id)initWithSummaryContent:(NSDictionary *)contentDict;
+- (id)initWithDetailContent:(NSDictionary*)contentDict;
 
 @end

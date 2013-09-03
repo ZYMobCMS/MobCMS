@@ -10,6 +10,12 @@
 #import "BFNetworkHelper.h"
 #import "ZYBaseModel.h"
 #import "ZYBaseDataCenter.h"
+#import "ZYMenuDataCenter.h"
+#import "ZYUserDataCenter.h"
+#import "ZYProductDataCenter.h"
+#import "ZYPictureDataCenter.h"
+#import "ZYNewsDataCenter.h"
+#import "ZYCommentDataCenter.h"
 
 typedef enum {
 

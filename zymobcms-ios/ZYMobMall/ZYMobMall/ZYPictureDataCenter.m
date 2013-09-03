@@ -213,6 +213,7 @@
                 
                 NSDictionary *oldItem = [resultDict objectForKey:@"data"];
                 NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                [newItem setObject:[oldItem objectForKey:@"picture_id"] forKey:@"relation_id"];
                 
                 ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
                 
@@ -266,7 +267,7 @@
             
             NSDictionary *oldItem = [resultDict objectForKey:@"data"];
             NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
-            
+            [newItem setObject:[oldItem objectForKey:@"picture_id"] forKey:@"relation_id"];
             ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
             
             successAction(commentModel);

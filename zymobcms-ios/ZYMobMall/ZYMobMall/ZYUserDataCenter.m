@@ -119,6 +119,7 @@
                 
                 NSDictionary *oldItem = [resultArray objectAtIndex:i];
                 NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                [newItem setObject:[oldItem objectForKey:@"id"] forKey:@"article_id"];
                 
                 ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:newItem];
                 [modelArray addObject:model];

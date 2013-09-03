@@ -10,6 +10,7 @@
 
 @implementation ZYTabTypeModel
 @synthesize tabTypeId,name,icon,isLocalIcon;
+@synthesize categoryId;
 
 - (id)initWithContentDict:(NSDictionary *)contentDict
 {
@@ -19,6 +20,7 @@
         self.name = [contentDict objectForKey:@"type_name"];
         self.icon = [contentDict objectForKey:@"icon"];
         self.isLocalIcon = [contentDict objectForKey:@"is_local_icon"];
+        self.categoryId = [contentDict objectForKey:@"category_id"];
         
     }
     return self;
@@ -29,6 +31,7 @@
     self.name = nil;
     self.icon = nil;
     self.isLocalIcon = nil;
+    self.categoryId = nil;
     [super dealloc];
 }
 
@@ -40,6 +43,7 @@
         self.name = [aDecoder decodeObjectForKey:@"name"];
         self.isLocalIcon = [aDecoder decodeObjectForKey:@"isLocalIcon"];
         self.icon = [aDecoder decodeObjectForKey:@"icon"];
+        self.categoryId = [aDecoder decodeObjectForKey:@"categoryId"];
 
     }
     return self;
@@ -51,6 +55,7 @@
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.isLocalIcon forKey:@"isLocalIcon"];
     [aCoder encodeObject:self.icon forKey:@"icon"];
+    [aCoder encodeObject:self.categoryId forKey:@"categoryId"];
 
 }
 
