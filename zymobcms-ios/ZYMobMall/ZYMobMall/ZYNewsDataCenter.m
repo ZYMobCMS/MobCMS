@@ -37,7 +37,11 @@
                 NSMutableArray *hotArray = [NSMutableArray array];
                 for (int i=0; i<hotNews.count; i++) {
                     
-                    ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:[hotNews objectAtIndex:i]];
+                    NSDictionary *oldItem = [hotNews objectAtIndex:i];
+                    NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                    [newItem setObject:[oldItem objectForKey:@"id"] forKey:@"article_id"];
+                    
+                    ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:newItem];
                     [hotArray addObject:model];
                     [model release];
                 }
@@ -46,7 +50,11 @@
             
             for (int i=0; i<normalList.count; i++) {
                 
-                ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:[normalList objectAtIndex:i]];
+                NSDictionary *oldItem = [normalList objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                [newItem setObject:[oldItem objectForKey:@"id"] forKey:@"article_id"];
+                
+                ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:newItem];
                 [modelArray addObject:model];
                 [model release];
             }
@@ -205,7 +213,17 @@
             
             FavoriteNewsFaildAction faildAction = [self.actionsDict objectForKey:@"favoriteFaild"];
             NSString *errMsg = [resultDict objectForKey:@"msg"];
-            faildAction(errMsg);
+            if ([errMsg isEqualToString:@"已经收藏过该文章"]) {
+                
+                if ([self.actionsDict objectForKey:@"favoriteSuccess"]) {
+                    FavoriteNewsSuccessAction successAction = [self.actionsDict objectForKey:@"favoriteSuccess"];
+                    
+                    successAction(@"收藏成功");
+                }
+                
+            }else{
+                faildAction(errMsg);
+            }
         }
         
     }
@@ -274,6 +292,182 @@
         faildAction(NetWorkError);
     }
 }
+- (void)startGetNewsDetailWithArticleId:(NSString *)articleId
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:articleId forKey:@"articleId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeArticleDetail withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getNewsDetailSuccess:" withFaildRequestMethod:@"getNewsDetailFaild:"];
+}
+- (void)getNewsDetailSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"detailSuccess"]) {
+            
+            GetNewsDetailSuccessAction successAction = [self.actionsDict objectForKey:@"detailSuccess"];
+            
+            NSDictionary *resultItem = [resultDict objectForKey:@"data"];
+            NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:resultItem];
+            [newItem setObject:[resultItem objectForKey:@"id"] forKey:@"aritcle_id"];
+            [newItem setObject:[ZYBaseModel replaceNBSPString:[resultItem objectForKey:@"content"]] forKey:@"content"];
+            
+            ZYNewsModel *newsModel = [[ZYNewsModel alloc]initWithDetailContent:newItem];
+            
+            successAction (newsModel);
+            
+            [newsModel release];
+            
+        }
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"detailFaild"]) {
+            
+            GetNewsListFaildAction faildAction = [self.actionsDict objectForKey:@"detailFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction (errMsg);
+            
+        }
+        
+    }
+    
+}
+- (void)getNewsDetailFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"detailFaild"]) {
+        
+        GetNewsListFaildAction faildAction = [self.actionsDict objectForKey:@"detailFaild"];
+                
+        faildAction (NetWorkError);
+        
+    }
+}
+
+- (void)supportCommentWithCommentId:(NSString *)commentId
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeSupportComment withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
+}
+- (void)supportCommentSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"supCommentSuccess"]) {
+            
+            SupportCommentSuccessAction successAction = [self.actionsDict objectForKey:@"supCommentSuccess"];
+            
+            successAction(@"支持成功");
+        }
+        
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
+            
+            SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+        }
+        
+    }
+}
+- (void)supportCommentFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
+        
+        SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+                
+        faildAction(NetWorkError);
+    }
+}
+
+- (void)unSupportCommentWithCommentId:(NSString *)commentId
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUnSupportComment withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
+}
+- (void)unSupportCommentSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"unSupCommentSuccess"]) {
+            
+            unSupportCommentSuccessAction successAction = [self.actionsDict objectForKey:@"unSupCommentSuccess"];
+            
+            successAction(@"取消成功");
+        }
+        
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"unSupCommentFaild"]) {
+            
+            unSupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"unSupCommentFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+        }
+        
+    }
+}
+- (void)unSupportCommentFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"unSupCommentFaild"]) {
+        
+        unSupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"unSupCommentFaild"];
+        
+        faildAction(NetWorkError);
+    }
+}
+
+- (void)unFavoriteArticleWithArticleId:(NSString *)articleId
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObject:articleId forKey:@"articleId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoriteArticle withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoriteArticleSuccess:" withFaildRequestMethod:@"unFavoriteArticleFaild:"];
+}
+- (void)unFavoriteArticleSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"unFavSuccess"]) {
+            
+            unFavoriteArticleSuccessAction successAction = [self.actionsDict objectForKey:@"unFavSuccess"];
+            
+            successAction(@"取消收藏");
+        }
+        
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"unFavFaild"]) {
+            
+            unFavoriteArticleFaildAction faildAction = [self.actionsDict objectForKey:@"unFavFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+        }
+        
+    }
+}
+- (void)unFavoriteArticleFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"unFavFaild"]) {
+        
+        unFavoriteArticleFaildAction faildAction = [self.actionsDict objectForKey:@"unFavFaild"];
+                
+        faildAction(NetWorkError);
+    }
+}
 
 - (void)setGetNewsListSuccessAction:(GetNewsListSuccessAction)successAction
 {
@@ -334,6 +528,56 @@
     GetTabTypesFaildAction tabTypeFaild = [faildAction copy];
     [self.actionsDict setObject:tabTypeFaild forKey:@"tabFaild"];
     [tabTypeFaild release];
+}
+- (void)setGetNewsDetailSuccessAction:(GetNewsDetailSuccessAction)successAction
+{
+    GetNewsDetailSuccessAction detailSuccess = [successAction copy];
+    [self.actionsDict setObject:detailSuccess forKey:@"detailSuccess"];
+    [detailSuccess release];
+}
+- (void)setGetNewsDetailFaildAction:(GetNewsDetailFaildAction)faildAction
+{
+    GetNewsDetailFaildAction detailFaild = [faildAction copy];
+    [self.actionsDict setObject:detailFaild forKey:@"detailFaild"];
+    [detailFaild release];
+}
+- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction
+{
+    SupportCommentSuccessAction supCommentSuccess = [successAction copy];
+    [self.actionsDict setObject:supCommentSuccess forKey:@"supCommentSuccess"];
+    [supCommentSuccess release];
+}
+- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction
+{
+    SupportCommentFaildAction supCommentFaild = [faildAction copy];
+    [self.actionsDict setObject:supCommentFaild forKey:@"supCommentFaild"];
+    [supCommentFaild release];
+}
+- (void)setUnSupportCommentSuccessAction:(unSupportCommentSuccessAction)successAction
+{
+    unSupportCommentSuccessAction unSupCommentSuccess = [successAction copy];
+    [self.actionsDict setObject:unSupCommentSuccess forKey:@"unSupCommentSuccess"];
+    [unSupCommentSuccess release];
+}
+- (void)setUnSupportCommentFaildAction:(unSupportCommentFaildAction)faildAction
+{
+    unSupportCommentFaildAction unSupCommentFaild = [faildAction copy];
+    [self.actionsDict setObject:unSupCommentFaild forKey:@"unSupCommentFaild"];
+    [unSupCommentFaild release];
+}
+- (void)setUnFavoriteArticleSuccess:(unFavoriteArticleSuccessAction)successAction
+{
+    unFavoriteArticleSuccessAction unFavSuccess = [successAction copy];
+    [self.actionsDict setObject:unFavSuccess forKey:@"unFavSuccess"];
+    [unFavSuccess release];
+    
+}
+- (void)setUnFavoriteArticleFaild:(unFavoriteArticleFaildAction)faildAction
+{
+    unFavoriteArticleFaildAction unFavFaild = [faildAction copy];
+    [self.actionsDict setObject:unFavFaild forKey:@"unFavFaild"];
+    [unFavFaild release];
+    
 }
 
 @end

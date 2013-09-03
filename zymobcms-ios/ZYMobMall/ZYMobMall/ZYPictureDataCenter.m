@@ -160,7 +160,11 @@
             NSMutableArray *tabTypesArray = [NSMutableArray array];
             for (int i=0;i<resultArray.count;i++) {
                 
-                ZYTabTypeModel *newTabType = [[ZYTabTypeModel alloc]initWithContentDict:[resultArray objectAtIndex:i]];
+                NSDictionary *oldItem = [resultArray objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
+                [newItem setObject:[oldItem objectForKey:@"id"] forKey:@"type_id"];
+                
+                ZYTabTypeModel *newTabType = [[ZYTabTypeModel alloc]initWithContentDict:newItem];
                 [tabTypesArray addObject:newTabType];
                 [newTabType release];
             }

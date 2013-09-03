@@ -86,23 +86,7 @@ title,source,publishTime,summary,content,images,links,commentable,commentCount,f
 - (id)initWithDetailContent:(NSDictionary *)contentDict
 {
     if (self = [super init]) {
-        
-        self.articleId = [contentDict objectForKey:@"article_id"];
-        self.categoryId = [contentDict objectForKey:@"category_id"];
-        self.tabTypeId = [contentDict objectForKey:@"tab_type_id"];
-        self.title = [contentDict objectForKey:@"title"];
-        self.source = [contentDict objectForKey:@"source"];
-        self.publishTime = [contentDict objectForKey:@"publish_time"];
-        self.images = [contentDict objectForKey:@"images"];
-        
-    }
-    return self;
-}
-
-- (id)initWithSummaryContent:(NSDictionary *)contentDict
-{
-    if (self = [super init]) {
-        
+                
         self.articleId = [contentDict objectForKey:@"article_id"];
         self.categoryId = [contentDict objectForKey:@"category_id"];
         self.tabTypeId = [contentDict objectForKey:@"tab_type_id"];
@@ -120,6 +104,21 @@ title,source,publishTime,summary,content,images,links,commentable,commentCount,f
         self.hotNews = [contentDict objectForKey:@"hotNews"];
         self.industryId = [contentDict objectForKey:@"industry_id"];
         self.links = [contentDict objectForKey:@"links"];
+    }
+    return self;
+}
+
+- (id)initWithSummaryContent:(NSDictionary *)contentDict
+{
+    if (self = [super init]) {
+        
+        self.articleId = [contentDict objectForKey:@"article_id"];
+        self.categoryId = [contentDict objectForKey:@"category_id"];
+        self.tabTypeId = [contentDict objectForKey:@"tab_type_id"];
+        self.title = [contentDict objectForKey:@"title"];
+        self.source = [contentDict objectForKey:@"source"];
+        self.publishTime = [contentDict objectForKey:@"publish_time"];
+        self.images = [contentDict objectForKey:@"images"];
         
     }
     return self;

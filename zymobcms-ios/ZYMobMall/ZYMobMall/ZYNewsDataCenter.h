@@ -13,6 +13,8 @@
 
 typedef void (^GetNewsListSuccessAction) (NSArray *modelArray);
 typedef void (^GetNewsListFaildAction) (NSString *errMsg);
+typedef void (^GetNewsDetailSuccessAction) (ZYNewsModel *detailModel);
+typedef void (^GetNewsDetailFaildAction) (NSString *errMsg);
 typedef void (^CommentNewsSuccessAction) (ZYCommentModel *commentModel);
 typedef void (^CommentNewsFaildAction) (NSString *errMsg);
 typedef void (^FavoriteNewsSuccessAction) (NSString *successMsg);
@@ -21,6 +23,12 @@ typedef void (^GetArticleCommentListSuccessAction) (NSArray *modelArray);
 typedef void (^GetArticleCommentListFaildAction) (NSString *errMsg);
 typedef void (^GetTabTypesSuccessAction) (NSArray *modelArray);
 typedef void (^GetTabTypesFaildAction) (NSString *errMsg);
+typedef void (^SupportCommentSuccessAction) (NSString *successMsg);
+typedef void (^SupportCommentFaildAction) (NSString*errMsg);
+typedef void (^unSupportCommentSuccessAction) (NSString *successMsg);
+typedef void (^unSupportCommentFaildAction) (NSString *errMsg);
+typedef void (^unFavoriteArticleSuccessAction) (NSString *successMsg);
+typedef void (^unFavoriteArticleFaildAction) (NSString *errMsg);
 
 @interface ZYNewsDataCenter : ZYBaseDataCenter
 
@@ -43,5 +51,22 @@ typedef void (^GetTabTypesFaildAction) (NSString *errMsg);
 - (void)startGetTabTypesByCategoryId:(NSString *)categoryId;
 - (void)setGetTabTypesSuccessAction:(GetTabTypesSuccessAction)successAction;
 - (void)setGetTabTypesFaildAction:(GetTabTypesFaildAction)faildAction;
+
+- (void)startGetNewsDetailWithArticleId:(NSString *)articleId;
+- (void)setGetNewsDetailSuccessAction:(GetNewsDetailSuccessAction)successAction;
+- (void)setGetNewsDetailFaildAction:(GetNewsDetailFaildAction)faildAction;
+
+- (void)supportCommentWithCommentId:(NSString *)commentId;
+- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction;
+- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction;
+
+- (void)unSupportCommentWithCommentId:(NSString *)commentId;
+- (void)setUnSupportCommentSuccessAction:(unSupportCommentSuccessAction)successAction;
+- (void)setUnSupportCommentFaildAction:(unSupportCommentFaildAction)faildAction;
+
+- (void)unFavoriteArticleWithArticleId:(NSString *)articleId;
+- (void)setUnFavoriteArticleSuccess:(unFavoriteArticleSuccessAction)successAction;
+- (void)setUnFavoriteArticleFaild:(unFavoriteArticleFaildAction)faildAction;
+
 
 @end

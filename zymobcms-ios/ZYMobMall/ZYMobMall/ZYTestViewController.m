@@ -126,18 +126,53 @@
         
         [newsListArray addObjectsFromArray:modelArray];
         
+        NSLog(@"newsList ---->%@",modelArray);
+        
         for (ZYNewsModel *item in newsListArray) {
             
             NSLog(@"newsTitle --->%@",item.title);
         }
+        
+        ZYNewsModel *firstNews = [newsListArray objectAtIndex:0];
+        
+        [newsCenter startGetNewsDetailWithArticleId:firstNews.articleId];
     }];
     [newsCenter setGetNewsListFaildAction:^(NSString *errMsg) {
        
         NSLog(@"get news list faild --->%@",errMsg);
     }];
+    
+    [newsCenter setGetNewsDetailSuccessAction:^(ZYNewsModel *detailModel) {
+        
+        NSLog(@"article detail content --->%@",detailModel.content);
+        
+    }];
+    [newsCenter setGetNewsDetailFaildAction:^(NSString *errMsg) {
+        NSLog(@"article detail faild ----->%@",errMsg);
+    }];
 }
 
 - (IBAction)pictureList:(id)sender {
+    
+    ZYMenuItemModel *picItem = [menuArray objectAtIndex:2];
+    [pictureCenter startGetPictureTabTypesWithCategoryId:picItem.categoryId];
+    [pictureCenter setGetTabTypesSuccessAction:^(NSArray *tabTypeArray) {
+       
+        ZYTabTypeModel *firstItem = [tabTypeArray objectAtIndex:0];
+        
+        NSLog(@"picture first tiem --->%@",firstItem.name);
+        [pictureCenter startGetPictureListWithCategoryId:firstItem.categoryId withTabTypeId:firstItem.tabTypeId withPageIndex:1];
+        
+    }];
+    [pictureCenter setGetTabTypesFaildAction:^(NSString *errMsg) {
+        NSLog(@"get picture tab type faild--->%@",errMsg);
+    }];
+    [pictureCenter setSuccessGetNewPictureListAction:^(NSArray *newDataArray) {
+        NSLog(@"picture list  ---->%@",newDataArray);
+    }];
+    [pictureCenter setFaildGetNewPictureListAction:^(NSString *errMsg) {
+        NSLog(@"picture list faild ---->%@",errMsg);
+    }];
 }
 
 - (IBAction)pictureCommentList:(id)sender {
@@ -165,6 +200,27 @@
 }
 
 - (IBAction)productList:(id)sender {
+    
+    ZYMenuItemModel *item = [menuArray objectAtIndex:3];
+    [productCenter startGetProductTabTypeWithCategoryId:item.categoryId];
+    [productCenter setGetProudctTabTypeSuccessAction:^(NSArray *listArray) {
+        
+        ZYTabTypeModel *firstItem = [listArray objectAtIndex:0];
+        [productCenter startGetProductListWithCategorId:firstItem.categoryId withTabTypeId:firstItem.tabTypeId withPageIndex:1];
+        
+    }];
+    [productCenter setgetProudctTabTypeFaildAction:^(NSString *errMsg) {
+        
+    }];
+    
+    [productCenter setGetProductListSuccessAction:^(NSArray *listArray) {
+        
+        NSLog(@"product listArray ---->%@",listArray);
+        
+    }];
+    [productCenter setGetProudctListFaildAction:^(NSString *errMsg) {
+        
+    }];
 }
 
 - (IBAction)productCommentList:(id)sender {
