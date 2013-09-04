@@ -359,7 +359,7 @@
         
         if ([self.actionsDict objectForKey:@"supCommentSuccess"]) {
             
-            SupportCommentSuccessAction successAction = [self.actionsDict objectForKey:@"supCommentSuccess"];
+            SupportNewsCommentSuccessAction successAction = [self.actionsDict objectForKey:@"supCommentSuccess"];
             
             successAction(@"支持成功");
         }
@@ -369,7 +369,7 @@
         
         if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
             
-            SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+            SupportNewsCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
             
             NSString *errMsg = [resultDict objectForKey:@"msg"];
             
@@ -382,7 +382,7 @@
 {
     if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
         
-        SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+        SupportNewsCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
                 
         faildAction(NetWorkError);
     }
@@ -542,15 +542,15 @@
     [self.actionsDict setObject:detailFaild forKey:@"detailFaild"];
     [detailFaild release];
 }
-- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction
+- (void)setSupportCommentSuccessAction:(SupportNewsCommentSuccessAction)successAction
 {
-    SupportCommentSuccessAction supCommentSuccess = [successAction copy];
+    SupportNewsCommentSuccessAction supCommentSuccess = [successAction copy];
     [self.actionsDict setObject:supCommentSuccess forKey:@"supCommentSuccess"];
     [supCommentSuccess release];
 }
-- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction
+- (void)setSupportCommentFaildAction:(SupportNewsCommentFaildAction)faildAction
 {
-    SupportCommentFaildAction supCommentFaild = [faildAction copy];
+    SupportNewsCommentFaildAction supCommentFaild = [faildAction copy];
     [self.actionsDict setObject:supCommentFaild forKey:@"supCommentFaild"];
     [supCommentFaild release];
 }

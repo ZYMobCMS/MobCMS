@@ -360,7 +360,7 @@
         
         if ([self.actionsDict objectForKey:@"supCommentSuccess"]) {
             
-            SupportCommentSuccessAction successAction = [self.actionsDict objectForKey:@"supCommentSuccess"];
+            SupportPictureCommentSuccessAction successAction = [self.actionsDict objectForKey:@"supCommentSuccess"];
             
             successAction (@"支持成功");
         }
@@ -369,7 +369,7 @@
         
         if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
             
-            SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+            SupportPictureCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
             
             NSString *errMsg = [resultDict objectForKey:@"msg"];
             
@@ -382,7 +382,7 @@
 {
     if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
         
-        SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+        SupportPictureCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
     
         faildAction (NetWorkError);
     }
@@ -549,15 +549,15 @@
     [commentListFaild release];
 }
 
-- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction
+- (void)setSupportCommentSuccessAction:(SupportPictureCommentSuccessAction)successAction
 {
-    SupportCommentSuccessAction supCommentSuccess = [successAction copy];
+    SupportPictureCommentSuccessAction supCommentSuccess = [successAction copy];
     [self.actionsDict setObject:supCommentSuccess forKey:@"supCommentSuccess"];
     [supCommentSuccess release];
 }
-- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction
+- (void)setSupportCommentFaildAction:(SupportPictureCommentFaildAction)faildAction
 {
-    SupportCommentFaildAction supCommentFaild = [faildAction copy];
+    SupportPictureCommentFaildAction supCommentFaild = [faildAction copy];
     [self.actionsDict setObject:supCommentFaild forKey:@"supCommentFaild"];
     [supCommentFaild release];
 }

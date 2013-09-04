@@ -23,8 +23,8 @@ typedef void (^GetArticleCommentListSuccessAction) (NSArray *modelArray);
 typedef void (^GetArticleCommentListFaildAction) (NSString *errMsg);
 typedef void (^GetTabTypesSuccessAction) (NSArray *modelArray);
 typedef void (^GetTabTypesFaildAction) (NSString *errMsg);
-typedef void (^SupportCommentSuccessAction) (NSString *successMsg);
-typedef void (^SupportCommentFaildAction) (NSString*errMsg);
+typedef void (^SupportNewsCommentSuccessAction) (NSString *successMsg);
+typedef void (^SupportNewsCommentFaildAction) (NSString*errMsg);
 typedef void (^unSupportCommentSuccessAction) (NSString *successMsg);
 typedef void (^unSupportCommentFaildAction) (NSString *errMsg);
 typedef void (^unFavoriteArticleSuccessAction) (NSString *successMsg);
@@ -57,8 +57,8 @@ typedef void (^unFavoriteArticleFaildAction) (NSString *errMsg);
 - (void)setGetNewsDetailFaildAction:(GetNewsDetailFaildAction)faildAction;
 
 - (void)supportCommentWithCommentId:(NSString *)commentId;
-- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction;
-- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction;
+- (void)setSupportCommentSuccessAction:(SupportNewsCommentSuccessAction)successAction;
+- (void)setSupportCommentFaildAction:(SupportNewsCommentFaildAction)faildAction;
 
 - (void)unSupportCommentWithCommentId:(NSString *)commentId;
 - (void)setUnSupportCommentSuccessAction:(unSupportCommentSuccessAction)successAction;

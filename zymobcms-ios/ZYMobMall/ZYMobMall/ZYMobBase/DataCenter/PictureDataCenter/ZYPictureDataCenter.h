@@ -28,11 +28,11 @@ typedef void (^CommentPictureFaildAction) (NSString *errMsg);
 typedef void (^FavoritePictureSuccessAction) (NSString *successMsg);
 typedef void (^FavoritePictureFaildAction) (NSString *errMsg);
 
-typedef void (^SupportCommentSuccessAction) (NSString *successMsg);
-typedef void (^SupportCommentFaildAction) (NSString *errMsg);
+typedef void (^SupportPictureCommentSuccessAction) (NSString *successMsg);
+typedef void (^SupportPictureCommentFaildAction) (NSString *errMsg);
 
-typedef void (^UnSupportCommentSuccessAction) (NSString *successMsg);
-typedef void (^UnSupportCommentFaildAction) (NSString *errMsg);
+typedef void (^UnSupportPictureCommentSuccessAction) (NSString *successMsg);
+typedef void (^UnSupportPictureCommentFaildAction) (NSString *errMsg);
 
 typedef void (^UnFavoritePictureSuccessAction) (NSString *successMsg);
 typedef void (^UnFavoritePictureFaildAction) (NSString *errMsg);
@@ -69,11 +69,11 @@ typedef void (^UnFavoritePictureFaildAction) (NSString *errMsg);
 - (void)setFavoritePictureSuccessAction:(FavoritePictureSuccessAction)successAction;
 - (void)setFavoritePictureFaildAction:(FavoritePictureFaildAction)faildAction;
 
-- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction;
-- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction;
+- (void)setSupportCommentSuccessAction:(SupportPictureCommentSuccessAction)successAction;
+- (void)setSupportCommentFaildAction:(SupportPictureCommentFaildAction)faildAction;
 
-- (void)setUnSupportCommentSuccessAction:(UnSupportCommentSuccessAction)successAction;
-- (void)setUnSupportCommentFaildAction:(UnSupportCommentFaildAction)faildAction;
+- (void)setUnSupportCommentSuccessAction:(UnSupportPictureCommentSuccessAction)successAction;
+- (void)setUnSupportCommentFaildAction:(UnSupportPictureCommentFaildAction)faildAction;
 
 - (void)setUnFavoritePictureSuccessAction:(UnFavoritePictureSuccessAction)successAction;
 - (void)setUnFavoritePictureFaildAction:(UnFavoritePictureFaildAction)faildAction;
