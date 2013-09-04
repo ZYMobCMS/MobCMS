@@ -215,7 +215,7 @@
             
             for (int i=0; i<resultArray.count;i++) {
                 
-                NSDictionary *oldItem = [resultDict objectForKey:@"data"];
+                NSDictionary *oldItem = [resultArray objectAtIndex:i];
                 NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
                 [newItem setObject:[oldItem objectForKey:@"picture_id"] forKey:@"relation_id"];
                 
@@ -272,6 +272,8 @@
             NSDictionary *oldItem = [resultDict objectForKey:@"data"];
             NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
             [newItem setObject:[oldItem objectForKey:@"picture_id"] forKey:@"relation_id"];
+            [newItem setObject:@"0" forKey:@"isSupported"];
+
             ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
             
             successAction(commentModel);
@@ -307,7 +309,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:pictureId forKey:@"pictureId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoriteArticle withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoritePictureSuccess:" withFaildRequestMethod:@"favoritePictureFaild:"];
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoritePictureSuccess:" withFaildRequestMethod:@"favoritePictureFaild:"];
 }
 - (void)favoritePictureSuccess:(NSDictionary*)resultDict
 {
@@ -341,6 +343,126 @@
         FavoritePictureFaildAction faildAction = [self.actionsDict objectForKey:@"favoriteFaild"];
                 
         faildAction(NetWorkError);
+    }
+}
+
+- (void)supportCommentWithCommentId:(NSString *)commentId
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
+}
+- (void)supportCommentSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"supCommentSuccess"]) {
+            
+            SupportCommentSuccessAction successAction = [self.actionsDict objectForKey:@"supCommentSuccess"];
+            
+            successAction (@"支持成功");
+        }
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
+            
+            SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction (errMsg);
+        }
+        
+    }
+}
+- (void)supportCommentFaild:(NSDictionary *)resultDict
+{
+    if ([self.actionsDict objectForKey:@"supCommentFaild"]) {
+        
+        SupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"supCommentFaild"];
+    
+        faildAction (NetWorkError);
+    }
+}
+- (void)unSupportCommentWithCommentId:(NSString *)commentId
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentUnSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
+
+    
+}
+- (void)unSupportCommentSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"unSupCommentSuccess"]) {
+            
+            UnSupportCommentSuccessAction successAction = [self.actionsDict objectForKey:@"unSupCommentSuccess"];
+            
+            successAction (@"取消支持");
+        }
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"unSupCommentFaild"]) {
+            
+            UnSupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"unSupCommentFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction (errMsg);
+        }
+        
+    }
+}
+- (void)unSupportCommentFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"unSupCommentFaild"]) {
+        
+        UnSupportCommentFaildAction faildAction = [self.actionsDict objectForKey:@"unSupCommentFaild"];
+        
+        faildAction (NetWorkError);
+    }
+}
+- (void)unFavoritePictureWithPictureId:(NSString *)pictureId
+{
+    NSDictionary *params = [NSDictionary dictionaryWithObject:pictureId forKey:@"pictureId"];
+    
+    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoritePictureSuccess:" withFaildRequestMethod:@"unFavoritePictureFaild:"];
+}
+- (void)unFavoritePictureSuccess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"unFavSuccess"]) {
+            
+            UnFavoritePictureSuccessAction successAction = [self.actionsDict objectForKey:@"unFavSuccess"];
+            
+            successAction (@"取消收藏");
+        }
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"unFavFaild"]) {
+            
+            UnFavoritePictureFaildAction faildAction = [self.actionsDict objectForKey:@"unFavFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction (errMsg);
+        }
+        
+    }
+}
+- (void)unFavoritePictureFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"unFavFaild"]) {
+        
+        UnFavoritePictureFaildAction faildAction = [self.actionsDict objectForKey:@"unFavFaild"];
+        
+        faildAction (NetWorkError);
     }
 }
 
@@ -423,6 +545,50 @@
     GetPictureCommentListFaildAction commentListFaild = [faildAction copy];
     [self.actionsDict setObject:commentListFaild forKey:@"commentListFaild"];
     [commentListFaild release];
+}
+
+- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction
+{
+    SupportCommentSuccessAction supCommentSuccess = [successAction copy];
+    [self.actionsDict setObject:supCommentSuccess forKey:@"supCommentSuccess"];
+    [supCommentSuccess release];
+}
+- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction
+{
+    SupportCommentFaildAction supCommentFaild = [faildAction copy];
+    [self.actionsDict setObject:supCommentFaild forKey:@"supCommentFaild"];
+    [supCommentFaild release];
+}
+
+- (void)setUnSupportCommentSuccessAction:(UnSupportCommentSuccessAction)successAction
+{
+    UnSupportCommentSuccessAction unSupCommentSuccess = [successAction copy];
+    [self.actionsDict setObject:unSupCommentSuccess forKey:@"unSupCommentSuccess"];
+    [unSupCommentSuccess release];
+    
+}
+- (void)setUnSupportCommentFaildAction:(UnSupportCommentFaildAction)faildAction
+{
+    UnSupportCommentFaildAction unSupCommentFaild = [faildAction copy];
+    [self.actionsDict setObject:unSupCommentFaild forKey:@"unSupCommentFaild"];
+    [unSupCommentFaild release];
+    
+}
+
+- (void)setUnFavoritePictureSuccessAction:(UnFavoritePictureSuccessAction)successAction
+{
+    UnFavoritePictureSuccessAction unFavSuccess = [successAction copy];
+    [self.actionsDict setObject:unFavSuccess forKey:@"unFavSuccess"];
+    [unFavSuccess release];
+    
+}
+
+- (void)setUnFavoritePictureFaildAction:(UnFavoritePictureFaildAction)faildAction
+{
+    UnFavoritePictureFaildAction unFavFaild = [faildAction copy];
+    [self.actionsDict setObject:unFavFaild forKey:@"unFavFaild"];
+    [unFavFaild release];
+    
 }
 
 @end

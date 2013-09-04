@@ -159,6 +159,7 @@
             NSDictionary *resultComment = [resultDict objectForKey:@"data"];
             NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:resultComment];
             [newItem setObject:[resultComment objectForKey:@"article_id"] forKey:@"relation_id"];
+            [newItem setObject:@"0" forKey:@"isSupported"];
             
             ZYCommentModel *commentModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
             

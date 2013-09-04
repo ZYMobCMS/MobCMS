@@ -16,6 +16,7 @@
 #import "ZYPictureDataCenter.h"
 #import "ZYNewsDataCenter.h"
 #import "ZYCommentDataCenter.h"
+#import "ZYUserActiveDataCenter.h"
 
 typedef enum {
 

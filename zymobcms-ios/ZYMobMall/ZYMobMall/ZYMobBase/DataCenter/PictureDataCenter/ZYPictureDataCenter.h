@@ -28,6 +28,15 @@ typedef void (^CommentPictureFaildAction) (NSString *errMsg);
 typedef void (^FavoritePictureSuccessAction) (NSString *successMsg);
 typedef void (^FavoritePictureFaildAction) (NSString *errMsg);
 
+typedef void (^SupportCommentSuccessAction) (NSString *successMsg);
+typedef void (^SupportCommentFaildAction) (NSString *errMsg);
+
+typedef void (^UnSupportCommentSuccessAction) (NSString *successMsg);
+typedef void (^UnSupportCommentFaildAction) (NSString *errMsg);
+
+typedef void (^UnFavoritePictureSuccessAction) (NSString *successMsg);
+typedef void (^UnFavoritePictureFaildAction) (NSString *errMsg);
+
 @interface ZYPictureDataCenter : ZYBaseDataCenter
 
 
@@ -37,6 +46,9 @@ typedef void (^FavoritePictureFaildAction) (NSString *errMsg);
 - (void)startGetPictureCommentListWithPictureId:(NSString *)pictureId withPageIndex:(NSInteger)pageIndex;
 - (void)commentPictureWithPictureId:(NSString *)pictureId withContent:(NSString*)content;
 - (void)favoritePictureWithPictureId:(NSString*)pictureId;
+- (void)supportCommentWithCommentId:(NSString*)commentId;
+- (void)unSupportCommentWithCommentId:(NSString*)commentId;
+- (void)unFavoritePictureWithPictureId:(NSString *)pictureId;
 
 
 - (void)setSuccessGetNewPictureListAction:(SuccessGetNewPictureListData)successAction;
@@ -57,5 +69,13 @@ typedef void (^FavoritePictureFaildAction) (NSString *errMsg);
 - (void)setFavoritePictureSuccessAction:(FavoritePictureSuccessAction)successAction;
 - (void)setFavoritePictureFaildAction:(FavoritePictureFaildAction)faildAction;
 
+- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction;
+- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction;
+
+- (void)setUnSupportCommentSuccessAction:(UnSupportCommentSuccessAction)successAction;
+- (void)setUnSupportCommentFaildAction:(UnSupportCommentFaildAction)faildAction;
+
+- (void)setUnFavoritePictureSuccessAction:(UnFavoritePictureSuccessAction)successAction;
+- (void)setUnFavoritePictureFaildAction:(UnFavoritePictureFaildAction)faildAction;
 
 @end

@@ -20,6 +20,7 @@
 @property (nonatomic,retain)NSString *toUsers;
 @property (nonatomic,retain)NSString *status;
 @property (nonatomic,retain)NSString *isSupported;
+@property (nonatomic,retain)NSString *createrLoginName;
 
 - (id)initWithSummaryDict:(NSDictionary*)contentDict;
 

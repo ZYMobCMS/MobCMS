@@ -39,7 +39,12 @@
         if ([self.actionsDict objectForKey:@"loginSuccess"]) {
             
             LoginSuccessAction loginSuccessAction = [self.actionsDict objectForKey:@"loginSuccess"];
+            
+            NSDictionary *userItem = [resultDict objectForKey:@"data"];
+            ZYUserModel *loginUser = [[ZYUserModel alloc]initWithUserInfo:userItem];
             loginSuccessAction(@"登陆成功");
+            [ZYUserManager loginNewUser:loginUser];
+            [loginUser release];
         }
         
     }else{
@@ -119,7 +124,6 @@
                 
                 NSDictionary *oldItem = [resultArray objectAtIndex:i];
                 NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
-                [newItem setObject:[oldItem objectForKey:@"id"] forKey:@"article_id"];
                 
                 ZYNewsModel *model = [[ZYNewsModel alloc]initWithSummaryContent:newItem];
                 [modelArray addObject:model];
@@ -279,7 +283,11 @@
             NSMutableArray *modelArray = [NSMutableArray array];
             for (int i=0; i<resultArray.count; i++) {
                 
-                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+                NSDictionary *resultComment = [resultArray objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:resultComment];
+                [newItem setObject:[resultComment objectForKey:@"article_id"] forKey:@"relation_id"];
+                
+                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
                 [modelArray addObject:pModel];
                 [pModel release];
                 
@@ -334,7 +342,11 @@
             NSMutableArray *modelArray = [NSMutableArray array];
             for (int i=0; i<resultArray.count; i++) {
                 
-                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+                NSDictionary *resultComment = [resultArray objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:resultComment];
+                [newItem setObject:[resultComment objectForKey:@"picture_id"] forKey:@"relation_id"];
+                
+                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
                 [modelArray addObject:pModel];
                 [pModel release];
                 
@@ -388,7 +400,11 @@
             NSMutableArray *modelArray = [NSMutableArray array];
             for (int i=0; i<resultArray.count; i++) {
                 
-                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:[resultArray objectAtIndex:i]];
+                NSDictionary *resultComment = [resultArray objectAtIndex:i];
+                NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:resultComment];
+                [newItem setObject:[resultComment objectForKey:@"product_id"] forKey:@"relation_id"];
+                
+                ZYCommentModel *pModel = [[ZYCommentModel alloc]initWithSummaryDict:newItem];
                 [modelArray addObject:pModel];
                 [pModel release];
                 

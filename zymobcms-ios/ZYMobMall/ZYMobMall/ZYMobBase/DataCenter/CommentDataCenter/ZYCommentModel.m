@@ -10,7 +10,7 @@
 
 @implementation ZYCommentModel
 @synthesize commentId,relationId;
-@synthesize content,createTime,createUserId,status,toUsers,title,supportCount,unsupportCount;
+@synthesize content,createTime,createUserId,status,toUsers,title,supportCount,unsupportCount,createrLoginName;
 @synthesize isSupported;
 
 - (void)dealloc
@@ -28,6 +28,7 @@
     self.relationId = nil;
     
     self.isSupported = nil;
+    self.createrLoginName = nil;
     [super dealloc];
 }
 - (id)initWithSummaryDict:(NSDictionary*)contentDict
@@ -47,6 +48,7 @@
         self.relationId  = [contentDict objectForKey:@"relation_id"];
         
         self.isSupported = [contentDict objectForKey:@"isSupported"];
+        self.createrLoginName = [contentDict objectForKey:@"login_name"];
     }
     return self;
 }
@@ -67,6 +69,7 @@
         self.relationId = [aDecoder decodeObjectForKey:@"relationId"];
 
         self.isSupported = [aDecoder decodeObjectForKey:@"isSupported"];
+        self.createrLoginName = [aDecoder decodeObjectForKey:@"createrLoginName"];
     }
     return self;
 }
@@ -84,5 +87,7 @@
     [aCoder encodeObject:self.commentId forKey:@"commentId"];
     [aCoder encodeObject:self.relationId forKey:@"relationId"];
     [aCoder encodeObject:self.isSupported forKey:@"isSupported"];
+    [aCoder encodeObject:self.createrLoginName forKey:@"createrLoginName"];
+
 }
 @end

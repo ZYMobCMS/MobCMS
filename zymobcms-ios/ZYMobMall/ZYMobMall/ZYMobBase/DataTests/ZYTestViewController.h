@@ -9,22 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ZYMobBase.h"
 
-@interface ZYTestViewController : UIViewController
+@interface ZYTestViewController : UITabBarController
 {
     ZYMenuDataCenter *menuCenter;
-    ZYUserDataCenter *userCenter;
-    ZYProductDataCenter *productCenter;
-    ZYPictureDataCenter *pictureCenter;
-    ZYCommentDataCenter *commentCenter;
-    ZYNewsDataCenter *newsCenter;
-    
-    NSMutableArray *newsListArray;
-    NSMutableArray *picListArray;
-    NSMutableArray *proListArray;
-    NSMutableArray *userActiveArray;
-    NSMutableArray *newsCommentArray;
-    NSMutableArray *picCommentArray;
-    NSMutableArray *proCommentArray;
     NSMutableArray *menuArray;
 }
 

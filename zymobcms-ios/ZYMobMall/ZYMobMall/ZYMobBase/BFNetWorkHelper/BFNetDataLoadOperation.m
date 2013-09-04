@@ -42,11 +42,9 @@
     if (!error) {
         
         NSString *resopnse = [request responseString];
-        BFLogObject(resopnse);
         
         if (resopnse) {
             NSData *jsonData = [resopnse dataUsingEncoding:NSUTF8StringEncoding];
-            BFLogObject(resopnse);
             
             NSError *jerror = nil;
             result = [[CJSONDeserializer deserializer]deserialize:jsonData error:&jerror];
@@ -54,7 +52,6 @@
                 NSLog(@"this data is not format json data");
                 return error;   
             }
-            BFMLog(result);
             return result;
         }
         return error;

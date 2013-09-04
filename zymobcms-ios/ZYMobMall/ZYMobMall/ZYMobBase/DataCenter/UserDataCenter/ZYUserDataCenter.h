@@ -15,17 +15,17 @@ typedef void (^LoginSuccessAction) (NSString *successMsg);
 typedef void (^LoginFaildAction) (NSString *errMsg);
 typedef void (^RigistSuccessAction) (NSString *successMsg);
 typedef void (^RigistFaildAction) (NSString *errMsg);
-typedef void (^GetUserNewsFavSuccessAction) (NSArray *favListArray);
+typedef void (^GetUserNewsFavSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserNewsFavFaildAction) (NSString *errMsg);
-typedef void (^GetUserPicFavSuccessAction) (NSArray *favListArray);
+typedef void (^GetUserPicFavSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserPicFavFaildAction) (NSString *errMsg);
-typedef void (^GetUserProductFavSuccessAction) (NSArray *favListArray);
+typedef void (^GetUserProductFavSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserProductFavFaildAction) (NSString *errMsg);
-typedef void (^GetUserNewsCommentListSuccessAction) (NSArray *commentListArray);
+typedef void (^GetUserNewsCommentListSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserNewsCommentListFaildAction) (NSString *errMsg);
-typedef void (^GetUserPicCommentListSuccessAction) (NSArray *commentListArray);
+typedef void (^GetUserPicCommentListSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserPicCommentListFaildAction) (NSString *errMsg);
-typedef void (^GetUserProductCommentListSuccessAction) (NSArray *commentListArray);
+typedef void (^GetUserProductCommentListSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserProductCommentListFaildAction) (NSString *errMsg);
 
 

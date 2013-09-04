@@ -10,7 +10,7 @@
 #define ZYCMS_image_Url @"http://www.zyprosoft.com/zymobcms/"
 //#define MCM_Base_Url @"https://61.136.59.251:8017"
 
-#define APPID            @"ruyijian_zymobcms"
+#define APPID            @"ruyijian_test"
 
 #define NetWorkError     @"网络不给力啊!"
 

@@ -23,6 +23,12 @@ typedef void (^CommentProductSuccessAction) (ZYCommentModel *commentModel);
 typedef void (^CommentProductFaildAction) (NSString *errMsg);
 typedef void (^FavoriteProductSuccessAction) (NSString *successMsg);
 typedef void (^FavoriteProductFaildAction) (NSString *errMsg);
+typedef void (^SupportCommentSuccessAction) (NSString *successMsg);
+typedef void (^SupportCommentFaildAction) (NSString *errMsg);
+typedef void (^UnSupportCommentSuccessAction) (NSString *successMsg);
+typedef void (^UnSupportCommentFaildAction) (NSString *errMsg);
+typedef void (^UnFavoriteProductSuccessAction) (NSString *successMsg);
+typedef void (^UnFavoriteProductFaildAction) (NSString *errMsg);
 
 @interface ZYProductDataCenter : ZYBaseDataCenter
 
@@ -32,7 +38,9 @@ typedef void (^FavoriteProductFaildAction) (NSString *errMsg);
 - (void)startGetProductCommentListWithPictureId:(NSString*)productId withPageIndex:(NSInteger)pageIndex;
 - (void)commentProductWithProductId:(NSString *)productId withContent:(NSString*)content;
 - (void)favoriteProductWithProductId:(NSString *)productId;
-
+- (void)supportCommentWithCommentId:(NSString*)commentId;
+- (void)unSupportCommentWithCommentId:(NSString*)commentId;
+- (void)unFavoriteProductWithProductId:(NSString *)productId;
 
 - (void)setGetProductListSuccessAction:(GetProductListSuccessAction)successAction;
 - (void)setGetProudctListFaildAction:(GetProductListFaildAction)faildAction;
@@ -51,5 +59,14 @@ typedef void (^FavoriteProductFaildAction) (NSString *errMsg);
 
 - (void)setFavoriteProductSuccessAction:(FavoriteProductSuccessAction)successAction;
 - (void)setFavoriteProductFaildAction:(FavoriteProductFaildAction)faildAction;
+
+- (void)setSupportCommentSuccessAction:(SupportCommentSuccessAction)successAction;
+- (void)setSupportCommentFaildAction:(SupportCommentFaildAction)faildAction;
+
+- (void)setUnSupportCommentSuccessAction:(UnSupportCommentSuccessAction)successAction;
+- (void)setUnSupportCommentFaildAction:(UnSupportCommentFaildAction)faildAction;
+
+- (void)setUnFavoriteProductSuccessAction:(UnFavoriteProductSuccessAction)successAction;
+- (void)setUnFavoriteProductFaildAction:(UnFavoriteProductFaildAction)faildAction;
 
 @end
