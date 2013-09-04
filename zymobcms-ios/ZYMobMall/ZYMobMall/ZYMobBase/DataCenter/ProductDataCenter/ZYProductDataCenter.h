@@ -10,6 +10,7 @@
 #import "ZYProductModel.h"
 #import "ZYTabTypeModel.h"
 #import "ZYCommentModel.h"
+#import "ZYNewsDataCenter.h"
 
 typedef void (^GetProductListSuccessAction) (NSArray *listArray);
 typedef void (^GetProductListFaildAction)   (NSString *errMsg);
@@ -68,5 +69,7 @@ typedef void (^UnFavoriteProductFaildAction) (NSString *errMsg);
 
 - (void)setUnFavoriteProductSuccessAction:(UnFavoriteProductSuccessAction)successAction;
 - (void)setUnFavoriteProductFaildAction:(UnFavoriteProductFaildAction)faildAction;
+
+- (void)setUserDoThisActionShouldLoginFirst:(UserDoThisActionShouldLoginFirst)shouldLoginAction;
 
 @end

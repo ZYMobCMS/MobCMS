@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZYPictureModel.h"
 #import "ZYCommentModel.h"
+#import "ZYNewsDataCenter.h"
 
 typedef void (^SuccessGetTabTypeListData) (NSArray *tabTypeArray);
 typedef void (^FaildGetTabTypeListData)   (NSString *errMsg);
@@ -77,5 +78,7 @@ typedef void (^UnFavoritePictureFaildAction) (NSString *errMsg);
 
 - (void)setUnFavoritePictureSuccessAction:(UnFavoritePictureSuccessAction)successAction;
 - (void)setUnFavoritePictureFaildAction:(UnFavoritePictureFaildAction)faildAction;
+
+- (void)setUserDoThisActionShouldLoginFirst:(UserDoThisActionShouldLoginFirst)shouldLoginAction;
 
 @end

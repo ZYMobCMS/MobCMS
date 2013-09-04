@@ -256,6 +256,17 @@
 
 - (void)commentPictureWithPictureId:(NSString *)pictureId withContent:(NSString *)content
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:content forKey:@"content"];
     
@@ -308,6 +319,17 @@
 
 - (void)favoritePictureWithPictureId:(NSString *)pictureId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:pictureId forKey:@"pictureId"];
     
@@ -350,6 +372,17 @@
 
 - (void)supportCommentWithCommentId:(NSString *)commentId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
@@ -389,6 +422,17 @@
 }
 - (void)unSupportCommentWithCommentId:(NSString *)commentId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentUnSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
@@ -430,6 +474,17 @@
 }
 - (void)unFavoritePictureWithPictureId:(NSString *)pictureId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSDictionary *params = [NSDictionary dictionaryWithObject:pictureId forKey:@"pictureId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoritePictureSuccess:" withFaildRequestMethod:@"unFavoritePictureFaild:"];
@@ -591,6 +646,13 @@
     [self.actionsDict setObject:unFavFaild forKey:@"unFavFaild"];
     [unFavFaild release];
     
+}
+
+- (void)setUserDoThisActionShouldLoginFirst:(UserDoThisActionShouldLoginFirst)shouldLoginAction
+{
+    UserDoThisActionShouldLoginFirst shouldAction = [shouldLoginAction copy];
+    [self.actionsDict setObject:shouldAction forKey:@"shouldLoginAction"];
+    [shouldAction release];
 }
 
 @end

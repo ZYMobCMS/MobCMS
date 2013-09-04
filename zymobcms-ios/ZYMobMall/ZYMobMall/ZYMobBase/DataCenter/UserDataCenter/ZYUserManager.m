@@ -143,6 +143,17 @@
 
 }
 
++ (BOOL)isCurrentUserLogined
+{
+    ZYUserModel *cUser = [self getCurrentUser];
+    
+    if (cUser) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 + (NSData*)archieveArray:(NSArray*)dArray
 {
     return [NSKeyedArchiver archivedDataWithRootObject:dArray];

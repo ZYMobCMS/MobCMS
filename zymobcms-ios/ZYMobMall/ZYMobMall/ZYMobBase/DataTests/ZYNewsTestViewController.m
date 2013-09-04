@@ -44,6 +44,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //用户必须登陆的操作
+    [self.dataCenter setUserDoThisActionShouldLoginFirst:^(NSString *errMsg) {
+        [SVProgressHUD showErrorWithStatus:errMsg];
+        self.tabBarController.selectedIndex = 0;//user 
+    }];
 }
 
 - (void)didReceiveMemoryWarning

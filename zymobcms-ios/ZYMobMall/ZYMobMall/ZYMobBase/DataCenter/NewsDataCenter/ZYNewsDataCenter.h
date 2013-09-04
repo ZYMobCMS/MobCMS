@@ -30,6 +30,8 @@ typedef void (^unSupportCommentFaildAction) (NSString *errMsg);
 typedef void (^unFavoriteArticleSuccessAction) (NSString *successMsg);
 typedef void (^unFavoriteArticleFaildAction) (NSString *errMsg);
 
+typedef void (^UserDoThisActionShouldLoginFirst) (NSString *errMsg);
+
 @interface ZYNewsDataCenter : ZYBaseDataCenter
 
 - (void)startGetNewsListWithPageIndex:(NSInteger)pageIndex withCategoryId:(NSString *)categoryId withTabTypeId:(NSString *)tabTypeId;
@@ -68,5 +70,6 @@ typedef void (^unFavoriteArticleFaildAction) (NSString *errMsg);
 - (void)setUnFavoriteArticleSuccess:(unFavoriteArticleSuccessAction)successAction;
 - (void)setUnFavoriteArticleFaild:(unFavoriteArticleFaildAction)faildAction;
 
+- (void)setUserDoThisActionShouldLoginFirst:(UserDoThisActionShouldLoginFirst)shouldLoginAction;
 
 @end

@@ -223,6 +223,17 @@
 }
 - (void)commentProductWithProductId:(NSString *)productId withContent:(NSString *)content
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:content forKey:@"content"];
     
@@ -276,6 +287,17 @@
 }
 - (void)favoriteProductWithProductId:(NSString *)productId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:productId forKey:@"productId"];
     
@@ -318,6 +340,17 @@
 
 - (void)supportCommentWithCommentId:(NSString *)commentId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
@@ -357,6 +390,17 @@
 }
 - (void)unSupportCommentWithCommentId:(NSString *)commentId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentUnSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
@@ -398,6 +442,17 @@
 }
 - (void)unFavoriteProductWithProductId:(NSString *)productId
 {
+    if (![ZYUserManager isCurrentUserLogined]) {
+        
+        if ([self.actionsDict objectForKey:@"shouldLoginAction"]) {
+            
+            UserDoThisActionShouldLoginFirst shouldAction = [self.actionsDict objectForKey:@"shouldLoginAction"];
+            
+            shouldAction (@"请先登陆！");
+        }
+        return;
+    }
+    
     NSDictionary *params = [NSDictionary dictionaryWithObject:productId forKey:@"productId"];
     
     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoriteProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoriteProductSuccess:" withFaildRequestMethod:@"unFavoriteProductFaild:"];
@@ -552,6 +607,13 @@
     [self.actionsDict setObject:unFavFaild forKey:@"unFavFaild"];
     [unFavFaild release];
     
+}
+
+- (void)setUserDoThisActionShouldLoginFirst:(UserDoThisActionShouldLoginFirst)shouldLoginAction
+{
+    UserDoThisActionShouldLoginFirst shouldAction = [shouldLoginAction copy];
+    [self.actionsDict setObject:shouldAction forKey:@"shouldLoginAction"];
+    [shouldAction release];
 }
 
 @end

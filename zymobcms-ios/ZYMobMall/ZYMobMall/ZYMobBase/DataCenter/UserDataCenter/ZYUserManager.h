@@ -19,6 +19,7 @@
 + (void)loginOutCurrentUser;
 + (void)changeUserActiveSettingState:(BOOL)state;
 + (ZYUserModel*)getCurrentUser;
++ (BOOL)isCurrentUserLogined;
 + (void)loginNewUser:(ZYUserModel*)newUser;
 + (NSString*)getCurrentUserId;
 + (BOOL)getUserActiveRecordState;
