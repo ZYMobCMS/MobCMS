@@ -105,6 +105,8 @@
             NSDictionary *oldItem = [resultDict objectForKey:@"data"];
             NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:oldItem];
             [item setObject:[oldItem objectForKey:@"id"] forKey:@"picture_id"];
+            [item setObject:[ZYBaseModel replaceNBSPString:[oldItem objectForKey:@"summary"]] forKey:@"summary"];
+            
             ZYPictureModel *newModel = [[ZYPictureModel alloc]initWithDetailDict:item];
             successAction(newModel);
             [newModel release];

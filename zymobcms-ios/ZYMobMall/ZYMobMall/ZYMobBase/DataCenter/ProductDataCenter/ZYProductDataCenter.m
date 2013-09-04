@@ -139,7 +139,8 @@
             NSDictionary *oldItem = [resultDict objectForKey:@"data"];
             NSMutableDictionary *newItem = [NSMutableDictionary dictionaryWithDictionary:oldItem];
             [newItem setObject:[oldItem objectForKey:@"id"] forKey:@"product_id"];
-            
+            [newItem setObject:[ZYBaseModel replaceNBSPString:[oldItem objectForKey:@"content"]] forKey:@"content"];
+
             ZYProductModel *productModel = [[ZYProductModel alloc]initWithDetailContentDict:newItem];
 
             GetProductDetailSuccessAction successAction = [self.actionsDict objectForKey:@"datailSuccess"];
