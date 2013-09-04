@@ -11,7 +11,6 @@
 #import "NSString+UrlCombine.h"
 #import "CJSONDeserializer.h"
 #import "JSONKit.h"
-#import "ZYGlobalConfig.h"
 
 static BFNetWorkHelper *_instance = nil;
 
