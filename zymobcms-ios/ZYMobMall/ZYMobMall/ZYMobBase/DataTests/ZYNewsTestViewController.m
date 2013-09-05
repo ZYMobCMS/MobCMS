@@ -64,6 +64,10 @@
     [self.dataCenter setGetTabTypesSuccessAction:^(NSArray *modelArray) {
         [self.tabTypesArray addObjectsFromArray:modelArray];
         NSLog(@"news tab types --->%@",self.tabTypesArray);
+        for (ZYTabTypeModel *item in modelArray) {
+            
+            NSLog(@"item name --->%@",item.name);
+        }
     }];
     [self.dataCenter setGetTabTypesFaildAction:^(NSString *errMsg) {
         [SVProgressHUD showErrorWithStatus:errMsg];
