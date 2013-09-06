@@ -47,6 +47,9 @@
     
     if (toUser.jID) {
         [xmppClient sendMessageToUser:toUser withContent:newMessage];
+        NSMutableString *appendString = [NSMutableString stringWithString:self.recievedTextView.text];
+        [appendString appendFormat:@"%@\n",newMessage.content];
+        self.recievedTextView.text = appendString;
     }
 }
 

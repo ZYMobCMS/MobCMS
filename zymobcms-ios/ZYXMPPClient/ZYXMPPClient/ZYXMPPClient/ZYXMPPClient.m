@@ -67,6 +67,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     // Setup the XMPP stream
     
+    //不要重新链接
+    if ([self connect]) {
+        return;
+    }
+    
 	[self setupStream];
     
     if (![self connect])
