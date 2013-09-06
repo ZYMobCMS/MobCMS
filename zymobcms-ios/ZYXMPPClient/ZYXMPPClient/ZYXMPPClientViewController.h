@@ -12,7 +12,12 @@
 @interface ZYXMPPClientViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UITextView *recievedTextView;
 @property (retain, nonatomic) IBOutlet UITextField *sendTextField;
+@property (retain, nonatomic) IBOutlet UITextField *jIDTextField;
+@property (retain, nonatomic) IBOutlet UITextField *hostTextFiled;
+@property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (retain, nonatomic) IBOutlet UITextField *toUserTextField;
 @property (retain,nonatomic)ZYXMPPClient *xmppClient;
 - (IBAction)sendMessageAction:(id)sender;
+- (IBAction)loginNow:(id)sender;
 
 @end
