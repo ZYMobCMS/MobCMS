@@ -36,7 +36,7 @@ class ReplyController extends Controller {
         	$userId = 99999;
         }
         
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         $insertSql = "insert into zy_user_reply(custom_user_id,content)values($userId,'$content')";
         
         $insertResult = $dbOperation->saveBySql($insertSql);

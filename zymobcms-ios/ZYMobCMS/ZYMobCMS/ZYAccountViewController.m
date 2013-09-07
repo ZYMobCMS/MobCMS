@@ -12,6 +12,7 @@
 #import "ZYLoginViewController.h"
 #import "ZYButtonCell.h"
 #import "ZYSwitchCell.h"
+#import "ZYShareSettingViewController.h"
 
 @interface ZYAccountViewController ()
 
@@ -40,6 +41,7 @@
     sourceArray = [[NSMutableArray alloc]init];
     [sourceArray addObject:@"我的评论"];
     [sourceArray addObject:@"我的收藏"];
+    [sourceArray addObject:@"分享设置"];
     [sourceArray addObject:@"是否分享我的活动"];
     
     
@@ -184,6 +186,16 @@
                 [ZYMobCMSUitil setBFNNavItemForReturn:favoriteVC];
                 [self.navigationController pushViewController:favoriteVC animated:YES];
                 [favoriteVC release];
+                [favoriteVC setNavigationControllerForSubViewControllers:self.navigationController];
+            }
+                break;
+            case 2:
+            {
+                ZYShareSettingViewController *shareVC = [[ZYShareSettingViewController alloc]init];
+                shareVC.mainTitle = [sourceArray objectAtIndex:indexPath.row];
+                [ZYMobCMSUitil setBFNNavItemForReturn:shareVC];
+                [self.navigationController pushViewController:shareVC animated:YES];
+                [shareVC release];
             }
                 break;
             default:

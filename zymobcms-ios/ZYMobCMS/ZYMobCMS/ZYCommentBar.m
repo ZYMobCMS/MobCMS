@@ -185,6 +185,7 @@
     favBtn.frame = CGRectMake(self.frame.size.width-108*2/6-1,0,108*2/6,106*2/6);
     [favBtn setTitle:@"" forState:UIControlStateNormal];
     inputTagView.hidden = NO;
+    [self setFavoriteState:self.isFavorited];
     inputTextView.textColor = [UIColor lightGrayColor];
     inputTextView.text = @"写跟贴";
     isSendComment = NO;

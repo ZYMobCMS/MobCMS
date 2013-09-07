@@ -29,7 +29,7 @@ class PushNotiManager {
     private function foundIOSRightTokeWithUserId($userId){
         
         //查询所有iOS设备
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
         $querySql = "select token from zy_device where type_id = 1 and user_id = $userId";
         $devices = $dbOperation->queryBySql($querySql);
         
@@ -39,7 +39,7 @@ class PushNotiManager {
     private function foundIOSRightTokeWithLoginName($loginName){
         
         //查询所有iOS设备
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
         $querySql = "select token from zy_device where type_id = 1 and login_name = $loginName";
         $devices = $dbOperation->queryBySql($querySql);
         
@@ -49,7 +49,7 @@ class PushNotiManager {
     private function foundAllIOSDevices(){
         
         //查询所有iOS设备
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
         $querySql = "select token from zy_device where type_id = 1";
         $devices = $dbOperation->queryAllBySql($querySql);
         

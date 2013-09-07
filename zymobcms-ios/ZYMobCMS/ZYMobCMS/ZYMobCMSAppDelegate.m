@@ -32,14 +32,47 @@
     [self.rootViewController setShowingMasterViewController:NO animated:YES completion:nil];
 }
 
+/**
+ 这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
+ */
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    /*
+     //如果你要处理自己的url，你可以把这个方法的实现，复制到你的代码中：
+     
+     if ([url.description hasPrefix:@"sina"]) {
+     return (BOOL)[[UMSocialSnsService sharedInstance] performSelector:@selector(handleSinaSsoOpenURL:) withObject:url];
+     }
+     else if([url.description hasPrefix:@"wx"]){
+     return [WXApi handleOpenURL:url delegate:(id <WXApiDelegate>)[UMSocialSnsService sharedInstance]];
+     }
+     */
+    
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+
+/**
+ 这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
+ */
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [UMSocialSnsService  applicationDidBecomeActive];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-//    self.sMenuController = [[STMenuViewController alloc]init];
-//    [self.window addSubview:self.sMenuController.view];
+    //打开调试log的开关
+    [UMSocialData openLog:YES];
+    //向微信注册
+    [WXApi registerApp:@"wxd9a39c7122aa6516"];
+    
+    //设置友盟appkey
+    [UMSocialData setAppKey:useAppkey];
     
     self.rootViewController = [[IRSlidingSplitViewController alloc]init];
     self.bMenuController = [[BFNMenuViewController alloc]init];
@@ -116,11 +149,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

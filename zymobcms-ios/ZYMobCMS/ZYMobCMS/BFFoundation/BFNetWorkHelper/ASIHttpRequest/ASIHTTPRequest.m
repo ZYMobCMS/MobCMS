@@ -4577,4 +4577,6 @@ static NSOperationQueue *sharedQueue = nil;
 @synthesize shouldWaitToInflateCompressedResponses;
 @synthesize requestFlagMark;
 @synthesize RequestType;
+@synthesize requestPageIndex;
+
 @end

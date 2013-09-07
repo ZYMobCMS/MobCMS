@@ -164,6 +164,14 @@
 #pragma mark - 当前该选中哪个视图
 - (void)shouldSelectVCAtSection:(NSInteger)section rowIndex:(NSInteger)index
 {
+    ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+
+    //是否重新尝试
+    if (tableBasicData.count==0&&tableSysData.count==1) {
+        [self tryGetNewApplicationRights];
+        return;
+    }
+    
     self.lastSelectIndexPath = self.selectVCIndexPath;
     
     self.selectVCIndexPath = [NSIndexPath indexPathForRow:index inSection:section];
@@ -185,10 +193,7 @@
     }
     MenuCell *selectCell = (MenuCell*)[menuTableView cellForRowAtIndexPath:selectVCIndexPath];
     selectCell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d_selected.png",itemIndex]];
-    
-    
-    
-    ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+
     
     BFNBaseViewController *currentVC = (BFNBaseViewController*)[self currentVC];
     currentVC.isCategoryType = YES;
@@ -251,6 +256,7 @@
             break;
     }
     return className;
+    UIColor *cor=[UIColor redColor];
 }
 
 - (NSArray*)returnFeatureClassArrayWithSortArray:(NSArray*)sortArray
@@ -471,8 +477,10 @@
             
         }else {
             
+            [SVProgressHUD showSuccessWithStatus:@"该应用没有配置任何模块！"];
+            
             //没有获取到，就留一个退出
-            NSArray *account = [NSArray arrayWithObjects:@"账号管理",@"18",nil];
+            NSArray *account = [NSArray arrayWithObjects:@"重新尝试",@"18",nil];
             [self.tableSysData addObject:account];
             
             [menuTableView reloadData];
@@ -488,8 +496,10 @@
 }
 - (void)getMenuFaild:(NSDictionary*)resultDict
 {
+    [SVProgressHUD showErrorWithStatus:@"网络不给力没有获取到任何功能模块,请重新尝试"];
+    
     //没有获取到，就留一个退出
-    NSArray *account = [NSArray arrayWithObjects:@"账号管理",@"18",nil];
+    NSArray *account = [NSArray arrayWithObjects:@"重新尝试",@"18",nil];
     [self.tableSysData addObject:account];
     
     [menuTableView reloadData];

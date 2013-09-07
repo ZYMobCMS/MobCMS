@@ -23,6 +23,7 @@
 @implementation ZYProductDetail_0_ViewController
 @synthesize productId;
 @synthesize isFavorited;
+@synthesize productImages,productTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +36,8 @@
 
 - (void)dealloc
 {
+    self.productImages = nil;
+    self.productTitle = nil;
     self.productId = nil;
     [listArray release];
     [super dealloc];
@@ -59,17 +62,27 @@
     [listTable release];
     
     //跟贴
-    UIButton *oveaSeaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    oveaSeaBtn.frame = CGRectMake(0,0,30,30);
-    oveaSeaBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [oveaSeaBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [oveaSeaBtn setBackgroundImage:[UIImage imageNamed:@"comment_btn_normal.png"] forState:UIControlStateNormal];
-    [oveaSeaBtn setBackgroundImage:[UIImage imageNamed:@"commnet_btn_selected.png"] forState:UIControlStateSelected];
-    [oveaSeaBtn addTarget:self action:@selector(commentListAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:oveaSeaBtn];
+    ZYRightNavItem *rightNavButton = [[ZYRightNavItem alloc]initWithFrame:CGRectMake(80,0,80,30) withLeftIcon:[UIImage imageNamed:@"share_top.png"] withRightIcon:[UIImage imageNamed:@"comment_btn_normal.png"]];
+    [rightNavButton setLeftItemAction:^{
+        //设置微信图文分享你可以用下面两种方法
+        //1.用微信分享应用类型，用户分享给好友，对方点击跳转到手机应用或者打开url页面。需要另外设置应用下载地址，否则点击朋友圈进入友盟主页
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
+        [UMSocialData defaultData].extConfig.appUrl = @"http://www.zyprosoft.com";//设置你应用的下载地址
+        
+        NSString *shareText = self.productTitle;    //分享内嵌文字
+        NSString *firstImage = [[self.productImages componentsSeparatedByString:@"|"]objectAtIndex:0];
+        UIImage *shareImage = [BFImageCache imageForUrl:firstImage];                   //分享内嵌图片
+        
+        //如果得到分享完成回调，需要传递delegate参数
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:useAppkey shareText:shareText shareImage:shareImage shareToSnsNames:nil delegate:nil];
+    }];
+    [rightNavButton setRightItemAction:^{
+        [self commentListAction];
+    }];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightNavButton];
     self.navigationItem.rightBarButtonItem = rightItem;
     [rightItem release];
+    [rightNavButton release];
     
     [self getProductDetail];
 }
@@ -242,6 +255,7 @@
         NSString *imageUrl = [[listArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row];
         ZYProductPreViewController *productPreVC = [[ZYProductPreViewController alloc]initWithImageString:imageUrl withSummaryText:@""];
         productPreVC.mainTitle = @"产品图片详情";
+        productPreVC.pictureTitle = self.productTitle;
         productPreVC.pictureId = self.productId;
         [ZYMobCMSUitil setBFNNavItemForReturn:productPreVC];
         [self.navigationController pushViewController:productPreVC animated:YES];

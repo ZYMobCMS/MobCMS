@@ -22,7 +22,6 @@ typedef void (^tapOnMenuHeader) (BFNMenuHeaderView *headerView);
 @property (retain, nonatomic) UIButton *leftTagImageView;
 
 - (id)initWithFrame:(CGRect)frame withTapOnHeader:(tapOnMenuHeader)tapOnHeader;
-
 - (void)setShowLeftIcon:(BOOL)state;
 - (void)setLeftIconDown:(BOOL)state;
 
