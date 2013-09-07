@@ -39,7 +39,7 @@
     NSString *logString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     
     if (logString != nil) {
-        NSLog(@"%@",logString);
+//        NSLog(@"%@",logString);
     }
 }
 

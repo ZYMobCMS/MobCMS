@@ -36,6 +36,7 @@
         inputTextView = [[UITextView alloc]init];
         inputTextView.frame = CGRectMake(2,2,self.frame.size.width-108*2/6-4,frame.size.height-4);
         inputTextView.delegate = self;
+        inputTextView.font = [UIFont systemFontOfSize:14];
         inputTextView.backgroundColor = [UIColor clearColor];
         [self addSubview:inputTextView];
         [inputTextView release];
@@ -80,8 +81,10 @@
         inputTextView = [[UITextView alloc]init];
         inputTextView.frame = CGRectMake(26,2,self.frame.size.width-108*2/6-26,frame.size.height-4);
         inputTextView.delegate = self;
+        inputTextView.font = [UIFont systemFontOfSize:16];
         inputTextView.backgroundColor = [UIColor clearColor];
         inputTextView.textColor = [UIColor lightGrayColor];
+        [inputTextView scrollRectToVisible:CGRectMake(0,4,inputTextView.frame.size.width,inputTextView.frame.size.height) animated:NO];
         inputTextView.text = @"写跟贴";
         [self addSubview:inputTextView];
         [inputTextView release];
@@ -117,6 +120,9 @@
     }
     if (_endAction) {
         [_endAction release];
+    }
+    if (_commentSuccessAction) {
+        [_commentSuccessAction release];
     }
     [super dealloc];
 }
@@ -332,11 +338,16 @@
 {
     BOOL status = [[result objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"commentSuccess");
+//        NSLog(@"commentSuccess");
         self.lastInputString = @"";
         [self commentReset];
         
+        NSDictionary *resultItem = [result objectForKey:@"data"];
         [SVProgressHUD showSuccessWithStatus:@"评论成功"];
+        
+        if (_commentSuccessAction) {
+            _commentSuccessAction(resultItem);
+        }
         
     }else{
         NSString *errorMsg = [result objectForKey:@"msg"];
@@ -353,7 +364,7 @@
 {
     BOOL status = [[result objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"favoriteSuccess");
+//        NSLog(@"favoriteSuccess");
         
         if (self.isFavorited) {
             [SVProgressHUD showSuccessWithStatus:@"取消收藏"];
@@ -393,6 +404,14 @@
 {
     [inputTextView resignFirstResponder];
     favBtn.enabled = YES;
+}
+
+- (void)setCommentSuccess:(CommentSuccessAction)successAction
+{
+    if (_commentSuccessAction) {
+        [_commentSuccessAction release];
+    }
+    _commentSuccessAction = [successAction copy];
 }
 
 #pragma mark - observInput

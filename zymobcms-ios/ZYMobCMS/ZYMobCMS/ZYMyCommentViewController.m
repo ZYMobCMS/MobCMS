@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [_refreshHeaderView startLoading:self.listTable];
+
     self.listTable.frame = CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-44);
     if (!segmentArray) {
         segmentArray = [[NSMutableArray alloc]init];
@@ -55,6 +57,14 @@
     [refreshBtn release];
     self.navigationItem.rightBarButtonItem = rightItem;
     [rightItem release];
+    
+    if ([self.sourceArray count]==0) {
+        BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,self.listTable.frame.size.width,45)];
+        footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+        footer.titleLabel.text = @"您还没有发表过评论";
+        self.listTable.tableFooterView = footer;
+        [footer release];
+    }
     
 }
 

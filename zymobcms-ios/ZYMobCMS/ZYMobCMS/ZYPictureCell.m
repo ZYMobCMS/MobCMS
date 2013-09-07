@@ -89,4 +89,59 @@
     }
 }
 
+- (void)setImageArray:(NSArray *)imageArray
+{
+    if (imageArray.count==1) {
+        
+        [leftItem setItemImage:[imageArray objectAtIndex:0]];
+        
+    }else{
+        
+        [leftItem setItemImage:[imageArray objectAtIndex:0]];
+
+        [rightItem setItemImage:[imageArray objectAtIndex:1]];
+
+    }
+}
+- (void)setCacheImageForArray:(NSArray *)imageArray
+{
+    if (imageArray.count==1) {
+        
+        if ([BFImageCache imageForUrl:[[imageArray objectAtIndex:0]objectForKey:@"images"]]) {
+            [leftItem setImage:[BFImageCache imageForUrl:[[imageArray objectAtIndex:0]objectForKey:@"images"]]];
+        }
+        
+    }else{
+        
+        if ([BFImageCache imageForUrl:[[imageArray objectAtIndex:0]objectForKey:@"images"]]) {
+            [leftItem setImage:[BFImageCache imageForUrl:[[imageArray objectAtIndex:0]objectForKey:@"images"]]];
+        }
+        if ([BFImageCache imageForUrl:[[imageArray objectAtIndex:1]objectForKey:@"images"]]) {
+            [rightItem setImage:[BFImageCache imageForUrl:[[imageArray objectAtIndex:1]objectForKey:@"images"]]];
+        }
+    }
+}
+
+- (BOOL)hasCacheForImageArray:(NSArray *)imageArray
+{
+    BOOL hasCache = YES;
+    if (imageArray.count==1) {
+        
+        if (![BFImageCache imageForUrl:[[imageArray objectAtIndex:0]objectForKey:@"images"]]) {
+            return NO;
+        }
+        
+    }else{
+        
+        if (![BFImageCache imageForUrl:[[imageArray objectAtIndex:0]objectForKey:@"images"]]) {
+            return NO;
+        }
+        if (![BFImageCache imageForUrl:[[imageArray objectAtIndex:1]objectForKey:@"images"]]) {
+            return NO;
+        }
+    }
+    
+    return hasCache;
+}
+
 @end

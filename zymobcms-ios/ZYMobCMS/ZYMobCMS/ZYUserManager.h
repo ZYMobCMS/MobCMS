@@ -31,6 +31,7 @@
 
 + (NSDictionary*)getUserDictWithLoginName:(NSString*)loginName;
 + (NSDictionary*)getUserDictWithUserId:(NSString*)userId;
++ (NSDictionary*)getCurrentUserDict;
 
 + (void)loginOutUserWithUserName:(NSString*)loginName;
 

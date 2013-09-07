@@ -15,8 +15,10 @@
 #import "ZYCommentViewController.h"
 #import "ZYCategoryViewController.h"
 #import "ZYLoginViewController.h"
+#import "BFNBaseViewController.h"
 
-@interface BFNMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@interface BFNMenuViewController : BFNBaseViewController<UITableViewDataSource, UITableViewDelegate>
 {
     UILabel                 *titleLabel;
     UITableView             *menuTableView;

@@ -57,7 +57,8 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
-    
+    [_refreshHeaderView startLoading:listTable];
+
     //设置右上角刷新
     BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
         [self refresh];
@@ -162,6 +163,7 @@
     
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     [self getHotCommentList];
 }
 
@@ -226,24 +228,34 @@
         [sourceArray addObjectsFromArray:[resultDict objectForKey:@"data"]];
         
         [listTable reloadData];
+        
+        if ([sourceArray count]==0) {
+            BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,self.listTable.frame.size.width,45)];
+            footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+            footer.titleLabel.text = @"这里什么东西都没有~";
+            self.listTable.tableFooterView = footer;
+            [footer release];
+        }
+        
     }
     
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+
     
 }
 - (void)getHotCommentListFaild:(NSDictionary*)resultDict
 {
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
 }
 
 - (void)getCategoryData
 {
-    [self getHotCommentList];
+    [self refresh];
 }
 @end

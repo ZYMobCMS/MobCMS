@@ -64,7 +64,8 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
-    
+    [_refreshHeaderView startLoading:listTable];
+
     //设置右上角刷新
     BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
         [self refresh];
@@ -99,6 +100,7 @@
     
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     self.pageIndex = 1;
     [self getProductList];
 }
@@ -114,6 +116,10 @@
 {
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 	
+    if (!decelerate)
+	{
+        [self loadAllVisiableCellContent];
+    }
 }
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
@@ -156,6 +162,14 @@
         cell = [[[ZYProductCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
     }
     [cell setProductInfo:[listArray objectAtIndex:indexPath.row]];
+    if ([BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]]) {
+        [cell setCacheImage:[BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]]];
+    }else{
+        if (listTable.dragging==NO||listTable.decelerating==NO) {
+            [cell setImageInfo:[listArray objectAtIndex:indexPath.row]];
+        }
+        [cell setCacheImage:[UIImage imageNamed:@"no_photo.png"]];
+    }
     
     return cell;
 }
@@ -174,6 +188,20 @@
     [detailVC release];
 }
 
+#pragma mark - 加载可见cell
+- (void)loadAllVisiableCellContent
+{
+    NSArray *visiablePaths = [listTable indexPathsForVisibleRows];
+    for (NSIndexPath *vPath in visiablePaths) {
+        
+        ZYProductCell *cell = (ZYProductCell*)[listTable cellForRowAtIndexPath:vPath];
+        [cell setImageInfo:[listArray objectAtIndex:vPath.row]];
+    }
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadAllVisiableCellContent];
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -183,9 +211,10 @@
         footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
         
         if (!hideLoadMore) {
-            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+//            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
             footer.titleLabel.text = @"加载更多...";
-            footer.userInteractionEnabled = YES;
+//            footer.userInteractionEnabled = YES;
+            [self loadMore:footer];
         }else {
             NSString *title = @"已是最后一页";
             if (listArray == 0) {
@@ -228,7 +257,7 @@
             [listArray removeAllObjects];
         }
         
-        NSLog(@"resultArray---->%@",resultArray);
+//        NSLog(@"resultArray---->%@",resultArray);
         
         if (resultArray.count ==0 || resultArray.count <PageSize) {
             hideLoadMore = YES;
@@ -237,6 +266,14 @@
         [listArray addObjectsFromArray:resultArray];
         
         [listTable reloadData];
+        
+        if ([listArray count]==0) {
+            BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,45)];
+            footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+            footer.titleLabel.text = @"这里什么东西都没有~";
+            listTable.tableFooterView = footer;
+            [footer release];
+        }
         
     }else{
         NSString *errMsg = [resultDict objectForKey:@"msg"];
@@ -247,17 +284,17 @@
     }
     
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
 }
 
 - (void)getProductListFaild:(NSDictionary*)resultDict
 {
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
     self.pageIndex--;
 
 }
@@ -274,7 +311,7 @@
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"resultDict===>%@",resultDict);
+//        NSLog(@"resultDict===>%@",resultDict);
         
         NSArray *allTabs = [resultDict objectForKey:@"data"];
         
@@ -284,11 +321,19 @@
         
         [self getProductList];
 
+    }else{
+        if (_reloading) {
+            _reloading = NO;
+        }
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
     }
 }
 - (void)getAllTabTypesFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        _reloading = NO;
+    }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
 }
 
 - (void)getListData
@@ -301,6 +346,7 @@
     if (tabTypesArray.count>0) {
         return;
     }
+    [_refreshHeaderView startLoading:listTable];
     [self getAllTabTypes];
 }
 

@@ -7,6 +7,13 @@
 //
 
 #import "BFImageGetOperation.h"
+#import "UIImage+Resize.h"
+
+#define MaxImageWidth 1024
+#define MaxImageHeight 1800
+
+#define ThumbSize CGSizeMake(80,50)
+#define ThumbRoundSize CGSizeMake (150,150)
 
 @interface BFImageGetOperation(PrivateMethod)
 - (id)initWithImageUrl:(NSString *)url withFinishDelegate:(id)aDelegate withNewRect:(CGRect)newRect;
@@ -14,6 +21,7 @@
 @end
 
 @implementation BFImageGetOperation
+@synthesize finishGetImageAction;
 
 - (id)initWithImageUrl:(NSString *)url withFinishDelegate:(id)aDelegate withNewRect:(CGRect)newRect
 {
@@ -40,8 +48,35 @@
     }
     return self;
 }
+- (id)initWithImageUrl:(NSString *)url
+{
+    if (self = [super init]) {
+        
+        _imageUrl = [url copy];
+        
+        _setNewRect = NO;
+        
+    }
+    return self;
+}
+- (id)initWithImageUrl:(NSString *)url withNewRect:(CGRect)newRect
+{
+    if (self = [super init]) {
+        
+        _imageUrl = [url copy];
+        
+        _setNewRect = YES;
+        _newRect = newRect;
+        
+    }
+    return self;
+}
+
 - (void)dealloc
 {
+    if (finishGetImageAction) {
+        [finishGetImageAction release];
+    }
     [_delegate release];
     [_cacheName release];
     [_imageUrl release];
@@ -64,11 +99,11 @@
 - (void)main{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
     if (!_imageUrl) {
-        NSAssert(_imageUrl = nil,@"image url can't be nil");
+        NSLog(_imageUrl = nil,@"image url can't be nil");
         [self cancel];
     }
     if (_delegate == nil) {
-        NSAssert(_delegate = nil,@"image get delegate can't be nil");
+        NSLog(_delegate = nil,@"image get delegate can't be nil");
         [self cancel];
     }
     
@@ -85,6 +120,11 @@
             UIGraphicsEndImageContext();
         }
         newImage = loadImage;
+        
+        if (self.finishGetImageAction) {
+            self.finishGetImageAction(newImage);
+        }
+        
         if ([_delegate respondsToSelector:@selector(imageDidLoad:)]) {
             [_delegate performSelectorOnMainThread:@selector(imageDidLoad:) withObject:newImage waitUntilDone:NO];
         }

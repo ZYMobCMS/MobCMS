@@ -148,7 +148,7 @@
 //点击某个视图时的方法
 - (void)imageListView:(BFImageListView *)imageList didSelectAtIndexPath:(BFIndexPath *)indexPath
 {
-    NSLog(@"did selected at indexpat cloum is ==> %d, row is ==>%d",indexPath.cloum,indexPath.row);
+//    NSLog(@"did selected at indexpat cloum is ==> %d, row is ==>%d",indexPath.cloum,indexPath.row);
 }
 
 

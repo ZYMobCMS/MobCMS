@@ -318,7 +318,10 @@ class NewsListController extends Controller {
             
             if($insertResult){
                 
-                $resultArr = array('status'=>'1','msg'=>'评论成功');
+                //返回该评论Id
+                $sql = "select * from zy_comment where article_id = $articleId and create_user = $userId and content='$content'";
+                $findObj = $dbOperation->queryBySql($sql);
+                $resultArr = array('status'=>'1','data'=>$findObj);
                 
                 //为该文章增加一条评论数
                 $updateSql = "update zy_article set comment_count=comment_count+1 where id=$articleId";

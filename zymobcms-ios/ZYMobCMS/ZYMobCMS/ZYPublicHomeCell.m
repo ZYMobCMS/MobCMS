@@ -51,7 +51,10 @@
         [self.contentView addSubview:activeTypeImageView];
         [activeTypeImageView release];
         
-        
+        UIView *selectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [selectView setBackgroundColor:[UIColor colorWithRed:232.0/255.0 green:232.0/255.0 blue:232.0/255.0 alpha:1]];
+        self.selectedBackgroundView = selectView;
+        [selectView release];
     }
     return self;
 }
@@ -68,7 +71,8 @@
     NSString *content = [contentDict objectForKey:@"content"];
     NSString *date = [contentDict objectForKey:@"create_time"];
     date = [NSString stringWithFormat:@"%@",[BFUitils intervalSinceNow:date]];
-    NSString *images = [contentDict objectForKey:@"relation_images"];    
+    NSString *images = [contentDict objectForKey:@"relation_images"];
+    images = [[images componentsSeparatedByString:@"|"]objectAtIndex:0];
     NSString *relationTitle = [contentDict objectForKey:@"relation_title"];
     
     BOOL hasImage = YES;

@@ -23,6 +23,7 @@
 #define CellWidth 320
 
 @implementation ZYCategoryCell
+@synthesize contentImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -85,6 +86,8 @@
     NSString *date = [content objectForKey:@"publish_time"];
     NSString *summary = [content objectForKey:@"summary"];
     NSString *images = [content objectForKey:@"images"];
+    images = [[[content objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+
     
     [titleView setContentText:title];
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
@@ -140,8 +143,6 @@
         
         contentImageView.frame = CGRectMake(LeftMargin,TopMargin,imageWidth,imageHeight);
         contentImageView.hidden = NO;
-        contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
-        [contentImageView setImageUrl:images];
         
         originX = contentImageView.frame.origin.x+contentImageView.frame.size.width+TextMargin;
     }else{
@@ -168,6 +169,31 @@
     
     }
 
+- (void)setImageInfo:(NSDictionary *)content
+{
+    if ([content objectForKey:@"images"]==nil||[[content objectForKey:@"images"]isEqualToString:@""]) {
+        return;
+    }
+    NSString *firstImage = [[[content objectForKey:@"images"] componentsSeparatedByString:@"|"]objectAtIndex:0];
+    NSString *images = firstImage;
+
+    BOOL hasImage = YES;
+    if([images isEqualToString:@""] || images == nil ){
+        
+        hasImage = NO;
+        
+    }
+    if (hasImage) {
+        contentImageView.hidden = NO;
+        if ([BFImageCache imageForUrl:images]) {
+            contentImageView.image = [BFImageCache imageForUrl:images];
+        }else{
+            contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
+        }
+        [[BFImageDownloader shareLoader]downloadImageWithUrl:images forView:contentImageView];
+    }
+}
+
 + (CGFloat)heightForContent:(NSDictionary *)content
 {
     NSString *title = [content objectForKey:@"title"];
@@ -175,6 +201,8 @@
     NSString *source = [content objectForKey:@"source"];
     NSString *summary = [content objectForKey:@"summary"];
     NSString *images = [content objectForKey:@"images"];
+    images = [[[content objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+
 
     NSString *dateSourceCombine = [NSString stringWithFormat:@"%@         %@",source,date];
 

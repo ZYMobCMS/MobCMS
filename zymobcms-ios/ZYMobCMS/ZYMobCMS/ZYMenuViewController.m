@@ -94,7 +94,7 @@
 }
 - (void)getMenuListSuccess:(NSDictionary*)resultDict
 {
-    NSLog(@"menuList  ------>%@",resultDict);
+//    NSLog(@"menuList  ------>%@",resultDict);
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         

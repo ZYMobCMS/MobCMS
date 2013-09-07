@@ -13,6 +13,7 @@
 #import "ZYButtonCell.h"
 #import "ZYSwitchCell.h"
 #import "ZYShareSettingViewController.h"
+#import "ZYUserInfoCell.h"
 
 @interface ZYAccountViewController ()
 
@@ -92,25 +93,29 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    if (indexPath.section == 0) {
+        return 100;
+    }else{
+        return 44;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        static NSString *CellIdentifier = @"Cell";
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"UserInfoCell";
+        ZYUserInfoCell *cell = (ZYUserInfoCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         // Configure the cell...
         if (!cell) {
-            cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+            cell = [[[ZYUserInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-//        cell.textLabel.text = [sourceArray objectAtIndex:indexPath.row];
         
         return cell;
 
     }else if (indexPath.section == 1){
         if (indexPath.row!=sourceArray.count-1) {
-            static NSString *CellIdentifier = @"Cell";
+            static NSString *CellIdentifier = @"NormalCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
             // Configure the cell...

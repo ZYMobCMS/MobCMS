@@ -9,9 +9,14 @@
 #import "BFImageView.h"
 #import "BFImageCache.h"
 #import "UIImage+Resize.h"
+#import <ImageIO/CGImageSource.h>
+
 
 #define MaxImageWidth 1024
 #define MaxImageHeight 1800
+
+#define ThumbSize CGSizeMake(80,50)
+#define ThumbRoundSize CGSizeMake (150,150)
 
 @interface BFImageView(PrivateMethod)
 - (void)imageDidLoad:(UIImage *)loadImage;
@@ -56,16 +61,21 @@
 - (void)setImageUrl:(NSString *)url
 {
     _imageUrl = [url copy];
-    
+        
     //先检测有没有缓存图片
     if ([BFImageCache imageForUrl:url] != nil) {
         self.image = [BFImageCache imageForUrl:url];
     }else {
-        BFImageGetOperation *loadOperation = [BFImageGetOperation initWithImageUrl:url withFinishDelegate:self withNewRect:self.frame];
-        [_loadImageOueue addOperation:loadOperation]; 
+        BFImageGetOperation *loadOperation = [[BFImageGetOperation alloc]initWithImageUrl:_imageUrl];
+        [loadOperation setFinishGetImageAction:^(UIImage *loadImage){
+            [self imageDidLoad:loadImage];
+        }];
+        [_loadImageOueue addOperation:loadOperation];
+        [loadOperation release];
     }
     
 }
+
 - (void)setPlaceHolder:(UIImage *)pImage
 {
     self.image = pImage;
@@ -107,10 +117,11 @@
     if(!CGSizeEqualToSize(newImageSize,CGSizeZero)){
         loadImage = [loadImage resizedImage:newImageSize interpolationQuality:kCGInterpolationDefault];
     }
-    self.image = loadImage;
-    
     //缓存图片
-    [BFImageCache cacheImage:self.image withUrl:_imageUrl]; 
+    [BFImageCache cacheImage:loadImage withUrl:_imageUrl];
+    
+    self.image = loadImage;
+
 }
 /*
 // Only override drawRect: if you perform custom drawing.

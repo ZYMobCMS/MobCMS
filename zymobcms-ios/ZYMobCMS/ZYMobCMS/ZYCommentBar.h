@@ -10,6 +10,7 @@
 
 typedef void (^inputBeginAction) (void);
 typedef void (^inputEndAction) (void);
+typedef void (^CommentSuccessAction) (NSDictionary *content);
 
 typedef enum {
     
@@ -38,6 +39,7 @@ typedef enum {
     
     inputBeginAction _beginAction;
     inputEndAction   _endAction;
+    CommentSuccessAction _commentSuccessAction;
     BOOL             isSendComment;
 }
 @property (nonatomic,retain)NSString *articleId;
@@ -60,6 +62,8 @@ typedef enum {
 - (void)setShareBtnState:(BOOL)state;
 
 - (void)commentReset;
+
+- (void)setCommentSuccess:(CommentSuccessAction)successAction;
 
 
 @end
