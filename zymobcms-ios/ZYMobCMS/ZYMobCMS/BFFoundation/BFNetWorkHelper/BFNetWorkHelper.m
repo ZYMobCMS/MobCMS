@@ -442,6 +442,7 @@ static BFNetWorkHelper *_instance = nil;
     [[targetCallBack objectForKey:@"delegate"] performSelector:NSSelectorFromString([targetCallBack objectForKey:@"success"]) withObject:result];
     
     
+
     //缓存
     NSDictionary *params = [targetCallBack objectForKey:@"params"];
     if ([[params allKeys]containsObject:@"pageIndex"]) {

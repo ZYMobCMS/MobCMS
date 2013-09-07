@@ -1156,6 +1156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				3B313A5517CB67E4002AA09E /* ImageIO.framework in Frameworks */,
 				E4F0A32617C98D5500CA995C /* CoreLocation.framework in Frameworks */,
 				E421515E17C2796000BCB601 /* MessageUI.framework in Frameworks */,
@@ -1641,6 +1642,7 @@
 		E47F0F6B17A35C330011780E = {
 			isa = PBXGroup;
 			children = (
+				E4F0A32517C98D5500CA995C /* CoreLocation.framework */,
 				E47F0F7D17A35C330011780E /* ZYMobCMS */,
 				E47F0F7617A35C330011780E /* Frameworks */,
 				E47F0F7517A35C330011780E /* Products */,
@@ -3087,6 +3089,7 @@
 				E4F0A33417C9B11600CA995C /* ZYSocialShareService.m in Sources */,
 				E4F0A33717CA038500CA995C /* ZYCacheCenter.m in Sources */,
 				E4F0A33A17CA367000CA995C /* NSDateHelper.m in Sources */,
+
 				3B313A5317CB5421002AA09E /* ZYUserInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3108,6 +3111,7 @@
 			children = (
 				E4F0A2F617C987FA00CA995C /* en */,
 				E4F0A31317C987FA00CA995C /* zh-Hans */,
+
 				E4223BB717CE429F00199B68 /* zh-Hant */,
 			);
 			name = UMSocialLocalizable.strings;

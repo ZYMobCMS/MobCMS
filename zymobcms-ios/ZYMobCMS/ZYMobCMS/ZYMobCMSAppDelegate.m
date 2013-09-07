@@ -57,6 +57,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [UMSocialSnsService  applicationDidBecomeActive];
+
     [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
 }
 

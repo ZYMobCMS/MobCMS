@@ -508,6 +508,7 @@
 {
     [SVProgressHUD showErrorWithStatus:@"网络不给力没有获取到任何功能模块,请重新尝试"];
     
+
     [self.tableSysData removeAllObjects];
     
     //没有获取到，就留一个退出

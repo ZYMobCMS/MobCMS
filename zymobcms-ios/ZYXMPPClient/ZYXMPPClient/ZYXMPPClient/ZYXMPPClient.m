@@ -66,9 +66,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     // Setup the XMPP stream
-    
-    //不要重新链接
-    if ([self connect]) {
+    if (isXmppConnected) {
         return;
     }
     

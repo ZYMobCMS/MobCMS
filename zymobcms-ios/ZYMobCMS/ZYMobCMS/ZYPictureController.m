@@ -167,6 +167,7 @@
             preVC.pictureTitle = [item objectForKey:@"title"];
             [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
             [self.navigationController pushViewController:preVC animated:YES];
+
             [preVC getAllImagesNow];
             [preVC release];
             
