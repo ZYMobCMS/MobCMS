@@ -228,7 +228,7 @@ static ZYCache *shareZYCache;
 //存储图片
 - (void)setImage:(UIImage *)anImage forKey:(NSString *)key{
     
-    NSLog(@"animage in setImage");
+//    NSLog(@"animage in setImage");
     [self setImage:anImage forKey:key withTimeoutInterval:self.defaultTimeoutInterval];
 }
 

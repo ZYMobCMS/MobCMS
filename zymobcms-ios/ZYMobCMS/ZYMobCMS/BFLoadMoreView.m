@@ -28,7 +28,7 @@
         titleLabel.text = @"加载更多...";
         titleLabel.textAlignment = UITextAlignmentCenter;
         //titleLabel.font = [UIFont systemFontOfSize:16];
-        titleLabel.frame = CGRectMake(self.frame.size.width * 1/4,self.frame.size.height * 1/8,self.frame.size.width*1/2,self.frame.size.height * 6/8);
+        titleLabel.frame = CGRectMake(0,self.frame.size.height * 1/8,self.frame.size.width,self.frame.size.height * 6/8);
         titleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:titleLabel];
         [titleLabel release];

@@ -47,7 +47,7 @@
         
         self.articleDict = [[NSMutableDictionary alloc]initWithDictionary:baseDict];
         
-        NSLog(@"articleDict init --->%@",self.articleDict);
+//        NSLog(@"articleDict init --->%@",self.articleDict);
 
         
     }
@@ -368,16 +368,18 @@
         [self.articleDict removeAllObjects];
         [self.articleDict addEntriesFromDictionary:[data objectForKey:@"data"]];
         
-        NSLog(@"articleDict --->%@",self.articleDict);
+//        NSLog(@"articleDict --->%@",self.articleDict);
 
         [self setBaseContentDict:[data objectForKey:@"data"] isShowDetail:YES];
         [commentBar setFavoriteState:[[[data objectForKey:@"data"]objectForKey:@"isFavorite"]boolValue]];
         
     }
+    [self stopLoading];
 }
 - (void)getArticleDetailDataFaild:(NSDictionary*)data
 {
     //    NSLog(@"faild data:%@",data);
+    [self stopLoading];
 }
 
 - (void)loadArticleDetailWithId:(NSString *)articleId
@@ -400,6 +402,7 @@
     BFNImagePreViewController *imagePreView = [[BFNImagePreViewController alloc]initWithImageString:imageString];
     imagePreView.superVC = self;
     [self presentModalViewController:imagePreView animated:YES];
+    [imagePreView getAllImagesNow];
     [imagePreView release];
 }
 

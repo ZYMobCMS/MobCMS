@@ -47,7 +47,7 @@
     
     if(!listArray){
         listArray = [[NSMutableArray alloc]init];
-        pageIndex = 0;
+        self.pageIndex = 1;
     }
     listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-44) style:UITableViewStylePlain];
     listTable.dataSource = self;
@@ -64,6 +64,7 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
+    [_refreshHeaderView startLoading:listTable];
     
     if (!segmentArray) {
         segmentArray = [[NSMutableArray alloc]init];
@@ -79,8 +80,7 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
     [refreshBtn release];
     self.navigationItem.rightBarButtonItem = rightItem;
-    [rightItem release];
-    
+    [rightItem release];    
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,21 +121,25 @@
 - (void)segmentControl:(BFSegmentControl*)sgmCtrl didSelectAtIndex:(NSInteger)index
 {
     NSDictionary *item = [segmentArray objectAtIndex:index];
-    NSLog(@"item -->%@",item);
+//    NSLog(@"item -->%@",item);
     
-    pageIndex = 0;
+    pageIndex = 1;
     self.currentTabType = [item objectForKey:@"id"];
     [self refresh];
 }
 
 #pragma mark - tableView delegate and source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [listArray count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
+    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]&&[[listArray objectAtIndex:0]count]>0) {
         if (indexPath.row == 0) {
             return 170.0f;
         }else{
@@ -149,7 +153,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]) {
+    if ([[listArray objectAtIndex:0] isKindOfClass:[NSArray class]]&&[[listArray objectAtIndex:0]count]>0) {
         
         if (indexPath.row == 0) {
             
@@ -167,6 +171,10 @@
                 }]autorelease];
             }
             [cellHot setContentArray:[listArray objectAtIndex:indexPath.row]];
+            if (listTable.decelerating==NO||listTable.dragging==NO) {
+                [cellHot setImageInfo:[listArray objectAtIndex:indexPath.row]];
+            }
+            
             return cellHot;
             
         }else{
@@ -176,6 +184,15 @@
                 cell = [[[ZYCategoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
             }
             [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
+            NSString *firstImage = [[[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+            if ([BFImageCache imageForUrl:firstImage]) {
+                cell.contentImageView.image = [BFImageCache imageForUrl:firstImage];
+            }else{
+                if (listTable.decelerating==NO||listTable.dragging==NO) {
+                    [cell setImageInfo:[listArray objectAtIndex:indexPath.row]];
+                }
+                cell.contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
+            }
             
             return cell;
         }
@@ -188,7 +205,16 @@
             cell = [[[ZYCategoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCell]autorelease];
         }
         [cell setcontentDict:[listArray objectAtIndex:indexPath.row]];
-        
+        if ([BFImageCache imageForUrl:[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]]) {
+            NSString *firstImage = [[[[listArray objectAtIndex:indexPath.row]objectForKey:@"images"]componentsSeparatedByString:@"|"]objectAtIndex:0];
+            cell.contentImageView.image = [BFImageCache imageForUrl:firstImage];
+        }else{
+            if (listTable.decelerating==NO||listTable.dragging==NO) {
+                [cell setImageInfo:[listArray objectAtIndex:indexPath.row]];
+            }
+            cell.contentImageView.image = [UIImage imageNamed:@"img_faild.png"];
+        }
+
         return cell;
         
     }
@@ -196,7 +222,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[listArray objectAtIndex:0]isKindOfClass:[NSArray class]]) {
+    if ([[listArray objectAtIndex:0]isKindOfClass:[NSArray class]]&&[[listArray objectAtIndex:0]count]>0) {
         
         if (indexPath.row != 0) {
             BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:[listArray objectAtIndex:indexPath.row]];
@@ -222,6 +248,30 @@
 
 }
 
+#pragma mark - 加载可见cell
+- (void)loadAllVisiableCellContent
+{
+    NSArray *visiablePaths = [listTable indexPathsForVisibleRows];
+    for (NSIndexPath *vPath in visiablePaths) {
+        
+        UITableViewCell *cell = [listTable cellForRowAtIndexPath:vPath];
+        if ([cell isKindOfClass:[ZYHotNewsCell class]]) {
+            
+            ZYHotNewsCell *vCell = (ZYHotNewsCell*)cell;
+            [vCell setImageInfo:[listArray objectAtIndex:vPath.row]];
+        }
+        if ([cell isKindOfClass:[ZYCategoryCell class]]) {
+            
+            ZYCategoryCell *vCell = (ZYCategoryCell *)cell;
+            [vCell setImageInfo:[listArray objectAtIndex:vPath.row]];
+        }
+    }
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadAllVisiableCellContent];
+}
+
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -231,9 +281,10 @@
         footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
         
         if (!hideLoadMore) {
-            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+//            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
             footer.titleLabel.text = @"加载更多...";
-            footer.userInteractionEnabled = YES;
+//            footer.userInteractionEnabled = YES;
+            [self loadMore:footer];
         }else {
             NSString *title = @"已是最后一页";
             if (listArray == 0) {
@@ -273,6 +324,7 @@
     
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     self.pageIndex = 1;
     [self getNewsList];
 }
@@ -288,6 +340,10 @@
 {
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 	
+    if (!decelerate) {
+        [self loadAllVisiableCellContent];
+    }
+    
 }
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
@@ -327,24 +383,28 @@
         
         NSArray *tabTypes = [resultDict objectForKey:@"data"];
         
+        [segmentArray removeAllObjects];
         [segmentArray addObjectsFromArray:tabTypes];
         self.currentTabType = [[tabTypes objectAtIndex:0]objectForKey:@"id"];
         
         [segmentCtrl reloadData];
         [self getNewsList];
-    }
-    if (_reloading) {
+    }else{
+        if (_reloading) {
+            _reloading = NO;
+        }
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
-        _reloading = NO;
     }
+    
 }
 
 - (void)getTabTypeFaild:(NSDictionary*)resultDict
 {
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+
 }
 
 
@@ -367,7 +427,7 @@
 
 - (void)getNewsListSuccess:(NSDictionary*)resultDict
 {
-    NSLog(@"resultDict --->%@",resultDict);
+//    NSLog(@"resultDict --->%@",resultDict);
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         
@@ -376,9 +436,7 @@
         if(_reloading){
             [listArray removeAllObjects];
         }
-        
-        
-        
+
         if ([[resultDict objectForKey:@"data"]isKindOfClass:[NSDictionary class]]) {
             NSArray *hotNews = [dataDict objectForKey:@"hotNews"];
             NSArray *normalList = [dataDict objectForKey:@"newsList"];
@@ -392,8 +450,8 @@
                     hideLoadMore = YES;
                 }
             }
-            
             [listArray addObjectsFromArray:normalList];
+            
         }else{
             NSArray *resultArray = [resultDict objectForKey:@"data"];
             if (resultArray.count ==0 || resultArray.count <PageSize) {
@@ -402,32 +460,42 @@
             [listArray addObjectsFromArray:resultArray];
         }
         
-        
-        NSLog(@"listArray -->%@",listArray);
-        
         [listTable reloadData];
+        
+        if ([listArray count]==0) {
+            BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,self.listTable.frame.size.width,45)];
+            footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+            footer.titleLabel.text = @"这里什么东西都没有~";
+            self.listTable.tableFooterView = footer;
+            [footer release];
+        }
+        
     }else{
         NSString *errMsg = [resultDict objectForKey:@"msg"];
         [SVProgressHUD showErrorWithStatus:errMsg];
         BFLoadMoreView *footer = (BFLoadMoreView*)listTable.tableFooterView;
         [footer stopAnimation];
-        self.pageIndex--;
+        if (self.pageIndex>1) {
+            self.pageIndex--;
+        }
         
     }
     
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+
 }
 - (void)getNewsListFaild:(NSDictionary*)resultDict
 {
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
-    self.pageIndex--;
-
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+    if (self.pageIndex>1) {
+        self.pageIndex--;
+    }
 }
 
 - (void)getListData
@@ -439,6 +507,7 @@
     if (segmentArray.count>0) {
         return;
     }
+    [_refreshHeaderView startLoading:listTable];
     [self getTabType];
 }
 

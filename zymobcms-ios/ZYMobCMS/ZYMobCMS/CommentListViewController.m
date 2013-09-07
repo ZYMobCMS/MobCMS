@@ -67,7 +67,7 @@
     
 
     
-    self.listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-106*2/6)];
+    self.listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-106*2/6-44)];
     self.listTable.dataSource = self;
     self.listTable.delegate = self;
     [self.view addSubview:self.listTable];
@@ -81,6 +81,7 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
+    [_refreshHeaderView startLoading:listTable];
     
     //add commentBAr
     commentBar = [[ZYCommentBar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-106*2/6-44,self.view.frame.size.width, 106*2/6) withBeginAction:^{
@@ -120,8 +121,26 @@
     commentBar.articleId = self.articleId;
     [self.view addSubview:commentBar];
     [commentBar release];
+    [commentBar setCommentSuccess:^(NSDictionary *content) {
+        
+        NSMutableDictionary *newComment = [NSMutableDictionary dictionaryWithDictionary:content];
+        NSDictionary *currentUser = [ZYUserManager getCurrentUserDict];
+        [newComment setObject:[currentUser objectForKey:@"location"] forKey:@"location"];
+        [newComment setObject:[currentUser objectForKey:@"login_name"] forKey:@"login_name"];
+        [newComment setObject:@"0" forKey:@"isSupported"];
+        [sourceArray insertObject:newComment atIndex:0];
+        [listTable insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:0 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        
+    }];
 
-
+    //设置右上角刷新
+    BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
+        [self refresh];
+    }];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:refreshBtn];
+    [refreshBtn release];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
 }
 
 - (void)whilteBoardTouchDown
@@ -237,6 +256,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if ((indexPath.row == [sourceArray count] - 1))
     {
         BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,tableView.frame.size.width,45)];
@@ -249,7 +269,7 @@
         }else {
             NSString *title = @"已是最后一页";
             if (sourceArray == 0) {
-                title = @"没有获取到内容";
+                title = @"还没有人发表评论，快去评论吧";
             }
             footer.titleLabel.text = title;
             footer.userInteractionEnabled = NO;
@@ -293,6 +313,7 @@
 
         if (resultArray.count ==0 || resultArray.count <PageSize) {
             hideLoadMore = YES;
+            
         }
         
         if (_reloading) {
@@ -307,20 +328,32 @@
         }
         
         [self.listTable reloadData];
+        if ([sourceArray count]==0) {
+            BFLoadMoreView *footer = [[BFLoadMoreView alloc]initWithFrame:CGRectMake(0,0,listTable.frame.size.width,45)];
+            footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
+            footer.titleLabel.text = @"还没有评论，快来抢沙发吧～";
+            listTable.tableFooterView = footer;
+            [footer release];
+        }
         
     }else{
         
     }
     
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+
 }
 
 - (void)getCommentListFaild:(NSDictionary*)resultDict
 {
-    
+    if (_reloading) {
+        _reloading = NO;
+    }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
+
 }
 
 @end

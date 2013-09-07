@@ -22,5 +22,7 @@ typedef void (^tapOnImageItem) (void);
 - (id)initWithFrame:(CGRect)frame withTapAction:(tapOnImageItem)tapAction;
 
 - (void)setItemContent:(NSDictionary*)contentDict;
+- (void)setItemImage:(NSDictionary*)contentDict;
+- (void)setImage:(UIImage*)contentImage;
 
 @end

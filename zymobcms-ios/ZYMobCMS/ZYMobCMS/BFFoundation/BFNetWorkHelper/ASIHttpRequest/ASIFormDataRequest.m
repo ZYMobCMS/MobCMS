@@ -84,7 +84,7 @@
 			i--;
 		}
 	}
-	NSLog(@"post ====> value:%@,\t\t\t\tkey:%@", value, key);
+//	NSLog(@"post ====> value:%@,\t\t\t\tkey:%@", value, key);
 	[self addPostValue:value forKey:key];
 }
 

@@ -582,12 +582,14 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
 
-	BOOL childrenRotatable = [self childViewControllersAllowAutoRotationToInterfaceOrientation:toInterfaceOrientation];
-
-	if (childrenRotatable && [self isPanning])
-		return (self.interfaceOrientation == toInterfaceOrientation);
-	
-	return childrenRotatable;
+//	BOOL childrenRotatable = [self childViewControllersAllowAutoRotationToInterfaceOrientation:toInterfaceOrientation];
+//
+//	if (childrenRotatable && [self isPanning])
+//		return (self.interfaceOrientation == toInterfaceOrientation);
+//	
+//	return childrenRotatable;
+    
+    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 
 }
 

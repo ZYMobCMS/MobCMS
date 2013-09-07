@@ -39,4 +39,5 @@
 - (id)initWithBaseContentDict:(NSDictionary*)baseDict;
 - (id)initWithArticleId:(NSString*)articleId;
 
+
 @end

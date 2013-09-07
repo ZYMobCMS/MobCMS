@@ -259,12 +259,14 @@
         productPreVC.pictureId = self.productId;
         [ZYMobCMSUitil setBFNNavItemForReturn:productPreVC];
         [self.navigationController pushViewController:productPreVC animated:YES];
+        [productPreVC getAllImagesNow];
         [productPreVC release];
     }
 }
 
 - (void)getProductDetail
 {
+    [self startLoading];
     //set params
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     [params setObject:self.productId forKey:@"productId"];
@@ -278,7 +280,7 @@
     if (status) {
         
         NSDictionary *productItem = [resultDict objectForKey:@"data"];
-        NSLog(@"product --->%@",productItem);
+//        NSLog(@"product --->%@",productItem);
         
         //头部图片
         [listArray addObject:[NSArray arrayWithObject:[productItem objectForKey:@"images"]]];
@@ -360,12 +362,14 @@
         [listTable reloadData];
     }
     
+    [self stopLoading];
+    
 }
 
 - (void)getProductDetailFaild:(NSDictionary*)resultDict
 {
     
-    
+    [self stopLoading];
 }
 
 - (NSString*)replaceNullString:(NSObject*)source
@@ -373,7 +377,8 @@
     if ([source isKindOfClass:[NSNull class]]||[(NSString*)source isEqualToString:@""]||source==nil) {
         return @"暂未填写";
     }else{
-        return (NSString*)source;
+        
+        return [ZYMobCMSUitil replaceNBSP:(NSString*)source];
     }
     
 }

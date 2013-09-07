@@ -215,9 +215,10 @@
     newNav.view.frame = appDelegate.rootViewController.view.frame;
     appDelegate.rootViewController.detailViewController = newNav;
     [newNav release];
-    [currentVC getCategoryData];//网络数据
-    
     [appDelegate hiddenMaster];
+    
+    [currentVC getCategoryData];//网络数据
+
 }
 
 #pragma mark - 获取菜单
@@ -256,6 +257,7 @@
             break;
     }
     return className;
+    UIColor *cor=[UIColor redColor];
 }
 
 - (NSArray*)returnFeatureClassArrayWithSortArray:(NSArray*)sortArray
@@ -459,8 +461,14 @@
         
         //category类型
         NSArray *categoryArray  = [resultDict objectForKey:@"data"];
-                
+        [tableBasicData removeAllObjects];
+        [tableSysData removeAllObjects];
+        [viewControllers removeAllObjects];
+        [sysViewControllers removeAllObjects];
+        
         if (categoryArray.count != 0) {
+            
+
             
             NSMutableArray *featureArray = [NSMutableArray array];
             NSArray *categoryFeatureArray = [self returnFeatureClassArrayWithSortArray:categoryArray];
@@ -478,6 +486,8 @@
             
             [SVProgressHUD showSuccessWithStatus:@"该应用没有配置任何模块！"];
             
+            [self.tableSysData removeAllObjects];
+            
             //没有获取到，就留一个退出
             NSArray *account = [NSArray arrayWithObjects:@"重新尝试",@"18",nil];
             [self.tableSysData addObject:account];
@@ -491,11 +501,15 @@
         }
         
     }
+    [self stopLoading];
     
 }
 - (void)getMenuFaild:(NSDictionary*)resultDict
 {
     [SVProgressHUD showErrorWithStatus:@"网络不给力没有获取到任何功能模块,请重新尝试"];
+    
+
+    [self.tableSysData removeAllObjects];
     
     //没有获取到，就留一个退出
     NSArray *account = [NSArray arrayWithObjects:@"重新尝试",@"18",nil];
@@ -506,10 +520,13 @@
     ZYMobCMSAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     
     [appDelegate showMaster];
+    
+    [self stopLoading];
         
 }
 - (void)getMenuDataNow
 {
+    [self startLoading];
     [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeMenuList
                                                        withParams:nil
                                                withHelperDelegate:self

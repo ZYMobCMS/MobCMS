@@ -53,7 +53,7 @@
     [self.view addSubview:segmentCtrl];
     [segmentCtrl release];
     
-    NSLog(@"self.navi --->%@",self.navigationController);
+//    NSLog(@"self.navi --->%@",self.navigationController);
     
     //controllers
     ZYMyArticleFavoriteViewController *articleVC = [[ZYMyArticleFavoriteViewController alloc]init];
@@ -71,7 +71,7 @@
     [viewControllers addObject:productVC];
     [productVC release];
     
-    NSLog(@"productVC navigationController--->%@",productVC.superNavigationController);
+//    NSLog(@"productVC navigationController--->%@",productVC.superNavigationController);
     
     //设置右上角刷新
     BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {

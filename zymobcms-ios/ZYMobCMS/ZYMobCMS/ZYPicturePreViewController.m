@@ -167,7 +167,7 @@
 {
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
-        NSLog(@"favoriteSuccess");
+//        NSLog(@"favoriteSuccess");
         if (isFavorited) {
             [SVProgressHUD showSuccessWithStatus:@"取消收藏"];
             self.isFavorited = NO;
@@ -216,8 +216,8 @@
     BOOL status = [[resultDict objectForKey:@"status"]boolValue];
     if (status) {
         
-        NSLog(@"pictureDetail----->%@",resultDict);
-                
+//        NSLog(@"pictureDetail----->%@",resultDict);
+        
         NSDictionary *item = [resultDict objectForKey:@"data"];
         if ([[item objectForKey:@"isFavorited"]boolValue]) {
             [favBtn setBackgroundImage:[UIImage imageNamed:@"picture_favorite_yes.png"] forState:UIControlStateNormal];

@@ -179,7 +179,7 @@
 
 + (CGFloat)getAttributedContentHeight:(NSAttributedString *)aString withWdith:(CGFloat)width
 {
-    if (!aString) {
+    if (!aString||[aString length]==0) {
         return 0.f;
     }
     
@@ -233,7 +233,7 @@
 
 + (NSAttributedString*)createAttributedString:(NSString *)string withDescriptor:(BFAttributeDescriptor *)descriptor
 {
-    if (!string) {
+    if (!string||string.length==0) {
         return nil;
     }
     

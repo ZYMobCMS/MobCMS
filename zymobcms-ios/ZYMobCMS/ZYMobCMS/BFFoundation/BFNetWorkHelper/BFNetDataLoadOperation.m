@@ -52,7 +52,7 @@
             result = [[CJSONDeserializer deserializer]deserialize:jsonData error:&jerror];
             if (jerror) {
                 NSLog(@"this data is not format json data");
-                return error;   
+                return error;
             }
             BFMLog(result);
             return result;

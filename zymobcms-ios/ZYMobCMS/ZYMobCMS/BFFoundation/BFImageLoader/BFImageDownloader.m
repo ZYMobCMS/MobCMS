@@ -8,10 +8,15 @@
 
 #import "BFImageDownloader.h"
 #import "BFImageCache.h"
+#import "UIImage+Resize.h"
 
 #define MaxImageWidth 1024
 #define MaxImageHeight 1800
 #define kIndicatorTag 879870
+
+#define ThumbSize CGSizeMake(80,50)
+#define ThumbRoundSize CGSizeMake (150,150)
+
 
 static BFImageDownloader *_instance = nil;
 @implementation BFImageDownloader
@@ -102,6 +107,9 @@ static BFImageDownloader *_instance = nil;
         
         //缓存图片
         [BFImageCache cacheImage:loadImage withUrl:[imageUrl absoluteString]];
+        
+        imageView.image = loadImage;
+
     }else {
         
         imageView.image = nil;
@@ -111,6 +119,22 @@ static BFImageDownloader *_instance = nil;
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view
 {
     [self downloadImageWithUrl:url forView:view shouldResize:NO];
+}
+
+- (void)downloadImageWithUrl:(NSString *)url
+{
+    if (url == nil) {
+        return;
+    }
+    
+    if ([BFImageCache imageForUrl:url]) {
+        return;
+    }
+    
+    BFImageGetOperation *newOperation = [BFImageGetOperation initWithImageUrl:url withFinishDelegate:self];
+    
+    [_loadQueue addOperation:newOperation];
+    
 }
 
 - (void)downloadImageWithUrl:(NSString *)url forView:(UIView *)view shouldResize:(BOOL)state
@@ -127,10 +151,7 @@ static BFImageDownloader *_instance = nil;
         UIImageView *forView = (UIImageView *)view;
         UIImage *cacheImage = [BFImageCache imageForUrl:url];
         forView.image = cacheImage;        
-//        BFMLog(cacheImage);
-//        BFMLog(url);
     }else {
-//        BFMLog(url);
         NSArray *arguments = [NSArray arrayWithObjects:url,view,[NSNumber numberWithBool:state],nil];
         
         NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc]initWithTarget:self selector:@selector(loadImageWithArguments:) object:arguments];

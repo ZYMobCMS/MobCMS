@@ -57,7 +57,8 @@
     [listTable addSubview:_refreshHeaderView];
     [_refreshHeaderView release];
 	[_refreshHeaderView refreshLastUpdatedDate];
-    
+    [_refreshHeaderView startLoading:listTable];
+
     //设置右上角刷新
     BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
         [self refresh];
@@ -85,6 +86,7 @@
 
     [_refreshHeaderView startLoading:listTable];
     _reloading = YES;
+    hideLoadMore = NO;
     self.pageIndex = 1;
     [self getPublicHomeList];
 }
@@ -160,6 +162,7 @@
         articleDetailVC.mainTitle = @"文章详情";
         [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
         [self.navigationController pushViewController:articleDetailVC animated:YES];
+        [articleDetailVC startLoading];
         [articleDetailVC enableSwipRightToReturn];
         [articleDetailVC release];
     }
@@ -198,9 +201,10 @@
         footer.titleLabel.textColor = [BFUitils rgbColor:158 green:158 blue:158];
         
         if (!hideLoadMore) {
-            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
+//            [footer addTarget:self action:@selector(loadMore:) forControlEvents:UIControlEventTouchUpInside];
             footer.titleLabel.text = @"加载更多...";
-            footer.userInteractionEnabled = YES;
+//            footer.userInteractionEnabled = YES;
+            [self loadMore:footer];
         }else {
             NSString *title = @"已是最后一页";
             if (listArray == 0) {
@@ -256,18 +260,18 @@
     }
     
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
 
 }
 
 - (void)getPublicHomeListFaild:(NSDictionary*)resultDict
 {
     if (_reloading) {
-        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
         _reloading = NO;
     }
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:listTable];
     self.pageIndex--;
 }
 

@@ -57,6 +57,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [UMSocialSnsService  applicationDidBecomeActive];
+
+    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
 }
 
 
@@ -67,7 +69,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     //打开调试log的开关
-    [UMSocialData openLog:YES];
+    [UMSocialData openLog:NO];
     //向微信注册
     [WXApi registerApp:@"wxd9a39c7122aa6516"];
     
@@ -82,56 +84,55 @@
     
     [self.window makeKeyAndVisible];
     
-    // 注册推送服务
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(
-                                                                           UIRemoteNotificationTypeAlert |
-                                                                           UIRemoteNotificationTypeBadge |
-                                                                           UIRemoteNotificationTypeSound
-                                                                           )];
+//    // 注册推送服务
+//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(
+//                                                                           UIRemoteNotificationTypeAlert |
+//                                                                           UIRemoteNotificationTypeBadge |
+//                                                                           UIRemoteNotificationTypeSound
+//                                                                           )];
     
     return YES;
 }
 
 #pragma mark - 推送通知
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    NSLog(@"token===>>>%@", deviceToken);
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:deviceToken forKey:@"token"];
-    [params setObject:@"1" forKey:@"type"];
-    //保存TOKEN
-    if ([ZYUserManager getCurrentUserLoginName]) {
-        [params setObject:[ZYUserManager getCurrentUserLoginName] forKey:@"loginName"];
-    }else{
-        [params setObject:@"" forKey:@"loginName"];
-    }
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserSaveDeivceToken withParams:params withHelperDelegate:self withSuccessRequestMethod:@"saveTokenSuccess:" withFaildRequestMethod:@"saveTokenFaild:"];
-    
-}
-- (void)saveTokenSuccess:(NSDictionary*)resultDict
-{
-    if ([[resultDict objectForKey:@"status"]boolValue]==NO) {
-        NSString *msg = [resultDict objectForKey:@"msg"];
-        
-        NSLog(@"%@",msg);
-    }
-}
-- (void)saveTokenFaild:(NSDictionary*)resultDict
-{
-    
-}
-
-- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSString *str = [NSString stringWithFormat: @"Error: %@", error];
-    NSLog(@"gettoken fail===>>>%@", str);
-}
-
-
-- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    NSLog(@"push info recieved ------->%@",userInfo);
-}
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//{
+////    NSLog(@"token===>>>%@", deviceToken);
+//    
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:deviceToken forKey:@"token"];
+//    [params setObject:@"1" forKey:@"type"];
+//    //保存TOKEN
+//    if ([ZYUserManager getCurrentUserLoginName]) {
+//        [params setObject:[ZYUserManager getCurrentUserLoginName] forKey:@"loginName"];
+//    }else{
+//        [params setObject:@"" forKey:@"loginName"];
+//    }
+//    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserSaveDeivceToken withParams:params withHelperDelegate:self withSuccessRequestMethod:@"saveTokenSuccess:" withFaildRequestMethod:@"saveTokenFaild:"];
+//}
+//- (void)saveTokenSuccess:(NSDictionary*)resultDict
+//{
+//    if ([[resultDict objectForKey:@"status"]boolValue]==NO) {
+////        NSString *msg = [resultDict objectForKey:@"msg"];
+//        
+////        NSLog(@"%@",msg);
+//    }
+//}
+//- (void)saveTokenFaild:(NSDictionary*)resultDict
+//{
+//    
+//}
+//
+//- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+//    NSString *str = [NSString stringWithFormat: @"Error: %@", error];
+//    NSLog(@"gettoken fail===>>>%@", str);
+//}
+//
+//
+//- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    
+////    NSLog(@"push info recieved ------->%@",userInfo);
+//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
