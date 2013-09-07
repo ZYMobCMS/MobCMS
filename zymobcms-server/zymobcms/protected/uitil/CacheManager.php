@@ -27,7 +27,7 @@ class CacheManager {
         $this->_cache = new Cache($cacheConfig);
         
 //        //是否过期,去数据库查询过期时间,备用需求
-//            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+//            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
 //            $findOverTime = "select cache_over_time from zy_application_owner";
 //            $resultObject = $dbOperation->queryBySql($findOverTime);
 //            

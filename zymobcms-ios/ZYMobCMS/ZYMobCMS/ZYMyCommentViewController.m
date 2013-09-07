@@ -166,6 +166,7 @@
             ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
             preVC.mainTitle = [item objectForKey:@"title"];
             preVC.pictureId = [item objectForKey:@"picture_id"];
+            preVC.pictureTitle = [item objectForKey:@"title"];
             [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
             [self.navigationController pushViewController:preVC animated:YES];
             [preVC release];
@@ -175,6 +176,8 @@
         {
             ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
             detailVC.productId = [[self.sourceArray objectAtIndex:indexPath.row]objectForKey:@"product_id"];
+            detailVC.productImages = [[self.sourceArray objectAtIndex:indexPath.row]objectForKey:@"images"];
+            detailVC.productTitle = [[self.sourceArray objectAtIndex:indexPath.row]objectForKey:@"title"];
             detailVC.mainTitle = @"产品详情";
             [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
             [self.navigationController pushViewController:detailVC animated:YES];

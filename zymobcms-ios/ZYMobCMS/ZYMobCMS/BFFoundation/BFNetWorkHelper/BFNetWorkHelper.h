@@ -13,6 +13,13 @@
 #import "NetWorkConst.h"
 #import "BFNetWorkChecker.h"
 
+typedef enum {
+    
+    ZYCacheDataArticle = 0,
+    ZYCacheDataPicture,
+    ZYCacheDataProduct,
+    
+}ZYCacheDataType;
 
 typedef enum {
     ZYCMSRequestTypeLogin = 0,
@@ -59,6 +66,8 @@ typedef enum {
     ZYCMSRequestTypeUserPictureFavoriteList,
     ZYCMSRequestTypeUserProductFavoriteList,
     ZYCMSRequestTypeUserPublicHome,
+    ZYCMSRequestTypeUserLoginOut,
+    ZYCMSRequestTypeUserShareRecord,
     
 }ZYCMSRequestType;
 

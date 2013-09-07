@@ -166,13 +166,11 @@
     
     ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
     detailVC.productId = [[listArray objectAtIndex:indexPath.row]objectForKey:@"id"];
+    detailVC.productImages = [[listArray objectAtIndex:indexPath.row]objectForKey:@"images"];
+    detailVC.productTitle = [[listArray objectAtIndex:indexPath.row]objectForKey:@"title"];
     detailVC.mainTitle = @"产品详情";
     [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
-    if (self.superNavigationController) {
-        [self.superNavigationController pushViewController:detailVC animated:YES];
-    }else{
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }
+    [self.navigationController pushViewController:detailVC animated:YES];
     [detailVC release];
 }
 

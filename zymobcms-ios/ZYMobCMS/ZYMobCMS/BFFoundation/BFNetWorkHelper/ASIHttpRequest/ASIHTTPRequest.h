@@ -980,5 +980,6 @@ typedef void (^ASIDataBlock)(NSData *data);
 @property (assign) BOOL shouldWaitToInflateCompressedResponses;
 @property (retain) NSString *requestFlagMark;
 @property (assign, nonatomic) NSInteger RequestType;
+@property (nonatomic,assign)NSInteger requestPageIndex;
 
 @end

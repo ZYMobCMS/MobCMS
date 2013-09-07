@@ -92,7 +92,7 @@ class PictureController extends Controller {
         $sql = "select * from zy_picture limit order by id desc $startIndex,$pageSize";
         
         //查询
-        $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         $resultArr = $dbOperation->queryAllBySql($sql);
         
         //是否已经收藏过这个图片,//列表内获取是否收藏，加重服务器负担
@@ -141,7 +141,7 @@ class PictureController extends Controller {
             
             $create_time = date('y-m-d H:i:s');
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             //文章是否还存在
             $checkSql = "select id from zy_picture where id=$pictureId";
             $checkResult = $dbOperation->queryAllBySql($checkSql);
@@ -165,10 +165,8 @@ class PictureController extends Controller {
                 echo json_encode($resultArr);
                 
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createAnCommentPictureRecord($content,$userId,'','',$pictureId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createAnCommentPictureRecord($content,$userId,'','',$pictureId);
 
                 return;
                 
@@ -218,7 +216,7 @@ class PictureController extends Controller {
              }
              
              //查询
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //文章是否还存在
             $checkSql = "select id from zy_picture where id=$pictureId";
@@ -279,7 +277,7 @@ class PictureController extends Controller {
             
             $create_time = date('y-m-d h:i:s');
             
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_picture_favorite where picture_id=$articleId and user_id=$userId";
@@ -309,10 +307,8 @@ class PictureController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createFavPictureRecord('',$userId,'','',$articleId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createFavPictureRecord('',$userId,'','',$articleId);
                 
                 
                 return;
@@ -348,7 +344,7 @@ class PictureController extends Controller {
                 return; 
             }
                         
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_picture_favorite where picture_id=$articleId and user_id=$userId";
@@ -378,10 +374,8 @@ class PictureController extends Controller {
                 echo json_encode($resultArr);
             
                 //插入一条活动纪录
-                if($userActiveOpen==TRUE){
-                	$activeRecordManager = new UserActiveRecordManager($productId);
-                	$activeRecordManager->createUnFavPictureRecord('',$userId,'','',$articleId);
-                }
+                $activeRecordManager = new UserActiveRecordManager($productId,$userActiveOpen);
+                $activeRecordManager->createUnFavPictureRecord('',$userId,'','',$articleId);
                 
                 
                 return;
@@ -415,7 +409,7 @@ class PictureController extends Controller {
                 return; 
             }
                         
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
             
             //不允许重复收藏
             $favoriteExistSql = "select id from zy_user_picture_favorite where picture_id=$articleId and user_id=$userId";
@@ -461,7 +455,7 @@ class PictureController extends Controller {
                
                
                
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             
             //是否已经支持过了
             $sqlCheck = "select id from zy_picture_comment_support where comment_id=$commentId and user_id=$userId";
@@ -491,14 +485,12 @@ class PictureController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   if($userActiveOpen==TRUE){
-                   	$sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
+               	   $sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
                    	$resultObj = $dbOperation->queryBySql($sql);
                    	if($resultObj){
-                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager = new UserActiveRecordManager($appId,$userActiveOpen);
                    		$activeRecordManager->createSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
                    	}
-                   }
 
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
@@ -531,7 +523,7 @@ class PictureController extends Controller {
                     return;
                }
                
-            $dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
             
             $sqlDelete = "delete from zy_picture_comment_support where user_id=$userId and comment_id=$commentId";
             
@@ -547,14 +539,12 @@ class PictureController extends Controller {
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
-                   if($userActiveOpen==TRUE){
-                   	$sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
+                	$sql = "select content,picture_id from zy_picture_comment where comment_id = $commentId";
                    	$resultObj = $dbOperation->queryBySql($sql);
                    	if($resultObj){
-                   		$activeRecordManager = new UserActiveRecordManager($appId);
+                   		$activeRecordManager = new UserActiveRecordManager($appId,$userActiveOpen);
                    		$activeRecordManager->createUnSupportAnPictureCommentRecord($resultObj->content,$userId,'','',$resultObj->picture_id);
                    	}
-                   }
 
                 }  else {
                    $josnArr = array('status'=>'0','msg'=>'失败，服务器忙');
@@ -597,7 +587,7 @@ class PictureController extends Controller {
         		return ;
         	}
         	
-        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+        	$dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         	 
         	$sqlCheck="select * from zy_picture_tab_type where category_id = $categoryId";
         	
@@ -644,7 +634,7 @@ class PictureController extends Controller {
         	}
         	
         	//查询
-        	$dbOperation = new class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+        	$dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
         	 
         	//是否存在缓存
         	$cacheManager = new CacheManager($appId);

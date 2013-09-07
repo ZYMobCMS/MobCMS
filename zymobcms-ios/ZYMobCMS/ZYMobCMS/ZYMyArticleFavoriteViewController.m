@@ -7,6 +7,7 @@
 //
 
 #import "ZYMyArticleFavoriteViewController.h"
+#import "BFNArticleViewController.h"
 
 @interface ZYMyArticleFavoriteViewController ()
 
@@ -46,5 +47,21 @@
     self.requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserFavorite withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getNewsListSuccess:" withFaildRequestMethod:@"getNewsListFaild:"];
     
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:[listArray objectAtIndex:indexPath.row]];
+    [item setObject:[[listArray objectAtIndex:indexPath.row]objectForKey:@"article_id"] forKey:@"id"];
+    BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:item];
+    articleDetailVC.mainTitle = @"文章详情";
+    [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
+    [self.superNavigationController pushViewController:articleDetailVC animated:YES];
+    [articleDetailVC enableSwipRightToReturn];
+    [articleDetailVC release];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
 
 @end

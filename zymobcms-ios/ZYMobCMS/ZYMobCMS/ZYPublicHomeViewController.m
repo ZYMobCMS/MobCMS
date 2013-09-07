@@ -167,6 +167,7 @@
     if ([relation rangeOfString:@"picture"].location!=NSNotFound) {
         ZYPicturePreViewController *preVC = [[ZYPicturePreViewController alloc]initWithImageString:[item objectForKey:@"images"] withSummaryText:[item objectForKey:@"summary"]];
         preVC.mainTitle = @"图片详情";
+        preVC.pictureTitle = [item objectForKey:@"relation_title"];
         preVC.pictureId = relationId;
         [ZYMobCMSUitil setBFNNavItemForReturn:preVC];
         [self.navigationController pushViewController:preVC animated:YES];
@@ -178,6 +179,8 @@
     if ([relation rangeOfString:@"product"].location!=NSNotFound) {
         ZYProductDetail_0_ViewController *detailVC = [[ZYProductDetail_0_ViewController alloc]init];
         detailVC.productId = relationId;
+        detailVC.productImages = [item objectForKey:@"relation_images"];
+        detailVC.productTitle = [item objectForKey:@"relation_title"];
         detailVC.mainTitle = @"产品详情";
         [ZYMobCMSUitil setBFNNavItemForReturn:detailVC];
         [self.navigationController pushViewController:detailVC animated:YES];

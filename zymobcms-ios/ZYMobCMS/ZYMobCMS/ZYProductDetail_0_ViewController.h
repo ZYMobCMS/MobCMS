@@ -14,6 +14,8 @@
     NSMutableArray *listArray;
 }
 @property (nonatomic,retain)NSString *productId;
+@property (nonatomic,retain)NSString *productTitle;
+@property (nonatomic,retain)NSString *productImages;
 @property (nonatomic,assign)BOOL      isFavorited;
 
 @end

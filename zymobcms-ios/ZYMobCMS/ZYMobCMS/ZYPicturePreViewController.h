@@ -16,6 +16,7 @@
 }
 
 @property (nonatomic,retain)NSString *summaryText;
+@property (nonatomic,retain)NSString *pictureTitle;
 @property (nonatomic,retain)NSString *pictureId;
 @property (nonatomic,assign)BOOL isFavorited;
 

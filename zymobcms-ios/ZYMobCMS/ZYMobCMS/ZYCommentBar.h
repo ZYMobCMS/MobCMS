@@ -34,6 +34,7 @@ typedef enum {
     UIImageView *inputTagView;
     UITextView  *inputTextView;
     UIButton    *favBtn;
+    UIButton    *shareBtn;
     
     inputBeginAction _beginAction;
     inputEndAction   _endAction;
@@ -56,7 +57,9 @@ typedef enum {
 - (void)setDisableFavorite;
 
 - (void)setFavoriteState:(BOOL)state;
+- (void)setShareBtnState:(BOOL)state;
 
 - (void)commentReset;
+
 
 @end

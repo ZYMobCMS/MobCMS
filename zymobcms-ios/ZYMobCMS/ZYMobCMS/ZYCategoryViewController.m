@@ -201,11 +201,7 @@
         if (indexPath.row != 0) {
             BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:[listArray objectAtIndex:indexPath.row]];
             articleDetailVC.mainTitle = @"文章详情";
-            if (self.superNavigationController) {
-                [self.superNavigationController pushViewController:articleDetailVC animated:YES];
-            }else{
-                [self.navigationController pushViewController:articleDetailVC animated:YES];
-            }
+            [self.navigationController pushViewController:articleDetailVC animated:YES];
             [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
             [articleDetailVC enableSwipRightToReturn];
             [articleDetailVC release];
@@ -216,11 +212,7 @@
         BFNArticleViewController *articleDetailVC = [[BFNArticleViewController alloc]initWithBaseContentDict:[listArray objectAtIndex:indexPath.row]];
         articleDetailVC.mainTitle = @"文章详情";
         [ZYMobCMSUitil setBFNNavItemForReturn:articleDetailVC];
-        if (self.superNavigationController) {
-            [self.superNavigationController pushViewController:articleDetailVC animated:YES];
-        }else{
-            [self.navigationController pushViewController:articleDetailVC animated:YES];
-        }
+        [self.navigationController pushViewController:articleDetailVC animated:YES];
         [articleDetailVC enableSwipRightToReturn];
         [articleDetailVC release];
         

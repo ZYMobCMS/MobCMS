@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define ZY_USER_UDF @"ZY_USER_UDF"
-#define ZY_USER_ACTIVE_OPEN_UDF @"ZY_USER_ACTIVE_OPEN_UDF"
+#define ZY_USER_ACTIVE_OPEN_UDF @"user_active_open"
 
 @interface ZYUserManager : NSObject
 
