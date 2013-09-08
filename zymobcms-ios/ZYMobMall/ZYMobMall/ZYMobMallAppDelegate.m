@@ -7,7 +7,6 @@
 //
 
 #import "ZYMobMallAppDelegate.h"
-#import "ZYLoginViewController.h"
 #import "ZYTestViewController.h"
 
 @implementation ZYMobMallAppDelegate

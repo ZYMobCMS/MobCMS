@@ -7,6 +7,7 @@
 //
 
 #import "ZYNewsTestViewController.h"
+#import "ZYNewsDetailViewController.h"
 
 @interface ZYNewsTestViewController ()
 
@@ -91,16 +92,10 @@
 
 - (IBAction)newsDetail:(id)sender {
     
-    ZYNewsModel *firstNews = [self.newsListArray objectAtIndex:1];
-    [self.dataCenter startGetNewsDetailWithArticleId:firstNews.articleId];
-    [self.dataCenter setGetNewsDetailSuccessAction:^(ZYNewsModel *detailModel) {
-        
-        NSLog(@"news detail content --->%@",detailModel.content);
-    }];
-    [self.dataCenter setGetNewsDetailFaildAction:^(NSString *errMsg) {
-        [SVProgressHUD showErrorWithStatus:errMsg];
-
-    }];
+    ZYNewsDetailViewController *detailVC = [[ZYNewsDetailViewController alloc]init];
+    detailVC.newsModel = [self.newsListArray objectAtIndex:3];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    [detailVC release];
 }
 
 - (IBAction)favoriteNews:(id)sender {

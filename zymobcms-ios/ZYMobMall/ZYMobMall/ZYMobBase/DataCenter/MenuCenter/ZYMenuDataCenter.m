@@ -25,11 +25,12 @@
 
 - (void)startGetMenuList
 {
-    [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeMenuList
+   NSString *requestFlag =  [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeMenuList
                                                        withParams:nil
                                                withHelperDelegate:self
                                          withSuccessRequestMethod:@"getMenuListSuccess:"
                                            withFaildRequestMethod:@"getMenuListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getMenuListSuccess:(NSDictionary*)resultDict
 {
@@ -73,11 +74,12 @@
 }
 - (void)startGetApplicationInfo
 {
-    [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeApplicationName
+   NSString *requestFlag =  [[BFNetWorkHelper shareHelper] requestDataWithApplicationType:ZYCMSRequestTypeApplicationName
                                                        withParams:nil
                                                withHelperDelegate:self
                                          withSuccessRequestMethod:@"getApplicationInfoSuccess:"
                                            withFaildRequestMethod:@"getApplicaitonInfoFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getApplicationInfoSuccess:(NSDictionary*)resultDict
 {
@@ -132,6 +134,14 @@
     GetAppliactionInfoFaildAction applicationFaild = [faildAction copy];
     [self.actionsDict setObject:applicationFaild forKey:@"applicationFaild"];
     [applicationFaild release];
+}
+
+- (void)cancelAllRequestNow
+{
+    for (NSString *requestFlag in self.requestFlags) {
+        
+        [[BFNetWorkHelper shareHelper]cancelRequestWithTimeStamp:requestFlag];
+    }
 }
 
 @end

@@ -11,7 +11,11 @@
 @interface ZYBaseDataCenter : NSObject
 {
     NSMutableDictionary *_actionsDict;
+    NSMutableArray *_requestFlags;
 }
 @property (nonatomic,retain)NSMutableDictionary *actionsDict;
+@property (nonatomic,retain)NSMutableArray *requestFlags;
+
+- (void)cancelAllRequestNow;
 
 @end

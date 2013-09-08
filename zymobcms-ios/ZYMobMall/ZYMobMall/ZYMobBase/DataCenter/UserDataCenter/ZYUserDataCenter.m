@@ -20,7 +20,8 @@
     [params setObject:loginName forKey:@"loginName"];
     [params setObject:password forKey:@"password"];
     
-     [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeLogin withParams:params withHelperDelegate:self withSuccessRequestMethod:@"loginSuccess:" withFaildRequestMethod:@"loginFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeLogin withParams:params withHelperDelegate:self withSuccessRequestMethod:@"loginSuccess:" withFaildRequestMethod:@"loginFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 
 - (void)startRigistWithName:(NSString *)loginName withPassword:(NSString *)password
@@ -29,7 +30,8 @@
     [params setObject:loginName forKey:@"loginName"];
     [params setObject:password forKey:@"password"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeRigist withParams:params withHelperDelegate:self withSuccessRequestMethod:@"rigistSuccess:" withFaildRequestMethod:@"rigistFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeRigist withParams:params withHelperDelegate:self withSuccessRequestMethod:@"rigistSuccess:" withFaildRequestMethod:@"rigistFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 
 - (void)loginSuccess:(NSDictionary*)resultDict
@@ -107,7 +109,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserFavorite withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserNewsFavListSuccess:" withFaildRequestMethod:@"getUserNewsFavListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserFavorite withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserNewsFavListSuccess:" withFaildRequestMethod:@"getUserNewsFavListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 
 }
 - (void)getUserNewsFavListSuccess:(NSDictionary*)resultDict
@@ -162,7 +165,8 @@
     [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     [params setObject:[NSNumber  numberWithInt:pageIndex] forKey:@"pageIndex"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPictureFavoriteList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPicFavListSuccess:" withFaildRequestMethod:@"getUserPicFavListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPictureFavoriteList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPicFavListSuccess:" withFaildRequestMethod:@"getUserPicFavListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getUserPicFavListSuccess:(NSDictionary*)resultDict
 {
@@ -213,7 +217,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserProductFavoriteList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserProductFavListSuccess:" withFaildRequestMethod:@"getUserProductFavListFaild:"];
+     NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserProductFavoriteList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserProductFavListSuccess:" withFaildRequestMethod:@"getUserProductFavListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getUserProductFavListSuccess:(NSDictionary*)resultDict
 {
@@ -268,7 +273,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize ] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserComment  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getNewsCommentListSuccess:" withFaildRequestMethod:@"getNewsCommentListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserComment  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getNewsCommentListSuccess:" withFaildRequestMethod:@"getNewsCommentListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getNewsCommentListSuccess:(NSDictionary*)resultDict
 {
@@ -327,7 +333,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize ] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPictureCommentList  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPicCommentListSuccess:" withFaildRequestMethod:@"getUserPicCommentListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPictureCommentList  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPicCommentListSuccess:" withFaildRequestMethod:@"getUserPicCommentListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getUserPicCommentListSuccess:(NSDictionary*)resultDict
 {
@@ -385,7 +392,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize ] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserProductCommentList  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPodcutCommentListSuccess:" withFaildRequestMethod:@"getUserProductCommentListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserProductCommentList  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getUserPodcutCommentListSuccess:" withFaildRequestMethod:@"getUserProductCommentListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getUserPodcutCommentListSuccess:(NSDictionary*)resultDict
 {
@@ -435,6 +443,53 @@
         GetUserProductCommentListFaildAction faildAction = [self.actionsDict objectForKey:@"productCommentFaild"];
         
         faildAction(NetWorkError);
+    }
+}
+
+- (void)startSendReplyWithContent:(NSString *)content
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:content forKey:@"content"];
+    
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeReply  withParams:params withHelperDelegate:self withSuccessRequestMethod:@"sendReplySucess:" withFaildRequestMethod:@"sendReplyFaild:"];
+    [self.requestFlags addObject:requestFlag];
+}
+
+- (void)sendReplySucess:(NSDictionary*)resultDict
+{
+    if ([BFNetWorkHelper checkResultSuccessed:resultDict]) {
+        
+        if ([self.actionsDict objectForKey:@"replySuccess"]) {
+            
+            UserReplySuccessAction successAction = [self.actionsDict objectForKey:@"replySuccess"];
+            
+            successAction(@"反馈成功！");
+            
+        }
+        
+    }else{
+        
+        if ([self.actionsDict objectForKey:@"replyFaild"]) {
+            
+            UserReplyFaildAction faildAction = [self.actionsDict objectForKey:@"replyFaild"];
+            
+            NSString *errMsg = [resultDict objectForKey:@"msg"];
+            
+            faildAction(errMsg);
+            
+        }
+        
+    }
+}
+
+- (void)sendReplyFaild:(NSDictionary*)resultDict
+{
+    if ([self.actionsDict objectForKey:@"replyFaild"]) {
+        
+        UserReplyFaildAction faildAction = [self.actionsDict objectForKey:@"replyFaild"];
+                
+        faildAction(NetWorkError);
+        
     }
 }
 
@@ -537,6 +592,26 @@
     GetUserPicCommentListFaildAction rigistFaildAction = [faildAction copy];
     [self.actionsDict setObject:rigistFaildAction forKey:@"productCommentFaild"];
     [rigistFaildAction release];
+}
+- (void)setSendReplySuccessAction:(UserReplySuccessAction)successAction
+{
+    UserReplySuccessAction rigistSuccessAction = [successAction copy];
+    [self.actionsDict setObject:rigistSuccessAction forKey:@"replySuccess"];
+    [rigistSuccessAction release];
+}
+- (void)setSendReplyFaildAction:(UserReplyFaildAction)faildAction
+{
+    UserReplyFaildAction rigistFaildAction = [faildAction copy];
+    [self.actionsDict setObject:rigistFaildAction forKey:@"replyFaild"];
+    [rigistFaildAction release];
+}
+
+- (void)cancelAllRequestNow
+{
+    for (NSString *requestFlag in self.requestFlags) {
+        
+        [[BFNetWorkHelper shareHelper]cancelRequestWithTimeStamp:requestFlag];
+    }
 }
 
 @end

@@ -497,14 +497,17 @@ static BFNetWorkHelper *_instance = nil;
     }
     
     NSDictionary *callBackDict = [_connectionsForCallBackDict objectForKey:timeStamp];
-    
+        
     //如果链接没有完成还存在
     if (callBackDict) {
         
         ASIHTTPRequest *request = [callBackDict objectForKey:timeStamp];
         
         //退出请求
+        [request setDelegate:nil];//如果不希望作为错误退出，那么就不需要赋空
+        [request cancel];
         [request clearDelegatesAndCancel];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         NSLog(@"finish cancel request by timeStamp ++++>>>>>>> :%@",timeStamp);
         

@@ -16,7 +16,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPublicHome withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPublicHomeListSuccess:" withFaildRequestMethod:@"getPublicHomeListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeUserPublicHome withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPublicHomeListSuccess:" withFaildRequestMethod:@"getPublicHomeListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getPublicHomeListSuccess:(NSDictionary*)resultDict
 {
@@ -78,6 +79,14 @@
     [self.actionsDict setObject:listFaild forKey:@"listFaild"];
     [listFaild release];
     
+}
+
+- (void)cancelAllRequestNow
+{
+    for (NSString *requestFlag in self.requestFlags) {
+        
+        [[BFNetWorkHelper shareHelper]cancelRequestWithTimeStamp:requestFlag];
+    }
 }
 
 @end

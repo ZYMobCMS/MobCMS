@@ -72,4 +72,5 @@ typedef void (^UserDoThisActionShouldLoginFirst) (NSString *errMsg);
 
 - (void)setUserDoThisActionShouldLoginFirst:(UserDoThisActionShouldLoginFirst)shouldLoginAction;
 
+
 @end

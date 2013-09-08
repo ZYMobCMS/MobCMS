@@ -27,6 +27,8 @@ typedef void (^GetUserPicCommentListSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserPicCommentListFaildAction) (NSString *errMsg);
 typedef void (^GetUserProductCommentListSuccessAction) (NSArray *modelArray);
 typedef void (^GetUserProductCommentListFaildAction) (NSString *errMsg);
+typedef void (^UserReplySuccessAction) (NSString *successMsg);
+typedef void (^UserReplyFaildAction) (NSString*errMsg);
 
 
 @interface ZYUserDataCenter :ZYBaseDataCenter
@@ -63,5 +65,9 @@ typedef void (^GetUserProductCommentListFaildAction) (NSString *errMsg);
 - (void)startGetUserProductCommentListWithPageIndex:(NSInteger)pageIndex;
 - (void)setGetuserProductCommentListSuccessAction:(GetUserProductCommentListSuccessAction)successAction;
 - (void)setGetUserProductCommentListFaildAction:(GetUserProductCommentListFaildAction)faildAction;
+
+- (void)startSendReplyWithContent:(NSString*)content;
+- (void)setSendReplySuccessAction:(UserReplySuccessAction)successAction;
+- (void)setSendReplyFaildAction:(UserReplyFaildAction)faildAction;
 
 @end

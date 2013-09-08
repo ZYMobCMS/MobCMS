@@ -32,6 +32,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    //蓝色主题
+    NSArray *allThemes = [ZYThemeManager returnAllThemes];
+    [ZYThemeManager setCurrentThemesWithThemeConfig:[allThemes objectAtIndex:1]];
+    
     menuCenter = [[ZYMenuDataCenter alloc]init];
     menuArray = [[NSMutableArray alloc]init];
     
@@ -48,26 +52,40 @@
         NSMutableArray *newControllers = [NSMutableArray array];
         ZYUserTestViewController *userTestVC = [[ZYUserTestViewController alloc]init];
         userTestVC.title = @"User";
-        [newControllers addObject:userTestVC];
+        UINavigationController *userNav = [[UINavigationController alloc]initWithRootViewController:userTestVC];
+        [userNav.navigationBar setBackgroundImage:[ZYThemeManager getImageWithName:@"navigation_bar.png"] forBarMetrics:UIBarMetricsDefault];
         [userTestVC release];
+        [newControllers addObject:userNav];
+        [userNav release];
+        
         
         ZYNewsTestViewController *newsTestVC = [[ZYNewsTestViewController alloc]init];
         newsTestVC.title = @"News";
         newsTestVC.mItem = [menuListArray objectAtIndex:0];
-        [newControllers addObject:newsTestVC];
+        UINavigationController *newsNav = [[UINavigationController alloc]initWithRootViewController:newsTestVC];
+        [newsNav.navigationBar setBackgroundImage:[ZYThemeManager getImageWithName:@"navigation_bar.png"] forBarMetrics:UIBarMetricsDefault];
         [newsTestVC release];
+        [newControllers addObject:newsNav];
+        [newsNav release];
         
         ZYPictureTestViewController *picTestVC = [[ZYPictureTestViewController alloc]init];
-        [newControllers addObject:picTestVC];
         picTestVC.mItem = [menuListArray objectAtIndex:2];
+        UINavigationController *picNav = [[UINavigationController alloc]initWithRootViewController:picTestVC];
+        [picNav.navigationBar setBackgroundImage:[ZYThemeManager getImageWithName:@"navigation_bar.png"] forBarMetrics:UIBarMetricsDefault];
         picTestVC.title = @"Picture";
+        [newControllers addObject:picNav];
         [picTestVC release];
+        [picNav release];
         
-        ZYProductTestViewController *proTestVC = [[ZYProductTestViewController alloc]init];
-        [newControllers addObject:proTestVC];
+        
+        ZYProductTestViewController *proTestVC = [[ZYProductTestViewController alloc]init];        
         proTestVC.mItem = [menuListArray objectAtIndex:3];
         proTestVC.title = @"Product";
+        UINavigationController *proNav = [[UINavigationController alloc]initWithRootViewController:proTestVC];
+        [proNav.navigationBar setBackgroundImage:[ZYThemeManager getImageWithName:@"navigation_bar.png"] forBarMetrics:UIBarMetricsDefault];
+        [newControllers addObject:proNav];
         [proTestVC release];
+        [proNav release];
         
         self.viewControllers = newControllers;
         
@@ -77,6 +95,7 @@
         NSLog(@"application menu faild -->%@",errMsg);
     }];
 
+    self.tabBar.tintColor = [ZYThemeManager getThemeColorByKey:@"TabBarColor"];
 }
 
 - (void)didReceiveMemoryWarning

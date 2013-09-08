@@ -16,7 +16,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeHotCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getHotCommentListSuccess:" withFaildRequestMethod:@"getHotCommentListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeHotCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getHotCommentListSuccess:" withFaildRequestMethod:@"getHotCommentListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getHotCommentListSuccess:(NSDictionary*)resultDict
 {
@@ -78,6 +79,14 @@
     GetHotCommentLIstFaildAction hotFaildAction = [faildAction copy];
     [self.actionsDict setObject:hotFaildAction forKey:@"hotFaild"];
     [hotFaildAction release];
+}
+
+- (void)cancelAllRequestNow
+{
+    for (NSString *requestFlag in self.requestFlags) {
+        
+        [[BFNetWorkHelper shareHelper]cancelRequestWithTimeStamp:requestFlag];
+    }
 }
 
 @end

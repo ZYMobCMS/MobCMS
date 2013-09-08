@@ -37,7 +37,9 @@
     [params setObject:categoryId forKey:@"categoryId"];
     [params setObject:tabTypeId forKey:@"tabTypeId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureListSuccess:" withFaildRequestMethod:@"getPictureListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureListSuccess:" withFaildRequestMethod:@"getPictureListFaild:"];
+    
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getPictureListSuccess:(NSDictionary *)resultDict
 {
@@ -92,7 +94,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:pictureId forKey:@"pictureId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureDetail withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureDetailSuccess:" withFaildRequestMethod:@"getPictureDetailFaild:"];
+    NSString *requestFalg =  [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureDetail withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureDetailSuccess:" withFaildRequestMethod:@"getPictureDetailFaild:"];
+    
+    [self.requestFlags addObject:requestFalg];
 }
 - (void)getPictureDetailSuccess:(NSDictionary*)resultDict
 {
@@ -148,7 +152,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:categoryId forKey:@"categoryId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureTabTypes withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getTabTypeSuccess:" withFaildRequestMethod:@"getTabTypeFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureTabTypes withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getTabTypeSuccess:" withFaildRequestMethod:@"getTabTypeFaild:"];
+    
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getTabTypeSuccess:(NSDictionary*)resultDict
 {
@@ -202,7 +208,9 @@
     [params setObject:[NSNumber numberWithInt:pageIndex]  forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureCommentListSuccess:" withFaildRequestMethod:@"getPictureCommentListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getPictureCommentListSuccess:" withFaildRequestMethod:@"getPictureCommentListFaild:"];
+    
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getPictureCommentListSuccess:(NSDictionary*)resultDict
 {
@@ -272,7 +280,9 @@
     
     [params setObject:pictureId forKey:@"pictureId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCommentPicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"commentPictureSuccess:" withFaildRequestMethod:@"commentPictureFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCommentPicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"commentPictureSuccess:" withFaildRequestMethod:@"commentPictureFaild:"];
+    
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)commentPictureSuccess:(NSDictionary*)resultDict
 {
@@ -333,7 +343,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:pictureId forKey:@"pictureId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoritePictureSuccess:" withFaildRequestMethod:@"favoritePictureFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoritePictureSuccess:" withFaildRequestMethod:@"favoritePictureFaild:"];
+    
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)favoritePictureSuccess:(NSDictionary*)resultDict
 {
@@ -385,7 +397,8 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
+    NSString *requestFlag =  [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)supportCommentSuccess:(NSDictionary*)resultDict
 {
@@ -435,8 +448,8 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentUnSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
-
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypePictureCommentUnSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
+    [self.requestFlags addObject:requestFlag];
     
 }
 - (void)unSupportCommentSuccess:(NSDictionary*)resultDict
@@ -487,7 +500,8 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObject:pictureId forKey:@"pictureId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoritePictureSuccess:" withFaildRequestMethod:@"unFavoritePictureFaild:"];
+    NSString *requestFlag =  [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoritePicture withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoritePictureSuccess:" withFaildRequestMethod:@"unFavoritePictureFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)unFavoritePictureSuccess:(NSDictionary*)resultDict
 {
@@ -653,6 +667,14 @@
     UserDoThisActionShouldLoginFirst shouldAction = [shouldLoginAction copy];
     [self.actionsDict setObject:shouldAction forKey:@"shouldLoginAction"];
     [shouldAction release];
+}
+
+- (void)cancelAllRequestNow
+{
+    for (NSString *requestFlag in self.requestFlags) {
+        
+        [[BFNetWorkHelper shareHelper]cancelRequestWithTimeStamp:requestFlag];
+    }
 }
 
 @end

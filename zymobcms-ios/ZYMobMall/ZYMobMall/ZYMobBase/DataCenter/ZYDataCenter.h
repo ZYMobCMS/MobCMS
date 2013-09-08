@@ -17,6 +17,10 @@
 #import "ZYNewsDataCenter.h"
 #import "ZYCommentDataCenter.h"
 #import "ZYUserActiveDataCenter.h"
+#import "ZYThemeManager.h"
+#import "BFImageView.h"
+#import "BFImageDownloader.h"
+#import "BFImageCache.h"
 
 typedef enum {
 

@@ -19,7 +19,8 @@
     [params setObject:categoryId forKey:@"categoryId"];
     [params setObject:tabTypeId forKey:@"tabTypeId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getProductListSuccess:" withFaildRequestMethod:@"getProductListFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getProductListSuccess:" withFaildRequestMethod:@"getProductListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getProductListSuccess:(NSDictionary *)resultDict
 {
@@ -72,7 +73,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:categoryId forKey:@"categoryId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductTabTypes withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getAllTabTypesSuccess:" withFaildRequestMethod:@"getAllTabTypesFaild:"];
+    NSString *requestFlag =  [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductTabTypes withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getAllTabTypesSuccess:" withFaildRequestMethod:@"getAllTabTypesFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getAllTabTypesSuccess:(NSDictionary*)resultDict
 {
@@ -128,7 +130,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     [params setObject:productId forKey:@"productId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductDetail withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getProductDetailSucess:" withFaildRequestMethod:@"getProductDetailFaild:"];
+    NSString *requestFlag =    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductDetail withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getProductDetailSucess:" withFaildRequestMethod:@"getProductDetailFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getProductDetailSucess:(NSDictionary *)resultDict
 {
@@ -172,7 +175,8 @@
     [params setObject:[NSNumber numberWithInt:pageIndex]  forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInt:ZYListPageSize] forKey:@"pageSize"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getCommentListSuccess:" withFaildRequestMethod:@"getCommentListFaild:"];
+    NSString *requestFlag =  [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentList withParams:params withHelperDelegate:self withSuccessRequestMethod:@"getCommentListSuccess:" withFaildRequestMethod:@"getCommentListFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)getCommentListSuccess:(NSDictionary*)resultDict
 {
@@ -239,7 +243,8 @@
     
     [params setObject:productId forKey:@"productId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCommentProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"commentProductSuccess:" withFaildRequestMethod:@"commentProductFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCommentProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"commentProductSuccess:" withFaildRequestMethod:@"commentProductFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)commentProductSuccess:(NSDictionary*)resultDict
 {
@@ -301,7 +306,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:productId forKey:@"productId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoriteProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoriteProductSuccess:" withFaildRequestMethod:@"favoriteProductFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeFavoriteProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"favoriteProductSuccess:" withFaildRequestMethod:@"favoriteProductFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)favoriteProductSuccess:(NSDictionary*)resultDict
 {
@@ -353,7 +359,8 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"supportCommentSuccess:" withFaildRequestMethod:@"supportCommentFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)supportCommentSuccess:(NSDictionary*)resultDict
 {
@@ -403,8 +410,8 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObject:commentId forKey:@"commentId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentUnSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
-    
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeProductCommentUnSupport withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unSupportCommentSuccess:" withFaildRequestMethod:@"unSupportCommentFaild:"];
+    [self.requestFlags addObject:requestFlag];
     
 }
 - (void)unSupportCommentSuccess:(NSDictionary*)resultDict
@@ -455,7 +462,8 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObject:productId forKey:@"productId"];
     
-    [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoriteProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoriteProductSuccess:" withFaildRequestMethod:@"unFavoriteProductFaild:"];
+    NSString *requestFlag = [[BFNetWorkHelper shareHelper]requestDataWithApplicationType:ZYCMSRequestTypeCancelFavoriteProduct withParams:params withHelperDelegate:self withSuccessRequestMethod:@"unFavoriteProductSuccess:" withFaildRequestMethod:@"unFavoriteProductFaild:"];
+    [self.requestFlags addObject:requestFlag];
 }
 - (void)unFavoriteProductSuccess:(NSDictionary*)resultDict
 {
@@ -614,6 +622,14 @@
     UserDoThisActionShouldLoginFirst shouldAction = [shouldLoginAction copy];
     [self.actionsDict setObject:shouldAction forKey:@"shouldLoginAction"];
     [shouldAction release];
+}
+
+- (void)cancelAllRequestNow
+{
+    for (NSString *requestFlag in self.requestFlags) {
+        
+        [[BFNetWorkHelper shareHelper]cancelRequestWithTimeStamp:requestFlag];
+    }
 }
 
 @end
