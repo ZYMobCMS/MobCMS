@@ -34,7 +34,7 @@
     
     //蓝色主题
     NSArray *allThemes = [ZYThemeManager returnAllThemes];
-    [ZYThemeManager setCurrentThemesWithThemeConfig:[allThemes objectAtIndex:1]];
+    [ZYThemeManager setCurrentThemesWithThemeConfig:[allThemes objectAtIndex:0]];
     
     menuCenter = [[ZYMenuDataCenter alloc]init];
     menuArray = [[NSMutableArray alloc]init];
