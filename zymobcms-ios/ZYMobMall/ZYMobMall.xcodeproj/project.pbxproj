@@ -12,6 +12,9 @@
 		3B1C59E317CDFA5E007B20C7 /* NSDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59E017CDFA5E007B20C7 /* NSDateHelper.m */; };
 		3B1C59E417CDFA5E007B20C7 /* BFUitils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C59E217CDFA5E007B20C7 /* BFUitils.m */; };
 		3B1C59E917CDFAFD007B20C7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1C59E817CDFAFC007B20C7 /* QuartzCore.framework */; };
+		3B29732417DDD85E007E6257 /* ZYTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B29731D17DDD85E007E6257 /* ZYTheme.plist */; };
+		3B29732517DDD85E007E6257 /* ZYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B29731F17DDD85E007E6257 /* ZYThemeManager.m */; };
+		3B29732717DDD870007E6257 /* ZYTheme in Resources */ = {isa = PBXBuildFile; fileRef = 3B29732617DDD870007E6257 /* ZYTheme */; };
 		3B313A6317CC765C002AA09E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B313A6217CC765C002AA09E /* UIKit.framework */; };
 		3B313A6517CC765C002AA09E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B313A6417CC765C002AA09E /* Foundation.framework */; };
 		3B313A6717CC765C002AA09E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B313A6617CC765C002AA09E /* CoreGraphics.framework */; };
@@ -110,9 +113,6 @@
 		3BD959BA17D7047B008BB5D7 /* ZYTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD9596517D7047B008BB5D7 /* ZYTestViewController.xib */; };
 		3BD959BB17D7047B008BB5D7 /* ZYUserTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9596717D7047B008BB5D7 /* ZYUserTestViewController.m */; };
 		3BD959BC17D7047B008BB5D7 /* ZYUserTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD9596817D7047B008BB5D7 /* ZYUserTestViewController.xib */; };
-		E41D74B617DCA501007E3B3D /* ZYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D74B517DCA501007E3B3D /* ZYThemeManager.m */; };
-		E41D74B817DCA5ED007E3B3D /* ZYTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = E41D74B717DCA5ED007E3B3D /* ZYTheme.plist */; };
-		E41D74BA17DCAA6D007E3B3D /* ZYTheme in Resources */ = {isa = PBXBuildFile; fileRef = E41D74B917DCAA6D007E3B3D /* ZYTheme */; };
 		E41D74BD17DCC27F007E3B3D /* ZYNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D74BC17DCC27E007E3B3D /* ZYNewsDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +127,10 @@
 		3B1C59E217CDFA5E007B20C7 /* BFUitils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFUitils.m; sourceTree = "<group>"; };
 		3B1C59E517CDFA9A007B20C7 /* ZYUitilCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYUitilCenter.h; sourceTree = "<group>"; };
 		3B1C59E817CDFAFC007B20C7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3B29731D17DDD85E007E6257 /* ZYTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZYTheme.plist; sourceTree = "<group>"; };
+		3B29731E17DDD85E007E6257 /* ZYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYThemeManager.h; sourceTree = "<group>"; };
+		3B29731F17DDD85E007E6257 /* ZYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYThemeManager.m; sourceTree = "<group>"; };
+		3B29732617DDD870007E6257 /* ZYTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ZYTheme; sourceTree = "<group>"; };
 		3B313A5F17CC765C002AA09E /* ZYMobMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYMobMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B313A6217CC765C002AA09E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B313A6417CC765C002AA09E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -320,10 +324,6 @@
 		3BD9596717D7047B008BB5D7 /* ZYUserTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYUserTestViewController.m; sourceTree = "<group>"; };
 		3BD9596817D7047B008BB5D7 /* ZYUserTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZYUserTestViewController.xib; sourceTree = "<group>"; };
 		3BD9596917D7047B008BB5D7 /* ZYMobBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMobBase.h; sourceTree = "<group>"; };
-		E41D74B417DCA501007E3B3D /* ZYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYThemeManager.h; sourceTree = "<group>"; };
-		E41D74B517DCA501007E3B3D /* ZYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYThemeManager.m; sourceTree = "<group>"; };
-		E41D74B717DCA5ED007E3B3D /* ZYTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZYTheme.plist; sourceTree = "<group>"; };
-		E41D74B917DCAA6D007E3B3D /* ZYTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ZYTheme; path = ../ZYTheme; sourceTree = "<group>"; };
 		E41D74BB17DCC27E007E3B3D /* ZYNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNewsDetailViewController.h; sourceTree = "<group>"; };
 		E41D74BC17DCC27E007E3B3D /* ZYNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNewsDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -357,6 +357,17 @@
 				3B1C59E517CDFA9A007B20C7 /* ZYUitilCenter.h */,
 			);
 			name = UitilCenter;
+			sourceTree = "<group>";
+		};
+		3B29731517DDD85E007E6257 /* ZYThemeManager */ = {
+			isa = PBXGroup;
+			children = (
+				3B29732617DDD870007E6257 /* ZYTheme */,
+				3B29731D17DDD85E007E6257 /* ZYTheme.plist */,
+				3B29731E17DDD85E007E6257 /* ZYThemeManager.h */,
+				3B29731F17DDD85E007E6257 /* ZYThemeManager.m */,
+			);
+			path = ZYThemeManager;
 			sourceTree = "<group>";
 		};
 		3B313A5617CC765C002AA09E = {
@@ -398,7 +409,6 @@
 				3B313B0F17CC777D002AA09E /* Main */,
 				3B313B0E17CC776D002AA09E /* Resource */,
 				3B313B0317CC771C002AA09E /* MobMallCommon */,
-				3B313A7F17CC76F4002AA09E /* ZYFoundation */,
 				3B313A6917CC765C002AA09E /* Supporting Files */,
 			);
 			path = ZYMobMall;
@@ -416,13 +426,6 @@
 				3B313A7817CC765E002AA09E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3B313A7F17CC76F4002AA09E /* ZYFoundation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ZYFoundation;
 			sourceTree = "<group>";
 		};
 		3B313B0317CC771C002AA09E /* MobMallCommon */ = {
@@ -478,7 +481,7 @@
 		3BD958A917D7047A008BB5D7 /* ZYMobBase */ = {
 			isa = PBXGroup;
 			children = (
-				E41D74B317DCA431007E3B3D /* ZYThemeManager */,
+				3B29731517DDD85E007E6257 /* ZYThemeManager */,
 				3BD958AA17D7047A008BB5D7 /* BFImageGetOperation */,
 				3BD958AF17D7047A008BB5D7 /* BFImageLoader */,
 				3BD958C817D7047A008BB5D7 /* BFNetWorkHelper */,
@@ -831,17 +834,6 @@
 			path = DataTests;
 			sourceTree = "<group>";
 		};
-		E41D74B317DCA431007E3B3D /* ZYThemeManager */ = {
-			isa = PBXGroup;
-			children = (
-				E41D74B917DCAA6D007E3B3D /* ZYTheme */,
-				E41D74B417DCA501007E3B3D /* ZYThemeManager.h */,
-				E41D74B517DCA501007E3B3D /* ZYThemeManager.m */,
-				E41D74B717DCA5ED007E3B3D /* ZYTheme.plist */,
-			);
-			name = ZYThemeManager;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -905,8 +897,8 @@
 				3BD959B817D7047B008BB5D7 /* ZYProductTestViewController.xib in Resources */,
 				3BD959BA17D7047B008BB5D7 /* ZYTestViewController.xib in Resources */,
 				3BD959BC17D7047B008BB5D7 /* ZYUserTestViewController.xib in Resources */,
-				E41D74B817DCA5ED007E3B3D /* ZYTheme.plist in Resources */,
-				E41D74BA17DCAA6D007E3B3D /* ZYTheme in Resources */,
+				3B29732417DDD85E007E6257 /* ZYTheme.plist in Resources */,
+				3B29732717DDD870007E6257 /* ZYTheme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,8 +993,8 @@
 				3BD959B717D7047B008BB5D7 /* ZYProductTestViewController.m in Sources */,
 				3BD959B917D7047B008BB5D7 /* ZYTestViewController.m in Sources */,
 				3BD959BB17D7047B008BB5D7 /* ZYUserTestViewController.m in Sources */,
-				E41D74B617DCA501007E3B3D /* ZYThemeManager.m in Sources */,
 				E41D74BD17DCC27F007E3B3D /* ZYNewsDetailViewController.m in Sources */,
+				3B29732517DDD85E007E6257 /* ZYThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
