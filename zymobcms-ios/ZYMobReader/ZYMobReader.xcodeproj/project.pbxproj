@@ -103,6 +103,9 @@
 		3B29744E17DDD8A4007E6257 /* ZYTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B2973F317DDD8A4007E6257 /* ZYTheme.plist */; };
 		3B29744F17DDD8A4007E6257 /* ZYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2973F517DDD8A4007E6257 /* ZYThemeManager.m */; };
 		3B29745117DDD8BB007E6257 /* ZYTheme in Resources */ = {isa = PBXBuildFile; fileRef = 3B29745017DDD8BB007E6257 /* ZYTheme */; };
+		E43CCE5F17DDF2FC0074EC80 /* ZYMobAnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E43CCE5E17DDF2FC0074EC80 /* ZYMobAnimationHelper.m */; };
+		E43CCE6217DDF4E30074EC80 /* ZYPanGestureRecognized.m in Sources */ = {isa = PBXBuildFile; fileRef = E43CCE6117DDF4E30074EC80 /* ZYPanGestureRecognized.m */; };
+		E43CCE6517DDF96D0074EC80 /* ZYRootNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -295,6 +298,12 @@
 		3B2973F417DDD8A4007E6257 /* ZYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYThemeManager.h; sourceTree = "<group>"; };
 		3B2973F517DDD8A4007E6257 /* ZYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYThemeManager.m; sourceTree = "<group>"; };
 		3B29745017DDD8BB007E6257 /* ZYTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ZYTheme; sourceTree = "<group>"; };
+		E43CCE5D17DDF2FC0074EC80 /* ZYMobAnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMobAnimationHelper.h; sourceTree = "<group>"; };
+		E43CCE5E17DDF2FC0074EC80 /* ZYMobAnimationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMobAnimationHelper.m; sourceTree = "<group>"; };
+		E43CCE6017DDF4E30074EC80 /* ZYPanGestureRecognized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPanGestureRecognized.h; sourceTree = "<group>"; };
+		E43CCE6117DDF4E30074EC80 /* ZYPanGestureRecognized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPanGestureRecognized.m; sourceTree = "<group>"; };
+		E43CCE6317DDF96D0074EC80 /* ZYRootNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRootNavViewController.h; sourceTree = "<group>"; };
+		E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootNavViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +350,7 @@
 		3B2972FE17DDD795007E6257 /* ZYMobReader */ = {
 			isa = PBXGroup;
 			children = (
+				E43CCE5617DDF1B30074EC80 /* Main */,
 				3B29732817DDD8A3007E6257 /* ZYMobBase */,
 				3B29730717DDD795007E6257 /* ZYMobReaderAppDelegate.h */,
 				3B29730817DDD795007E6257 /* ZYMobReaderAppDelegate.m */,
@@ -730,6 +740,67 @@
 			path = ZYThemeManager;
 			sourceTree = "<group>";
 		};
+		E43CCE5617DDF1B30074EC80 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E43CCE5C17DDF2050074EC80 /* Setting */,
+				E43CCE5B17DDF1FD0074EC80 /* Favorite */,
+				E43CCE5A17DDF1D60074EC80 /* LayoutManager */,
+				E43CCE5917DDF1CD0074EC80 /* Channel */,
+				E43CCE5817DDF1C40074EC80 /* Article */,
+				E43CCE5717DDF1B90074EC80 /* RootNav */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		E43CCE5717DDF1B90074EC80 /* RootNav */ = {
+			isa = PBXGroup;
+			children = (
+				E43CCE5D17DDF2FC0074EC80 /* ZYMobAnimationHelper.h */,
+				E43CCE5E17DDF2FC0074EC80 /* ZYMobAnimationHelper.m */,
+				E43CCE6017DDF4E30074EC80 /* ZYPanGestureRecognized.h */,
+				E43CCE6117DDF4E30074EC80 /* ZYPanGestureRecognized.m */,
+				E43CCE6317DDF96D0074EC80 /* ZYRootNavViewController.h */,
+				E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */,
+			);
+			name = RootNav;
+			sourceTree = "<group>";
+		};
+		E43CCE5817DDF1C40074EC80 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Article;
+			sourceTree = "<group>";
+		};
+		E43CCE5917DDF1CD0074EC80 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Channel;
+			sourceTree = "<group>";
+		};
+		E43CCE5A17DDF1D60074EC80 /* LayoutManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = LayoutManager;
+			sourceTree = "<group>";
+		};
+		E43CCE5B17DDF1FD0074EC80 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
+		E43CCE5C17DDF2050074EC80 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -885,6 +956,9 @@
 				3B29744617DDD8A4007E6257 /* ZYTestViewController.m in Sources */,
 				3B29744817DDD8A4007E6257 /* ZYUserTestViewController.m in Sources */,
 				3B29744F17DDD8A4007E6257 /* ZYThemeManager.m in Sources */,
+				E43CCE5F17DDF2FC0074EC80 /* ZYMobAnimationHelper.m in Sources */,
+				E43CCE6217DDF4E30074EC80 /* ZYPanGestureRecognized.m in Sources */,
+				E43CCE6517DDF96D0074EC80 /* ZYRootNavViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -997,6 +1071,7 @@
 				3B29731417DDD795007E6257 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

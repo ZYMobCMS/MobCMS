@@ -1156,7 +1156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				3B313A5517CB67E4002AA09E /* ImageIO.framework in Frameworks */,
 				E4F0A32617C98D5500CA995C /* CoreLocation.framework in Frameworks */,
 				E421515E17C2796000BCB601 /* MessageUI.framework in Frameworks */,
@@ -3089,7 +3088,6 @@
 				E4F0A33417C9B11600CA995C /* ZYSocialShareService.m in Sources */,
 				E4F0A33717CA038500CA995C /* ZYCacheCenter.m in Sources */,
 				E4F0A33A17CA367000CA995C /* NSDateHelper.m in Sources */,
-
 				3B313A5317CB5421002AA09E /* ZYUserInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3111,7 +3109,6 @@
 			children = (
 				E4F0A2F617C987FA00CA995C /* en */,
 				E4F0A31317C987FA00CA995C /* zh-Hans */,
-
 				E4223BB717CE429F00199B68 /* zh-Hant */,
 			);
 			name = UMSocialLocalizable.strings;
@@ -3177,8 +3174,8 @@
 		E47F0F9217A35C330011780E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: HU TAO";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HU TAO";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hu tao (ZCHH929E72)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hu tao (ZCHH929E72)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYMobCMS/ZYMobCMS-Prefix.pch";
 				INFOPLIST_FILE = "ZYMobCMS/ZYMobCMS-Info.plist";
@@ -3189,8 +3186,8 @@
 					"\"$(SRCROOT)/ZYMobCMS/UMSocial_Sdk_2.2.1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
+				PROVISIONING_PROFILE = "F7AC3995-C0AE-41BE-9176-3D1E9EC11528";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0CCDD5C0-87F2-4DBC-8B86-1F05CA833071";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3199,8 +3196,8 @@
 		E47F0F9317A35C330011780E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: HU TAO";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HU TAO";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hu tao (ZCHH929E72)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hu tao (ZCHH929E72)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYMobCMS/ZYMobCMS-Prefix.pch";
 				INFOPLIST_FILE = "ZYMobCMS/ZYMobCMS-Info.plist";
@@ -3211,8 +3208,8 @@
 					"\"$(SRCROOT)/ZYMobCMS/UMSocial_Sdk_2.2.1.1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD5E4DF2-72D4-4B14-B664-52141BD65DEA";
+				PROVISIONING_PROFILE = "F7AC3995-C0AE-41BE-9176-3D1E9EC11528";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0CCDD5C0-87F2-4DBC-8B86-1F05CA833071";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
