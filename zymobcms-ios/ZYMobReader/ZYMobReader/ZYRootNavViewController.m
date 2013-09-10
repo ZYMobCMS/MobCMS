@@ -7,12 +7,14 @@
 //
 
 #import "ZYRootNavViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ZYRootNavViewController ()
 
 @end
 
 @implementation ZYRootNavViewController
+@synthesize panGesture;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +35,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+    [self.view addGestureRecognizer:self.panGesture];
+    [self.panGesture release];
+    
     
 }
 
@@ -45,11 +51,15 @@
 - (void)pushNewDetailViewController:(UIViewController *)detailViewController
 {
     
+    [_detailViewControllers addObject:detailViewController];
+    detailViewController.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.width);
+    [self.view addSubview:detailViewController.view];
+
 }
 
 - (void)popDetailViewController:(UIViewController *)detailController
 {
-    
+    [_detailViewControllers removeObject:detailController];
 }
 
 @end

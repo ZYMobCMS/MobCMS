@@ -103,8 +103,14 @@
 		3B29744E17DDD8A4007E6257 /* ZYTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B2973F317DDD8A4007E6257 /* ZYTheme.plist */; };
 		3B29744F17DDD8A4007E6257 /* ZYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2973F517DDD8A4007E6257 /* ZYThemeManager.m */; };
 		3B29745117DDD8BB007E6257 /* ZYTheme in Resources */ = {isa = PBXBuildFile; fileRef = 3B29745017DDD8BB007E6257 /* ZYTheme */; };
-		E43CCE5F17DDF2FC0074EC80 /* ZYMobAnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E43CCE5E17DDF2FC0074EC80 /* ZYMobAnimationHelper.m */; };
-		E43CCE6217DDF4E30074EC80 /* ZYPanGestureRecognized.m in Sources */ = {isa = PBXBuildFile; fileRef = E43CCE6117DDF4E30074EC80 /* ZYPanGestureRecognized.m */; };
+		3BE0FDC217DEB8DB00A8E5B8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC117DEB8DB00A8E5B8 /* QuartzCore.framework */; };
+		3BE0FDC417DEBB1300A8E5B8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC317DEBB1300A8E5B8 /* CFNetwork.framework */; };
+		3BE0FDC617DEBB1700A8E5B8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */; };
+		3BE0FDC817DEBB1C00A8E5B8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC717DEBB1C00A8E5B8 /* MobileCoreServices.framework */; };
+		3BE0FDCA17DEBB2100A8E5B8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC917DEBB2100A8E5B8 /* libz.dylib */; };
+		3BE0FDCD17DEFC9800A8E5B8 /* ZYRootMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE0FDCC17DEFC9700A8E5B8 /* ZYRootMenuItem.m */; };
+		3BE0FDD017DF071C00A8E5B8 /* ZYRootMenuPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE0FDCF17DF071B00A8E5B8 /* ZYRootMenuPageView.m */; };
+		3BE0FDD317DF072E00A8E5B8 /* ZYRootMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE0FDD217DF072C00A8E5B8 /* ZYRootMenuView.m */; };
 		E43CCE6517DDF96D0074EC80 /* ZYRootNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -298,10 +304,17 @@
 		3B2973F417DDD8A4007E6257 /* ZYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYThemeManager.h; sourceTree = "<group>"; };
 		3B2973F517DDD8A4007E6257 /* ZYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYThemeManager.m; sourceTree = "<group>"; };
 		3B29745017DDD8BB007E6257 /* ZYTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ZYTheme; sourceTree = "<group>"; };
-		E43CCE5D17DDF2FC0074EC80 /* ZYMobAnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMobAnimationHelper.h; sourceTree = "<group>"; };
-		E43CCE5E17DDF2FC0074EC80 /* ZYMobAnimationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMobAnimationHelper.m; sourceTree = "<group>"; };
-		E43CCE6017DDF4E30074EC80 /* ZYPanGestureRecognized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPanGestureRecognized.h; sourceTree = "<group>"; };
-		E43CCE6117DDF4E30074EC80 /* ZYPanGestureRecognized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPanGestureRecognized.m; sourceTree = "<group>"; };
+		3BE0FDC117DEB8DB00A8E5B8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3BE0FDC317DEBB1300A8E5B8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3BE0FDC717DEBB1C00A8E5B8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		3BE0FDC917DEBB2100A8E5B8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3BE0FDCB17DEFC9700A8E5B8 /* ZYRootMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRootMenuItem.h; sourceTree = "<group>"; };
+		3BE0FDCC17DEFC9700A8E5B8 /* ZYRootMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootMenuItem.m; sourceTree = "<group>"; };
+		3BE0FDCE17DF071A00A8E5B8 /* ZYRootMenuPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRootMenuPageView.h; sourceTree = "<group>"; };
+		3BE0FDCF17DF071B00A8E5B8 /* ZYRootMenuPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootMenuPageView.m; sourceTree = "<group>"; };
+		3BE0FDD117DF072B00A8E5B8 /* ZYRootMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRootMenuView.h; sourceTree = "<group>"; };
+		3BE0FDD217DF072C00A8E5B8 /* ZYRootMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootMenuView.m; sourceTree = "<group>"; };
 		E43CCE6317DDF96D0074EC80 /* ZYRootNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRootNavViewController.h; sourceTree = "<group>"; };
 		E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootNavViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -311,6 +324,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BE0FDCA17DEBB2100A8E5B8 /* libz.dylib in Frameworks */,
+				3BE0FDC817DEBB1C00A8E5B8 /* MobileCoreServices.framework in Frameworks */,
+				3BE0FDC617DEBB1700A8E5B8 /* SystemConfiguration.framework in Frameworks */,
+				3BE0FDC417DEBB1300A8E5B8 /* CFNetwork.framework in Frameworks */,
+				3BE0FDC217DEB8DB00A8E5B8 /* QuartzCore.framework in Frameworks */,
 				3B2972F917DDD795007E6257 /* UIKit.framework in Frameworks */,
 				3B2972FB17DDD795007E6257 /* Foundation.framework in Frameworks */,
 				3B2972FD17DDD795007E6257 /* CoreGraphics.framework in Frameworks */,
@@ -340,6 +358,11 @@
 		3B2972F717DDD795007E6257 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BE0FDC917DEBB2100A8E5B8 /* libz.dylib */,
+				3BE0FDC717DEBB1C00A8E5B8 /* MobileCoreServices.framework */,
+				3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */,
+				3BE0FDC317DEBB1300A8E5B8 /* CFNetwork.framework */,
+				3BE0FDC117DEB8DB00A8E5B8 /* QuartzCore.framework */,
 				3B2972F817DDD795007E6257 /* UIKit.framework */,
 				3B2972FA17DDD795007E6257 /* Foundation.framework */,
 				3B2972FC17DDD795007E6257 /* CoreGraphics.framework */,
@@ -756,12 +779,14 @@
 		E43CCE5717DDF1B90074EC80 /* RootNav */ = {
 			isa = PBXGroup;
 			children = (
-				E43CCE5D17DDF2FC0074EC80 /* ZYMobAnimationHelper.h */,
-				E43CCE5E17DDF2FC0074EC80 /* ZYMobAnimationHelper.m */,
-				E43CCE6017DDF4E30074EC80 /* ZYPanGestureRecognized.h */,
-				E43CCE6117DDF4E30074EC80 /* ZYPanGestureRecognized.m */,
 				E43CCE6317DDF96D0074EC80 /* ZYRootNavViewController.h */,
 				E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */,
+				3BE0FDCB17DEFC9700A8E5B8 /* ZYRootMenuItem.h */,
+				3BE0FDCC17DEFC9700A8E5B8 /* ZYRootMenuItem.m */,
+				3BE0FDCE17DF071A00A8E5B8 /* ZYRootMenuPageView.h */,
+				3BE0FDCF17DF071B00A8E5B8 /* ZYRootMenuPageView.m */,
+				3BE0FDD117DF072B00A8E5B8 /* ZYRootMenuView.h */,
+				3BE0FDD217DF072C00A8E5B8 /* ZYRootMenuView.m */,
 			);
 			name = RootNav;
 			sourceTree = "<group>";
@@ -956,9 +981,10 @@
 				3B29744617DDD8A4007E6257 /* ZYTestViewController.m in Sources */,
 				3B29744817DDD8A4007E6257 /* ZYUserTestViewController.m in Sources */,
 				3B29744F17DDD8A4007E6257 /* ZYThemeManager.m in Sources */,
-				E43CCE5F17DDF2FC0074EC80 /* ZYMobAnimationHelper.m in Sources */,
-				E43CCE6217DDF4E30074EC80 /* ZYPanGestureRecognized.m in Sources */,
 				E43CCE6517DDF96D0074EC80 /* ZYRootNavViewController.m in Sources */,
+				3BE0FDCD17DEFC9800A8E5B8 /* ZYRootMenuItem.m in Sources */,
+				3BE0FDD017DF071C00A8E5B8 /* ZYRootMenuPageView.m in Sources */,
+				3BE0FDD317DF072E00A8E5B8 /* ZYRootMenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,12 @@
 @interface ZYRootNavViewController : UIViewController
 {
     NSMutableArray *_detailViewControllers;
+    BOOL shouldFinishTranisition;
+    
 }
+@property (nonatomic,retain)UIPanGestureRecognizer *panGesture;
 
 - (void)pushNewDetailViewController:(UIViewController*)detailViewController;
 - (void)popDetailViewController:(UIViewController*)detailController;
+
 @end
