@@ -7,16 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZYRootMenuPageView.h"
 
-@interface ZYRootNavViewController : UIViewController
+@interface ZYRootNavViewController : UIViewController<UIScrollViewDelegate>
 {
     NSMutableArray *_detailViewControllers;
-    BOOL shouldFinishTranisition;
     
+    UIScrollView *myScrollView;
+    NSMutableSet *recycledPages;
+    NSMutableSet *visiblePages;
+    
+    NSMutableArray *meunSourceArray;
+    ZYMenuDataCenter *dataCenter;
 }
 @property (nonatomic,retain)UIPanGestureRecognizer *panGesture;
+@property (nonatomic,retain)NSMutableArray *menuSourceArray;
 
 - (void)pushNewDetailViewController:(UIViewController*)detailViewController;
 - (void)popDetailViewController:(UIViewController*)detailController;
+
+
+- (void)tilePages;
+- (ZYRootMenuPageView *)dequeueRecycledPage;
+- (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
+- (ZYRootMenuPageView *)pageForIndex:(NSUInteger)index;
 
 @end

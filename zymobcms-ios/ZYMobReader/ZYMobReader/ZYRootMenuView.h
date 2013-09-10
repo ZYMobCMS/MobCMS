@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZYRootMenuPageView.h"
 
 @class ZYRootMenuView;
 @protocol ZYRootMenuViewDataSource<NSObject>
@@ -20,7 +19,13 @@
 
 @interface ZYRootMenuView :UIView
 {
+    
 }
 @property (nonatomic,assign)id<ZYRootMenuViewDataSource> dataSource;
+
+- (void)tilePages;
+- (ZYRootMenuPageView *)dequeueRecycledPage;
+- (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
+- (ZYRootMenuPageView *)pageForIndex:(NSUInteger)index;
 
 @end

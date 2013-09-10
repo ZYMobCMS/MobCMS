@@ -14,6 +14,7 @@
 
 
 @implementation ZYRootMenuPageView
+@synthesize pageIndex;
 
 - (id)initWithFrame:(CGRect)frame
 {

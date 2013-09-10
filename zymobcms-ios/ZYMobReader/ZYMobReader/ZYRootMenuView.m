@@ -9,7 +9,6 @@
 #import "ZYRootMenuView.h"
 
 @implementation ZYRootMenuView
-@synthesize dataSource;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -28,5 +27,12 @@
     // Drawing code
 }
 */
+
+- (void)initSubViews
+{
+    
+    
+}
+
 
 @end

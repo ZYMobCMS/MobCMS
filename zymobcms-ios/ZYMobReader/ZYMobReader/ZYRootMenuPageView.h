@@ -13,6 +13,8 @@
     NSMutableArray *itemsArray;
     NSMutableArray *itemIndexPaths;
 }
+@property (nonatomic,assign)NSInteger pageIndex;
+
 - (void)setMenuItemArray:(NSArray*)menuItemArray;
 
 @end
