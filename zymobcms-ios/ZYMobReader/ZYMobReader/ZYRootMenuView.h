@@ -23,9 +23,5 @@
 }
 @property (nonatomic,assign)id<ZYRootMenuViewDataSource> dataSource;
 
-- (void)tilePages;
-- (ZYRootMenuPageView *)dequeueRecycledPage;
-- (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
-- (ZYRootMenuPageView *)pageForIndex:(NSUInteger)index;
 
 @end

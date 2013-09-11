@@ -9,8 +9,9 @@
 #import "ZYRootMenuPageView.h"
 #import "ZYRootMenuItem.h"
 
-#define ItemInnerMargin 15
-#define ItemRoundMargin 30
+#define ItemInnerMargin 8
+#define ItemRoundMargin 20
+#define RightMargin 80
 
 
 @implementation ZYRootMenuPageView
@@ -44,12 +45,13 @@
     for (int i=0; i<itemsArray.count; i++) {
         
         int col = i%2;
-        int row = (int)i/2;
+        int row = (int)(i/2);
         
-        CGFloat itemWitdh = (self.frame.size.width-2*ItemRoundMargin-ItemInnerMargin)/2;
+        NSLog(@"col --->%d   row ----->%d",col,row);
+        CGFloat itemWitdh = (self.frame.size.width-ItemRoundMargin-RightMargin-ItemInnerMargin)/2;
         CGFloat itemHeight = (self.frame.size.height - 2*ItemRoundMargin -3*ItemInnerMargin)/4;
         
-        CGRect itemRect = CGRectMake(ItemRoundMargin+ItemInnerMargin*col,ItemRoundMargin+ItemInnerMargin*row
+        CGRect itemRect = CGRectMake(col*itemWitdh+ItemRoundMargin+ItemInnerMargin*col,row*itemHeight+ItemRoundMargin+ItemInnerMargin*row
                                      ,itemWitdh,itemHeight);
         ZYMenuItemModel *itemModel = [itemsArray objectAtIndex:i];
 
@@ -60,12 +62,15 @@
                 if (existItem.indexPath == [NSIndexPath indexPathForRow:row inSection:col]) {
                     
                     [existItem setContentModel:itemModel];
+                    existItem.frame = itemRect;
+                    existItem.backgroundColor = [UIColor orangeColor];
                     
                 }
             }
         }else{
             ZYRootMenuItem *item = [[ZYRootMenuItem alloc]initWithMenuItemModel:itemModel withFrame:itemRect];
             item.indexPath = [NSIndexPath indexPathForRow:row inSection:col];
+            item.backgroundColor = [UIColor blueColor];
             [itemIndexPaths addObject:item.indexPath];
             [self addSubview:item];
             [item release];

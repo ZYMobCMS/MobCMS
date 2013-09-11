@@ -30,6 +30,7 @@
         titleLabel = [[UILabel alloc]init];
         titleLabel.frame = CGRectMake(0, 55, frame.size.width,frame.size.height-55);
         titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.textColor = [UIColor whiteColor];
         titleLabel.textAlignment = UITextAlignmentCenter;
         [self addSubview:titleLabel];
         [titleLabel release];
@@ -68,6 +69,7 @@
         titleLabel = [[UILabel alloc]init];
         titleLabel.frame = CGRectMake(0, 55, frame.size.width,frame.size.height-55);
         titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.textColor = [UIColor whiteColor];
         titleLabel.textAlignment = UITextAlignmentCenter;
         titleLabel.text = menuItem.name;
         [self addSubview:titleLabel];

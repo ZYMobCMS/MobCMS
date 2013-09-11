@@ -18,7 +18,10 @@
     NSMutableSet *visiblePages;
     
     NSMutableArray *meunSourceArray;
+    NSMutableArray *menuTempArray;
+    NSInteger       tabTypeRequestCount;
     ZYMenuDataCenter *dataCenter;
+    ZYNewsDataCenter *newsDataCenter;
 }
 @property (nonatomic,retain)UIPanGestureRecognizer *panGesture;
 @property (nonatomic,retain)NSMutableArray *menuSourceArray;
@@ -31,5 +34,6 @@
 - (ZYRootMenuPageView *)dequeueRecycledPage;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
 - (ZYRootMenuPageView *)pageForIndex:(NSUInteger)index;
+- (void)reloadMenu;
 
 @end

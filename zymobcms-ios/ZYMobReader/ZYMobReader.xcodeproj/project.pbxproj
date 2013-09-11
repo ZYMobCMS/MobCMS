@@ -103,6 +103,15 @@
 		3B29744E17DDD8A4007E6257 /* ZYTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B2973F317DDD8A4007E6257 /* ZYTheme.plist */; };
 		3B29744F17DDD8A4007E6257 /* ZYThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2973F517DDD8A4007E6257 /* ZYThemeManager.m */; };
 		3B29745117DDD8BB007E6257 /* ZYTheme in Resources */ = {isa = PBXBuildFile; fileRef = 3B29745017DDD8BB007E6257 /* ZYTheme */; };
+		3B4B940617E04920002581CB /* ZYRootMenuItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B940517E04920002581CB /* ZYRootMenuItemModel.m */; };
+		3B4B940917E05B44002581CB /* ZYChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B940817E05B44002581CB /* ZYChannelViewController.m */; };
+		3B4B940D17E05BBA002581CB /* ZYLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B940C17E05BBA002581CB /* ZYLayoutItem.m */; };
+		3B4B941017E05BD2002581CB /* ZYLayoutPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B940F17E05BD2002581CB /* ZYLayoutPage.m */; };
+		3B4B941317E05BEC002581CB /* ZYLayoutTemplateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B941217E05BEC002581CB /* ZYLayoutTemplateManager.m */; };
+		3B4B941517E05C14002581CB /* ZYLayoutTemplate.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4B941417E05C14002581CB /* ZYLayoutTemplate.plist */; };
+		3B4B941D17E05E10002581CB /* BFAttributeDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B941A17E05E10002581CB /* BFAttributeDescriptor.m */; };
+		3B4B941E17E05E10002581CB /* BFAttributedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B941C17E05E10002581CB /* BFAttributedView.m */; };
+		3B4B942017E07E8C002581CB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4B941F17E07E8C002581CB /* CoreText.framework */; };
 		3BE0FDC217DEB8DB00A8E5B8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC117DEB8DB00A8E5B8 /* QuartzCore.framework */; };
 		3BE0FDC417DEBB1300A8E5B8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC317DEBB1300A8E5B8 /* CFNetwork.framework */; };
 		3BE0FDC617DEBB1700A8E5B8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */; };
@@ -304,6 +313,22 @@
 		3B2973F417DDD8A4007E6257 /* ZYThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYThemeManager.h; sourceTree = "<group>"; };
 		3B2973F517DDD8A4007E6257 /* ZYThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYThemeManager.m; sourceTree = "<group>"; };
 		3B29745017DDD8BB007E6257 /* ZYTheme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ZYTheme; sourceTree = "<group>"; };
+		3B4B940417E04920002581CB /* ZYRootMenuItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRootMenuItemModel.h; sourceTree = "<group>"; };
+		3B4B940517E04920002581CB /* ZYRootMenuItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootMenuItemModel.m; sourceTree = "<group>"; };
+		3B4B940717E05B44002581CB /* ZYChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYChannelViewController.h; sourceTree = "<group>"; };
+		3B4B940817E05B44002581CB /* ZYChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYChannelViewController.m; sourceTree = "<group>"; };
+		3B4B940B17E05BBA002581CB /* ZYLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLayoutItem.h; sourceTree = "<group>"; };
+		3B4B940C17E05BBA002581CB /* ZYLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLayoutItem.m; sourceTree = "<group>"; };
+		3B4B940E17E05BD2002581CB /* ZYLayoutPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLayoutPage.h; sourceTree = "<group>"; };
+		3B4B940F17E05BD2002581CB /* ZYLayoutPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLayoutPage.m; sourceTree = "<group>"; };
+		3B4B941117E05BEC002581CB /* ZYLayoutTemplateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLayoutTemplateManager.h; sourceTree = "<group>"; };
+		3B4B941217E05BEC002581CB /* ZYLayoutTemplateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLayoutTemplateManager.m; sourceTree = "<group>"; };
+		3B4B941417E05C14002581CB /* ZYLayoutTemplate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ZYLayoutTemplate.plist; sourceTree = "<group>"; };
+		3B4B941917E05E10002581CB /* BFAttributeDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFAttributeDescriptor.h; sourceTree = "<group>"; };
+		3B4B941A17E05E10002581CB /* BFAttributeDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFAttributeDescriptor.m; sourceTree = "<group>"; };
+		3B4B941B17E05E10002581CB /* BFAttributedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFAttributedView.h; sourceTree = "<group>"; };
+		3B4B941C17E05E10002581CB /* BFAttributedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFAttributedView.m; sourceTree = "<group>"; };
+		3B4B941F17E07E8C002581CB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3BE0FDC117DEB8DB00A8E5B8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3BE0FDC317DEBB1300A8E5B8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -324,6 +349,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B4B942017E07E8C002581CB /* CoreText.framework in Frameworks */,
 				3BE0FDCA17DEBB2100A8E5B8 /* libz.dylib in Frameworks */,
 				3BE0FDC817DEBB1C00A8E5B8 /* MobileCoreServices.framework in Frameworks */,
 				3BE0FDC617DEBB1700A8E5B8 /* SystemConfiguration.framework in Frameworks */,
@@ -358,6 +384,7 @@
 		3B2972F717DDD795007E6257 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B4B941F17E07E8C002581CB /* CoreText.framework */,
 				3BE0FDC917DEBB2100A8E5B8 /* libz.dylib */,
 				3BE0FDC717DEBB1C00A8E5B8 /* MobileCoreServices.framework */,
 				3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */,
@@ -763,9 +790,28 @@
 			path = ZYThemeManager;
 			sourceTree = "<group>";
 		};
+		3B4B940A17E05B71002581CB /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CommonView;
+			sourceTree = "<group>";
+		};
+		3B4B941817E05E10002581CB /* BFAttributedView */ = {
+			isa = PBXGroup;
+			children = (
+				3B4B941917E05E10002581CB /* BFAttributeDescriptor.h */,
+				3B4B941A17E05E10002581CB /* BFAttributeDescriptor.m */,
+				3B4B941B17E05E10002581CB /* BFAttributedView.h */,
+				3B4B941C17E05E10002581CB /* BFAttributedView.m */,
+			);
+			path = BFAttributedView;
+			sourceTree = "<group>";
+		};
 		E43CCE5617DDF1B30074EC80 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3B4B940A17E05B71002581CB /* CommonView */,
 				E43CCE5C17DDF2050074EC80 /* Setting */,
 				E43CCE5B17DDF1FD0074EC80 /* Favorite */,
 				E43CCE5A17DDF1D60074EC80 /* LayoutManager */,
@@ -787,6 +833,8 @@
 				3BE0FDCF17DF071B00A8E5B8 /* ZYRootMenuPageView.m */,
 				3BE0FDD117DF072B00A8E5B8 /* ZYRootMenuView.h */,
 				3BE0FDD217DF072C00A8E5B8 /* ZYRootMenuView.m */,
+				3B4B940417E04920002581CB /* ZYRootMenuItemModel.h */,
+				3B4B940517E04920002581CB /* ZYRootMenuItemModel.m */,
 			);
 			name = RootNav;
 			sourceTree = "<group>";
@@ -801,6 +849,8 @@
 		E43CCE5917DDF1CD0074EC80 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				3B4B940717E05B44002581CB /* ZYChannelViewController.h */,
+				3B4B940817E05B44002581CB /* ZYChannelViewController.m */,
 			);
 			name = Channel;
 			sourceTree = "<group>";
@@ -808,6 +858,14 @@
 		E43CCE5A17DDF1D60074EC80 /* LayoutManager */ = {
 			isa = PBXGroup;
 			children = (
+				3B4B941817E05E10002581CB /* BFAttributedView */,
+				3B4B940B17E05BBA002581CB /* ZYLayoutItem.h */,
+				3B4B940C17E05BBA002581CB /* ZYLayoutItem.m */,
+				3B4B940E17E05BD2002581CB /* ZYLayoutPage.h */,
+				3B4B940F17E05BD2002581CB /* ZYLayoutPage.m */,
+				3B4B941117E05BEC002581CB /* ZYLayoutTemplateManager.h */,
+				3B4B941217E05BEC002581CB /* ZYLayoutTemplateManager.m */,
+				3B4B941417E05C14002581CB /* ZYLayoutTemplate.plist */,
 			);
 			name = LayoutManager;
 			sourceTree = "<group>";
@@ -891,6 +949,7 @@
 				3B29744917DDD8A4007E6257 /* ZYUserTestViewController.xib in Resources */,
 				3B29744E17DDD8A4007E6257 /* ZYTheme.plist in Resources */,
 				3B29745117DDD8BB007E6257 /* ZYTheme in Resources */,
+				3B4B941517E05C14002581CB /* ZYLayoutTemplate.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,6 +1044,13 @@
 				3BE0FDCD17DEFC9800A8E5B8 /* ZYRootMenuItem.m in Sources */,
 				3BE0FDD017DF071C00A8E5B8 /* ZYRootMenuPageView.m in Sources */,
 				3BE0FDD317DF072E00A8E5B8 /* ZYRootMenuView.m in Sources */,
+				3B4B940617E04920002581CB /* ZYRootMenuItemModel.m in Sources */,
+				3B4B940917E05B44002581CB /* ZYChannelViewController.m in Sources */,
+				3B4B940D17E05BBA002581CB /* ZYLayoutItem.m in Sources */,
+				3B4B941017E05BD2002581CB /* ZYLayoutPage.m in Sources */,
+				3B4B941317E05BEC002581CB /* ZYLayoutTemplateManager.m in Sources */,
+				3B4B941D17E05E10002581CB /* BFAttributeDescriptor.m in Sources */,
+				3B4B941E17E05E10002581CB /* BFAttributedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
