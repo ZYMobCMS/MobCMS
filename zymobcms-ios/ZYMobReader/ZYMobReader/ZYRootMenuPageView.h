@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZYRootMenuPageView;
+@protocol ZYRootMenuPageViewDelegate <NSObject>
+
+- (void)rootMenuPageView:(ZYRootMenuPageView*)pageView didSelectAtIndex:(NSInteger)selectIndex;
+
+@end
 @interface ZYRootMenuPageView : UIView
 {
     NSMutableArray *itemsArray;
     NSMutableArray *itemIndexPaths;
 }
 @property (nonatomic,assign)NSInteger pageIndex;
+@property (nonatomic,assign)id<ZYRootMenuPageViewDelegate> delegate;
 
 - (void)setMenuItemArray:(NSArray*)menuItemArray;
 

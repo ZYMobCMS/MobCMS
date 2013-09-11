@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZYRootMenuItemModel.h"
 
-@interface ZYChannelViewController : UIViewController
+@interface ZYChannelViewController : ZYBaseViewController
+{
+    ZYNewsDataCenter *newsDataCenter;
+    ZYPictureDataCenter *pictureDataCenter;
+    ZYProductDataCenter *productDataCenter;
+    
+    NSMutableArray *listArray;
+    NSInteger       currentPageIndex;
+}
+@property (nonatomic,retain)ZYRootMenuItemModel *menuItem;
+
+- (id)initWithMenuItem:(ZYRootMenuItemModel *)mItem;
 
 @end

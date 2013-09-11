@@ -7,13 +7,13 @@
 //
 
 #import "ZYMobReaderAppDelegate.h"
-#import "ZYRootNavViewController.h"
 
 @implementation ZYMobReaderAppDelegate
 
 - (void)dealloc
 {
     [_window release];
+    self.rootNavController = nil;
     [super dealloc];
 }
 
@@ -23,8 +23,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    ZYRootNavViewController *rootNavController = [[ZYRootNavViewController alloc]init];
-    self.window.rootViewController = rootNavController;
+    self.rootNavController = [[ZYRootNavViewController alloc]init];
+    self.window.rootViewController = self.rootNavController;
     [self.window makeKeyAndVisible];
     return YES;
 }

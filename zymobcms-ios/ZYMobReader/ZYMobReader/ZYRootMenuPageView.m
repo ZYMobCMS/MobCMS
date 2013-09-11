@@ -16,6 +16,7 @@
 
 @implementation ZYRootMenuPageView
 @synthesize pageIndex;
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -47,7 +48,7 @@
         int col = i%2;
         int row = (int)(i/2);
         
-        NSLog(@"col --->%d   row ----->%d",col,row);
+//        NSLog(@"col --->%d   row ----->%d",col,row);
         CGFloat itemWitdh = (self.frame.size.width-ItemRoundMargin-RightMargin-ItemInnerMargin)/2;
         CGFloat itemHeight = (self.frame.size.height - 2*ItemRoundMargin -3*ItemInnerMargin)/4;
         
@@ -67,12 +68,18 @@
                     
                 }
             }
+            
         }else{
             ZYRootMenuItem *item = [[ZYRootMenuItem alloc]initWithMenuItemModel:itemModel withFrame:itemRect];
             item.indexPath = [NSIndexPath indexPathForRow:row inSection:col];
             item.backgroundColor = [UIColor blueColor];
             [itemIndexPaths addObject:item.indexPath];
             [self addSubview:item];
+            [item setTapOnItemAction:^(void) {
+                if (self.delegate && [self.delegate respondsToSelector:@selector(rootMenuPageView:didSelectAtIndex:)]) {
+                    [self.delegate rootMenuPageView:self didSelectAtIndex:i];
+                }
+            }];
             [item release];
         }
     }

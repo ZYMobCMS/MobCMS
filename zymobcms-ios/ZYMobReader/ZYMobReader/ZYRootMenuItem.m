@@ -40,6 +40,9 @@
 - (void)dealloc
 {
     self.indexPath = nil;
+    if (_tapAction) {
+        [_tapAction release];
+    }
     [super dealloc];
 }
 
@@ -75,6 +78,8 @@
         [self addSubview:titleLabel];
         [titleLabel release];
         
+        [self addTarget:self action:@selector(didTapInsideSelf) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return self;
 }
@@ -82,4 +87,18 @@
 {
     titleLabel.text = menuItem.name;
 }
+- (void)setTapOnItemAction:(RootMenuItemTapAction)tapAction
+{
+    if (_tapAction) {
+        [_tapAction release];
+    }
+    _tapAction = [tapAction copy];
+}
+- (void)didTapInsideSelf
+{
+    if (_tapAction) {
+        _tapAction();
+    }
+}
+
 @end

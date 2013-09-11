@@ -121,6 +121,14 @@
 		3BE0FDD017DF071C00A8E5B8 /* ZYRootMenuPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE0FDCF17DF071B00A8E5B8 /* ZYRootMenuPageView.m */; };
 		3BE0FDD317DF072E00A8E5B8 /* ZYRootMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE0FDD217DF072C00A8E5B8 /* ZYRootMenuView.m */; };
 		E43CCE6517DDF96D0074EC80 /* ZYRootNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */; };
+		E46CC34617E09E430090482C /* ZYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC34517E09E430090482C /* ZYBaseViewController.m */; };
+		E46CC34917E09E990090482C /* ZYBaseNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC34817E09E990090482C /* ZYBaseNavBar.m */; };
+		E46CC34C17E09EF90090482C /* ZYBaseNavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC34B17E09EF90090482C /* ZYBaseNavItem.m */; };
+		E46CC34F17E0A3D80090482C /* ZYBaseUitil.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC34E17E0A3D80090482C /* ZYBaseUitil.m */; };
+		E46CC35617E0AC3F0090482C /* BFAnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC35417E0AC3F0090482C /* BFAnimationHelper.m */; };
+		E46CC35917E0B15F0090482C /* UIView+ZYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC35817E0B15E0090482C /* UIView+ZYAdditions.m */; };
+		E46CC35C17E0B3030090482C /* ZYScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC35B17E0B3030090482C /* ZYScrollView.m */; };
+		E46CC35F17E0BAA60090482C /* ZYSnapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E46CC35E17E0BAA50090482C /* ZYSnapView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -342,6 +350,23 @@
 		3BE0FDD217DF072C00A8E5B8 /* ZYRootMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootMenuView.m; sourceTree = "<group>"; };
 		E43CCE6317DDF96D0074EC80 /* ZYRootNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRootNavViewController.h; sourceTree = "<group>"; };
 		E43CCE6417DDF96D0074EC80 /* ZYRootNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRootNavViewController.m; sourceTree = "<group>"; };
+		E46CC34417E09E430090482C /* ZYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYBaseViewController.h; sourceTree = "<group>"; };
+		E46CC34517E09E430090482C /* ZYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYBaseViewController.m; sourceTree = "<group>"; };
+		E46CC34717E09E990090482C /* ZYBaseNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYBaseNavBar.h; sourceTree = "<group>"; };
+		E46CC34817E09E990090482C /* ZYBaseNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYBaseNavBar.m; sourceTree = "<group>"; };
+		E46CC34A17E09EF90090482C /* ZYBaseNavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYBaseNavItem.h; sourceTree = "<group>"; };
+		E46CC34B17E09EF90090482C /* ZYBaseNavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYBaseNavItem.m; sourceTree = "<group>"; };
+		E46CC34D17E0A3D70090482C /* ZYBaseUitil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYBaseUitil.h; sourceTree = "<group>"; };
+		E46CC34E17E0A3D80090482C /* ZYBaseUitil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYBaseUitil.m; sourceTree = "<group>"; };
+		E46CC35317E0AC3F0090482C /* BFAnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFAnimationHelper.h; sourceTree = "<group>"; };
+		E46CC35417E0AC3F0090482C /* BFAnimationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFAnimationHelper.m; sourceTree = "<group>"; };
+		E46CC35517E0AC3F0090482C /* BFAnimationHelperConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFAnimationHelperConfig.h; sourceTree = "<group>"; };
+		E46CC35717E0B15E0090482C /* UIView+ZYAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZYAdditions.h"; sourceTree = "<group>"; };
+		E46CC35817E0B15E0090482C /* UIView+ZYAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZYAdditions.m"; sourceTree = "<group>"; };
+		E46CC35A17E0B3020090482C /* ZYScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYScrollView.h; sourceTree = "<group>"; };
+		E46CC35B17E0B3030090482C /* ZYScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYScrollView.m; sourceTree = "<group>"; };
+		E46CC35D17E0BAA40090482C /* ZYSnapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSnapView.h; sourceTree = "<group>"; };
+		E46CC35E17E0BAA50090482C /* ZYSnapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSnapView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -793,6 +818,17 @@
 		3B4B940A17E05B71002581CB /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
+				E46CC35717E0B15E0090482C /* UIView+ZYAdditions.h */,
+				E46CC35817E0B15E0090482C /* UIView+ZYAdditions.m */,
+				E46CC35217E0AC3F0090482C /* BFAnimationHelper */,
+				E46CC34417E09E430090482C /* ZYBaseViewController.h */,
+				E46CC34517E09E430090482C /* ZYBaseViewController.m */,
+				E46CC34717E09E990090482C /* ZYBaseNavBar.h */,
+				E46CC34817E09E990090482C /* ZYBaseNavBar.m */,
+				E46CC34A17E09EF90090482C /* ZYBaseNavItem.h */,
+				E46CC34B17E09EF90090482C /* ZYBaseNavItem.m */,
+				E46CC34D17E0A3D70090482C /* ZYBaseUitil.h */,
+				E46CC34E17E0A3D80090482C /* ZYBaseUitil.m */,
 			);
 			name = CommonView;
 			sourceTree = "<group>";
@@ -835,6 +871,10 @@
 				3BE0FDD217DF072C00A8E5B8 /* ZYRootMenuView.m */,
 				3B4B940417E04920002581CB /* ZYRootMenuItemModel.h */,
 				3B4B940517E04920002581CB /* ZYRootMenuItemModel.m */,
+				E46CC35A17E0B3020090482C /* ZYScrollView.h */,
+				E46CC35B17E0B3030090482C /* ZYScrollView.m */,
+				E46CC35D17E0BAA40090482C /* ZYSnapView.h */,
+				E46CC35E17E0BAA50090482C /* ZYSnapView.m */,
 			);
 			name = RootNav;
 			sourceTree = "<group>";
@@ -882,6 +922,16 @@
 			children = (
 			);
 			name = Setting;
+			sourceTree = "<group>";
+		};
+		E46CC35217E0AC3F0090482C /* BFAnimationHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E46CC35317E0AC3F0090482C /* BFAnimationHelper.h */,
+				E46CC35417E0AC3F0090482C /* BFAnimationHelper.m */,
+				E46CC35517E0AC3F0090482C /* BFAnimationHelperConfig.h */,
+			);
+			path = BFAnimationHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1051,6 +1101,14 @@
 				3B4B941317E05BEC002581CB /* ZYLayoutTemplateManager.m in Sources */,
 				3B4B941D17E05E10002581CB /* BFAttributeDescriptor.m in Sources */,
 				3B4B941E17E05E10002581CB /* BFAttributedView.m in Sources */,
+				E46CC34617E09E430090482C /* ZYBaseViewController.m in Sources */,
+				E46CC34917E09E990090482C /* ZYBaseNavBar.m in Sources */,
+				E46CC34C17E09EF90090482C /* ZYBaseNavItem.m in Sources */,
+				E46CC34F17E0A3D80090482C /* ZYBaseUitil.m in Sources */,
+				E46CC35617E0AC3F0090482C /* BFAnimationHelper.m in Sources */,
+				E46CC35917E0B15F0090482C /* UIView+ZYAdditions.m in Sources */,
+				E46CC35C17E0B3030090482C /* ZYScrollView.m in Sources */,
+				E46CC35F17E0BAA60090482C /* ZYSnapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

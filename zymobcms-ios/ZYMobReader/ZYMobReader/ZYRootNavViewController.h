@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ZYRootMenuPageView.h"
+#import "ZYScrollView.h"
+#import "ZYSnapView.h"
 
-@interface ZYRootNavViewController : UIViewController<UIScrollViewDelegate>
+@interface ZYRootNavViewController : UIViewController<UIScrollViewDelegate,ZYRootMenuPageViewDelegate>
 {
     NSMutableArray *_detailViewControllers;
     
-    UIScrollView *myScrollView;
+    ZYScrollView *myScrollView;
+    ZYSnapView *snapImgView;
+    UIView     *snapShadowView;
     NSMutableSet *recycledPages;
     NSMutableSet *visiblePages;
     
@@ -34,6 +38,7 @@
 - (ZYRootMenuPageView *)dequeueRecycledPage;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
 - (ZYRootMenuPageView *)pageForIndex:(NSUInteger)index;
+- (void)pageViewAtIndex:(NSInteger)index didSelectIndex:(NSInteger)selectIndex;
 - (void)reloadMenu;
 
 @end
