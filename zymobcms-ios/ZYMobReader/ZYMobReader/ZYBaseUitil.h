@@ -10,6 +10,7 @@
 #import "ZYBaseViewController.h"
 #import "BFAnimationHelper.h"
 #import "UIView+ZYAdditions.h"
+#import "BFUitils.h"
 
 @interface ZYBaseUitil : NSObject
 

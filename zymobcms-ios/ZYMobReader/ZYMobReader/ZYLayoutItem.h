@@ -13,6 +13,7 @@ typedef enum {
     
     ZYLayoutItemBig = 0,
     ZYLayoutItemNormal,
+    ZYLayoutItemAllText,
     
 }ZYLayoutItemStyle;
 
@@ -22,8 +23,12 @@ typedef enum {
     BFAttributedView *dateSourceView;
     BFAttributedView *summaryView;
     BFImageView      *contentImgView;
+    
+    CGFloat           titleFontSize;
+    CGFloat           dateFontSize;
+    CGFloat           summaryFontSize;
 }
 
-- (void)setContentDict:(ZYBaseModel*)contentModel withConfigStyle:(ZYLayoutItemStyle)aStyle;
+- (void)setContentDict:(ZYNewsModel*)contentModel withConfigStyle:(ZYLayoutItemStyle)aStyle;
 
 @end

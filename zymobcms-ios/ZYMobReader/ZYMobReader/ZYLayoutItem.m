@@ -17,12 +17,17 @@
         // Initialization code
         
         CGRect initRect = CGRectMake(0,0,1,1);
+        titleFontSize = 13.0f;
+        summaryFontSize = 11.0f;
+        dateFontSize = 10.f;
         
         titleView = [[BFAttributedView alloc]initWithFrame:initRect];
+        titleView.textDescriptor.fontSize = titleFontSize;
         [self addSubview:titleView];
         [titleView release];
         
         dateSourceView = [[BFAttributedView alloc]initWithFrame:initRect];
+        dateSourceView.textDescriptor.fontSize = dateFontSize;
         [self addSubview:dateSourceView];
         [dateSourceView release];
         
@@ -46,63 +51,42 @@
 }
 */
 
-- (void)setContentDict:(ZYBaseModel *)contentModel withConfigStyle:(ZYLayoutItemStyle)aStyle
+- (void)setContentDict:(ZYNewsModel *)contentModel withConfigStyle:(ZYLayoutItemStyle)aStyle
 {
-    if ([contentModel isKindOfClass:[ZYNewsModel class]]) {
-        ZYNewsModel *destModel = (ZYNewsModel*)contentModel;
-        switch (aStyle) {
-            case ZYLayoutItemBig:
-            {
-                contentImgView.hidden = NO;
-                contentImgView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height);
-                
-            }
-                break;
-            case ZYLayoutItemNormal:
-            {
-                
-            }
-                break;
-            default:
-                break;
-        }
-    }
-    if ([contentModel isKindOfClass:[ZYPictureModel class]]) {
-        ZYPictureModel *destModel = (ZYPictureModel*)contentModel;
-        switch (aStyle) {
-            case ZYLayoutItemBig:
-            {
-                
-            }
-                break;
-            case ZYLayoutItemNormal:
-            {
-                
-            }
-                break;
-            default:
-                break;
-        }
-    }
-    if ([contentModel isKindOfClass:[ZYProductModel class]]) {
-        ZYProductModel *destModel = (ZYProductModel*)contentModel;
-        switch (aStyle) {
-            case ZYLayoutItemBig:
-            {
-                
-            }
-                break;
-            case ZYLayoutItemNormal:
-            {
-                
-            }
-                break;
-            default:
-                break;
-        }
+    ZYNewsModel *destModel = (ZYNewsModel*)contentModel;
+    NSString *firstImage = [[destModel.images componentsSeparatedByString:@"|"]objectAtIndex:0];
+    if (firstImage==nil) {
+        [self buildContentWithTitle:destModel.title withImage:firstImage withDate:destModel.publishTime withSource:destModel.source withSummary:destModel.summary withStyle:ZYLayoutItemNormal];
+    }else{
+       [self buildContentWithTitle:destModel.title withImage:firstImage withDate:destModel.publishTime withSource:destModel.source withSummary:destModel.summary withStyle:aStyle]; 
     }
     
-    
+
+}
+- (void)buildContentWithTitle:(NSString*)title withImage:(NSString*)imageUrl withDate:(NSString*)date withSource:(NSString*)source withSummary:(NSString*)summary withStyle:(ZYLayoutItemStyle)aStyle
+{
+    switch (aStyle) {
+        case ZYLayoutItemBig:
+        {
+            summaryView.hidden = YES;
+            dateSourceView.hidden = YES;
+            
+            
+        }
+            break;
+        case ZYLayoutItemNormal:
+        {
+            
+        }
+            break;
+        case ZYLayoutItemAllText:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
     
 }
 

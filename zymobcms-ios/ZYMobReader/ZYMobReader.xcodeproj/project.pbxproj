@@ -112,6 +112,7 @@
 		3B4B941D17E05E10002581CB /* BFAttributeDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B941A17E05E10002581CB /* BFAttributeDescriptor.m */; };
 		3B4B941E17E05E10002581CB /* BFAttributedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B941C17E05E10002581CB /* BFAttributedView.m */; };
 		3B4B942017E07E8C002581CB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4B941F17E07E8C002581CB /* CoreText.framework */; };
+		3B4B942417E1C8F1002581CB /* BFUitils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B942317E1C8F1002581CB /* BFUitils.m */; };
 		3BE0FDC217DEB8DB00A8E5B8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC117DEB8DB00A8E5B8 /* QuartzCore.framework */; };
 		3BE0FDC417DEBB1300A8E5B8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC317DEBB1300A8E5B8 /* CFNetwork.framework */; };
 		3BE0FDC617DEBB1700A8E5B8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */; };
@@ -337,6 +338,8 @@
 		3B4B941B17E05E10002581CB /* BFAttributedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFAttributedView.h; sourceTree = "<group>"; };
 		3B4B941C17E05E10002581CB /* BFAttributedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFAttributedView.m; sourceTree = "<group>"; };
 		3B4B941F17E07E8C002581CB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3B4B942217E1C8F1002581CB /* BFUitils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFUitils.h; sourceTree = "<group>"; };
+		3B4B942317E1C8F1002581CB /* BFUitils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFUitils.m; sourceTree = "<group>"; };
 		3BE0FDC117DEB8DB00A8E5B8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3BE0FDC317DEBB1300A8E5B8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3BE0FDC517DEBB1700A8E5B8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -818,6 +821,7 @@
 		3B4B940A17E05B71002581CB /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
+				3B4B942117E1C8F1002581CB /* BFUitils */,
 				E46CC35717E0B15E0090482C /* UIView+ZYAdditions.h */,
 				E46CC35817E0B15E0090482C /* UIView+ZYAdditions.m */,
 				E46CC35217E0AC3F0090482C /* BFAnimationHelper */,
@@ -842,6 +846,15 @@
 				3B4B941C17E05E10002581CB /* BFAttributedView.m */,
 			);
 			path = BFAttributedView;
+			sourceTree = "<group>";
+		};
+		3B4B942117E1C8F1002581CB /* BFUitils */ = {
+			isa = PBXGroup;
+			children = (
+				3B4B942217E1C8F1002581CB /* BFUitils.h */,
+				3B4B942317E1C8F1002581CB /* BFUitils.m */,
+			);
+			path = BFUitils;
 			sourceTree = "<group>";
 		};
 		E43CCE5617DDF1B30074EC80 /* Main */ = {
@@ -1109,6 +1122,7 @@
 				E46CC35917E0B15F0090482C /* UIView+ZYAdditions.m in Sources */,
 				E46CC35C17E0B3030090482C /* ZYScrollView.m in Sources */,
 				E46CC35F17E0BAA60090482C /* ZYSnapView.m in Sources */,
+				3B4B942417E1C8F1002581CB /* BFUitils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
