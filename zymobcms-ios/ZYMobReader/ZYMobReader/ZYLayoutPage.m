@@ -28,4 +28,13 @@
 }
 */
 
+#pragma mark - build content
+- (void)buildBlocksWithConfigDict:(NSDictionary*)configDict
+{
+    
+    
+    
+}
+
+
 @end

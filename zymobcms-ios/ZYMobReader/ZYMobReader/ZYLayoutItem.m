@@ -38,6 +38,9 @@
         contentImgView = [[BFImageView alloc]initWithFrame:initRect];
         [self addSubview:contentImgView];
         [contentImgView release];
+        
+        leftMargin = 5.0f;
+        textMargin =  5.0f;
     }
     return self;
 }
@@ -65,26 +68,67 @@
 }
 - (void)buildContentWithTitle:(NSString*)title withImage:(NSString*)imageUrl withDate:(NSString*)date withSource:(NSString*)source withSummary:(NSString*)summary withStyle:(ZYLayoutItemStyle)aStyle
 {
+    NSString *intervalString = [BFUitils intervalSinceNow:date];
+    NSRange dayRang = [intervalString rangeOfString:@"天"];
+    NSMutableString *dateSourceCombine = [NSMutableString string];
+    if (dayRang.location != NSNotFound) {
+        [dateSourceCombine appendFormat:@"%@  %@",source,intervalString];
+    }else{
+        [dateSourceCombine appendFormat:@"%@",source];
+    }
+    [titleView setContentText:title];
+    [dateSourceView setContentText:dateSourceCombine];
+
     switch (aStyle) {
         case ZYLayoutItemBig:
         {
             summaryView.hidden = YES;
             dateSourceView.hidden = YES;
             
+            contentImgView.frame = CGRectMake(0,0,self.frame.size.width,self.frame.size.height);
+            
+            CGFloat titleHeight = [BFAttributedView getAttributedContentHeight:titleView.contentAttributedString withWdith:self.frame.size.width-2*leftMargin];
+            titleView.frame = CGRectMake(leftMargin,self.frame.size.height-leftMargin-titleHeight,self.frame.size.width-2*leftMargin,titleHeight);
+            
             
         }
             break;
         case ZYLayoutItemNormal:
         {
+            summaryView.hidden = YES;
+            dateSourceView.hidden = NO;
+            
+            CGFloat contentWidth = self.frame.size.width-2*leftMargin;
+            CGFloat titleHeight = [BFAttributedView getAttributedContentHeight:titleView.contentAttributedString withWdith:contentWidth];
+            titleView.frame = CGRectMake(leftMargin,0,self.frame.size.width-2*leftMargin,titleHeight);
+            
+            CGFloat dateHeight = [BFAttributedView getAttributedContentHeight:dateSourceView.contentAttributedString withWdith:contentWidth];
+            dateSourceView.frame = CGRectMake(leftMargin,titleHeight+textMargin,contentWidth,dateHeight);
             
         }
             break;
         case ZYLayoutItemAllText:
         {
+            summaryView.hidden = NO;
+            dateSourceView.hidden = NO;
+            [summaryView setContentText:summary];
+            
+            CGFloat contentWidth = self.frame.size.width-2*leftMargin;
+            CGFloat titleHeight = [BFAttributedView getAttributedContentHeight:titleView.contentAttributedString withWdith:contentWidth];
+            titleView.frame = CGRectMake(leftMargin,0,self.frame.size.width-2*leftMargin,titleHeight);
+            
+            CGFloat dateHeight = [BFAttributedView getAttributedContentHeight:dateSourceView.contentAttributedString withWdith:contentWidth];
+            dateSourceView.frame = CGRectMake(leftMargin,titleHeight+textMargin,contentWidth,dateHeight);
+            
+            CGFloat summaryHeight = [BFAttributedView getAttributedContentHeight:summaryView.contentAttributedString withWdith:contentWidth];
+            summaryView.frame = CGRectMake(leftMargin,titleHeight+textMargin+dateHeight+textMargin,contentWidth,summaryHeight);
             
         }
             break;
         default:
+        {
+            
+        }
             break;
     }
     

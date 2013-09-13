@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>PageTemplates</key>
+	<dict>
+		<key>1PageTemplate</key>
+		<array/>
+		<key>2PageTemplate</key>
+		<array/>
+		<key>3PageTemplate</key>
+		<array/>
+		<key>4PageTemplate</key>
+		<array/>
+		<key>5PageTemplate</key>
+		<array/>
+		<key>6PageTemplate</key>
+		<array>
+			<dict>
+				<key>blocks</key>
+				<string></string>
+				<key>lines</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+</dict>
 </plist>

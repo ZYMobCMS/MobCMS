@@ -12,6 +12,8 @@
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 
+#define IS_IPHONE_5 ([UIScreen mainScreen].bounds.size.height == 568.0)
+
 @interface BFUitils : NSObject
 
 //验证身份证号是否合法
@@ -50,16 +52,19 @@
 
 + (NSString *)returnFitlerStringWithReplaceSpace:(NSString*)sourceString;
 
-//新版本舆情
-+ (NSString *)returnFitlerNBSPString:(NSString*)sourceString;
++ (UIView*)viewFromNibWithName:(NSString*)name owner:(id)owner;
+
++ (BOOL)isIOSVersionOver5;
++ (BOOL)isIOSVersionOver6;
+
+//返回拉伸图片
++ (UIImage*)streghtImageWithName:(NSString*)imageName;
+
++ (UIImage*)streghtImage:(UIImage*)image;
 
 //RGB Color
 + (UIColor*)rgbColor:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 
 //取消系统的模糊bug
 + (void)clearBlurryForSubView:(UIView*)subView;
-
-+ (UIView*)viewFromNibWithName:(NSString*)name owner:(id)owner;
-
-
 @end

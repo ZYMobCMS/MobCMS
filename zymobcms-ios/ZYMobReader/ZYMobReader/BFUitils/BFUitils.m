@@ -138,9 +138,14 @@
     //60s * 60m = 1h 时间差不足一小时
     if (cha/3600<1) {
         timeString = [NSString stringWithFormat:@"%f", cha/60];
+    
         timeString = [timeString substringToIndex:timeString.length-7];
         
-        timeString=[NSString stringWithFormat:@"%@分钟前", timeString];
+        if ([timeString intValue]>=0 && [timeString intValue]<=5) {
+            timeString=@"刚刚";
+        }else{
+            timeString=[NSString stringWithFormat:@"%@分钟前", timeString];
+        }
     }
     // 60s * 60m * 24 = 1d 时间差超过一小时 且 不足一天
     if (cha/3600>1&&cha/86400<1) {
@@ -154,7 +159,6 @@
         timeString = [NSString stringWithFormat:@"%f", cha/86400];
         timeString = [timeString substringToIndex:timeString.length-7];
         timeString=[NSString stringWithFormat:@"%@天前", timeString];
-        
     }
     [date release];
     return timeString;
@@ -320,7 +324,7 @@
     if (source == nil) {
         return @"无内容";
     }
-//    NSLog(@"source :%@",source);
+    //    NSLog(@"source :%@",source);
     
     
     NSString *result = nil;
@@ -346,9 +350,9 @@
 + (NSString *)returnFitlerString:(NSString *)sourceString
 {
     
-//    NSLog(@"source :%@",sourceString);
+    //    NSLog(@"source :%@",sourceString);
     NSString *checkString = [self replaceNull:sourceString];
-
+    
     NSMutableString *newString = [NSMutableString stringWithString:checkString];
     NSRange range = NSMakeRange(0, [newString length]);
     
@@ -370,30 +374,14 @@
         [newString replaceOccurrencesOfString:[lineArray objectAtIndex:i] withString:@"\n" options:NSCaseInsensitiveSearch range:range];
         range = NSMakeRange(0,[newString length]);
     }
-
-    return newString;
-}
-
-+ (NSString*)returnFitlerNBSPString:(NSString *)sourceString
-{
-    NSString *checkString = [self replaceNull:sourceString];
-    
-    NSMutableString *newString = [NSMutableString stringWithString:checkString];
-    NSRange range = NSMakeRange(0, [newString length]);
-    
-    NSArray *checkArray = [NSArray arrayWithObjects:@";",@"&nbsp",@"&rdquo",@"&ldquo",@"&bull",@"&hellip",@"&mdash",nil];
-    
-    for (int i=0 ; i<[checkArray count];i++) {
-        [newString replaceOccurrencesOfString:[checkArray objectAtIndex:i] withString:@"" options:NSCaseInsensitiveSearch range:range];
-        range = NSMakeRange(0,[newString length]);
-    }
     
     return newString;
 }
+
 
 + (NSString*)returnFitlerStringWithReplaceSpace:(NSString *)sourceString
 {
-//    NSLog(@"source :%@",sourceString);
+    //    NSLog(@"source :%@",sourceString);
     NSString *checkString = [self replaceNull:sourceString];
     
     NSMutableString *newString = [NSMutableString stringWithString:checkString];
@@ -412,8 +400,41 @@
 + (NSString *)returnFitlerSpace:(NSString *)sourceString
 {
     NSString *checkString = [self replaceNull:sourceString];
-
+    
     return [checkString stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
+
+
++ (UIView*)viewFromNibWithName:(NSString *)name owner:(id)owner
+{
+    return [[[NSBundle mainBundle]loadNibNamed:name owner:owner options:nil]objectAtIndex:0];
+}
+
++ (BOOL)isIOSVersionOver5
+{
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>5.0) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
++ (BOOL)isIOSVersionOver6
+{
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>6.0) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
++ (UIImage*)streghtImageWithName:(NSString *)imageName
+{
+    return [[UIImage imageNamed:imageName]stretchableImageWithLeftCapWidth:2 topCapHeight:2];
+}
+
++ (UIImage*)streghtImage:(UIImage *)image
+{
+    return [image stretchableImageWithLeftCapWidth:2 topCapHeight:2];
 }
 
 + (UIColor*)rgbColor:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
@@ -427,11 +448,6 @@
     CGFloat newOffX = round(newTitleFrame.origin.x);
     CGFloat newOffY = roundf(newTitleFrame.origin.y);
     subView.frame = CGRectMake(newOffX,newOffY,newTitleFrame.size.width,newTitleFrame.size.height);
-}
-
-+ (UIView*)viewFromNibWithName:(NSString *)name owner:(id)owner
-{
-    return [[[NSBundle mainBundle]loadNibNamed:name owner:owner options:nil]objectAtIndex:0];
 }
 
 @end

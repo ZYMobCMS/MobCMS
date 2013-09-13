@@ -27,6 +27,8 @@ typedef enum {
     CGFloat           titleFontSize;
     CGFloat           dateFontSize;
     CGFloat           summaryFontSize;
+    CGFloat           leftMargin;
+    CGFloat           textMargin;
 }
 
 - (void)setContentDict:(ZYNewsModel*)contentModel withConfigStyle:(ZYLayoutItemStyle)aStyle;
