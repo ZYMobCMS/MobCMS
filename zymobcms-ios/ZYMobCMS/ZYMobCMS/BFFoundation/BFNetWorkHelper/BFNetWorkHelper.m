@@ -436,11 +436,12 @@ static BFNetWorkHelper *_instance = nil;
 - (void)requestDone:(ASIFormDataRequest *)request
 {
     NSData *data = [request responseData];
-    NSDictionary *result = [data objectFromJSONData];
+    NSString *resultString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *result = [[resultString dataUsingEncoding:NSUTF8StringEncoding] objectFromJSONData];
     
     NSDictionary *targetCallBack = [_connectionsForCallBackDict objectForKey:request.requestFlagMark];
     [[targetCallBack objectForKey:@"delegate"] performSelector:NSSelectorFromString([targetCallBack objectForKey:@"success"]) withObject:result];
-    
+    [resultString release];
     
 
     //缓存

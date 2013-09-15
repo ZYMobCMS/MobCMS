@@ -4060,3 +4060,36 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/user/login&appId=zymobcms&userId=(null)&userActiveOpen=0&loginName=2222&password=111
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/UserController.php (122)
 in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/09/15 23:03:07 [error] [php] Undefined offset: 0 (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php:144)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): MenuController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): MenuController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): MenuController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/menu/applicationName&appId=shuhua&userId=(null)&userActiveOpen=0&
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php (144)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/09/15 23:10:40 [error] [php] Undefined offset: 0 (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php:144)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): MenuController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): MenuController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): MenuController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/menu/applicationName&appId=shuhua&userId=(null)&userActiveOpen=0&
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php (144)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/09/15 23:24:21 [error] [php] Undefined offset: 0 (/Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php:144)
+Stack trace:
+#0 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(286): MenuController->runAction()
+#1 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CController.php(265): MenuController->runActionWithFilters()
+#2 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): MenuController->run()
+#3 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/ZYVincent/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/menu/applicationName&appId=shuhua&userId=(null)&userActiveOpen=0&
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/MenuController.php (144)
+in /Users/ZYVincent/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)

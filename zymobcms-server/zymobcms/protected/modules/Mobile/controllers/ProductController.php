@@ -91,7 +91,7 @@ class ProductController extends Controller{
         //查询
         $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
          
-        $sql = "select id,title,summary,support_count,images from zy_product order by id desc limit $startIndex,$pageSize";
+        $sql = "select id,title,summary,support_count,images from zy_product where main_category_id = $categoryId and sub_tab_type_id = $tabTypeId order by id desc limit $startIndex,$pageSize";
         
         $resultArr = $dbOperation->queryAllBySql($sql);
         
@@ -555,7 +555,7 @@ class ProductController extends Controller{
                 $resultObj = $dbOperation->saveBySql($sql);
                 
                 if($resultObj){
-                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                   $josnArr = array('status'=>'1','msg'=>'支持成功');
                    echo json_encode($josnArr);
                    
                    //插入一条活动纪录
@@ -609,7 +609,7 @@ class ProductController extends Controller{
                 $resultObj = $dbOperation->saveBySql($sql);
             
                 if($resultObj){
-                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                   $josnArr = array('status'=>'1','msg'=>'支持成功');
                    echo json_encode($josnArr);
                    
                    //插入一条活动纪录

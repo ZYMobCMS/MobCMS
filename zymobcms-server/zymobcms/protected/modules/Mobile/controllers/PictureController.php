@@ -89,8 +89,9 @@ class PictureController extends Controller {
         
         $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
         $startIndex = $truePageIndex*$pageSize;
-        $sql = "select * from zy_picture limit order by id desc $startIndex,$pageSize";
-        
+        $sql = "select * from zy_picture where sub_tab_type_id=$tabTypeId and main_category_id=$categoryId order by id desc limit $startIndex,$pageSize";
+                
+//         echo $sql;
         //查询
         $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
         $resultArr = $dbOperation->queryAllBySql($sql);
@@ -484,7 +485,7 @@ class PictureController extends Controller {
                 $resultObj = $dbOperation->saveBySql($sql);
                 
                 if($resultObj){
-                   $josnArr = array('status'=>'1','data'=>'支持成功');
+                   $josnArr = array('status'=>'1','msg'=>'支持成功');
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
@@ -538,7 +539,7 @@ class PictureController extends Controller {
                 $resultObj = $dbOperation->saveBySql($sql);
             
                 if($resultObj){
-                   $josnArr = array('status'=>'1','data'=>'取消支持成功');
+                   $josnArr = array('status'=>'1','msg'=>'取消支持成功');
                    echo json_encode($josnArr);
                     
                    //插入一条活动纪录
