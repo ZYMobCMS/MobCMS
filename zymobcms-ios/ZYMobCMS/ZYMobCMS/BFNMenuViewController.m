@@ -183,7 +183,19 @@
         itemIndexLast = [[[tableSysData objectAtIndex:self.lastSelectIndexPath.row]objectAtIndex:1]intValue];
     }
     MenuCell *selectCellLast = (MenuCell*)[menuTableView cellForRowAtIndexPath:self.lastSelectIndexPath];
-    selectCellLast.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",itemIndexLast]];
+    
+    if (lastSelectIndexPath.section == 0) {
+        NSArray *configArray = [tableBasicData objectAtIndex:lastSelectIndexPath.row];
+        if (![[configArray objectAtIndex:4]isEqualToString:@""]) {
+            NSString *imageName = [NSString stringWithFormat:@"menu_item_%d.png",[[configArray objectAtIndex:4]intValue]];
+            selectCellLast.iconImgView.image = [UIImage imageNamed:imageName];
+        }else{
+           selectCellLast.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",itemIndexLast]];  
+        }
+    }else{
+       selectCellLast.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",itemIndexLast]]; 
+    }
+    
     
     NSInteger itemIndex;
     if (selectVCIndexPath.section == 0) {
@@ -192,7 +204,21 @@
         itemIndex = [[[tableSysData objectAtIndex:self.selectVCIndexPath.row]objectAtIndex:1]intValue];
     }
     MenuCell *selectCell = (MenuCell*)[menuTableView cellForRowAtIndexPath:selectVCIndexPath];
-    selectCell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d_selected.png",itemIndex]];
+    
+    if (selectVCIndexPath.section == 0) {
+        
+        NSArray *configArray = [tableBasicData objectAtIndex:selectVCIndexPath.row];
+        if (![[configArray objectAtIndex:4]isEqualToString:@""]) {
+            NSString *imageName = [NSString stringWithFormat:@"menu_item_%d_selected.png",[[configArray objectAtIndex:4]intValue]];
+            selectCell.iconImgView.image = [UIImage imageNamed:imageName];
+        }else{
+            selectCell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d_selected.png",itemIndex]];
+        }
+    }else{
+        selectCell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d_selected.png",itemIndex]]; 
+    }
+    
+    
 
     
     BFNBaseViewController *currentVC = (BFNBaseViewController*)[self currentVC];
@@ -278,6 +304,7 @@
             [itemArray addObject:featureName];
             [itemArray addObject:[item objectForKey:@"id"]];
             [itemArray addObject:moduleId];
+            [itemArray addObject:[item objectForKey:@"icon"]];
             [featureClassArray addObject:itemArray];
             
         }else if ([moduleId intValue]==2) {
@@ -285,6 +312,7 @@
             [itemArray addObject:featureName];
             [itemArray addObject:[item objectForKey:@"id"]];
             [itemArray addObject:moduleId];
+            [itemArray addObject:[item objectForKey:@"icon"]];
             [featureClassArray addObject:itemArray];
             
         }else if([moduleId intValue]==3){
@@ -292,6 +320,7 @@
             [itemArray addObject:featureName];
             [itemArray addObject:[item objectForKey:@"id"]];
             [itemArray addObject:moduleId];
+            [itemArray addObject:[item objectForKey:@"icon"]];
             [featureClassArray addObject:itemArray];
             
         }else{
@@ -301,6 +330,7 @@
                 [itemArray addObject:featureName];
                 [itemArray addObject:[item objectForKey:@"id"]];
                 [itemArray addObject:moduleId];
+                [itemArray addObject:[item objectForKey:@"icon"]];
                 [featureClassArray addObject:itemArray];
                 
             }
@@ -632,7 +662,13 @@
             
             NSArray *configArray = [self.tableBasicData objectAtIndex:indexPath.row];
     
-            cell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",[[configArray objectAtIndex:2]intValue]]];            
+            if (![[configArray objectAtIndex:4]isEqualToString:@""]) {
+                NSString *imageName = [NSString stringWithFormat:@"menu_item_%d.png",[[configArray objectAtIndex:4]intValue]];
+                cell.iconImgView.image = [UIImage imageNamed:imageName];
+            }else{
+               cell.iconImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"menu_item_%d.png",[[configArray objectAtIndex:2]intValue]]]; 
+            }
+            
             cell.titlLabel.text = [configArray objectAtIndex:1];
             
             return cell;

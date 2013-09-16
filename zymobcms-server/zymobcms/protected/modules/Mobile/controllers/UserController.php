@@ -98,9 +98,9 @@ class UserController extends Controller {
 		}
 	
 		//检查是否已经存在用户
-                $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
+        $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appName,DataBaseConfig::$charset);
 		$sql = "select zy_user.*,zy_user_type.type_name from zy_user inner join zy_user_type on zy_user.user_type_id = zy_user_type.id where login_name='$loginName'";
-                $userExist = $dbOperation->queryBySql($sql);               
+        $userExist = $dbOperation->queryBySql($sql);               
 	
 		if(!$userExist){
 				
