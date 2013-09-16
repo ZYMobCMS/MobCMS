@@ -38,6 +38,10 @@ class UserActiveRecordManager {
         $findActiveTypeResultObj =  $this->dbOperation->queryBySql($findActiveTypeTable);
         $findResultTable = $findActiveTypeResultObj->relation_table;
         
+        if(!$findActiveTypeResultObj){
+           return FALSE;
+        }
+        
         //如果查到了关联内容的表
         $buildRecordContent = '';
         if($findActiveTypeResultObj){
