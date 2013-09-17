@@ -13,6 +13,16 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
+        
+        <?php $this->widget('bootstrap.widgets.TbDetailView', array(
+        'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+        'attributes'=>array(
+        array('name'=>'firstName', 'label'=>'First name'),
+        array('name'=>'lastName', 'label'=>'Last name'),
+        array('name'=>'language', 'label'=>'Language'),
+        ),
+        )); ?>
+        
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">

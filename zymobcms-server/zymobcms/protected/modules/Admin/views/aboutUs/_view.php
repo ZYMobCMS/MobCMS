@@ -17,5 +17,4 @@
 	<?php echo CHtml::encode($data->value); ?>
 	<br />
 
-
 </div>
