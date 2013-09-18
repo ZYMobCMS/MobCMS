@@ -14,7 +14,8 @@
 
 <body>
 
-<?php $this->widget('bootstrap.widgets.TbNavbar',array(
+
+<?php /*$this->widget('bootstrap.widgets.TbNavbar',array(
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
@@ -32,27 +33,30 @@
             ),
         ),
     ),
-)); ?>
+));*/ ?>
 
+
+    
 <div class="container" id="page">
-
+    
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
-
+         
 	<?php echo $content; ?>
-
+           
 	<div class="clear"></div>
 
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by ZYProSoft.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		<?php /*echo Yii::powered();*/ ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
+    
 
 </body>
 </html>

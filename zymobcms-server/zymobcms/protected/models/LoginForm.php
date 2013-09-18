@@ -36,7 +36,9 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'rememberMe'=>'Remember me next time',
+			'rememberMe'=>'记住密码',
+                        'username'=>'用户名',
+                        'password'=>'密码',
 		);
 	}
 
@@ -50,7 +52,7 @@ class LoginForm extends CFormModel
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect username or password.');
+				$this->addError('password','用户名或密码不对.');
 		}
 	}
 
@@ -67,7 +69,7 @@ class LoginForm extends CFormModel
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)
 		{
-			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+			$duration=$this->rememberMe ? 60 : 0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);
 			return true;
 		}

@@ -7,8 +7,9 @@
  * @property integer $id
  * @property string $tag
  * @property string $value
+ * @property integer $type_id
  */
-class AboutUs extends CActiveRecord
+class AboutUs extends RActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -36,12 +37,13 @@ class AboutUs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tag, value', 'required'),
+			array('tag, value, type_id', 'required'),
+			array('type_id', 'numerical', 'integerOnly'=>true),
 			array('tag', 'length', 'max'=>500),
 			array('value', 'length', 'max'=>8000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, tag, value', 'safe', 'on'=>'search'),
+			array('id, tag, value, type_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +67,7 @@ class AboutUs extends CActiveRecord
 			'id' => 'ID',
 			'tag' => 'Tag',
 			'value' => 'Value',
+			'type_id' => 'Type',
 		);
 	}
 
@@ -82,6 +85,7 @@ class AboutUs extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('tag',$this->tag,true);
 		$criteria->compare('value',$this->value,true);
+		$criteria->compare('type_id',$this->type_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

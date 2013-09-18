@@ -22,11 +22,11 @@
  * @property integer $favorite_count
  * @property integer $commentable
  * @property integer $hot_news
+ * @property integer $industry_id
  */
-class Article extends CActiveRecord
+class Article extends RActiveRecord
 {
-    
-        /**
+	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Article the static model class
@@ -52,22 +52,16 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, source, author, content,tab_type_id, category_id,hot_news', 'required'),
-			array('status, tab_type_id, category_id, comment_count, favorite_count, commentable, hot_news', 'numerical', 'integerOnly'=>true),
+			array('title, source, summary, author, content, publish_time, create_time, status, images, update_time, tab_type_id, category_id, links, comment_count, favorite_count, commentable, hot_news, industry_id', 'required'),
+			array('status, tab_type_id, category_id, comment_count, favorite_count, commentable, hot_news, industry_id', 'numerical', 'integerOnly'=>true),
 			array('title, source', 'length', 'max'=>100),
 			array('summary', 'length', 'max'=>500),
 			array('author', 'length', 'max'=>50),
 			array('content', 'length', 'max'=>5000),
 			array('images, links', 'length', 'max'=>2000),
-                        array('images', 'file', 'allowEmpty'=>true,
-                              'types'=>'jpg, jpeg, gif, png',
-                              'maxSize'=>1024 * 1024 * 3, // 1MB
-                              'tooLarge'=>'上传文件超过 1MB，无法上传。',
-                             ),
-                        array('publish_time,summary, create_time, status, images, update_time, links, comment_count, favorite_count, commentable','safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, source, summary, author, content, publish_time, create_time, status, images, update_time, tab_type_id, category_id, links, comment_count, favorite_count, commentable, hot_news', 'safe', 'on'=>'search'),
+			array('id, title, source, summary, author, content, publish_time, create_time, status, images, update_time, tab_type_id, category_id, links, comment_count, favorite_count, commentable, hot_news, industry_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -106,6 +100,7 @@ class Article extends CActiveRecord
 			'favorite_count' => 'Favorite Count',
 			'commentable' => 'Commentable',
 			'hot_news' => 'Hot News',
+			'industry_id' => 'Industry',
 		);
 	}
 
@@ -138,27 +133,10 @@ class Article extends CActiveRecord
 		$criteria->compare('favorite_count',$this->favorite_count);
 		$criteria->compare('commentable',$this->commentable);
 		$criteria->compare('hot_news',$this->hot_news);
+		$criteria->compare('industry_id',$this->industry_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-        
-        protected function beforeSave() {
-           if(parent::beforeSave()){
-               
-               if($this->isNewRecord){
-                   
-                   $this->create_time = date('y:m:d H:i:s');
-                   $this->update_time = date('y:m:d H:i:s');
-                   $this->publish_time = date('y:m:d H:i:s');
-                   $this->favorite_count = 0;
-                   $this->comment_count = 0;
-               }
-               
-               return TRUE;
-           }else{
-               return FALSE;
-           }
-        }
 }

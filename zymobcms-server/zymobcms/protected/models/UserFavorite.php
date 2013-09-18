@@ -9,7 +9,7 @@
  * @property integer $article_id
  * @property string $add_time
  */
-class UserFavorite extends CActiveRecord
+class UserFavorite extends RActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.

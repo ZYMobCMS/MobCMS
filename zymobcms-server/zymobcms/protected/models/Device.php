@@ -1,21 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "zy_user_type".
+ * This is the model class for table "zy_device".
  *
- * The followings are the available columns in table 'zy_user_type':
+ * The followings are the available columns in table 'zy_device':
  * @property integer $id
- * @property string $type_name
- * @property string $add_time
- * @property integer $status
- * @property integer $create_user
+ * @property string $token
+ * @property integer $type_id
+ * @property string $create_time
+ * @property string $login_name
+ * @property integer $user_id
  */
-class UserType extends RActiveRecord
+class Device extends RActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return UserType the static model class
+	 * @return Device the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +28,7 @@ class UserType extends RActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'zy_user_type';
+		return 'zy_device';
 	}
 
 	/**
@@ -38,12 +39,13 @@ class UserType extends RActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_name, add_time, status, create_user', 'required'),
-			array('status, create_user', 'numerical', 'integerOnly'=>true),
-			array('type_name', 'length', 'max'=>100),
+			array('token, type_id, create_time, login_name, user_id', 'required'),
+			array('type_id, user_id', 'numerical', 'integerOnly'=>true),
+			array('token', 'length', 'max'=>3000),
+			array('login_name', 'length', 'max'=>2000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_name, add_time, status, create_user', 'safe', 'on'=>'search'),
+			array('id, token, type_id, create_time, login_name, user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,10 +67,11 @@ class UserType extends RActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'type_name' => 'Type Name',
-			'add_time' => 'Add Time',
-			'status' => 'Status',
-			'create_user' => 'Create User',
+			'token' => 'Token',
+			'type_id' => 'Type',
+			'create_time' => 'Create Time',
+			'login_name' => 'Login Name',
+			'user_id' => 'User',
 		);
 	}
 
@@ -84,10 +87,11 @@ class UserType extends RActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('type_name',$this->type_name,true);
-		$criteria->compare('add_time',$this->add_time,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('create_user',$this->create_user);
+		$criteria->compare('token',$this->token,true);
+		$criteria->compare('type_id',$this->type_id);
+		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('login_name',$this->login_name,true);
+		$criteria->compare('user_id',$this->user_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -13,8 +13,9 @@
  * @property integer $status
  * @property integer $support_count
  * @property integer $unsupport_count
+ * @property string $title
  */
-class Comment extends CActiveRecord
+class Comment extends RActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -42,12 +43,13 @@ class Comment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('article_id, content, create_time, create_user, to_users, status, support_count, unsupport_count', 'required'),
+			array('article_id, content, create_time, create_user, to_users, status, support_count, unsupport_count, title', 'required'),
 			array('article_id, create_user, status, support_count, unsupport_count', 'numerical', 'integerOnly'=>true),
 			array('content, to_users', 'length', 'max'=>500),
+			array('title', 'length', 'max'=>3000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('comment_id, article_id, content, create_time, create_user, to_users, status, support_count, unsupport_count', 'safe', 'on'=>'search'),
+			array('comment_id, article_id, content, create_time, create_user, to_users, status, support_count, unsupport_count, title', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,6 +79,7 @@ class Comment extends CActiveRecord
 			'status' => 'Status',
 			'support_count' => 'Support Count',
 			'unsupport_count' => 'Unsupport Count',
+			'title' => 'Title',
 		);
 	}
 
@@ -100,6 +103,7 @@ class Comment extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('support_count',$this->support_count);
 		$criteria->compare('unsupport_count',$this->unsupport_count);
+		$criteria->compare('title',$this->title,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

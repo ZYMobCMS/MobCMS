@@ -37,6 +37,7 @@
     [_hostTextFiled release];
     [_passwordTextField release];
     [_toUserTextField release];
+    [xmppClient release];
     [super dealloc];
 }
 - (IBAction)sendMessageAction:(id)sender {

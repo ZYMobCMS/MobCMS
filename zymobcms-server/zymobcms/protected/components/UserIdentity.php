@@ -16,18 +16,39 @@ class UserIdentity extends CUserIdentity
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate()
-	{
-		$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-		);
-		if(!isset($users[$this->username]))
-			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		elseif($users[$this->username]!==$this->password)
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-		else
-			$this->errorCode=self::ERROR_NONE;
+	{       
+		if(!isset($this->username))
+                {
+                   $this->errorCode=self::ERROR_USERNAME_INVALID;
+                   
+                }else if(!isset($this->password)) {
+                   $this->errorCode=self::ERROR_PASSWORD_INVALID;
+
+                }else{
+                   $adminCheck = Admin::model()->findByAttributes(array('login_name'=>  $this->username));
+                   
+                   if(!$adminCheck){
+                       
+                       $this->errorCode=self::ERROR_USERNAME_INVALID;
+
+                   }else{
+                       
+                       if($this->password != $adminCheck->password){
+                         $this->errorCode=self::ERROR_PASSWORD_INVALID;
+
+                       }else{
+                         
+                         //作为安全信息保存在session里面
+                         $this->setState('db_name', $adminCheck->db_name);
+                         $this->setState('login_name',$adminCheck->login_name);
+                         $this->setState('id',$adminCheck->id);
+                         $this->errorCode=self::ERROR_NONE;
+ 
+                       }
+                   }
+                   
+                }
+		
 		return !$this->errorCode;
 	}
 }

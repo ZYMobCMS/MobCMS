@@ -10,7 +10,7 @@
  * @property string $cretate_time
  * @property integer $status
  */
-class UserReply extends CActiveRecord
+class UserReply extends RActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.

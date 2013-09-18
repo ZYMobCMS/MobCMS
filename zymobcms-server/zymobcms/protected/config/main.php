@@ -51,6 +51,11 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+            
+                'admin'=>array(
+                    
+                ),
+            
 		// uncomment the following to enable URLs in path-format
 		
 //		'urlManager'=>array(
@@ -71,7 +76,6 @@ return array(
 		),*/
 		
 		// uncomment the following to use a MySQL database
-		
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=zymobcms',
 			'emulatePrepare' => true,
@@ -79,6 +83,17 @@ return array(
 			'password' => '123',
 			'charset' => 'utf8',
 		),
+            
+                'masterDB'=>array(
+                    
+                    'class'=>'CDbConnection',
+                    'connectionString' => 'mysql:host=localhost;dbname=zymobmaster',
+                    'emulatePrepare' => true,
+                    'username' => 'root',
+                    'password' => '123',
+                    'charset' => 'utf8',
+                    
+                ),
             
                 'bootstrap'=>array('class'=>'bootstrap.components.Bootstrap',),
 		

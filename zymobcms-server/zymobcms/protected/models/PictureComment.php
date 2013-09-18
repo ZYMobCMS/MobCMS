@@ -1,21 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "zy_product_type".
+ * This is the model class for table "zy_picture_comment".
  *
- * The followings are the available columns in table 'zy_product_type':
- * @property integer $id
- * @property string $type_name
+ * The followings are the available columns in table 'zy_picture_comment':
+ * @property integer $comment_id
+ * @property integer $picture_id
+ * @property string $content
+ * @property string $create_time
  * @property integer $create_user
- * @property string $add_time
+ * @property string $to_users
  * @property integer $status
+ * @property integer $support_count
+ * @property integer $unsupport_count
+ * @property string $title
  */
-class ProductType extends RActiveRecord
+class PictureComment extends RActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ProductType the static model class
+	 * @return PictureComment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +32,7 @@ class ProductType extends RActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'zy_product_type';
+		return 'zy_picture_comment';
 	}
 
 	/**
@@ -38,12 +43,13 @@ class ProductType extends RActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type_name, create_user, add_time, status', 'required'),
-			array('create_user, status', 'numerical', 'integerOnly'=>true),
-			array('type_name', 'length', 'max'=>100),
+			array('picture_id, content, create_time, create_user, to_users, status, support_count, unsupport_count, title', 'required'),
+			array('picture_id, create_user, status, support_count, unsupport_count', 'numerical', 'integerOnly'=>true),
+			array('content, to_users', 'length', 'max'=>500),
+			array('title', 'length', 'max'=>3000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_name, create_user, add_time, status', 'safe', 'on'=>'search'),
+			array('comment_id, picture_id, content, create_time, create_user, to_users, status, support_count, unsupport_count, title', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,11 +70,16 @@ class ProductType extends RActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'type_name' => 'Type Name',
+			'comment_id' => 'Comment',
+			'picture_id' => 'Picture',
+			'content' => 'Content',
+			'create_time' => 'Create Time',
 			'create_user' => 'Create User',
-			'add_time' => 'Add Time',
+			'to_users' => 'To Users',
 			'status' => 'Status',
+			'support_count' => 'Support Count',
+			'unsupport_count' => 'Unsupport Count',
+			'title' => 'Title',
 		);
 	}
 
@@ -83,11 +94,16 @@ class ProductType extends RActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('type_name',$this->type_name,true);
+		$criteria->compare('comment_id',$this->comment_id);
+		$criteria->compare('picture_id',$this->picture_id);
+		$criteria->compare('content',$this->content,true);
+		$criteria->compare('create_time',$this->create_time,true);
 		$criteria->compare('create_user',$this->create_user);
-		$criteria->compare('add_time',$this->add_time,true);
+		$criteria->compare('to_users',$this->to_users,true);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('support_count',$this->support_count);
+		$criteria->compare('unsupport_count',$this->unsupport_count);
+		$criteria->compare('title',$this->title,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

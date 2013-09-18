@@ -4601,3 +4601,472 @@ Stack trace:
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
 HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
 ---
+2013/09/18 10:01:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/comment/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/com...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/comment/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/09/18 10:01:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/picture/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/pic...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/picture/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/comment/index
+---
+2013/09/18 10:02:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/comment/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/com...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/comment/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/picture/index
+---
+2013/09/18 10:02:07 [error] [exception.CException] exception 'CException' with message 'Property "Product.name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(143): CComponent->__get('name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/product/_view.php(13): CActiveRecord->__get('name')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(130): require('/Users/barfoo/D...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, false)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/zii/widgets/CListView.php(281): CBaseController->renderFile('/Users/barfoo/D...', Array)
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/zii/widgets/CBaseListView.php(160): CListView->renderItems()
+#6 [internal function]: CBaseListView->renderSection(Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/zii/widgets/CBaseListView.php(143): preg_replace_callback('/{(\w+)}/', Array, '{summary}?{sort...')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/zii/widgets/CBaseListView.php(128): CBaseListView->renderContent()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(173): CBaseListView->run()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/product/index.php(20): CBaseController->widget('zii.widgets.CLi...', Array)
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/barfoo/D...')
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, true)
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/barfoo/D...', Array, true)
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ProductController.php(141): CController->render('index', Array)
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ProductController->actionIndex()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#22 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#23 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#24 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#26 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/product/i...')
+#27 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#28 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#29 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/product/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php
+---
+2013/09/18 10:24:16 [error] [php] include(CDBConnection.php): failed to open stream: No such file or directory (/Users/barfoo/Dropbox/huhu/PHPServers/framework/YiiBase.php:421)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/YiiBase.php(196): import()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(386): createComponent()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/gii/generators/model/ModelGenerator.php(17): CWebApplication->getComponent()
+#3 unknown(0): ModelGenerator->actionGetTableNames()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): ModelGenerator->runAction()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ModelGenerator->runActionWithFilters()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ModelGenerator->run()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=gii/model/getTableNames&db=masterDB
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/09/18 10:24:20 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zymobmaster.admin' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `admin`.
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/09/18 10:46:36 [error] [php] include(CDBConnection.php): failed to open stream: No such file or directory (/Users/barfoo/Dropbox/huhu/PHPServers/framework/YiiBase.php:421)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/YiiBase.php(196): import()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(386): createComponent()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModule.php(103): CWebApplication->getComponent()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Admin.php(28): CWebApplication->__get()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): Admin->getDbConnection()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Admin.php(20): model()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/UserIdentity.php(28): model()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/LoginForm.php(52): UserIdentity->authenticate()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/validators/CInlineValidator.php(42): LoginForm->authenticate()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CModel.php(159): CInlineValidator->validate()
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/controllers/SiteController.php(102): LoginForm->validate()
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): SiteController->runAction()
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): SiteController->run()
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=site/login
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Admin.php (28)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Admin.php (20)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/UserIdentity.php (28)
+2013/09/18 11:11:12 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.db_name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CWebUser.php(140): CComponent->__get('db_name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/RActiveRecord.php(25): CWebUser->__get('db_name')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Article.php(167): RActiveRecord::getAdvertDbConnection()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): Article->getDbConnection()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Article))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Article')
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(144): CActiveDataProvider->__construct('Article')
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php
+---
+2013/09/18 11:31:32 [error] [exception.CException] exception 'CException' with message 'Property "LoginForm.db_name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/controllers/SiteController.php(104): CComponent->__get('db_name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('login')
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=site/login
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=site/login
+---
+2013/09/18 11:32:32 [error] [php] Trying to get property of non-object (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/AdminWebAuthen.php:24)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/RActiveRecord.php(25): AdminWebAuthen->__get()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Article.php(167): getAdvertDbConnection()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): Article->getDbConnection()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): model()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(144): CActiveDataProvider->__construct()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): ArticleController->runAction()
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): ArticleController->filterAccessControl()
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): ArticleController->run()
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/AdminWebAuthen.php (24)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/RActiveRecord.php (25)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Article.php (167)
+2013/09/18 12:28:36 [error] [exception.CException] exception 'CException' with message 'Property "AdminWebAuthen.login_name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CWebUser.php(140): CComponent->__get('login_name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/AdminWebAuthen.php(23): CWebUser->__get('login_name')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php(111): AdminWebAuthen->getDb_Name()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CWebUser.php(140): CComponent->__get('db_name')
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/components/RActiveRecord.php(25): CWebUser->__get('db_name')
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/models/Article.php(167): RActiveRecord::getAdvertDbConnection()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(2309): Article->getDbConnection()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Article))
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CActiveDataProvider.php(74): CActiveRecord::model('Article')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(144): CActiveDataProvider->__construct('Article')
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php
+---
+2013/09/18 13:10:57 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.login_name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CWebUser.php(140): CComponent->__get('login_name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(40): CWebUser->__get('login_name')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1144): ArticleController->accessRules()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/09/18 13:14:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/admin
+---
+2013/09/18 13:26:21 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.login_name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CWebUser.php(140): CComponent->__get('login_name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(40): CWebUser->__get('login_name')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1144): ArticleController->accessRules()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=site/login
+---
+2013/09/18 13:29:56 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.login_name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CWebUser.php(140): CComponent->__get('login_name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(40): CWebUser->__get('login_name')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1144): ArticleController->accessRules()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php
+---
+2013/09/18 13:41:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/comment/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/com...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/comment/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/09/18 13:41:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/comment/index
+---
+2013/09/18 14:06:29 [error] [exception.CException] exception 'CException' with message 'Property "LoginForm.user" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/helpers/CHtml.php(2255): CComponent->__get('user')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/helpers/CHtml.php(1980): CHtml::resolveValue(Object(LoginForm), 'user')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/helpers/CHtml.php(1257): CHtml::activeInputField('text', Object(LoginForm), 'user', Array)
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/widgets/CActiveForm.php(657): CHtml::activeTextField(Object(LoginForm), 'user', Array)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/extensions/bootstrap/widgets/input/TbInputHorizontal.php(181): CActiveForm->textField(Object(LoginForm), 'user', Array)
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/extensions/bootstrap/widgets/input/TbInput.php(230): TbInputHorizontal->textField()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/extensions/bootstrap/widgets/input/TbInputHorizontal.php(24): TbInput->run()
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(173): TbInputHorizontal->run()
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/extensions/bootstrap/widgets/TbActiveForm.php(497): CBaseController->widget('bootstrap.widge...', Array)
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/extensions/bootstrap/widgets/TbActiveForm.php(186): TbActiveForm->inputRow('text', Object(LoginForm), 'user', NULL, Array)
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/themes/bootstrap/views/site/login.php(30): TbActiveForm->textFieldRow(Object(LoginForm), 'user')
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/barfoo/D...')
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, true)
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/barfoo/D...', Array, true)
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/controllers/SiteController.php(52): CController->render('login', Array)
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('')
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#22 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php
+---
+2013/09/18 14:13:03 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.login_name" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CWebUser.php(140): CComponent->__get('login_name')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(40): CWebUser->__get('login_name')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1144): ArticleController->accessRules()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php
+---
+2013/09/18 14:21:26 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'zymobmaster.zy_about_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `zy_about_type`.
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)
+2013/09/18 14:30:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/index')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/index
+---
+2013/09/18 14:32:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin
+---
+2013/09/18 14:33:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+---
+2013/09/18 15:17:01 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CAccessControlFilter.php:179
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/auth/CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/a...')
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/admin
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=site/login
+---
+2013/09/18 15:19:58 [error] [exception.CException] exception 'CException' with message 'Property "TbListView.type" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWidgetFactory.php(161): CComponent->__set('type', 'bordered')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(ArticleController), 'bootstrap.widge...', Array)
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/index.php(18): CBaseController->widget('bootstrap.widge...', Array)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/barfoo/D...')
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, true)
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/barfoo/D...', Array, true)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(133): CController->render('index', Array)
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/admin
+---
+2013/09/18 15:22:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+---
+2013/09/18 15:22:09 [error] [exception.CException] exception 'CException' with message 'Property "TbListView.type" is not defined.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWidgetFactory.php(161): CComponent->__set('type', Array)
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(ArticleController), 'bootstrap.widge...', Array)
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/index.php(18): CBaseController->widget('bootstrap.widge...', Array)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/barfoo/D...')
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, true)
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/barfoo/D...', Array, true)
+#7 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(133): CController->render('index', Array)
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(49): ArticleController->actionIndex()
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/i...')
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/index
+---
+2013/09/18 15:33:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Admin/Admin/article/index".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/Admin/art...')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/Admin/article/index
+HTTP_REFERER=http://localhost/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin
+---
+2013/09/18 16:13:52 [error] [exception.CException] exception 'CException' with message 'The attribute must be specified in the format of "Name:Type:Label", where "Type" and "Label" are optional.' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/zii/widgets/CDetailView.php:180
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(173): CDetailView->run()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/views/article/view.php(41): CBaseController->widget('bootstrap.widge...', Array)
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(126): require('/Users/barfoo/D...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/barfoo/D...', Array, true)
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(869): CBaseController->renderFile('/Users/barfoo/D...', Array, true)
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#6 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Admin/controllers/ArticleController.php(55): CController->render('view', Array)
+#7 [internal function]: ArticleController->actionView('997')
+#8 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ArticleController), Array)
+#9 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ArticleController), Object(ReflectionMethod), Array)
+#10 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(291): CFilterChain->run()
+#17 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('view')
+#19 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Admin/article/v...')
+#20 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/article/view&id=997
+---

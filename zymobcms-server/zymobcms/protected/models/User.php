@@ -20,9 +20,10 @@
  * @property integer $sex
  * @property string $location
  * @property string $token
- * @property string $dbname
+ * @property integer $login_days
+ * @property integer $points
  */
-class User extends CActiveRecord
+class User extends RActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -33,7 +34,7 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -50,18 +51,17 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('login_name, password, nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token, dbname', 'required'),
-			array('status, user_type_id, sex', 'numerical', 'integerOnly'=>true),
+			array('login_name, password, nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token, login_days, points', 'required'),
+			array('status, user_type_id, sex, login_days, points', 'numerical', 'integerOnly'=>true),
 			array('login_name', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>2000),
 			array('msn, qq, email, phone, mobile', 'length', 'max'=>100),
 			array('profile', 'length', 'max'=>500),
 			array('location', 'length', 'max'=>300),
 			array('token', 'length', 'max'=>5000),
-			array('dbname', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, login_name, password, nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token, dbname', 'safe', 'on'=>'search'),
+			array('id, login_name, password, nick_name, rigist_time, status, user_type_id, msn, qq, email, phone, mobile, profile, sex, location, token, login_days, points', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -98,7 +98,8 @@ class User extends CActiveRecord
 			'sex' => 'Sex',
 			'location' => 'Location',
 			'token' => 'Token',
-			'dbname' => 'Dbname',
+			'login_days' => 'Login Days',
+			'points' => 'Points',
 		);
 	}
 
@@ -129,7 +130,8 @@ class User extends CActiveRecord
 		$criteria->compare('sex',$this->sex);
 		$criteria->compare('location',$this->location,true);
 		$criteria->compare('token',$this->token,true);
-		$criteria->compare('dbname',$this->dbname,true);
+		$criteria->compare('login_days',$this->login_days);
+		$criteria->compare('points',$this->points);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

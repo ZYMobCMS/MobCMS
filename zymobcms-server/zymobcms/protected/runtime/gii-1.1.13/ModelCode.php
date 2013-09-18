@@ -4,6 +4,6 @@ return array (
   'connectionId' => 'db',
   'tablePrefix' => 'zy_',
   'modelPath' => 'application.models',
-  'baseClass' => 'CActiveRecord',
+  'baseClass' => 'RActiveRecord',
   'buildRelations' => '1',
 );

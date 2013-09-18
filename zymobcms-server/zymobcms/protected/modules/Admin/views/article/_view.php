@@ -1,12 +1,7 @@
-<?php
-/* @var $this ArticleController */
-/* @var $data Article */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
@@ -76,6 +71,10 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hot_news')); ?>:</b>
 	<?php echo CHtml::encode($data->hot_news); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('industry_id')); ?>:</b>
+	<?php echo CHtml::encode($data->industry_id); ?>
 	<br />
 
 	*/ ?>
