@@ -139,4 +139,9 @@ class Article extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getDbConnection()
+        {
+            return self::getAdvertDbConnection();
+        }
 }

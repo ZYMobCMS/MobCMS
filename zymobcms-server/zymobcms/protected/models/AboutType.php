@@ -83,4 +83,9 @@ class AboutType extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getDbConnection()
+        {
+            return self::getAdvertDbConnection();
+        }
 }
