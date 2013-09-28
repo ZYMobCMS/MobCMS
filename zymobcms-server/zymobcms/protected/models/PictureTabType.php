@@ -98,4 +98,5 @@ class PictureTabType extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

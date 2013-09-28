@@ -99,4 +99,5 @@ class ApplicationOwner extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

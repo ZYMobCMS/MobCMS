@@ -114,4 +114,5 @@ class Comment extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

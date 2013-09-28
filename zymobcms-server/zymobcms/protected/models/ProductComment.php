@@ -114,4 +114,5 @@ class ProductComment extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

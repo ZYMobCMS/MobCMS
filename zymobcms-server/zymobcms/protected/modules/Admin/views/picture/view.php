@@ -37,7 +37,7 @@ $this->menu=array(
 		'low_price',
 		'product_code',
 		'product_face_code',
-		'cotact_mobile',
+		'contact_mobile',
 		'product_combine',
 		'location',
 		'has_now',

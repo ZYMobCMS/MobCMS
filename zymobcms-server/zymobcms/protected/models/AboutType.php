@@ -88,4 +88,5 @@ class AboutType extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

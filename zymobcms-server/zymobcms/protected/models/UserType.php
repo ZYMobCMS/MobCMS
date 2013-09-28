@@ -98,4 +98,5 @@ class UserType extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

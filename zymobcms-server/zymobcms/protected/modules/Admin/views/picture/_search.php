@@ -41,7 +41,7 @@
 
 	<?php echo $form->textFieldRow($model,'product_face_code',array('class'=>'span5','maxlength'=>2000)); ?>
 
-	<?php echo $form->textFieldRow($model,'cotact_mobile',array('class'=>'span5','maxlength'=>2000)); ?>
+	<?php echo $form->textFieldRow($model,'contact_mobile',array('class'=>'span5','maxlength'=>2000)); ?>
 
 	<?php echo $form->textFieldRow($model,'product_combine',array('class'=>'span5','maxlength'=>2000)); ?>
 

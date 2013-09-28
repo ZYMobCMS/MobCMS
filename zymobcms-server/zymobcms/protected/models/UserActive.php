@@ -123,4 +123,5 @@ class UserActive extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

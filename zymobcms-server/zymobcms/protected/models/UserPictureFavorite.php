@@ -94,4 +94,5 @@ class UserPictureFavorite extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

@@ -104,4 +104,5 @@ class ActiveType extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

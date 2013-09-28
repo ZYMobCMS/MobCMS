@@ -94,4 +94,5 @@ class UserProductFavorite extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

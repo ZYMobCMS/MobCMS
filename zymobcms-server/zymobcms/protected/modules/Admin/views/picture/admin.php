@@ -62,7 +62,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'low_price',
 		'product_code',
 		'product_face_code',
-		'cotact_mobile',
+		'contact_mobile',
 		'product_combine',
 		'location',
 		'has_now',

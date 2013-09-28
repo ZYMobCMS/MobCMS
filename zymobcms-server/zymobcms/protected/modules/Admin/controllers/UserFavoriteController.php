@@ -1,6 +1,6 @@
 <?php
 
-class AboutTypeController extends Controller
+class UserFavoriteController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -36,8 +36,7 @@ class AboutTypeController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array(Yii::app()->user->login_name),
-
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,14 +61,14 @@ class AboutTypeController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new AboutType;
+		$model=new UserFavorite;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['AboutType']))
+		if(isset($_POST['UserFavorite']))
 		{
-			$model->attributes=$_POST['AboutType'];
+			$model->attributes=$_POST['UserFavorite'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +90,9 @@ class AboutTypeController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['AboutType']))
+		if(isset($_POST['UserFavorite']))
 		{
-			$model->attributes=$_POST['AboutType'];
+			$model->attributes=$_POST['UserFavorite'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -128,7 +127,7 @@ class AboutTypeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('AboutType');
+		$dataProvider=new CActiveDataProvider('UserFavorite');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -139,10 +138,10 @@ class AboutTypeController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new AboutType('search');
+		$model=new UserFavorite('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['AboutType']))
-			$model->attributes=$_GET['AboutType'];
+		if(isset($_GET['UserFavorite']))
+			$model->attributes=$_GET['UserFavorite'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -156,7 +155,7 @@ class AboutTypeController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=AboutType::model()->findByPk($id);
+		$model=UserFavorite::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -168,7 +167,7 @@ class AboutTypeController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='about-type-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='user-favorite-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

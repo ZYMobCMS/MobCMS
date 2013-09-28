@@ -31,6 +31,7 @@
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('is_local_icon')); ?>:</b>
 	<?php echo CHtml::encode($data->is_local_icon); ?>
+
 	<br />
 
 	*/ ?>

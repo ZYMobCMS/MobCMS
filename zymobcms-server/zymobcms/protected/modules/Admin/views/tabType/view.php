@@ -26,5 +26,6 @@ $this->menu=array(
 		'category_id',
 		'icon',
 		'is_local_icon',
+
 	),
 )); ?>

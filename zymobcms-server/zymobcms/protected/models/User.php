@@ -142,4 +142,5 @@ class User extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

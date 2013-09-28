@@ -28,11 +28,14 @@
 	<?php echo CHtml::encode($data->relation_table); ?>
 	<br />
 
+<<<<<<< HEAD
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('can_show_detail')); ?>:</b>
 	<?php echo CHtml::encode($data->can_show_detail); ?>
 	<br />
 
 	*/ ?>
+=======
+>>>>>>> 9e438a74f5629d8503d3b4d558d27a1975878cdd
 
 </div>

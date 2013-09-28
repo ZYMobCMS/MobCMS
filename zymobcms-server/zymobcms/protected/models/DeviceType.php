@@ -91,4 +91,5 @@ class DeviceType extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

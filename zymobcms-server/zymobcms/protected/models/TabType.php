@@ -12,6 +12,7 @@
  * @property integer $category_id
  * @property string $icon
  * @property integer $is_local_icon
+
  */
 class TabType extends RActiveRecord
 {
@@ -29,6 +30,7 @@ class TabType extends RActiveRecord
         {
                 return self::getAdvertDbConnection();
         }
+
 
 	/**
 	 * @return string the associated database table name
@@ -53,6 +55,7 @@ class TabType extends RActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, create_user, status, create_time, category_id, icon, is_local_icon', 'safe', 'on'=>'search'),
+
 		);
 	}
 

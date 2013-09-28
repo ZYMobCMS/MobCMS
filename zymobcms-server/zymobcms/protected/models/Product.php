@@ -192,4 +192,5 @@ class Product extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

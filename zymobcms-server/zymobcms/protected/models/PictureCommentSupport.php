@@ -91,4 +91,5 @@ class PictureCommentSupport extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

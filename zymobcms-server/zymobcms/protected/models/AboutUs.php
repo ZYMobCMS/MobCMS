@@ -96,4 +96,5 @@ class AboutUs extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

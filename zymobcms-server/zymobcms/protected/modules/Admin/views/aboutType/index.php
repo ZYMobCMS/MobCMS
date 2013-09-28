@@ -24,4 +24,3 @@ $this->menu=array(
         ),
         'type'=>array('striped','bordered'),
 )); ?>
-

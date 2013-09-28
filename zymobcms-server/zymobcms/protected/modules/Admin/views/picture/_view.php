@@ -77,8 +77,8 @@
 	<?php echo CHtml::encode($data->product_face_code); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('cotact_mobile')); ?>:</b>
-	<?php echo CHtml::encode($data->cotact_mobile); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('contact_mobile')); ?>:</b>
+	<?php echo CHtml::encode($data->contact_mobile); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('product_combine')); ?>:</b>

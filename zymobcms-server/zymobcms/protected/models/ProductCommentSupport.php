@@ -91,4 +91,5 @@ class ProductCommentSupport extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }

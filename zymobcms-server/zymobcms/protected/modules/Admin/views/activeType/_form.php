@@ -19,8 +19,11 @@
 
 	<?php echo $form->textFieldRow($model,'relation_table',array('class'=>'span5','maxlength'=>3000)); ?>
 
+<<<<<<< HEAD
 	<?php echo $form->textFieldRow($model,'can_show_detail',array('class'=>'span5')); ?>
 
+=======
+>>>>>>> 9e438a74f5629d8503d3b4d558d27a1975878cdd
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

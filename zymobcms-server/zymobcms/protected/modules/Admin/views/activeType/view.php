@@ -25,6 +25,9 @@ $this->menu=array(
 		'create_time',
 		'status',
 		'relation_table',
+<<<<<<< HEAD
 		'can_show_detail',
+=======
+>>>>>>> 9e438a74f5629d8503d3b4d558d27a1975878cdd
 	),
 )); ?>

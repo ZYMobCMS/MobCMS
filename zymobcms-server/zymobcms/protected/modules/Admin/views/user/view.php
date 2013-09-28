@@ -37,5 +37,6 @@ $this->menu=array(
 		'login_days',
 		'points',
 		'user_active_open',
+
 	),
 )); ?>

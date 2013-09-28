@@ -98,4 +98,5 @@ class UserReply extends RActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
 }
