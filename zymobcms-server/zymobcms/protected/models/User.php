@@ -34,6 +34,11 @@ class User extends RActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function getDbConnection()
+        {
+                return self::getAdvertDbConnection();
+        }
 
 	/**
 	 * @return string the associated database table name

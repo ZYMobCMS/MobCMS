@@ -19,7 +19,7 @@ class Admin extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
+        
 	/**
 	 * @return CDbConnection database connection
 	 */

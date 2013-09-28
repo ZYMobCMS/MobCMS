@@ -29,6 +29,11 @@ class ProductType extends RActiveRecord
 	{
 		return 'zy_product_type';
 	}
+        
+        public function getDbConnection()
+        {
+                return self::getAdvertDbConnection();
+        }
 
 	/**
 	 * @return array validation rules for model attributes.

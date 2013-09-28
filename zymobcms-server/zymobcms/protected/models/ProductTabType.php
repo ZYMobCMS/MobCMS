@@ -29,6 +29,11 @@ class ProductTabType extends RActiveRecord
 	{
 		return 'zy_product_tab_type';
 	}
+        
+        public function getDbConnection()
+        {
+                return self::getAdvertDbConnection();
+        }
 
 	/**
 	 * @return array validation rules for model attributes.
