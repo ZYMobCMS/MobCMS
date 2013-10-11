@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Articles',
+	'文章管理',
 );
 
 $this->menu=array(
@@ -9,7 +9,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Articles</h1>
+<h1>文章管理</h1>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'dataProvider'=>$dataProvider,
