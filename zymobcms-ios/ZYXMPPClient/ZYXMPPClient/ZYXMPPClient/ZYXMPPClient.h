@@ -28,9 +28,11 @@
 #import "XMPPRosterCoreDataStorage.h"
 #import "XMPPvCardAvatarModule.h"
 #import "XMPPvCardCoreDataStorage.h"
-
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+
+//文件传输协议
+#import "TURNSocket.h"
 
 #import <CFNetwork/CFNetwork.h>
 
@@ -41,7 +43,7 @@ typedef void (^ZYXMPPClientSendMessageFaildAction) (ZYXMPPMessage *message,ZYXMP
 typedef void (^ZYXMPPClientSendMessageSuccessAction) (ZYXMPPMessage *message,ZYXMPPUser *toUser);
 typedef void (^ZYXMPPClientDidRecievedMessageAction) (ZYXMPPMessage *newMessage);
 
-@interface ZYXMPPClient : NSObject<XMPPRosterDelegate>
+@interface ZYXMPPClient : NSObject<XMPPRosterDelegate,TURNSocketDelegate>
 {
     XMPPStream *xmppStream;
 	XMPPReconnect *xmppReconnect;
@@ -63,7 +65,10 @@ typedef void (^ZYXMPPClientDidRecievedMessageAction) (ZYXMPPMessage *newMessage)
 	BOOL allowSSLHostNameMismatch;
 	
 	BOOL isXmppConnected;
+    BOOL needAutoHostForJID;
     
+    BOOL isTraningFile;//是否正在传输文件
+    NSMutableData *fileDataWillTrans;//将要传输的文件数据
 }
 @property (nonatomic, strong, readonly) XMPPStream *xmppStream;
 @property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
@@ -77,6 +82,8 @@ typedef void (^ZYXMPPClientDidRecievedMessageAction) (ZYXMPPMessage *newMessage)
 - (NSManagedObjectContext *)managedObjectContext_roster;
 - (NSManagedObjectContext *)managedObjectContext_capabilities;
 
+//是否需要用主机补全JID
+- (void)setNeedAutoJIDWithCustomHostName:(BOOL)state;
 - (void)startClientWithJID:(NSString *)jidString withPassword:(NSString*)password;
 - (void)setStartClientSuccessAction:(ZYXMPPClientStartSuccessAction)successAction;
 - (void)setStartClientFaildAction:(ZYXMPPClientStartFaildAction)faildAction;
@@ -91,5 +98,9 @@ typedef void (^ZYXMPPClientDidRecievedMessageAction) (ZYXMPPMessage *newMessage)
 
 - (void)setNeedUseCustomHostAddress:(BOOL)shouldUse;
 - (void)setJabbredServerAddress:(NSString*)address;
+
+//-----流传送socket5byte扩展
+- (void)sendFileWithData:(NSData*)fileData withFileName:(NSString*)fileName toJID:(NSString*)jID;
+
 
 @end

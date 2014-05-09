@@ -9,6 +9,6 @@
 #import "ZYXMPPUser.h"
 
 @implementation ZYXMPPUser
-@synthesize jID,state,user,domain,resource;
+@synthesize jID,state,user,domain,resource,password;
 
 @end

@@ -19,5 +19,6 @@
 @property (retain,nonatomic)ZYXMPPClient *xmppClient;
 - (IBAction)sendMessageAction:(id)sender;
 - (IBAction)loginNow:(id)sender;
+- (IBAction)sendImageAction:(id)sender;
 
 @end

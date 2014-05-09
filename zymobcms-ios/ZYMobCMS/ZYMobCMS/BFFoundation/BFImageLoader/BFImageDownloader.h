@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZYCache.h"
+#import "BFImageGetOperation.h"
 #define ThumbKey @"thumb_cache_key"
 
 @interface BFImageDownloader : NSObject

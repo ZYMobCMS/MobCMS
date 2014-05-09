@@ -58,6 +58,7 @@
     
     xmppClient = [[ZYXMPPClient alloc]init];
     [xmppClient setNeedUseCustomHostAddress:YES];
+    [xmppClient setNeedAutoJIDWithCustomHostName:YES];
     [xmppClient setJabbredServerAddress:self.hostTextFiled.text];
     
     [xmppClient setStartClientSuccessAction:^(NSString *successMsg) {
@@ -74,8 +75,27 @@
         [appendString appendFormat:@"%@\n",newMessage.content];
         self.recievedTextView.text = appendString;
         
+        //程序运行在前台，消息正常显示
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+        {
+            
+        }else{//如果程序在后台运行，收到消息以通知类型来显示
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            localNotification.alertAction = @"Ok";
+            localNotification.alertBody = [NSString stringWithFormat:@"From: %@\n\n%@",newMessage.user,appendString];//通知主体
+            localNotification.soundName = @"crunch.wav";//通知声音
+            localNotification.applicationIconBadgeNumber = 1;//标记数
+            [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];//发送通知
+        }
+        
     }];
     [xmppClient startClientWithJID:self.jIDTextField.text withPassword:self.passwordTextField.text];
 
 }
+
+- (IBAction)sendImageAction:(id)sender {
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"af.jpeg"], 0.5);
+    [xmppClient sendFileWithData:imageData withFileName:@"af.jpeg" toJID:self.toUserTextField.text];
+}
+
 @end

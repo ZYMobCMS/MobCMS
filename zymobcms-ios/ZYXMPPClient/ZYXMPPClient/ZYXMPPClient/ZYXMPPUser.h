@@ -14,5 +14,6 @@
 @property (nonatomic,strong)NSString *domain;
 @property (nonatomic,strong)NSString *resource;
 @property (nonatomic,strong)NSString *state;
+@property (nonatomic,strong)NSString *password;
 
 @end

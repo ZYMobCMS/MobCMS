@@ -116,4 +116,35 @@
     }
 }
 
++ (NSInteger)currentImageCacheSize
+{
+    NSString *cacheDirectory = [[BFImageCache baseFilePath] stringByAppendingPathComponent:imageCacheDirectory];
+    
+    return [BFImageCache fileSizeForDir:cacheDirectory];
+}
+
++(int)fileSizeForDir:(NSString*)path//计算文件夹下文件的总大小
+{
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    int size =0;
+    NSArray* array = [fileManager contentsOfDirectoryAtPath:path error:nil];
+    for(int i = 0; i<[array count]; i++)
+    {
+        NSString *fullPath = [path stringByAppendingPathComponent:[array objectAtIndex:i]];
+        
+        BOOL isDir;
+        if ( !([fileManager fileExistsAtPath:fullPath isDirectory:&isDir] && isDir) )
+        {
+            NSDictionary *fileAttributeDic=[fileManager attributesOfItemAtPath:fullPath error:nil];
+            size+= fileAttributeDic.fileSize/1024;
+        }
+        else
+        {
+            [self fileSizeForDir:fullPath];
+        }
+    }
+    [fileManager release];
+    return size;
+}
+
 @end

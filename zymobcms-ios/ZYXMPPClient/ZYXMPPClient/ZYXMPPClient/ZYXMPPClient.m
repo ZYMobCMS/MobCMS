@@ -41,12 +41,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         
         _actions = [[NSMutableDictionary alloc]init];
         
+        
     }
     return self;
 }
 - (void)dealloc
 {
 	[self teardownStream];
+}
+//是否需要补全JID
+- (void)setNeedAutoJIDWithCustomHostName:(BOOL)state
+{
+    needAutoHostForJID = state;
 }
 
 #pragma mark - start client
@@ -59,6 +65,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
     
     _jId = jidString;
+    if (needAutoHostForJID) {
+        _jId = [NSString stringWithFormat:@"%@@%@",_jId,_serverHost];
+    }
     _password = password;
     
     // Configure logging framework
@@ -129,6 +138,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)sendMessageToUser:(ZYXMPPUser *)toUser withContent:(ZYXMPPMessage *)newMessage
 {
 	
+    if (needAutoHostForJID) {
+        toUser.jID = [NSString stringWithFormat:@"%@@%@",toUser.jID,_serverHost];
+    }
 	if([newMessage.content length] > 0)
 	{
 		NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
@@ -218,6 +230,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	
 	NSError *error = nil;
 	
+    DDLogVerbose(@"will login password:%@",_password);
 	if (![[self xmppStream] authenticateWithPassword:_password error:&error])
 	{
 		DDLogError(@"Error authenticating: %@", error);
@@ -470,7 +483,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (shouldUseCustomHost) {
         [xmppStream setHostName:_serverHost];
     }
-    //	[xmppStream setHostPort:5280];
+//    [xmppStream setHostPort:5222];
 	
     
 	// You may need to alter these settings depending on the server you're connecting to
@@ -576,6 +589,41 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	[self goOffline];
 	[xmppStream disconnect];
+}
+
+//================================ turnsocket 文件传输  ===================
+- (void)sendFileWithData:(NSData *)fileData withFileName:(NSString *)fileName toJID:(NSString *)jID
+{
+    if (!isXmppConnected) {
+        DDLogVerbose(@"turnsocket connect need login");
+        return;
+    }
+
+    if(needAutoHostForJID){
+        jID = [NSString stringWithFormat:@"%@@%@/spark",jID,_serverHost];
+    }
+    XMPPJID *toUser = [XMPPJID jidWithString:jID];
+    
+    if (fileData) {
+        fileData=nil;
+    }
+    fileData = [[NSMutableData alloc]initWithData:fileData];
+    [TURNSocket setProxyCandidates:[NSArray arrayWithObject:_serverHost]];
+    TURNSocket *fileTurn = [[TURNSocket alloc]initWithStream:self.xmppStream toJID:toUser];
+    
+    [fileTurn startWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+}
+#pragma mark - turnsocket delegate
+- (void)turnSocket:(TURNSocket *)sender didSucceed:(GCDAsyncSocket *)socket
+{
+    DDLogVerbose(@"turn socket connected now !!!!++++++++++++++++++!!!!!!!!!");
+    
+    //写入文件流
+    [socket writeData:fileDataWillTrans withTimeout:240.f tag:1234567];
+}
+- (void)turnSocketDidFail:(TURNSocket *)sender
+{
+    DDLogVerbose(@"turn socket connected faild !!!++++++++++++++++!!!!!!");
 }
 
 

@@ -20,4 +20,6 @@
 
 + (void)clearImageCache;
 
++ (NSInteger)currentImageCacheSize;// 以KB为单位
+
 @end

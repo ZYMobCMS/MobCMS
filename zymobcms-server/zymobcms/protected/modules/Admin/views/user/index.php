@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'用户管理',
+	'Users',
 );
 
 $this->menu=array(
@@ -9,7 +9,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>用户管理</h1>
+<h1>Users</h1>
 
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,

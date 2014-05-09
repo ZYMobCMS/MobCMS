@@ -6,11 +6,11 @@
 //  Copyright (c) 2012年 __barfoo__. All rights reserved.
 //
 
-#define ZYCMS_Base_Url @"http://www.youzilu.com/zymobcms/index.php?r="
-#define ZYCMS_image_Url @"http://www.youzilu.com/zymobcms/"
+#define ZYCMS_Base_Url @"http://www.zyprosoft.com/zymobcms/index.php?r="
+#define ZYCMS_image_Url @"http://www.zyprosoft.com/zymobcms/"
 //#define MCM_Base_Url @"https://61.136.59.251:8017"
 
-#define APPID            @"cnyzn_shaoguanfangchan"
+#define APPID            @"cnyzn_wenzhoujiudian"
 
 #define PPF_HOST_KEY @"ppf12" //对应服务器返回主机列表的key TODO
 #define MCM_HOST_KEY @"mcm"

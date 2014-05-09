@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B5DF1EE186ABD5D000B50D2 /* af.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DF1ED186ABD5C000B50D2 /* af.jpeg */; };
 		3BD959CA17D86661008BB5D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD959C917D86661008BB5D7 /* UIKit.framework */; };
 		3BD959CC17D86661008BB5D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD959CB17D86661008BB5D7 /* Foundation.framework */; };
 		3BD959CE17D86661008BB5D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD959CD17D86661008BB5D7 /* CoreGraphics.framework */; };
@@ -154,6 +155,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B5DF1ED186ABD5C000B50D2 /* af.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = af.jpeg; sourceTree = "<group>"; };
 		3BD959C617D86661008BB5D7 /* ZYXMPPClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYXMPPClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD959C917D86661008BB5D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3BD959CB17D86661008BB5D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -499,6 +501,7 @@
 		3BD959CF17D86661008BB5D7 /* ZYXMPPClient */ = {
 			isa = PBXGroup;
 			children = (
+				3B5DF1ED186ABD5C000B50D2 /* af.jpeg */,
 				3BD95BB417D86809008BB5D7 /* ZYXMPPClient */,
 				3BD959D817D86661008BB5D7 /* ZYXMPPClientAppDelegate.h */,
 				3BD959D917D86661008BB5D7 /* ZYXMPPClientAppDelegate.m */,
@@ -1339,6 +1342,7 @@
 				3BD959E617D86661008BB5D7 /* ZYXMPPClientViewController.xib in Resources */,
 				3BD95D6917D8680A008BB5D7 /* README.txt in Resources */,
 				3BD95D6E17D8680A008BB5D7 /* build-libidn.sh in Resources */,
+				3B5DF1EE186ABD5D000B50D2 /* af.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

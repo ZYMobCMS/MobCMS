@@ -121,7 +121,6 @@
     [BFImageCache cacheImage:loadImage withUrl:_imageUrl];
     
     self.image = loadImage;
-
 }
 /*
 // Only override drawRect: if you perform custom drawing.
