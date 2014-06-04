@@ -233,10 +233,10 @@
     
     UINavigationController *newNav = [[UINavigationController alloc]initWithRootViewController:currentVC];
     
-    if ([BFUitils isIOSVersionOver5]) {
+    if (IS_IOS_7) {
+        [newNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar_i7.png"] forBarMetrics:UIBarMetricsDefault];
+    }else{
         [newNav.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar.png"] forBarMetrics:UIBarMetricsDefault];
-    }else {
-        [newNav.navigationBar drawRect:newNav.navigationBar.frame];
     }
     newNav.view.frame = appDelegate.rootViewController.view.frame;
     appDelegate.rootViewController.detailViewController = newNav;

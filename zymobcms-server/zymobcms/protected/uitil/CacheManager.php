@@ -26,25 +26,25 @@ class CacheManager {
         
         $this->_cache = new Cache($cacheConfig);
         
-//        //是否过期,去数据库查询过期时间,备用需求
-//            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
-//            $findOverTime = "select cache_over_time from zy_application_owner";
-//            $resultObject = $dbOperation->queryBySql($findOverTime);
-//            
-//            $currentTime = date('Y-m-d h:i:s');
-//            if(strtotime($resultObject->cache_over_time)<strtotime($currentTime)){ 
-//                
-//                //清除所有缓存
-//                $this->_cache->eraseAll();
-//                
-//                //重新设置10天后为缓存清除时间
-//                $newClearTime = $this->AddDay($currentTime,10);
-//                $updateCacheClearTime = "update zy_application_owner set cache_over_time = $newClearTime";
-//                $saveNewUpdate = $dbOperation->saveBySql($updateCacheClearTime);
-//                if($saveNewUpdate){
-//                    
-//                } 
-//            }
+        //是否过期,去数据库查询过期时间,备用需求
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$this->_appId,DataBaseConfig::$charset);
+            $findOverTime = "select cache_over_time from zy_application_owner";
+            $resultObject = $dbOperation->queryBySql($findOverTime);
+            
+            $currentTime = date('Y-m-d h:i:s',time());
+            if(strtotime($resultObject->cache_over_time)<strtotime($currentTime)){ 
+                
+                //清除所有缓存
+                $this->_cache->eraseAll();
+                
+                //重新设置2小时后为缓存清除时间
+                $newClearTime = $this->AddSeconds(time(),30);
+                $updateCacheClearTime = "update zy_application_owner set cache_over_time = $newClearTime";
+                $saveNewUpdate = $dbOperation->saveBySql($updateCacheClearTime);
+                if($saveNewUpdate){
+                    
+                } 
+            }        
         
     }
     
@@ -92,6 +92,16 @@ class CacheManager {
         $dayst = 3600 * 24;
         $oktime = $ntime + ($aday * $dayst);
         return $oktime;
+    }
+    function AddHour($ntime,$ahour)
+    {
+        $dayst = 3600;
+        $oktime = $ntime + ($ahour * $dayst);
+        return $oktime; 
+    }
+    function AddSeconds($ntime,$seconds){
+        $oktime = $ntime + $seconds;
+        return $oktime; 
     }
     
     /*

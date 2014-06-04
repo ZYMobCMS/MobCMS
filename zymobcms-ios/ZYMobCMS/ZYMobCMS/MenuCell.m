@@ -20,6 +20,8 @@
         // Initialization code
         
         self = (MenuCell*)[BFUitils viewFromNibWithName:@"MenuCell" owner:self];
+        self.backgroundColor = [UIColor clearColor];
+
     }
     return self;
 }

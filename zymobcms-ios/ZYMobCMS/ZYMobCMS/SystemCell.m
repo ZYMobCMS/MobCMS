@@ -19,7 +19,7 @@
         // Initialization code
         
         self = (SystemCell*)[BFUitils viewFromNibWithName:@"SystemCell" owner:self];
-        
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

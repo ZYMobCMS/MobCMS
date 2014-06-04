@@ -139,14 +139,16 @@
     [contentImageView release];
     
     //text content
-    contentTextView = [[CustomTextView alloc]initWithFrame:initRect];
-    contentTextView.editable = NO;
-    contentTextView.font = [UIFont systemFontOfSize:ContentFontSize];
+    contentTextView = [[BFAttributedView alloc]initWithFrame:initRect];
+    contentTextView.textDescriptor.fontSize = ContentFontSize;
+    contentTextView.textDescriptor.textColor = [BFUitils rgbColor:12 green:12 blue:12];
+    contentTextView.textDescriptor.lineSpace = 5.f;
     [scrollView addSubview:contentTextView];
     [contentTextView release];
     
     //add commentBAr
-    commentBar = [[ZYCommentBar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-106*2/6-44,self.view.frame.size.width, 106*2/6) withBeginAction:^{
+    CGFloat yDetal = IS_IOS_7? 20.f:0;
+    commentBar = [[ZYCommentBar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-106*2/6-44-yDetal,self.view.frame.size.width, 106*2/6) withBeginAction:^{
         
         //
         if (![ZYUserManager userIsLogined]) {
@@ -191,14 +193,13 @@
         //设置微信图文分享你可以用下面两种方法
         //1.用微信分享应用类型，用户分享给好友，对方点击跳转到手机应用或者打开url页面。需要另外设置应用下载地址，否则点击朋友圈进入友盟主页
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
-        [UMSocialData defaultData].extConfig.appUrl = @"http://www.zyprosoft.com";//设置你应用的下载地址
         
         NSString *shareText = [self.articleDict objectForKey:@"title"];    //分享内嵌文字
         NSString *firstImage = [[[self.articleDict objectForKey:@"images"] componentsSeparatedByString:@"|"]objectAtIndex:0];
         UIImage *shareImage = [BFImageCache imageForUrl:firstImage];                   //分享内嵌图片
         
-        //如果得到分享完成回调，需要传递delegate参数
-        [UMSocialSnsService presentSnsIconSheetView:self appKey:useAppkey shareText:shareText shareImage:shareImage shareToSnsNames:nil delegate:nil];
+        //如果得到分享完成回调，需要设置delegate为self
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppKey shareText:shareText shareImage:shareImage shareToSnsNames:nil delegate:self];
     }];
     [rightNavButton setRightItemAction:^{
         [self commentListAction];
@@ -336,12 +337,13 @@
     likeLabel.text = favString;
     
     //内容
-    [contentTextView setText:content];
+    [contentTextView setContentText:content];
     
-    CGSize contentSize = contentTextView.contentSize;
-    
-    CGRect contentRect = CGRectMake(Left_Margin,originY,contentWidth,contentSize.height);
+    //计算高度
+    CGFloat contentHeight = [BFAttributedView getAttributedContentHeight:contentTextView.contentAttributedString  withWdith:contentWidth];
+    CGRect contentRect = CGRectMake(Left_Margin,originY,contentWidth,contentHeight);
     contentTextView.frame = contentRect;
+    NSLog(@"contentHeight:%f",contentHeight);
     
     originY = contentTextView.frame.origin.y+contentTextView.frame.size.height+Text_Text_Margin;
     

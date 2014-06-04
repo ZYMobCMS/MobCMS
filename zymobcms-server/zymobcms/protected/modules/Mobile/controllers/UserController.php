@@ -613,6 +613,168 @@ class UserController extends Controller {
         	}
         }
         
+        /*
+         * 用户发表的帖子
+         */
+        public function actionUserShareArticleList(){
+            
+            $userId = $_GET['userId'];
+            $appId = $_GET['appId'];
+            $categoryId = $_GET['categoryId'];
+            $tabTypeId = $_GET['tabTypeId'];
+            $pageIndex = $_GET['pageIndex'];
+            $pageSize = $_GET['pageSize'];
+            
+            if(!$userId || !$appId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            if($pageIndex<0){
+                $pageIndex = 0;
+            }
+            
+            if($pageSize>10){
+                $pageSize = 10;
+            }
+            
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$appId,DataBaseConfig::$charset);
+
+            $truePageIndex = ($pageIndex-1)>=0? $pageIndex-1:$pageIndex;
+            $startIndex = $truePageIndex*$pageSize;
+            
+            $sql = "select zy_user.nick_name as create_user_name,zy_article.title,zy_article.summary,zy_article.publish_time,zy_article.source,zy_article.images from zy_article inner join zy_user on zy_article.create_user=zy_user.id  where create_user=$userId and category_id = '$categoryId' and tab_type_id = '$tabTypeId'  limit $startIndex,$pageSize";
+            
+            $resultArr = $dbOperation->queryAllBySql($sql);
+            
+            if($resultArr){
+                $jsonArr = array('status'=>'1','data'=>$resultArr);
+
+            }else{
+                $jsonArr = array('status'=>'0','msg'=>'服务器繁忙');
+
+            }
+            
+            echo json_encode($jsonArr);
+            
+        }
+        
+        /*
+         * 用户上传文件
+         */
+        public function actionUploadFile(){
+            
+         $appId = $_GET['appId'];
+         if(!$appId){
+            $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+            echo json_encode($resultArr);
+            
+            return;
+         }
+            
+         if ((($_FILES["file"]["type"] == "image/gif")
+                || ($_FILES["file"]["type"] == "image/png")
+                || ($_FILES["file"]["type"] == "image/jpeg")
+                || ($_FILES["file"]["type"] == "image/jpg"))
+                && ($_FILES["file"]["size"] < 20000))
+         {
+                if ($_FILES["file"]["error"] > 0)
+                {                    
+                    $resultArr = array('status'=>'0','data'=>'file error');
+            	 
+                    echo json_encode($resultArr);
+            	 
+                    return;
+                }
+                else
+                {
+                    
+                    $appDir = '/upload_images/'.$appId;
+             
+                    if(!file_exists($appDir))  
+                    {  
+                        //检查是否有该文件夹，如果没有就创建，并给予最高权限  
+                        mkdir("$appDir", 0700);  
+                    }
+            
+                    $appFilePath = '/upload_images/'.$appId.'/'. $_FILES["file"]["name"];
+                    $fileUploadPath = $appFilePath;
+                    
+                    if (file_exists($fileUploadPath))
+                    {
+                        
+                        $resultArr = array('status'=>'0','data'=>'image exist');
+            	 
+                        echo json_encode($resultArr);
+            	 
+                        return;
+                
+                    }
+                    else
+                    {
+                        move_uploaded_file($_FILES["file"]["tmp_name"],
+                        $fileUploadPath);
+                        
+                        $resultArr = array('status'=>'1','data'=>$appFilePath);
+            	 
+                        echo json_encode($resultArr);
+            	 
+                        return;
+                    }
+                }
+        }
+        else
+        {
+            
+            $resultArr = array('status'=>'0','data'=>'file invalid');
+            	 
+            echo json_encode($resultArr);
+            	 
+            return;
+        }
+    }
+    
+ //生成缩略图
+ /**
+ * 生成图片缩略图
+ *
+ * @param   string  $src    原图地址
+ * @param   string  $savePath 缩略图保存地址
+ * @param   integer $width  缩略图宽
+ * @param   integer $height 缩略图高
+ * @return  string  缩略图地址
+ */
+ function buildThumb($src, $savePath, $width = 220, $height = 180)
+ {
+     $arr = getimagesize($src);
+     if (!is_array($arr)) {
+         return false;
+     }
+     //1,2,3 分别为gif,jpg,png
+     if ($arr[2] > 4) {
+         return false;
+     }
+     $func = imagecreatefrom;
+     switch ($arr[2]) {
+         case 1  : $func .= gif; break;
+         case 2  : $func .= jpeg; break;
+         case 3  : $func .= png; break;
+         default :  $func .= jpeg;
+     }
+     $srcIm = $func($src);
+     $im    = imagecreatetruecolor($width, $height);
+      imagecopyresized($im, $srcIm, 0, 0, 0, 0, $width, $height, $arr[0], $arr[1]);
+     imagejpeg($im, $savePath);
+     imagedestroy($srcIm);
+     imagedestroy($im);
+     return true;
+ }
+        
 }
 
 ?>

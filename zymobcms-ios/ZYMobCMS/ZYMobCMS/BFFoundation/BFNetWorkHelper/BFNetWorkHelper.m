@@ -10,7 +10,6 @@
 #import "NSDictionary+UrlEncodedString.h"
 #import "NSString+UrlCombine.h"
 #import "CJSONDeserializer.h"
-#import "JSONKit.h"
 #import "ZYGlobalConfig.h"
 
 static BFNetWorkHelper *_instance = nil;
@@ -436,13 +435,10 @@ static BFNetWorkHelper *_instance = nil;
 - (void)requestDone:(ASIFormDataRequest *)request
 {
     NSData *data = [request responseData];
-    NSString *resultString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *result = [[resultString dataUsingEncoding:NSUTF8StringEncoding] objectFromJSONData];
+    NSDictionary *result = [[CJSONDeserializer deserializer]deserialize:data error:nil];
     
     NSDictionary *targetCallBack = [_connectionsForCallBackDict objectForKey:request.requestFlagMark];
     [[targetCallBack objectForKey:@"delegate"] performSelector:NSSelectorFromString([targetCallBack objectForKey:@"success"]) withObject:result];
-    [resultString release];
-    
 
     //缓存
     NSDictionary *params = [targetCallBack objectForKey:@"params"];

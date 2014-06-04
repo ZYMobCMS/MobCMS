@@ -84,7 +84,8 @@
     [_refreshHeaderView startLoading:listTable];
     
     //add commentBAr
-    commentBar = [[ZYCommentBar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-106*2/6-44,self.view.frame.size.width, 106*2/6) withBeginAction:^{
+    CGFloat yDetal = IS_IOS_7? 20.f:0;
+    commentBar = [[ZYCommentBar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-106*2/6-44-yDetal,self.view.frame.size.width, 106*2/6) withBeginAction:^{
         
         //
         if (![ZYUserManager userIsLogined]) {

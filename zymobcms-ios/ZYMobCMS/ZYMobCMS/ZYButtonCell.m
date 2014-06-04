@@ -22,7 +22,7 @@
         [clearBack release];
         
         actionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        actionBtn.frame = CGRectMake(0,0,self.frame.size.width-20,self.frame.size.height);
+        actionBtn.frame = CGRectMake(10,0,self.frame.size.width-20,self.frame.size.height);
         actionBtn.layer.cornerRadius = 6.0f;
         actionBtn.layer.masksToBounds = YES;
         actionBtn.titleLabel.font = [UIFont boldSystemFontOfSize:21];
@@ -44,7 +44,7 @@
         [clearBack release];
         
         actionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        actionBtn.frame = CGRectMake(0,0,self.frame.size.width-20,self.frame.size.height);
+        actionBtn.frame = CGRectMake(10,0,self.frame.size.width-20,self.frame.size.height);
         actionBtn.layer.cornerRadius = 6.0f;
         actionBtn.layer.masksToBounds = YES;
         actionBtn.titleLabel.font = [UIFont boldSystemFontOfSize:21];

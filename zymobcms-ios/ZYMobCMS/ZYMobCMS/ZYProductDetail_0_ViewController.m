@@ -67,7 +67,6 @@
         //设置微信图文分享你可以用下面两种方法
         //1.用微信分享应用类型，用户分享给好友，对方点击跳转到手机应用或者打开url页面。需要另外设置应用下载地址，否则点击朋友圈进入友盟主页
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
-        [UMSocialData defaultData].extConfig.appUrl = @"http://www.zyprosoft.com";//设置你应用的下载地址
         
         NSString *shareText = self.productTitle;    //分享内嵌文字
         NSString *firstImage = [[self.productImages componentsSeparatedByString:@"|"]objectAtIndex:0];

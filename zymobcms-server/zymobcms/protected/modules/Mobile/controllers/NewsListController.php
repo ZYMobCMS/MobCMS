@@ -115,7 +115,7 @@ class NewsListController extends Controller {
 //         	}
         }
         
-        $normalNewsSql = "select id,title,publish_time,source,summary,images,links,commentable,author,hot_news,tab_type_id,category_id from zy_article where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 order by id desc limit $startIndex,$pageSize";
+        $normalNewsSql = "select zy_user.nick_name as create_user_name, zy_article.id,zy_article.title,zy_article.publish_time,zy_article.source,zy_article.summary,zy_article.images,zy_article.links,zy_article.commentable,zy_article.author,zy_article.hot_news,zy_article.tab_type_id,zy_article.category_id,zy_article.create_user from zy_article inner join zy_user on zy_user.id = zy_article.create_user where category_id=$categoryId and tab_type_id=$tabTypeId and hot_news=0 order by id desc limit $startIndex,$pageSize";
         $resultArr = $dbOperation->queryAllBySql($normalNewsSql);
         
         //列表内查询用户是否收藏，加重服务器负担，改在详情内查询
@@ -661,6 +661,138 @@ class NewsListController extends Controller {
             }
             
         }
+        
+        /*
+         * 发表文章
+         */
+        public function actionPublishArticle(){
+            
+            $productId = $_GET['appId'];
+            $userId  = $_GET['userId'];
+            $content = $_GET['content'];
+            $title = $_GET['title'];
+            $images = $_GET['images'];
+            $links = $_GET['links'];
+            $source = $_GET['source'];
+            $categoryId = $_GET['categoryId'];
+            $tabTypeId = $_GET['tabTypeId'];
+            $summary = $_GET['summary'];
+            
+            
+            if(!$productId || !$userId || !$content || !$title){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            
+            $creatTime = date("Y-m-d H:i:s");
+            $createSql = "insert into zy_article(summary,title,create_time,publish_time,content,images,links,source,create_user,category_id,tab_type_id)values('$summary',$title','$creatTime','$creatTime','$content','$images','$links','$source','$userId','$categoryId','$tabTypeId')";
+            
+            echo $createSql;
+            $createArticleResult = $dbOperation->saveBySql($createSql);
+            if($createArticleResult){
+                $resultArr = array('status'=>'1','msg'=>'发表成功');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }else{
+                $resultArr = array('status'=>'0','msg'=>'发表失败');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+        }
+        
+        /*
+         * 更新文章
+         */
+        public function actionUpdateArticle(){
+            
+            $productId = $_GET['appId'];
+            $userId  = $_GET['userId'];
+            $articleId = $_GET['articleId'];
+            $content = $_GET['content'];
+            $title = $_GET['title'];
+            $images = $_GET['images'];
+            $links = $_GET['links'];
+            $source = $_GET['source'];
+            $summary = $_GET['summary'];
+            
+            if(!$productId || !$userId || !$articleId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+            
+            $updateTime = date("Y-m-d H:i:s");
+            $updateSql = "update zy_article set title='$title',content='$content',images='$images',links='$links',source='$source',summary='$summary',update_time='$updateTime' where id = '$articleId' and create_user = '$userId'";
+            
+            $updateResult = $dbOperation->saveBySql($updateSql);
+            if($updateResult){
+                $resultArr = array('status'=>'1','msg'=>'更新成功');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }else{
+                $resultArr = array('status'=>'0','msg'=>'更新失败');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+        }
+        
+        /*
+         * 删除文章
+         */
+        public function actionDeleteArticle(){
+            
+            $productId = $_GET['appId'];
+            $userId  = $_GET['userId'];
+            $articleId = $_GET['articleId'];
+            
+            if(!$productId || !$userId || !$articleId){
+                
+                $resultArr = array('status'=>'0','msg'=>'参数缺失');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+            
+            $dbOperation = new Class_DBOperation(DataBaseConfig::$dbhost,DataBaseConfig::$username,DataBaseConfig::$password,$productId,DataBaseConfig::$charset);
+
+            $deleteSql = "delete from zy_article where id = '$articleId' and create_user = '$userId'";
+            $deleteResult = $dbOperation->saveBySql($deleteSql);
+            if($deleteResult){
+                $resultArr = array('status'=>'1','msg'=>'删除成功');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }else{
+                $resultArr = array('status'=>'0','msg'=>'删除失败');
+            
+                echo json_encode($resultArr);
+            
+                return; 
+            }
+        }
+        
         
 } 
 

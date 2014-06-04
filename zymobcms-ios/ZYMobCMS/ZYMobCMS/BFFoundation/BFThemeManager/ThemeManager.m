@@ -6,7 +6,6 @@
 //
 
 #import "ThemeManager.h"
-#import "JSONKit.h"
 
 @implementation ThemeManager
 

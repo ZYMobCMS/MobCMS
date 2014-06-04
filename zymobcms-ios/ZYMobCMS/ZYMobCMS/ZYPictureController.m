@@ -44,7 +44,8 @@
 	// Do any additional setup after loading the view.
     sourceArray = [[NSMutableArray alloc]init];
     tabTypeArray = [[NSMutableArray alloc]init];
-    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44)];
+    CGFloat yDetal = IS_IOS_7? 20.f:0;
+    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44-yDetal)];
     listTable.dataSource = self;
     listTable.delegate = self;
     [self.view addSubview:listTable];

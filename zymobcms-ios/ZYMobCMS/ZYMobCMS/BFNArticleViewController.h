@@ -21,7 +21,8 @@
     
     UIImageView      *contentImageView;
     
-    UITextView       *contentTextView;
+//    UITextView       *contentTextView;
+    BFAttributedView *contentTextView;
     
     UIScrollView     *scrollView;
     

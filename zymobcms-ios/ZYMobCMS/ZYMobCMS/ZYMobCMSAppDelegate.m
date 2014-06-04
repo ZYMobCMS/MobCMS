@@ -70,8 +70,15 @@
     
     //打开调试log的开关
     [UMSocialData openLog:NO];
-    //向微信注册
-    [WXApi registerApp:@"wxd9a39c7122aa6516"];
+
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:UmengAppKey];
+    
+    //打开新浪微博的SSO开关
+    [UMSocialConfig setSupportSinaSSO:YES appRedirectUrl:@"http://sns.whalecloud.com/sina2/callback"];
+    
+    //使用友盟统计
+    [MobClick startWithAppkey:UmengAppKey];
     
     //设置友盟appkey
     [UMSocialData setAppKey:useAppkey];
@@ -80,9 +87,15 @@
     self.bMenuController = [[BFNMenuViewController alloc]init];
     self.rootViewController.masterViewController = self.bMenuController;
     [self.bMenuController tryGetNewApplicationRights];
-    [self.window addSubview:self.rootViewController.view];
+    self.window.rootViewController = self.rootViewController;
     
     [self.window makeKeyAndVisible];
+    
+    //MoGo Ad
+    AdMoGoSplashAds *splashAds = [[AdMoGoSplashAds alloc] initWithAppKey:MoGo_ID_IPhone
+                                                 adMoGoSplashAdsDelegate:self
+                                                                  window:self.window];
+    [splashAds requestSplashAd];
     
 //    // 注册推送服务
 //    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(
@@ -155,6 +168,136 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - MoGo
+- (UIViewController *)adsMoGoSplashAdsViewControllerForPresentingModalView{
+    return self.window.rootViewController;
+}
+
+
+- (NSString *)adsMoGoSplashAdsiPhone5Image{
+    return @"Default-568h";
+}
+
+- (NSString *)adsMoGoSplashAdsiPhoneImage{
+    return @"Default";
+}
+
+- (NSString *)adsMoGoSplashAdsiPadLandscapeImage{
+    return @"Default-Landscape";
+}
+
+- (NSString *)adsMoGoSplashAdsiPadPortraitImage{
+    return @"Default-Portrait";
+}
+
+- (void)adsMoGoSplashAdsSuccess:(AdMoGoSplashAds *)splashAds{
+    NSLog(@"AdsMoGoSplashAds Success");
+}
+
+- (void)adsMoGoSplashAdsFail:(AdMoGoSplashAds *)splashAds withError:(NSError *)err{
+    NSLog(@"AdsMoGoSplashAds fail %@",err);
+}
+
+- (void)adsMoGoSplashAdsAllAdFail:(AdMoGoSplashAds *)splashAds withError:(NSError *)err{
+    NSLog(@"AdsMoGoSplashAdsAllAd fail %@",err);
+}
+
+- (void)adsMoGoSplashAdsFinish:(AdMoGoSplashAds *)splashAds{
+    NSLog(@"AdsMoGoSplashAdsAllAd Finish");
+}
+
+- (void)adsMoGoSplashAdsWillPresent:(AdMoGoSplashAds *)splashAds{
+    NSLog(@"AdsMoGoSplashAdsAllAd will Present");
+}
+
+- (void)adsMoGoSplashAdsDidPresent:(AdMoGoSplashAds *)splashAds{
+    NSLog(@"AdsMoGoSplashAdsAllAd did present");
+}
+
+- (void)adsMoGoSplashAdsWillDismiss:(AdMoGoSplashAds *)splashAds{
+    NSLog(@"AdsMoGoSplashAdsAllAd will dismiss");
+}
+
+- (void)adsMoGoSplashAdsDidDismiss:(AdMoGoSplashAds *)splashAds{
+    NSLog(@"AdsMoGoSplashAdsAllAd did dismiss");
+}
+
+/*
+ 返回芒果自售广告尺寸
+ */
+- (CGRect)adMoGoSplashAdSize{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    
+    
+    float w = 300.0f;
+    float h = 300.0f;
+    
+    float x = (screenSize.width - w) / 2;
+    float y = (screenSize.height - h) /2;
+    
+    return  CGRectMake(x, y, w, h);
+}
+
+// 仅在芒果自售广告中使用
+//ipad 屏幕适配 (旋转相关)
+//设备旋转 需更换开屏广告的default图片
+- (NSString *)adsMoGoSplash:(AdMoGoSplashAds *)splashAd OrientationDidChangeGetImageName:(UIInterfaceOrientation)interfaceOri{
+    return [self getCurDefaultName];
+}
+
+// 仅在芒果自售广告中使用
+//如果已展示广告旋转的过程需要调整广告的位置
+- (CGPoint)adsMogoSplash:(AdMoGoSplashAds *)splashAd OrientationDidChangeGetAdPoint:(UIInterfaceOrientation)interfaceOri{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    float w =320, h = 480, x = 0, y = 0;
+    if (interfaceOri == UIInterfaceOrientationPortrait || interfaceOri == UIInterfaceOrientationPortraitUpsideDown) {
+        x = (screenSize.width - w) / 2;
+        y = (screenSize.height - h) /2;
+    }else{
+        x = (screenSize.height - w) / 2;
+        y = (screenSize.width - h) /2;
+    }
+    return CGPointMake(x, y);
+}
+
+-(NSString *)getCurDefaultName{
+    
+    BOOL _isPad = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+    
+    NSString *name = @"Default";
+    int scale = [UIScreen mainScreen].scale;
+    if (!_isPad) {
+        if (scale > 1 ) {
+            
+            if ([UIScreen mainScreen].bounds.size.height > 480) {
+                name = @"Default-568h@2x";
+            }else{
+                name = @"Default@2x";
+            }
+            
+        }else{
+            name = @"Default";
+        }
+    }else{
+        UIInterfaceOrientation io = [[UIApplication sharedApplication] statusBarOrientation];
+        if (scale > 1) {
+            if (io == UIInterfaceOrientationPortrait || io == UIInterfaceOrientationPortraitUpsideDown) {
+                name = @"Default-Portrait@2x";
+            }else{
+                name = @"Default-Landscape@2x";
+            }
+        }else{
+            if (io == UIInterfaceOrientationPortrait || io == UIInterfaceOrientationPortraitUpsideDown) {
+                name = @"Default-Portrait";
+            }else{
+                name = @"Default-Landscape";
+            }
+        }
+        
+    }
+    return name;
 }
 
 @end

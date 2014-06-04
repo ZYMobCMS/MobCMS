@@ -49,12 +49,21 @@
         listArray = [[NSMutableArray alloc]init];
         self.pageIndex = 1;
     }
-    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,35,self.view.frame.size.width,self.view.frame.size.height-35-44) style:UITableViewStylePlain];
+    CGFloat yDetal = IS_IOS_7? 20.f:0;
+    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,35+50,self.view.frame.size.width,self.view.frame.size.height-35-44-yDetal-50) style:UITableViewStylePlain];
     listTable.dataSource = self;
     listTable.delegate = self;
     [self.view addSubview:listTable];
     [listTable release];
     self.pageIndex = 1;
+    
+    //MoGo
+    adView = [[AdMoGoView alloc] initWithAppKey:MoGo_ID_IPhone
+                                         adType:AdViewTypeNormalBanner                                adMoGoViewDelegate:self];
+    adView.adWebBrowswerDelegate = self;
+    adView.frame = CGRectMake(0.0,33, 320.0, 50.0);
+    [self.view addSubview:adView];
+    [adView release];
     
     // 拉取刷新
     _refreshHeaderView = [[EGORefreshTableHeaderView alloc]
@@ -72,6 +81,8 @@
     segmentCtrl = [[BFSegmentControl alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,45) withDataSource:self];
     [self.view addSubview:segmentCtrl];
     [segmentCtrl release];
+    
+
     
     //设置右上角刷新
     BFNBarButton *refreshBtn = [[BFNBarButton alloc]initWithFrame:CGRectMake(0,0,29,29) withImage:[UIImage imageNamed:@"refresh.png"] withTapOnBarButton:^(BFNBarButton *sender) {
@@ -510,5 +521,90 @@
     [_refreshHeaderView startLoading:listTable];
     [self getTabType];
 }
+
+#pragma mark -
+#pragma mark AdMoGoDelegate delegate
+/*
+ 返回广告rootViewController
+ */
+- (UIViewController *)viewControllerForPresentingModalView{
+    return self;
+}
+
+
+
+/**
+ * 广告开始请求回调
+ */
+- (void)adMoGoDidStartAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"广告开始请求回调");
+}
+/**
+ * 广告接收成功回调
+ */
+- (void)adMoGoDidReceiveAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"广告接收成功回调");
+}
+/**
+ * 广告接收失败回调
+ */
+- (void)adMoGoDidFailToReceiveAd:(AdMoGoView *)adMoGoView didFailWithError:(NSError *)error{
+    NSLog(@"广告接收失败回调");
+}
+/**
+ * 点击广告回调
+ */
+- (void)adMoGoClickAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"点击广告回调");
+}
+/**
+ *You can get notified when the user delete the ad
+ 广告关闭回调
+ */
+- (void)adMoGoDeleteAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"广告关闭回调");
+}
+
+#pragma mark -
+#pragma mark AdMoGoWebBrowserControllerUserDelegate delegate
+
+/*
+ 浏览器将要展示
+ */
+- (void)webBrowserWillAppear{
+    NSLog(@"浏览器将要展示");
+}
+
+/*
+ 浏览器已经展示
+ */
+- (void)webBrowserDidAppear{
+    NSLog(@"浏览器已经展示");
+}
+
+/*
+ 浏览器将要关闭
+ */
+- (void)webBrowserWillClosed{
+    NSLog(@"浏览器将要关闭");
+}
+
+/*
+ 浏览器已经关闭
+ */
+- (void)webBrowserDidClosed{
+    NSLog(@"浏览器已经关闭");
+}
+/**
+ *直接下载类广告 是否弹出Alert确认
+ */
+-(BOOL)shouldAlertQAView:(UIAlertView *)alertView{
+    return NO;
+}
+
+- (void)webBrowserShare:(NSString *)url{
+    
+}
+
 
 @end

@@ -5480,3 +5480,24 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Admin/commentSupport/index.php
 ---
+2014/05/09 10:24:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "publishAricle".' in /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php:483
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(270): CController->missingAction('publishAricle')
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): CController->run('publishAricle')
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController('Mobile/newsList...')
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/publishAricle&appId=zymobcms&content=test&title=test&userId=4
+---
+2014/05/09 10:24:56 [error] [php] Undefined index: images (/Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php:674)
+Stack trace:
+#0 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(286): NewsListController->runAction()
+#1 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CController.php(265): NewsListController->runActionWithFilters()
+#2 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(282): NewsListController->run()
+#3 /Users/barfoo/Dropbox/huhu/PHPServers/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/barfoo/Dropbox/huhu/PHPServers/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php(13): CWebApplication->run()
+REQUEST_URI=/MobCMS/zymobcms-server/zymobcms/index.php?r=Mobile/newsList/publishArticle&appId=zymobcms&content=test&title=test&userId=4
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/protected/modules/Mobile/controllers/NewsListController.php (674)
+in /Users/barfoo/Dropbox/huhu/PHPServers/MobCMS/zymobcms-server/zymobcms/index.php (13)

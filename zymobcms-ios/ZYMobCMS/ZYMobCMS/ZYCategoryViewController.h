@@ -11,7 +11,11 @@
 #import "EGORefreshTableHeaderView.h"
 #import "BFNBaseViewController.h"
 
-@interface ZYCategoryViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource,EGORefreshTableHeaderDelegate>
+#import "AdMoGoDelegateProtocol.h"
+#import "AdMoGoView.h"
+#import "AdMoGoWebBrowserControllerUserDelegate.h"
+
+@interface ZYCategoryViewController : BFNBaseViewController<UITableViewDataSource,UITableViewDelegate,BFSegmentControlDataSource,EGORefreshTableHeaderDelegate,AdMoGoDelegate,AdMoGoWebBrowserControllerUserDelegate>
 {
     BFSegmentControl *segmentCtrl;
     NSMutableArray   *segmentArray;
@@ -25,7 +29,7 @@
     BOOL hideLoadMore;
     NSInteger pageIndex;
     
-    
+    AdMoGoView *adView;
 }
 @property (nonatomic,retain)NSString *categoryId;
 @property (nonatomic,retain)NSString *currentTabType;
@@ -33,6 +37,7 @@
 @property (nonatomic,assign)NSInteger pageIndex;
 @property (nonatomic,retain)BFSegmentControl *segmentCtrl;
 @property (nonatomic,retain)UITableView *listTable;
+@property (nonatomic, retain) AdMoGoView *adView;
 
 - (void)refreshContent;
 

@@ -14,8 +14,13 @@
 #import "BFNMenuViewController.h"
 
 #define useAppkey @"5219554b56240b5ade061e1f"
+#define UmengAppKey @"5219554b56240b5ade061e1f"
+#define MoGo_ID_IPhone @"9d12f0df93af44e38f5ca7fcc251b4d6"
 
-@interface ZYMobCMSAppDelegate : UIResponder <UIApplicationDelegate>
+#import "AdMoGoSplashAds.h"
+#import "AdMoGoSplashAdsDelegate.h"
+
+@interface ZYMobCMSAppDelegate : UIResponder <UIApplicationDelegate,AdMoGoSplashAdsDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain)STMenuViewController *sMenuController;

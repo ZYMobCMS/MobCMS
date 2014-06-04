@@ -48,7 +48,8 @@
     if (!tabTypesArray) {
         tabTypesArray = [[NSMutableArray alloc]init];
     }
-    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44) style:UITableViewStylePlain];
+    CGFloat yDetal = IS_IOS_7? 20.f:0;
+    listTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-44-yDetal) style:UITableViewStylePlain];
     listTable.dataSource = self;
     listTable.delegate = self;
     listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
