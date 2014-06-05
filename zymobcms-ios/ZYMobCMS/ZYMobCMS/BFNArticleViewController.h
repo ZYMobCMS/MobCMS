@@ -12,7 +12,11 @@
 #import "BFImageCache.h"
 #import "ZYCommentBar.h"
 
-@interface BFNArticleViewController : BFNBaseViewController
+#import "AdMoGoDelegateProtocol.h"
+#import "AdMoGoView.h"
+#import "AdMoGoWebBrowserControllerUserDelegate.h"
+
+@interface BFNArticleViewController : BFNBaseViewController<AdMoGoDelegate,AdMoGoWebBrowserControllerUserDelegate>
 {
     UILabel *titleView;
     
@@ -32,7 +36,7 @@
     
     ZYCommentBar    *commentBar;
     
-    
+    AdMoGoView *adView;
 }
 @property (nonatomic,retain)NSMutableDictionary *articleDict;
 @property (nonatomic,retain)UIImageView      *contentImageView;

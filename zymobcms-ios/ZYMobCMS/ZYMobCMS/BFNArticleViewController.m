@@ -74,8 +74,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    CGRect   initRect = CGRectMake(0,0,self.view.frame.size.width-2*Left_Margin,1);
+    //MoGo
+    adView = [[AdMoGoView alloc] initWithAppKey:MoGo_ID_IPhone
+                                         adType:AdViewTypeNormalBanner                                adMoGoViewDelegate:self];
+    adView.adWebBrowswerDelegate = self;
+    adView.frame = CGRectMake(0.0,0, 320.0, 50.0);
+    [self.view addSubview:adView];
+    [adView release];
     
+    CGRect   initRect = CGRectMake(0,50,self.view.frame.size.width-2*Left_Margin,1);
     //scroll
     scrollView = [[UIScrollView alloc]initWithFrame:initRect];
     [self.view addSubview:scrollView];
@@ -333,7 +340,7 @@
     //like
     NSString *favString = [NSString stringWithFormat:@"%@喜欢",favCount];
     CGSize favSize = [favString sizeWithFont:[UIFont systemFontOfSize:LikeFontSize] constrainedToSize:CGSizeMake(self.view.frame.size.width,99999) lineBreakMode:UILineBreakModeCharacterWrap];
-    likeLabel.frame = CGRectMake(self.view.frame.size.width-favSize.width-10,30, favSize.width+10,favSize.height);
+    likeLabel.frame = CGRectMake(self.view.frame.size.width-favSize.width-10,60, favSize.width+10,favSize.height);
     likeLabel.text = favString;
     
     //内容
@@ -348,7 +355,7 @@
     originY = contentTextView.frame.origin.y+contentTextView.frame.size.height+Text_Text_Margin;
     
     //重设scroll content
-    scrollView.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
+    scrollView.frame = CGRectMake(0,50,self.view.frame.size.width,self.view.frame.size.height-50);
     scrollView.contentSize = CGSizeMake(self.view.frame.size.width,originY+106*2/6);
     
     //是否可以收藏
@@ -420,6 +427,90 @@
         [self.navigationController pushViewController:preVC animated:YES];
         [preVC release];
     }
+}
+
+#pragma mark -
+#pragma mark AdMoGoDelegate delegate
+/*
+ 返回广告rootViewController
+ */
+- (UIViewController *)viewControllerForPresentingModalView{
+    return self;
+}
+
+
+
+/**
+ * 广告开始请求回调
+ */
+- (void)adMoGoDidStartAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"广告开始请求回调");
+}
+/**
+ * 广告接收成功回调
+ */
+- (void)adMoGoDidReceiveAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"广告接收成功回调");
+}
+/**
+ * 广告接收失败回调
+ */
+- (void)adMoGoDidFailToReceiveAd:(AdMoGoView *)adMoGoView didFailWithError:(NSError *)error{
+    NSLog(@"广告接收失败回调");
+}
+/**
+ * 点击广告回调
+ */
+- (void)adMoGoClickAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"点击广告回调");
+}
+/**
+ *You can get notified when the user delete the ad
+ 广告关闭回调
+ */
+- (void)adMoGoDeleteAd:(AdMoGoView *)adMoGoView{
+    NSLog(@"广告关闭回调");
+}
+
+#pragma mark -
+#pragma mark AdMoGoWebBrowserControllerUserDelegate delegate
+
+/*
+ 浏览器将要展示
+ */
+- (void)webBrowserWillAppear{
+    NSLog(@"浏览器将要展示");
+}
+
+/*
+ 浏览器已经展示
+ */
+- (void)webBrowserDidAppear{
+    NSLog(@"浏览器已经展示");
+}
+
+/*
+ 浏览器将要关闭
+ */
+- (void)webBrowserWillClosed{
+    NSLog(@"浏览器将要关闭");
+}
+
+/*
+ 浏览器已经关闭
+ */
+- (void)webBrowserDidClosed{
+    NSLog(@"浏览器已经关闭");
+}
+/**
+ *直接下载类广告 是否弹出Alert确认
+ */
+-(BOOL)shouldAlertQAView:(UIAlertView *)alertView{
+    return NO;
+}
+
+- (void)webBrowserShare:(NSString *)url{
+    
 }
 
 @end
