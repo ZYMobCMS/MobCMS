@@ -10,7 +10,7 @@
 #define ZYCMS_image_Url @"http://www.zyprosoft.com/zymobcms/"
 //#define MCM_Base_Url @"https://61.136.59.251:8017"
 
-#define APPID            @"zyprosoft_fuyunkaka"
+#define APPID            @"zyprosoft_jiandaily"
 
 #define PPF_HOST_KEY @"ppf12" //对应服务器返回主机列表的key TODO
 #define MCM_HOST_KEY @"mcm"
